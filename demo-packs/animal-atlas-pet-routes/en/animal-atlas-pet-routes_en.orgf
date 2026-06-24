@@ -1,0 +1,5581 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: Animal Atlas
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — to the extent possible under law, ORGFORMAT DemoPacks has waived copyright and
+    related or neighbouring rights to this material. You may copy, modify, distribute, and use it, including
+    commercially, without permission or required attribution. CC0 does not grant rights to the ORGFORMAT or
+    ORGF names, logos, or other brand assets.
+  license: CC0-1.0
+  created: '2026-06-22'
+  updated: '2026-06-24'
+
+model:
+  name: Animal Atlas — EN
+  desc: >-
+    An educational Animalia hierarchy with a taxonomic core and curated pet and popular-animal branches.
+
+    This ORGFORMAT DemoPacks material is provided to illustrate ORGF capabilities. Unless expressly stated
+    otherwise, names, organisations, products, projects, roles, data, and scenarios in the model are
+    illustrative or fictional; any resemblance to actual entities does not imply affiliation, endorsement,
+    or origin. Questions or claims: support@orgformat.com.
+
+root:
+  name: Animals
+  desc: Animalia
+  pic:
+    set: emoji
+    name: 🌍
+  tags:
+    - kingdom
+    - global
+  children:
+    - name: Thorny-headed worms
+      desc: Acanthocephala
+      tags:
+        - phylum
+      children:
+        - name: Archiacanthocephalans
+          desc: Archiacanthocephala
+          tags:
+            - class
+          children:
+            - name: Apororhynchida
+              desc: Apororhynchida
+              tags:
+                - order
+            - name: Gigantorhynchida
+              desc: Gigantorhynchida
+              tags:
+                - order
+            - name: Moniliformida
+              desc: Moniliformida
+              tags:
+                - order
+            - name: Oligacanthorhynchida
+              desc: Oligacanthorhynchida
+              tags:
+                - order
+        - name: Eoacanthocephalans
+          desc: Eoacanthocephala
+          tags:
+            - class
+          children:
+            - name: Gyracanthocephala
+              desc: Gyracanthocephala
+              tags:
+                - order
+            - name: Neoechinorhynchida
+              desc: Neoechinorhynchida
+              tags:
+                - order
+        - name: Palaeacanthocephalans
+          desc: Palaeacanthocephala
+          tags:
+            - class
+          children:
+            - name: Echinorhynchida
+              desc: Echinorhynchida
+              tags:
+                - order
+            - name: Heteramorphida
+              desc: Heteramorphida
+              tags:
+                - order
+            - name: Polymorphida
+              desc: Polymorphida
+              tags:
+                - order
+        - name: Polyacanthocephalans
+          desc: Polyacanthocephala
+          tags:
+            - class
+          children:
+            - name: Polyacanthorhynchida
+              desc: Polyacanthorhynchida
+              tags:
+                - order
+    - name: Annelids
+      desc: Annelida
+      pic:
+        set: emoji
+        name: 🪱
+      tags:
+        - phylum
+      children:
+        - name: Clitellates
+          desc: Clitellata
+          pic:
+            set: emoji
+            name: 🪱
+          tags:
+            - class
+            - terrestrial
+            - freshwater
+          children:
+            - name: Acanthobdellida
+              desc: Acanthobdellida
+              tags:
+                - order
+            - name: Alluroidida
+              desc: Alluroidida
+              tags:
+                - order
+            - name: Jawed leeches
+              desc: Arhynchobdellida
+              pic:
+                set: emoji
+                name: 🪱
+              tags:
+                - order
+                - freshwater
+                - parasite
+            - name: Branchiobdellida
+              desc: Branchiobdellida
+              tags:
+                - order
+            - name: Capilloventrida
+              desc: Capilloventrida
+              tags:
+                - order
+            - name: Crassiclitellata
+              desc: Crassiclitellata
+              tags:
+                - order
+            - name: Enchytraeida
+              desc: Enchytraeida
+              tags:
+                - order
+            - name: Euhirudinea
+              desc: Euhirudinea
+              tags:
+                - order
+            - name: Haplotaxida
+              desc: Haplotaxida
+              pic:
+                set: emoji
+                name: 🪱
+              tags:
+                - order
+                - terrestrial
+                - freshwater
+            - name: Haplotaxoidida
+              desc: Haplotaxoidida
+              tags:
+                - order
+            - name: Limpluvida
+              desc: Limpluvida
+              tags:
+                - order
+            - name: Lumbriculida
+              desc: Lumbriculida
+              tags:
+                - order
+            - name: Moniligastrida
+              desc: Moniligastrida
+              tags:
+                - order
+            - name: Narapida
+              desc: Narapida
+              tags:
+                - order
+            - name: Ohtakianida
+              desc: Ohtakianida
+              tags:
+                - order
+            - name: Opisthopora
+              desc: Opisthopora
+              tags:
+                - order
+            - name: Parvidrilida
+              desc: Parvidrilida
+              tags:
+                - order
+            - name: Pelodrilida
+              desc: Pelodrilida
+              tags:
+                - order
+            - name: Randiellida
+              desc: Randiellida
+              tags:
+                - order
+            - name: Proboscis leeches
+              desc: Rhynchobdellida
+              tags:
+                - order
+            - name: Tubificida
+              desc: Tubificida
+              tags:
+                - order
+        - name: Bristle worms
+          desc: Polychaeta
+          pic:
+            set: emoji
+            name: 🪱
+          tags:
+            - class
+            - marine
+          children:
+            - name: Fireworms
+              desc: Amphinomida
+              tags:
+                - order
+            - name: Spoon worms
+              desc: Echiuroidea
+              tags:
+                - order
+            - name: Eunicida
+              desc: Eunicida
+              tags:
+                - order
+            - name: Phyllodocida
+              desc: Phyllodocida
+              pic:
+                set: emoji
+                name: 🪱
+              tags:
+                - order
+                - marine
+            - name: Sabellida
+              desc: Sabellida
+              pic:
+                set: emoji
+                name: 🪱
+              tags:
+                - order
+                - marine
+    - name: Arthropods
+      desc: Arthropoda
+      pic:
+        set: emoji
+        name: 🦋
+      tags:
+        - phylum
+      children:
+        - name: Arachnids
+          desc: Arachnida
+          pic:
+            set: emoji
+            name: 🕷️
+          tags:
+            - class
+            - terrestrial
+          children:
+            - name: Tailless whip scorpions
+              desc: Amblypygi
+              tags:
+                - order
+            - name: Spiders
+              desc: Araneae
+              pic:
+                set: emoji
+                name: 🕷️
+              tags:
+                - order
+                - carnivorous
+                - venomous
+                - featured
+              style:
+                contour: solid
+                contour_width: bold
+              relation:
+                line: solid
+                line_width: bold
+                color: '#D64545'
+            - name: Holothyrida
+              desc: Holothyrida
+              tags:
+                - order
+            - name: Ticks
+              desc: Ixodida
+              tags:
+                - order
+            - name: Mesostigmata
+              desc: Mesostigmata
+              tags:
+                - order
+            - name: Opilioacarida
+              desc: Opilioacarida
+              tags:
+                - order
+            - name: Harvestmen
+              desc: Opiliones
+              tags:
+                - order
+            - name: Palpigradi
+              desc: Palpigradi
+              tags:
+                - order
+            - name: Pseudoscorpions
+              desc: Pseudoscorpiones
+              tags:
+                - order
+            - name: Ricinulei
+              desc: Ricinulei
+              tags:
+                - order
+            - name: Sarcoptiformes
+              desc: Sarcoptiformes
+              tags:
+                - order
+            - name: Schizomida
+              desc: Schizomida
+              tags:
+                - order
+            - name: Scorpions
+              desc: Scorpiones
+              pic:
+                set: emoji
+                name: 🦂
+              tags:
+                - order
+                - carnivorous
+                - venomous
+                - desert
+              style:
+                contour: solid
+                contour_width: bold
+              relation:
+                line: solid
+                line_width: bold
+                color: '#D64545'
+            - name: Camel spiders
+              desc: Solifugae
+              tags:
+                - order
+            - name: Trombidiformes
+              desc: Trombidiformes
+              tags:
+                - order
+            - name: Vinegaroons
+              desc: Uropygi
+              tags:
+                - order
+        - name: Branchiopods
+          desc: Branchiopoda
+          tags:
+            - class
+          children:
+            - name: Fairy shrimp
+              desc: Anostraca
+              tags:
+                - order
+            - name: Clam shrimp
+              desc: Diplostraca
+              tags:
+                - order
+            - name: Tadpole shrimp
+              desc: Notostraca
+              tags:
+                - order
+        - name: Fish lice
+          desc: Branchiura
+          tags:
+            - class
+        - name: Cephalocarida
+          desc: Cephalocarida
+          tags:
+            - class
+          children:
+            - name: Brachypoda
+              desc: Brachypoda
+              tags:
+                - order
+        - name: Centipedes
+          desc: Chilopoda
+          pic:
+            set: emoji
+            name: 🐛
+          tags:
+            - class
+            - terrestrial
+          children:
+            - name: Craterostigmomorpha
+              desc: Craterostigmomorpha
+              tags:
+                - order
+            - name: Soil centipedes
+              desc: Geophilomorpha
+              tags:
+                - order
+            - name: Stone centipedes
+              desc: Lithobiomorpha
+              tags:
+                - order
+            - name: Tropical centipedes
+              desc: Scolopendromorpha
+              tags:
+                - order
+            - name: House centipedes
+              desc: Scutigeromorpha
+              tags:
+                - order
+        - name: Springtails
+          desc: Collembola
+          tags:
+            - class
+          children:
+            - name: Entomobryomorpha
+              desc: Entomobryomorpha
+              tags:
+                - order
+            - name: Neelipleona
+              desc: Neelipleona
+              tags:
+                - order
+            - name: Poduromorpha
+              desc: Poduromorpha
+              tags:
+                - order
+            - name: Symphypleona
+              desc: Symphypleona
+              tags:
+                - order
+        - name: Copepods
+          desc: Copepoda
+          tags:
+            - class
+          children:
+            - name: Canuelloida
+              desc: Canuelloida
+              tags:
+                - order
+            - name: Gelyelloida
+              desc: Gelyelloida
+              tags:
+                - order
+            - name: Misophrioida
+              desc: Misophrioida
+              tags:
+                - order
+            - name: Monstrilloida
+              desc: Monstrilloida
+              tags:
+                - order
+            - name: Mormonilloida
+              desc: Mormonilloida
+              tags:
+                - order
+            - name: Platycopioida
+              desc: Platycopioida
+              tags:
+                - order
+        - name: Millipedes
+          desc: Diplopoda
+          pic:
+            set: emoji
+            name: 🐛
+          tags:
+            - class
+            - terrestrial
+          children:
+            - name: Glomeridesmida
+              desc: Glomeridesmida
+              tags:
+                - order
+            - name: Platydesmida
+              desc: Platydesmida
+              tags:
+                - order
+            - name: Polyxenida
+              desc: Polyxenida
+              tags:
+                - order
+            - name: Polyzoniida
+              desc: Polyzoniida
+              tags:
+                - order
+            - name: Siphoniulida
+              desc: Siphoniulida
+              tags:
+                - order
+            - name: Siphonocryptida
+              desc: Siphonocryptida
+              tags:
+                - order
+            - name: Stemmiulida
+              desc: Stemmiulida
+              tags:
+                - order
+            - name: Zosterogrammida
+              desc: Zosterogrammida
+              tags:
+                - order
+        - name: Two-pronged bristletails
+          desc: Diplura
+          tags:
+            - class
+        - name: Euthycarcinoidea
+          desc: Euthycarcinoidea
+          tags:
+            - class
+            - extinct
+          children:
+            - name: Euthycarcinida
+              desc: Euthycarcinida
+              tags:
+                - order
+                - extinct
+              hidden: true
+          hidden: true
+        - name: Insects
+          desc: Insecta
+          pic:
+            set: emoji
+            name: 🐝
+          tags:
+            - class
+            - terrestrial
+            - aerial
+          children:
+            - name: Jumping bristletails
+              desc: Archaeognatha
+              tags:
+                - order
+            - name: Blattodea
+              desc: Blattodea
+              pic:
+                set: emoji
+                name: 🪳
+              tags:
+                - order
+                - synanthropic
+            - name: Cnemidolestida
+              desc: Cnemidolestida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Beetles
+              desc: Coleoptera
+              pic:
+                set: emoji
+                name: 🪲
+              tags:
+                - order
+                - terrestrial
+            - name: Earwigs
+              desc: Dermaptera
+              tags:
+                - order
+            - name: True flies
+              desc: Diptera
+              pic:
+                set: emoji
+                name: 🪰
+              tags:
+                - order
+                - aerial
+            - name: Webspinners
+              desc: Embioptera
+              tags:
+                - order
+            - name: Eoblattida
+              desc: Eoblattida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Mayflies
+              desc: Ephemeroptera
+              tags:
+                - order
+            - name: Glosselytrodea
+              desc: Glosselytrodea
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: True bugs
+              desc: Hemiptera
+              pic:
+                set: emoji
+                name: 🐞
+              tags:
+                - order
+            - name: Hymenopterans
+              desc: Hymenoptera
+              pic:
+                set: emoji
+                name: 🐝
+              tags:
+                - order
+                - aerial
+              children:
+                - name: Ants
+                  desc: Formicidae
+                  tags:
+                    - family
+                    - arthropod
+                    - insect
+                    - social
+                  children:
+                    - name: Lasius ants
+                      desc: Lasius
+                      tags:
+                        - genus
+                        - arthropod
+                        - insect
+                        - social
+                      children:
+                        - name: Black garden ant
+                          desc: Lasius niger
+                          pic:
+                            set: emoji
+                            name: 🐜
+                          tags:
+                            - species
+                            - arthropod
+                            - insect
+                            - social
+                            - garden
+                    - name: Wood ants
+                      desc: Formica
+                      tags:
+                        - genus
+                        - arthropod
+                        - insect
+                        - social
+                      children:
+                        - name: European wood ant
+                          desc: Formica rufa
+                          pic:
+                            set: emoji
+                            name: 🐜
+                          tags:
+                            - species
+                            - arthropod
+                            - insect
+                            - social
+                            - forest
+                    - name: Harvester ants
+                      desc: Messor
+                      tags:
+                        - genus
+                        - arthropod
+                        - insect
+                        - social
+                      children:
+                        - name: Steppe harvester ant
+                          desc: Messor structor
+                          pic:
+                            set: emoji
+                            name: 🐜
+                          tags:
+                            - species
+                            - arthropod
+                            - insect
+                            - social
+                            - formicarium
+                            - observation
+                    - name: Leafcutter ants
+                      desc: Atta
+                      tags:
+                        - genus
+                        - arthropod
+                        - insect
+                        - social
+                      children:
+                        - name: Leafcutter ant
+                          desc: Atta cephalotes
+                          pic:
+                            set: emoji
+                            name: 🐜
+                          tags:
+                            - species
+                            - arthropod
+                            - insect
+                            - social
+                            - tropical
+                            - leafcutter
+            - name: Hypoperlida
+              desc: Hypoperlida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Lepidoptera
+              desc: Lepidoptera
+              pic:
+                set: emoji
+                name: 🦋
+              tags:
+                - order
+                - aerial
+                - featured
+            - name: Praying mantises
+              desc: Mantodea
+              pic:
+                set: emoji
+                name: 🦗
+              tags:
+                - order
+                - carnivorous
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Scorpionflies
+              desc: Mecoptera
+              tags:
+                - order
+            - name: Megaloptera
+              desc: Megaloptera
+              tags:
+                - order
+            - name: Meganisoptera
+              desc: Meganisoptera
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Megasecoptera
+              desc: Megasecoptera
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Miomoptera
+              desc: Miomoptera
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Lacewings
+              desc: Neuroptera
+              tags:
+                - order
+            - name: Notoptera
+              desc: Notoptera
+              tags:
+                - order
+            - name: Odonata
+              desc: Odonata
+              pic:
+                set: emoji
+                name: 🪰
+              tags:
+                - order
+                - aerial
+                - freshwater
+            - name: Orthoptera
+              desc: Orthoptera
+              pic:
+                set: emoji
+                name: 🦗
+              tags:
+                - order
+                - steppe
+            - name: Palaeodictyoptera
+              desc: Palaeodictyoptera
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Paoliida
+              desc: Paoliida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Permopsocida
+              desc: Permopsocida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Stick insects
+              desc: Phasmida
+              tags:
+                - order
+            - name: Stoneflies
+              desc: Plecoptera
+              tags:
+                - order
+            - name: Protorthoptera
+              desc: Protorthoptera
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Psocodea
+              desc: Psocodea
+              tags:
+                - order
+            - name: Snakeflies
+              desc: Raphidioptera
+              tags:
+                - order
+            - name: Reculida
+              desc: Reculida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Fleas
+              desc: Siphonaptera
+              tags:
+                - order
+            - name: Twisted-wing parasites
+              desc: Strepsiptera
+              tags:
+                - order
+            - name: Thrips
+              desc: Thysanoptera
+              tags:
+                - order
+            - name: Caddisflies
+              desc: Trichoptera
+              tags:
+                - order
+            - name: Zoraptera
+              desc: Zoraptera
+              tags:
+                - order
+            - name: Zygentoma
+              desc: Zygentoma
+              tags:
+                - order
+        - name: Malacostracans
+          desc: Malacostraca
+          pic:
+            set: emoji
+            name: 🦀
+          tags:
+            - class
+            - marine
+            - freshwater
+          children:
+            - name: Amphipods
+              desc: Amphipoda
+              tags:
+                - order
+            - name: Anaspidacea
+              desc: Anaspidacea
+              tags:
+                - order
+            - name: Bathynellacea
+              desc: Bathynellacea
+              tags:
+                - order
+            - name: Bochusacea
+              desc: Bochusacea
+              tags:
+                - order
+            - name: Cumacea
+              desc: Cumacea
+              tags:
+                - order
+            - name: Decapods
+              desc: Decapoda
+              pic:
+                set: emoji
+                name: 🦀
+              tags:
+                - order
+                - marine
+                - freshwater
+            - name: Krill
+              desc: Euphausiacea
+              pic:
+                set: emoji
+                name: 🦐
+              tags:
+                - order
+                - marine
+            - name: Isopods
+              desc: Isopoda
+              pic:
+                set: emoji
+                name: 🪲
+              tags:
+                - order
+                - marine
+                - terrestrial
+            - name: Leptostraca
+              desc: Leptostraca
+              tags:
+                - order
+            - name: Lophogastrida
+              desc: Lophogastrida
+              tags:
+                - order
+            - name: Opossum shrimp
+              desc: Mysida
+              tags:
+                - order
+            - name: Pygocephalomorpha
+              desc: Pygocephalomorpha
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Mantis shrimps
+              desc: Stomatopoda
+              tags:
+                - order
+            - name: Stygiomysida
+              desc: Stygiomysida
+              tags:
+                - order
+            - name: Tanaidacea
+              desc: Tanaidacea
+              tags:
+                - order
+            - name: Thermosbaenacea
+              desc: Thermosbaenacea
+              tags:
+                - order
+        - name: Horseshoe crabs
+          desc: Merostomata
+          tags:
+            - class
+          children:
+            - name: Horseshoe crabs
+              desc: Xiphosura
+              tags:
+                - order
+            - name: Horseshoe crabs
+              desc: Xiphosurida
+              tags:
+                - order
+        - name: Mystacocarida
+          desc: Mystacocarida
+          tags:
+            - class
+          children:
+            - name: Mystacocaridida
+              desc: Mystacocaridida
+              tags:
+                - order
+        - name: Seed shrimps
+          desc: Ostracoda
+          tags:
+            - class
+          children:
+            - name: Halocyprida
+              desc: Halocyprida
+              tags:
+                - order
+            - name: Myodocopida
+              desc: Myodocopida
+              tags:
+                - order
+            - name: Palaeocopida
+              desc: Palaeocopida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Platycopida
+              desc: Platycopida
+              tags:
+                - order
+            - name: Podocopida
+              desc: Podocopida
+              tags:
+                - order
+            - name: Punciocopida
+              desc: Punciocopida
+              tags:
+                - order
+        - name: Pauropods
+          desc: Pauropoda
+          tags:
+            - class
+          children:
+            - name: Hexamerocerata
+              desc: Hexamerocerata
+              tags:
+                - order
+            - name: Tetramerocerata
+              desc: Tetramerocerata
+              tags:
+                - order
+        - name: Tongue worms
+          desc: Pentastomida
+          tags:
+            - class
+        - name: Protura
+          desc: Protura
+          tags:
+            - class
+          children:
+            - name: Acerentomata
+              desc: Acerentomata
+              tags:
+                - order
+            - name: Eosentomata
+              desc: Eosentomata
+              tags:
+                - order
+            - name: Sinentomata
+              desc: Sinentomata
+              tags:
+                - order
+        - name: Sea spiders
+          desc: Pycnogonida
+          tags:
+            - class
+          children:
+            - name: Nectopantopoda
+              desc: Nectopantopoda
+              tags:
+                - order
+            - name: Palaeoisopoda
+              desc: Palaeoisopoda
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Palaeopantopoda
+              desc: Palaeopantopoda
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Sea spiders
+              desc: Pantopoda
+              tags:
+                - order
+        - name: Remipedia
+          desc: Remipedia
+          tags:
+            - class
+          children:
+            - name: Enantiopoda
+              desc: Enantiopoda
+              tags:
+                - order
+            - name: Nectiopoda
+              desc: Nectiopoda
+              tags:
+                - order
+        - name: Symphylans
+          desc: Symphyla
+          tags:
+            - class
+        - name: Tantulocarida
+          desc: Tantulocarida
+          tags:
+            - class
+        - name: Thecostraca
+          desc: Thecostraca
+          tags:
+            - class
+          children:
+            - name: Archaeolepadomorpha
+              desc: Archaeolepadomorpha
+              tags:
+                - order
+            - name: Acorn barnacles
+              desc: Balanomorpha
+              tags:
+                - order
+            - name: Brachylepadomorpha
+              desc: Brachylepadomorpha
+              tags:
+                - order
+            - name: Calanticomorpha
+              desc: Calanticomorpha
+              tags:
+                - order
+            - name: Cryptophialida
+              desc: Cryptophialida
+              tags:
+                - order
+            - name: Cyprilepadiformes
+              desc: Cyprilepadiformes
+              tags:
+                - order
+            - name: Dendrogastrida
+              desc: Dendrogastrida
+              tags:
+                - order
+            - name: Eolepadomorpha
+              desc: Eolepadomorpha
+              tags:
+                - order
+            - name: Iblomorpha
+              desc: Iblomorpha
+              tags:
+                - order
+            - name: Laurida
+              desc: Laurida
+              tags:
+                - order
+            - name: Lithoglyptida
+              desc: Lithoglyptida
+              tags:
+                - order
+            - name: Gooseneck barnacles
+              desc: Pollicipedomorpha
+              tags:
+                - order
+            - name: Scalpellomorpha
+              desc: Scalpellomorpha
+              tags:
+                - order
+            - name: Sessilia
+              desc: Sessilia
+              tags:
+                - order
+            - name: Verrucomorpha
+              desc: Verrucomorpha
+              tags:
+                - order
+        - name: Trilobites
+          desc: Trilobita
+          tags:
+            - class
+            - extinct
+          children:
+            - name: Agnostida
+              desc: Agnostida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Asaphida
+              desc: Asaphida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Aulacopleurida
+              desc: Aulacopleurida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Corynexochida
+              desc: Corynexochida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Harpetida
+              desc: Harpetida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Lichida
+              desc: Lichida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Odontopleurida
+              desc: Odontopleurida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Olenellida
+              desc: Olenellida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Phacopida
+              desc: Phacopida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Proetida
+              desc: Proetida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Proparia
+              desc: Proparia
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Ptychopariida
+              desc: Ptychopariida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Redlichiida
+              desc: Redlichiida
+              tags:
+                - order
+                - extinct
+              hidden: true
+          hidden: true
+      style:
+        fill: '#F1D29A'
+    - name: Lamp shells
+      desc: Brachiopoda
+      tags:
+        - phylum
+      children:
+        - name: Chileata
+          desc: Chileata
+          tags:
+            - class
+            - extinct
+          children:
+            - name: Chileida
+              desc: Chileida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Dictyonellida
+              desc: Dictyonellida
+              tags:
+                - order
+                - extinct
+              hidden: true
+          hidden: true
+        - name: Craniates
+          desc: Craniata
+          tags:
+            - class
+          children:
+            - name: Craniida
+              desc: Craniida
+              tags:
+                - order
+            - name: Craniopsida
+              desc: Craniopsida
+              tags:
+                - order
+            - name: Trimerellida
+              desc: Trimerellida
+              tags:
+                - order
+        - name: Kutorginata
+          desc: Kutorginata
+          tags:
+            - class
+            - extinct
+          children:
+            - name: Kutorginida
+              desc: Kutorginida
+              tags:
+                - order
+                - extinct
+              hidden: true
+          hidden: true
+        - name: Lingulates
+          desc: Lingulata
+          tags:
+            - class
+          children:
+            - name: Acrotretida
+              desc: Acrotretida
+              tags:
+                - order
+            - name: Lingulida
+              desc: Lingulida
+              tags:
+                - order
+            - name: Siphonotretida
+              desc: Siphonotretida
+              tags:
+                - order
+        - name: Obolellata
+          desc: Obolellata
+          tags:
+            - class
+            - extinct
+          children:
+            - name: Naukatida
+              desc: Naukatida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Obolellida
+              desc: Obolellida
+              tags:
+                - order
+                - extinct
+              hidden: true
+          hidden: true
+        - name: Paterinata
+          desc: Paterinata
+          tags:
+            - class
+            - extinct
+          children:
+            - name: Paterinida
+              desc: Paterinida
+              tags:
+                - order
+                - extinct
+              hidden: true
+          hidden: true
+        - name: Rhynchonellates
+          desc: Rhynchonellata
+          tags:
+            - class
+          children:
+            - name: Athyridida
+              desc: Athyridida
+              tags:
+                - order
+            - name: Atrypida
+              desc: Atrypida
+              tags:
+                - order
+            - name: Orthida
+              desc: Orthida
+              tags:
+                - order
+            - name: Pentamerida
+              desc: Pentamerida
+              tags:
+                - order
+            - name: Protorthida
+              desc: Protorthida
+              tags:
+                - order
+            - name: Rhynchonellida
+              desc: Rhynchonellida
+              tags:
+                - order
+            - name: Spiriferida
+              desc: Spiriferida
+              tags:
+                - order
+            - name: Spiriferinida
+              desc: Spiriferinida
+              tags:
+                - order
+            - name: Terebratulida
+              desc: Terebratulida
+              tags:
+                - order
+            - name: Thecideida
+              desc: Thecideida
+              tags:
+                - order
+        - name: Strophomenata
+          desc: Strophomenata
+          tags:
+            - class
+            - extinct
+          children:
+            - name: Billingsellida
+              desc: Billingsellida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Orthotetida
+              desc: Orthotetida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Productida
+              desc: Productida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Strophomenida
+              desc: Strophomenida
+              tags:
+                - order
+                - extinct
+              hidden: true
+          hidden: true
+    - name: Moss animals
+      desc: Bryozoa
+      tags:
+        - phylum
+      children:
+        - name: Gymnolaemates
+          desc: Gymnolaemata
+          tags:
+            - class
+          children:
+            - name: Cheilostomatida
+              desc: Cheilostomatida
+              tags:
+                - order
+            - name: Ctenostomatida
+              desc: Ctenostomatida
+              tags:
+                - order
+        - name: Phylactolaemates
+          desc: Phylactolaemata
+          tags:
+            - class
+          children:
+            - name: Plumatellida
+              desc: Plumatellida
+              tags:
+                - order
+        - name: Stenolaemates
+          desc: Stenolaemata
+          tags:
+            - class
+          children:
+            - name: Cryptostomida
+              desc: Cryptostomida
+              tags:
+                - order
+            - name: Cyclostomatida
+              desc: Cyclostomatida
+              tags:
+                - order
+            - name: Cystoporida
+              desc: Cystoporida
+              tags:
+                - order
+            - name: Esthonioporata
+              desc: Esthonioporata
+              tags:
+                - order
+            - name: Fenestrida
+              desc: Fenestrida
+              tags:
+                - order
+            - name: Melicerititida
+              desc: Melicerititida
+              tags:
+                - order
+            - name: Trepostomatida
+              desc: Trepostomatida
+              tags:
+                - order
+    - name: Arrow worms
+      desc: Chaetognatha
+      tags:
+        - phylum
+      children:
+        - name: Arrow worms
+          desc: Sagittoidea
+          tags:
+            - class
+          children:
+            - name: Aphragmophora
+              desc: Aphragmophora
+              tags:
+                - order
+            - name: Phragmophora
+              desc: Phragmophora
+              tags:
+                - order
+    - name: Chordates
+      desc: Chordata
+      pic:
+        set: emoji
+        name: 🐟
+      tags:
+        - phylum
+      children:
+        - name: Amphibians
+          desc: Amphibia
+          pic:
+            set: emoji
+            name: 🐸
+          tags:
+            - class
+            - freshwater
+          children:
+            - name: Anura
+              desc: Anura
+              pic:
+                set: emoji
+                name: 🐸
+              tags:
+                - order
+                - freshwater
+                - venomous
+                - featured
+              relation:
+                line: solid
+                line_width: bold
+                color: '#D64545'
+            - name: Caudata
+              desc: Caudata
+              pic:
+                set: emoji
+                name: 🦎
+              tags:
+                - order
+                - freshwater
+            - name: Caecilians
+              desc: Gymnophiona
+              pic:
+                set: emoji
+                name: 🪱
+              tags:
+                - order
+                - subterranean
+          style:
+            fill: '#B9E3D5'
+        - name: Larvaceans
+          desc: Appendicularia
+          tags:
+            - class
+          children:
+            - name: Copelata
+              desc: Copelata
+              tags:
+                - order
+        - name: Ascidians
+          desc: Ascidiacea
+          tags:
+            - class
+          children:
+            - name: Aplousobranchia
+              desc: Aplousobranchia
+              tags:
+                - order
+            - name: Phlebobranchia
+              desc: Phlebobranchia
+              tags:
+                - order
+            - name: Stolidobranchia
+              desc: Stolidobranchia
+              tags:
+                - order
+        - name: Birds
+          desc: Aves
+          pic:
+            set: emoji
+            name: 🦜
+          tags:
+            - class
+            - aerial
+          children:
+            - name: Accipitriformes
+              desc: Accipitriformes
+              pic:
+                set: emoji
+                name: 🦅
+              tags:
+                - order
+                - carnivorous
+                - aerial
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Waterfowl
+              desc: Anseriformes
+              pic:
+                set: emoji
+                name: 🦆
+              tags:
+                - order
+                - freshwater
+                - aerial
+            - name: Apodiformes
+              desc: Apodiformes
+              tags:
+                - order
+            - name: Kiwis
+              desc: Apterygiformes
+              tags:
+                - order
+            - name: Bucerotiformes
+              desc: Bucerotiformes
+              tags:
+                - order
+            - name: Caprimulgiformes
+              desc: Caprimulgiformes
+              tags:
+                - order
+            - name: Cariamiformes
+              desc: Cariamiformes
+              tags:
+                - order
+            - name: Casuariiformes
+              desc: Casuariiformes
+              tags:
+                - order
+            - name: Shorebirds
+              desc: Charadriiformes
+              tags:
+                - order
+            - name: Storks
+              desc: Ciconiiformes
+              tags:
+                - order
+            - name: Mousebirds
+              desc: Coliiformes
+              tags:
+                - order
+            - name: Columbiformes
+              desc: Columbiformes
+              tags:
+                - order
+            - name: Coraciiformes
+              desc: Coraciiformes
+              tags:
+                - order
+            - name: Cuckoos
+              desc: Cuculiformes
+              tags:
+                - order
+            - name: Eurypygiformes
+              desc: Eurypygiformes
+              tags:
+                - order
+            - name: Falcons
+              desc: Falconiformes
+              pic:
+                set: emoji
+                name: 🦅
+              tags:
+                - order
+                - carnivorous
+                - aerial
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Gamefowl
+              desc: Galliformes
+              pic:
+                set: emoji
+                name: 🐔
+              tags:
+                - order
+                - terrestrial
+            - name: Loons
+              desc: Gaviiformes
+              tags:
+                - order
+            - name: Gruiformes
+              desc: Gruiformes
+              tags:
+                - order
+            - name: Leptosomiformes
+              desc: Leptosomiformes
+              tags:
+                - order
+            - name: Mesitornithiformes
+              desc: Mesitornithiformes
+              tags:
+                - order
+            - name: Turacos
+              desc: Musophagiformes
+              tags:
+                - order
+            - name: Nyctibiiformes
+              desc: Nyctibiiformes
+              tags:
+                - order
+            - name: Hoatzin
+              desc: Opisthocomiformes
+              tags:
+                - order
+            - name: Bustards
+              desc: Otidiformes
+              tags:
+                - order
+            - name: Perching birds
+              desc: Passeriformes
+              pic:
+                set: emoji
+                name: 🐦
+              tags:
+                - order
+                - aerial
+            - name: Pelecaniformes
+              desc: Pelecaniformes
+              tags:
+                - order
+            - name: Tropicbirds
+              desc: Phaethontiformes
+              tags:
+                - order
+            - name: Flamingos
+              desc: Phoenicopteriformes
+              tags:
+                - order
+            - name: Piciformes
+              desc: Piciformes
+              tags:
+                - order
+            - name: Grebes
+              desc: Podicipediformes
+              tags:
+                - order
+            - name: Tube-nosed seabirds
+              desc: Procellariiformes
+              tags:
+                - order
+            - name: Parrots
+              desc: Psittaciformes
+              pic:
+                set: emoji
+                name: 🦜
+              tags:
+                - order
+                - tropical
+                - aerial
+              children:
+                - name: Old World parrots
+                  desc: Psittaculidae
+                  tags:
+                    - family
+                    - bird
+                    - aerial
+                  children:
+                    - name: Budgerigars
+                      desc: Melopsittacus
+                      tags:
+                        - genus
+                        - bird
+                        - aerial
+                      children:
+                        - name: Budgerigar
+                          desc: Melopsittacus undulatus
+                          tags:
+                            - species
+                            - pet
+                            - bird
+                            - aerial
+                          children:
+                            - name: Budgerigar mutations and varieties
+                              tags:
+                                - demo-group
+                                - pet
+                                - bird
+                                - artificial-rank
+                                - mutation
+                              children:
+                                - name: Albino
+                                  tags:
+                                    - pet
+                                    - bird
+                                    - variant
+                                    - mutation
+                                    - light-morph
+                                - name: Lutino
+                                  tags:
+                                    - pet
+                                    - bird
+                                    - variant
+                                    - mutation
+                                    - yellow-morph
+                                - name: Crested
+                                  tags:
+                                    - pet
+                                    - bird
+                                    - variant
+                                    - mutation
+                                    - crested
+            - name: Sandgrouse
+              desc: Pterocliformes
+              tags:
+                - order
+            - name: Rheas
+              desc: Rheiformes
+              tags:
+                - order
+            - name: Penguins
+              desc: Sphenisciformes
+              pic:
+                set: emoji
+                name: 🐧
+              tags:
+                - order
+                - marine
+                - glacial
+                - featured
+            - name: Oilbird
+              desc: Steatornithiformes
+              tags:
+                - order
+            - name: Owls
+              desc: Strigiformes
+              pic:
+                set: emoji
+                name: 🦉
+              tags:
+                - order
+                - carnivorous
+                - aerial
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Ostriches
+              desc: Struthioniformes
+              tags:
+                - order
+            - name: Suliformes
+              desc: Suliformes
+              tags:
+                - order
+            - name: Tinamous
+              desc: Tinamiformes
+              tags:
+                - order
+            - name: Trogons
+              desc: Trogoniformes
+              tags:
+                - order
+          style:
+            fill: '#B9DDF4'
+        - name: Lampreys
+          desc: Cephalaspidomorphi
+          tags:
+            - class
+          style:
+            fill: '#B9D7EE'
+        - name: Chondrostei
+          desc: Chondrostei
+          tags:
+            - class
+          children:
+            - name: Acipenseriformes
+              desc: Acipenseriformes
+              tags:
+                - order
+          style:
+            fill: '#B9D7EE'
+        - name: Bichirs
+          desc: Cladistii
+          tags:
+            - class
+          children:
+            - name: Bichirs
+              desc: Polypteriformes
+              tags:
+                - order
+          style:
+            fill: '#B9D7EE'
+        - name: Coelacanths
+          desc: Coelacanthi
+          tags:
+            - class
+          children:
+            - name: Coelacanths
+              desc: Coelacanthiformes
+              tags:
+                - order
+          style:
+            fill: '#B9D7EE'
+        - name: Lungfishes
+          desc: Dipneusti
+          tags:
+            - class
+          children:
+            - name: Ceratodontiformes
+              desc: Ceratodontiformes
+              tags:
+                - order
+          style:
+            fill: '#B9D7EE'
+        - name: Sharks and rays
+          desc: Elasmobranchii
+          tags:
+            - class
+          children:
+            - name: Carcharhiniformes
+              desc: Carcharhiniformes
+              pic:
+                set: emoji
+                name: 🦈
+              tags:
+                - order
+                - marine
+                - carnivorous
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Echinorhiniformes
+              desc: Echinorhiniformes
+              tags:
+                - order
+            - name: Bullhead sharks
+              desc: Heterodontiformes
+              tags:
+                - order
+            - name: Cow sharks
+              desc: Hexanchiformes
+              tags:
+                - order
+            - name: Mackerel sharks
+              desc: Lamniformes
+              pic:
+                set: emoji
+                name: 🦈
+              tags:
+                - order
+                - marine
+                - carnivorous
+                - featured
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Stingrays
+              desc: Myliobatiformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - order
+                - marine
+            - name: Carpet sharks
+              desc: Orectolobiformes
+              pic:
+                set: emoji
+                name: 🦈
+              tags:
+                - order
+                - marine
+            - name: Sawsharks
+              desc: Pristiophoriformes
+              tags:
+                - order
+            - name: Skates
+              desc: Rajiformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - order
+                - marine
+            - name: Guitarfishes
+              desc: Rhinopristiformes
+              tags:
+                - order
+            - name: Dogfish sharks
+              desc: Squaliformes
+              tags:
+                - order
+            - name: Angelsharks
+              desc: Squatiniformes
+              tags:
+                - order
+            - name: Electric rays
+              desc: Torpediniformes
+              tags:
+                - order
+          style:
+            fill: '#B9D7EE'
+        - name: Chimaeras
+          desc: Holocephali
+          tags:
+            - class
+          children:
+            - name: Chimaeras
+              desc: Chimaeriformes
+              tags:
+                - order
+          style:
+            fill: '#B9D7EE'
+        - name: Holostei
+          desc: Holostei
+          tags:
+            - class
+          children:
+            - name: Bowfins
+              desc: Amiiformes
+              tags:
+                - order
+            - name: Gars
+              desc: Lepisosteiformes
+              tags:
+                - order
+          style:
+            fill: '#B9D7EE'
+        - name: Lancelets
+          desc: Leptocardii
+          tags:
+            - class
+        - name: Mammals
+          desc: Mammalia
+          pic:
+            set: emoji
+            name: 🐾
+          tags:
+            - class
+            - terrestrial
+          children:
+            - name: Afrosoricids
+              desc: Afrosoricida
+              tags:
+                - order
+            - name: Even-toed ungulates
+              desc: Artiodactyla
+              tags:
+                - order
+            - name: Carnivorans
+              desc: Carnivora
+              pic:
+                set: emoji
+                name: 🐾
+              tags:
+                - order
+                - carnivorous
+                - featured
+              children:
+                - name: Cat-like carnivorans
+                  desc: Feliformia
+                  tags:
+                    - suborder
+                    - carnivorous
+                  children:
+                    - name: Cats / Felids
+                      desc: Felidae
+                      tags:
+                        - family
+                        - carnivorous
+                      children:
+                        - name: Small cats
+                          desc: Felis
+                          tags:
+                            - genus
+                            - carnivorous
+                          children:
+                            - name: Domestic cat
+                              desc: Felis catus
+                              tags:
+                                - species
+                                - domesticated
+                              children:
+                                - name: Cat breeds
+                                  tags:
+                                    - demo-group
+                                    - breed
+                                  children:
+                                    - name: British Shorthair
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Maine Coon
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Sphynx
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Siamese
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Persian
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Bengal
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Scottish Fold
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Abyssinian
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Russian Blue
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Siberian
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Burmese
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Ragdoll
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Norwegian Forest Cat
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Cornish Rex
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Exotic Shorthair
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Oriental
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Seychellois
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Kurilian Bobtail
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Munchkin
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Devon Rex
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Neva Masquerade
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Savannah
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Burmilla
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Somali
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Pixie-bob
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Chausie
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Bombay
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Chartreux
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Egyptian Mau
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Turkish Angora
+                                      tags:
+                                        - breed
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              relation:
+                                line: dashed
+                                line_width: regular
+                          style:
+                            contour: solid
+                            contour_width: bold
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Hyenas
+                      desc: Hyaenidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Mongooses
+                      desc: Herpestidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Viverrids / Civets
+                      desc: Viverridae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Malagasy carnivorans
+                      desc: Eupleridae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: African palm civets
+                      desc: Nandiniidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Asiatic linsangs
+                      desc: Prionodontidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                  style:
+                    contour: solid
+                    contour_width: bold
+                - name: Dog-like carnivorans
+                  desc: Caniformia
+                  tags:
+                    - suborder
+                    - carnivorous
+                  children:
+                    - name: Canids / Dogs
+                      desc: Canidae
+                      tags:
+                        - family
+                        - carnivorous
+                      children:
+                        - name: Wolves / Jackals
+                          desc: Canis
+                          tags:
+                            - genus
+                            - carnivorous
+                          children:
+                            - name: Wolf / Grey wolf
+                              desc: Canis lupus
+                              tags:
+                                - species
+                                - carnivorous
+                              children:
+                                - name: Domestic dog
+                                  desc: Canis lupus familiaris
+                                  tags:
+                                    - subspecies
+                                    - domesticated
+                                  children:
+                                    - name: Dog breeds
+                                      tags:
+                                        - demo-group
+                                        - breed
+                                      children:
+                                        - name: German Shepherd
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - herding
+                                            - working
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Labrador Retriever
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - hunting
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Golden Retriever
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - hunting
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: French Bulldog
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - companion
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Siberian Husky
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - sled
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Poodle
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - companion
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Rottweiler
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - working
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Beagle
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - hunting
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Doberman Pinscher
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - working
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Border Collie
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - herding
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Chihuahua
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - companion
+                                            - small
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Yorkshire Terrier
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - hunting
+                                            - small
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Jack Russell Terrier
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - hunting
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Boxer
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Dachshund
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Great Dane
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - large
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Shar Pei
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Pug
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - companion
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Welsh Corgi Pembroke
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - herding
+                                            - small
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: English Cocker Spaniel
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - hunting
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: St. Bernard
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - large
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Bulldog
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Pomeranian
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - small
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Cane Corso
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - working
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Shih Tzu
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - companion
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Newfoundland
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - large
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Akita
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Dalmatian
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - hunting
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: American Staffordshire Terrier
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - hunting
+                                            - working
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Maltese
+                                          tags:
+                                            - breed
+                                            - domesticated
+                                            - companion
+                                            - small
+                                            - white
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              style:
+                                contour: solid
+                                contour_width: bold
+                          style:
+                            contour: solid
+                            contour_width: bold
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Bears
+                      desc: Ursidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Mustelids / Weasels and otters
+                      desc: Mustelidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Skunks
+                      desc: Mephitidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Raccoons
+                      desc: Procyonidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Red pandas
+                      desc: Ailuridae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Eared seals
+                      desc: Otariidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: True seals
+                      desc: Phocidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Walruses
+                      desc: Odobenidae
+                      tags:
+                        - family
+                        - carnivorous
+                      style:
+                        contour: solid
+                        contour_width: bold
+                  style:
+                    contour: solid
+                    contour_width: bold
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Cetaceans
+              desc: Cetacea
+              tags:
+                - order
+            - name: Bats
+              desc: Chiroptera
+              pic:
+                set: emoji
+                name: 🦇
+              tags:
+                - order
+                - aerial
+            - name: Armadillos
+              desc: Cingulata
+              tags:
+                - order
+            - name: Carnivorous marsupials
+              desc: Dasyuromorphia
+              pic:
+                set: emoji
+                name: 🐾
+              tags:
+                - order
+                - Australia
+                - carnivorous
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Colugos
+              desc: Dermoptera
+              tags:
+                - order
+            - name: Opossums
+              desc: Didelphimorphia
+              tags:
+                - order
+            - name: Diprotodonts
+              desc: Diprotodontia
+              pic:
+                set: emoji
+                name: 🦘
+              tags:
+                - order
+                - Australia
+                - featured
+            - name: Eulipotyphlans
+              desc: Eulipotyphla
+              pic:
+                set: emoji
+                name: 🦔
+              tags:
+                - order
+                - insectivorous
+            - name: Hyraxes
+              desc: Hyracoidea
+              tags:
+                - order
+            - name: Lagomorphs
+              desc: Lagomorpha
+              pic:
+                set: emoji
+                name: 🐇
+              tags:
+                - order
+                - herbivorous
+              children:
+                - name: Rabbits and hares
+                  desc: Leporidae
+                  tags:
+                    - family
+                    - lagomorph
+                    - non-rodent
+                  children:
+                    - name: European rabbits
+                      desc: Oryctolagus
+                      tags:
+                        - genus
+                        - lagomorph
+                        - non-rodent
+                      children:
+                        - name: European rabbit
+                          desc: Oryctolagus cuniculus
+                          tags:
+                            - species
+                            - lagomorph
+                            - non-rodent
+                          children:
+                            - name: Domestic rabbit
+                              tags:
+                                - domesticated-form
+                                - pet
+                                - domesticated
+                                - lagomorph
+                                - non-rodent
+                              children:
+                                - name: Pet rabbit breeds
+                                  tags:
+                                    - demo-group
+                                    - pet
+                                    - domesticated
+                                    - artificial-rank
+                                    - non-rodent
+                                  children:
+                                    - name: Dwarf Angora
+                                      tags:
+                                        - pet
+                                        - domesticated
+                                        - breed
+                                        - long-haired
+                                        - non-rodent
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Netherland Dwarf
+                                      tags:
+                                        - pet
+                                        - domesticated
+                                        - breed
+                                        - small
+                                        - non-rodent
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Rex
+                                      tags:
+                                        - pet
+                                        - domesticated
+                                        - breed
+                                        - short-haired
+                                        - non-rodent
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              relation:
+                                line: dashed
+                                line_width: regular
+              style:
+                contour: dashed
+                contour_width: regular
+            - name: Elephant shrews
+              desc: Macroscelidea
+              tags:
+                - order
+            - name: Monitos del monte
+              desc: Microbiotheria
+              tags:
+                - order
+            - name: Monotremes
+              desc: Monotremata
+              pic:
+                set: emoji
+                name: 🦫
+              tags:
+                - order
+                - Australia
+            - name: Marsupial moles
+              desc: Notoryctemorphia
+              tags:
+                - order
+            - name: Shrew opossums
+              desc: Paucituberculata
+              tags:
+                - order
+            - name: Bandicoots and bilbies
+              desc: Peramelemorphia
+              tags:
+                - order
+            - name: Odd-toed ungulates
+              desc: Perissodactyla
+              pic:
+                set: emoji
+                name: 🐴
+              tags:
+                - order
+                - herbivorous
+                - featured
+              children:
+                - name: Horses, asses and zebras
+                  desc: Equidae
+                  tags:
+                    - family
+                    - odd-toed
+                  children:
+                    - name: Horses
+                      desc: Equus
+                      tags:
+                        - genus
+                        - odd-toed
+                      children:
+                        - name: Domestic horse
+                          desc: Equus caballus
+                          tags:
+                            - species
+                            - domesticated
+                            - horse
+                            - odd-toed
+                          children:
+                            - name: Horse breeds
+                              tags:
+                                - demo-group
+                                - domesticated
+                                - horse
+                                - artificial-rank
+                              children:
+                                - name: Arabian horse
+                                  tags:
+                                    - domesticated
+                                    - horse
+                                    - breed
+                                    - riding
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Orlov Trotter
+                                  tags:
+                                    - domesticated
+                                    - horse
+                                    - breed
+                                    - harness
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Shire
+                                  tags:
+                                    - domesticated
+                                    - horse
+                                    - breed
+                                    - large
+                                    - heavy-draft
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              relation:
+                                line: dashed
+                                line_width: regular
+                          relation:
+                            line: dashed
+                            line_width: regular
+              style:
+                contour: dashed
+                contour_width: regular
+            - name: Pangolins
+              desc: Pholidota
+              tags:
+                - order
+            - name: Sloths and anteaters
+              desc: Pilosa
+              tags:
+                - order
+            - name: Primates
+              desc: Primates
+              pic:
+                set: emoji
+                name: 🦍
+              tags:
+                - order
+                - omnivorous
+                - featured
+              style:
+                contour: double
+                contour_width: regular
+            - name: Elephants
+              desc: Proboscidea
+              pic:
+                set: emoji
+                name: 🐘
+              tags:
+                - order
+                - herbivorous
+                - featured
+              style:
+                contour: dashed
+                contour_width: regular
+            - name: Rodents
+              desc: Rodentia
+              pic:
+                set: emoji
+                name: 🐭
+              tags:
+                - order
+                - herbivorous
+              children:
+                - name: Hamsters and voles
+                  desc: Cricetidae
+                  tags:
+                    - family
+                    - rodent
+                  children:
+                    - name: Golden hamsters
+                      desc: Mesocricetus
+                      tags:
+                        - genus
+                        - rodent
+                      children:
+                        - name: Golden / Syrian hamster
+                          desc: Mesocricetus auratus
+                          tags:
+                            - species
+                            - rodent
+                            - pet
+                          children:
+                            - name: Domestic Syrian hamster varieties
+                              tags:
+                                - demo-group
+                                - artificial-rank
+                                - pet
+                                - domesticated
+                              children:
+                                - name: Short-haired Syrian hamster
+                                  tags:
+                                    - artificial-rank
+                                    - pet
+                                    - domesticated
+                                    - variant
+                                    - short-haired
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Long-haired Syrian hamster
+                                  tags:
+                                    - artificial-rank
+                                    - pet
+                                    - domesticated
+                                    - variant
+                                    - long-haired
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Satin Syrian hamster
+                                  tags:
+                                    - artificial-rank
+                                    - pet
+                                    - domesticated
+                                    - variant
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              relation:
+                                line: dashed
+                                line_width: regular
+                - name: Cavies
+                  desc: Caviidae
+                  tags:
+                    - family
+                    - rodent
+                  children:
+                    - name: Guinea pigs
+                      desc: Cavia
+                      tags:
+                        - genus
+                        - rodent
+                      children:
+                        - name: Domestic guinea pig
+                          desc: Cavia porcellus
+                          tags:
+                            - species
+                            - pet
+                            - domesticated
+                            - rodent
+                          children:
+                            - name: Guinea pig breeds
+                              tags:
+                                - demo-group
+                                - pet
+                                - domesticated
+                                - artificial-rank
+                              children:
+                                - name: Peruvian
+                                  tags:
+                                    - pet
+                                    - domesticated
+                                    - breed
+                                    - long-haired
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Skinny
+                                  tags:
+                                    - pet
+                                    - domesticated
+                                    - breed
+                                    - hairless
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Self
+                                  tags:
+                                    - pet
+                                    - domesticated
+                                    - breed
+                                    - short-haired
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              relation:
+                                line: dashed
+                                line_width: regular
+                          relation:
+                            line: dashed
+                            line_width: regular
+              style:
+                contour: dashed
+                contour_width: regular
+            - name: Treeshrews
+              desc: Scandentia
+              tags:
+                - order
+            - name: Sirenians
+              desc: Sirenia
+              tags:
+                - order
+            - name: Aardvarks
+              desc: Tubulidentata
+              tags:
+                - order
+          style:
+            fill: '#E8CFA4'
+        - name: Hagfishes
+          desc: Myxini
+          tags:
+            - class
+          children:
+            - name: Hagfishes
+              desc: Myxiniformes
+              tags:
+                - order
+          style:
+            fill: '#B9D7EE'
+        - name: Lampreys
+          desc: Petromyzonti
+          tags:
+            - class
+          children:
+            - name: Lampreys
+              desc: Petromyzontiformes
+              tags:
+                - order
+          style:
+            fill: '#B9D7EE'
+        - name: Reptiles
+          desc: Reptilia
+          pic:
+            set: emoji
+            name: 🦎
+          tags:
+            - class
+            - terrestrial
+          children:
+            - name: Crocodilians
+              desc: Crocodylia
+              tags:
+                - order
+              children:
+                - name: True crocodiles
+                  desc: Crocodylidae
+                  tags:
+                    - family
+                    - reptile
+                    - freshwater
+                    - carnivorous
+                  children:
+                    - name: Crocodiles
+                      desc: Crocodylus
+                      tags:
+                        - genus
+                        - reptile
+                        - freshwater
+                        - carnivorous
+                      children:
+                        - name: Nile crocodile
+                          desc: Crocodylus niloticus
+                          pic:
+                            set: emoji
+                            name: 🐊
+                          tags:
+                            - species
+                            - reptile
+                            - freshwater
+                            - carnivorous
+                            - dangerous
+                            - not-a-pet
+                          style:
+                            contour: solid
+                            contour_width: bold
+                          relation:
+                            line: solid
+                            line_width: bold
+                            color: '#D64545'
+                      style:
+                        contour: solid
+                        contour_width: bold
+                  style:
+                    contour: solid
+                    contour_width: bold
+            - name: Squamates
+              desc: Squamata
+              pic:
+                set: emoji
+                name: 🐍
+              tags:
+                - order
+                - venomous
+                - terrestrial
+                - featured
+              children:
+                - name: Agamas
+                  desc: Agamidae
+                  tags:
+                    - family
+                    - reptile
+                    - terrestrial
+                  children:
+                    - name: Bearded dragons
+                      desc: Pogona
+                      tags:
+                        - genus
+                        - reptile
+                        - terrestrial
+                      children:
+                        - name: Central bearded dragon
+                          desc: Pogona vitticeps
+                          pic:
+                            set: emoji
+                            name: 🦎
+                          tags:
+                            - species
+                            - pet
+                            - reptile
+                            - terrestrial
+                            - desert
+                - name: Eyelid geckos
+                  desc: Eublepharidae
+                  tags:
+                    - family
+                    - reptile
+                    - terrestrial
+                  children:
+                    - name: Eyelid geckos
+                      desc: Eublepharis
+                      tags:
+                        - genus
+                        - reptile
+                        - terrestrial
+                      children:
+                        - name: Leopard gecko
+                          desc: Eublepharis macularius
+                          pic:
+                            set: emoji
+                            name: 🦎
+                          tags:
+                            - species
+                            - pet
+                            - reptile
+                            - terrestrial
+                            - nocturnal
+              relation:
+                line: solid
+                line_width: bold
+                color: '#D64545'
+            - name: Turtles
+              desc: Testudines
+              pic:
+                set: emoji
+                name: 🐢
+              tags:
+                - order
+                - marine
+                - freshwater
+                - terrestrial
+                - featured
+              children:
+                - name: Pond turtles
+                  desc: Emydidae
+                  tags:
+                    - family
+                    - reptile
+                    - freshwater
+                  children:
+                    - name: Sliders
+                      desc: Trachemys
+                      tags:
+                        - genus
+                        - reptile
+                        - freshwater
+                      children:
+                        - name: Common slider
+                          desc: Trachemys scripta
+                          tags:
+                            - species
+                            - reptile
+                            - freshwater
+                          children:
+                            - name: Red-eared slider
+                              desc: Trachemys scripta elegans
+                              pic:
+                                set: emoji
+                                name: 🐢
+                              tags:
+                                - subspecies
+                                - pet
+                                - reptile
+                                - freshwater
+                                - invasive
+          style:
+            fill: '#C7E5B2'
+        - name: Teleost fishes
+          desc: Teleostei
+          tags:
+            - class
+          children:
+            - name: Acanthuriformes
+              desc: Acanthuriformes
+              tags:
+                - order
+            - name: Acropomatiformes
+              desc: Acropomatiformes
+              tags:
+                - order
+            - name: Albuliformes
+              desc: Albuliformes
+              tags:
+                - order
+            - name: Alepocephaliformes
+              desc: Alepocephaliformes
+              tags:
+                - order
+            - name: Anabantiformes
+              desc: Anabantiformes
+              tags:
+                - order
+            - name: Eels
+              desc: Anguilliformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - order
+                - marine
+                - freshwater
+            - name: Cardinalfishes
+              desc: Apogoniformes
+              tags:
+                - order
+            - name: Argentiniformes
+              desc: Argentiniformes
+              tags:
+                - order
+            - name: Ateleopodiformes
+              desc: Ateleopodiformes
+              tags:
+                - order
+            - name: Silversides
+              desc: Atheriniformes
+              tags:
+                - order
+            - name: Aulopiformes
+              desc: Aulopiformes
+              tags:
+                - order
+            - name: Toadfishes
+              desc: Batrachoidiformes
+              tags:
+                - order
+            - name: Beloniformes
+              desc: Beloniformes
+              tags:
+                - order
+            - name: Beryciformes
+              desc: Beryciformes
+              tags:
+                - order
+            - name: Blennies
+              desc: Blenniiformes
+              tags:
+                - order
+            - name: Callionymiformes
+              desc: Callionymiformes
+              tags:
+                - order
+            - name: Carangiformes
+              desc: Carangiformes
+              tags:
+                - order
+            - name: Centrarchiformes
+              desc: Centrarchiformes
+              tags:
+                - order
+            - name: Characins
+              desc: Characiformes
+              tags:
+                - order
+            - name: Cichlids
+              desc: Cichliformes
+              tags:
+                - order
+            - name: Clupeiformes
+              desc: Clupeiformes
+              tags:
+                - order
+            - name: Crossognathiformes
+              desc: Crossognathiformes
+              tags:
+                - order
+            - name: Cypriniformes
+              desc: Cypriniformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - order
+                - freshwater
+            - name: Killifishes
+              desc: Cyprinodontiformes
+              tags:
+                - order
+            - name: Dactylopteriformes
+              desc: Dactylopteriformes
+              tags:
+                - order
+            - name: Elopiformes
+              desc: Elopiformes
+              tags:
+                - order
+            - name: Esociformes
+              desc: Esociformes
+              tags:
+                - order
+            - name: Gadiformes
+              desc: Gadiformes
+              tags:
+                - order
+            - name: Galaxiiformes
+              desc: Galaxiiformes
+              tags:
+                - order
+            - name: Clingfishes
+              desc: Gobiesociformes
+              tags:
+                - order
+            - name: Gobies
+              desc: Gobiiformes
+              tags:
+                - order
+            - name: Gonorynchiformes
+              desc: Gonorynchiformes
+              tags:
+                - order
+            - name: Knifefishes
+              desc: Gymnotiformes
+              tags:
+                - order
+            - name: Hiodontiformes
+              desc: Hiodontiformes
+              tags:
+                - order
+            - name: Holocentriformes
+              desc: Holocentriformes
+              tags:
+                - order
+            - name: Lampriformes
+              desc: Lampriformes
+              tags:
+                - order
+            - name: Lepidogalaxiiformes
+              desc: Lepidogalaxiiformes
+              tags:
+                - order
+            - name: Anglerfishes
+              desc: Lophiiformes
+              tags:
+                - order
+            - name: Mullets
+              desc: Mugiliformes
+              tags:
+                - order
+            - name: Goatfishes
+              desc: Mulliformes
+              tags:
+                - order
+            - name: Myctophiformes
+              desc: Myctophiformes
+              tags:
+                - order
+            - name: Notacanthiformes
+              desc: Notacanthiformes
+              tags:
+                - order
+            - name: Cusk-eels
+              desc: Ophidiiformes
+              tags:
+                - order
+            - name: Osmeriformes
+              desc: Osmeriformes
+              tags:
+                - order
+            - name: Bonytongues
+              desc: Osteoglossiformes
+              tags:
+                - order
+            - name: Perch-like fishes
+              desc: Perciformes
+              pic:
+                set: emoji
+                name: 🐠
+              tags:
+                - order
+                - marine
+                - freshwater
+            - name: Percopsiformes
+              desc: Percopsiformes
+              tags:
+                - order
+            - name: Flatfishes
+              desc: Pleuronectiformes
+              tags:
+                - order
+            - name: Polymixiiformes
+              desc: Polymixiiformes
+              tags:
+                - order
+            - name: Salmoniformes
+              desc: Salmoniformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - order
+                - freshwater
+                - marine
+            - name: Scombriformes
+              desc: Scombriformes
+              tags:
+                - order
+            - name: Catfishes
+              desc: Siluriformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - order
+                - freshwater
+            - name: Stomiiformes
+              desc: Stomiiformes
+              tags:
+                - order
+            - name: Stylephoriformes
+              desc: Stylephoriformes
+              tags:
+                - order
+            - name: Synbranchiformes
+              desc: Synbranchiformes
+              tags:
+                - order
+            - name: Syngnathiformes
+              desc: Syngnathiformes
+              pic:
+                set: emoji
+                name: 🐡
+              tags:
+                - order
+                - marine
+            - name: Tetraodontiformes
+              desc: Tetraodontiformes
+              pic:
+                set: emoji
+                name: 🐡
+              tags:
+                - order
+                - marine
+                - venomous
+              relation:
+                line: solid
+                line_width: bold
+                color: '#D64545'
+            - name: Trachichthyiformes
+              desc: Trachichthyiformes
+              tags:
+                - order
+            - name: Dories
+              desc: Zeiformes
+              tags:
+                - order
+          style:
+            fill: '#B9D7EE'
+        - name: Thaliacea
+          desc: Thaliacea
+          tags:
+            - class
+          children:
+            - name: Doliolida
+              desc: Doliolida
+              tags:
+                - order
+            - name: Pyrosomatida
+              desc: Pyrosomatida
+              tags:
+                - order
+            - name: Salpida
+              desc: Salpida
+              tags:
+                - order
+    - name: Cnidarians
+      desc: Cnidaria
+      pic:
+        set: emoji
+        name: 🪸
+      tags:
+        - phylum
+        - marine
+      children:
+        - name: Coral polyps
+          desc: Anthozoa
+          pic:
+            set: emoji
+            name: 🪸
+          tags:
+            - class
+            - marine
+          children:
+            - name: Sea anemones
+              desc: Actiniaria
+              pic:
+                set: emoji
+                name: 🪸
+              tags:
+                - order
+                - marine
+            - name: Black corals
+              desc: Antipatharia
+              tags:
+                - order
+            - name: Tube anemones
+              desc: Ceriantharia
+              tags:
+                - order
+            - name: Corallimorpharia
+              desc: Corallimorpharia
+              tags:
+                - order
+            - name: Heliolitina
+              desc: Heliolitina
+              tags:
+                - order
+            - name: Stony corals
+              desc: Scleractinia
+              pic:
+                set: emoji
+                name: 🪸
+              tags:
+                - order
+                - marine
+                - tropical
+            - name: Zoanthids
+              desc: Zoantharia
+              tags:
+                - order
+        - name: Box jellyfish
+          desc: Cubozoa
+          tags:
+            - class
+          children:
+            - name: Box jellyfish
+              desc: Carybdeida
+              tags:
+                - order
+            - name: Box jellyfish
+              desc: Chirodropida
+              tags:
+                - order
+        - name: Hydrozoans
+          desc: Hydrozoa
+          pic:
+            set: emoji
+            name: 🪼
+          tags:
+            - class
+            - marine
+            - freshwater
+          children:
+            - name: Actinulida
+              desc: Actinulida
+              tags:
+                - order
+            - name: Anthoathecata
+              desc: Anthoathecata
+              pic:
+                set: emoji
+                name: 🪼
+              tags:
+                - order
+                - marine
+                - freshwater
+            - name: Lemniscaterina
+              desc: Lemniscaterina
+              tags:
+                - order
+            - name: Leptothecata
+              desc: Leptothecata
+              tags:
+                - order
+            - name: Freshwater jellyfish
+              desc: Limnomedusae
+              tags:
+                - order
+            - name: Narcomedusae
+              desc: Narcomedusae
+              tags:
+                - order
+            - name: Siphonophores
+              desc: Siphonophorae
+              tags:
+                - order
+            - name: Trachymedusae
+              desc: Trachymedusae
+              tags:
+                - order
+        - name: Myxozoans
+          desc: Myxozoa
+          tags:
+            - class
+          children:
+            - name: Bivalvulida
+              desc: Bivalvulida
+              tags:
+                - order
+            - name: Malacovalvulida
+              desc: Malacovalvulida
+              tags:
+                - order
+            - name: Multivalvulida
+              desc: Multivalvulida
+              tags:
+                - order
+        - name: Octocorals
+          desc: Octocorallia
+          tags:
+            - class
+          children:
+            - name: Malacalcyonacea
+              desc: Malacalcyonacea
+              tags:
+                - order
+            - name: Scleralcyonacea
+              desc: Scleralcyonacea
+              tags:
+                - order
+        - name: True jellyfish
+          desc: Scyphozoa
+          pic:
+            set: emoji
+            name: 🪼
+          tags:
+            - class
+            - marine
+          children:
+            - name: Crown jellyfish
+              desc: Coronatae
+              tags:
+                - order
+            - name: Root-mouthed jellyfish
+              desc: Rhizostomeae
+              tags:
+                - order
+            - name: Flag-mouth jellyfish
+              desc: Semaeostomeae
+              pic:
+                set: emoji
+                name: 🪼
+              tags:
+                - order
+                - marine
+        - name: Stalked jellyfish
+          desc: Staurozoa
+          tags:
+            - class
+          children:
+            - name: Conulatae
+              desc: Conulatae
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Stalked jellyfish
+              desc: Stauromedusae
+              tags:
+                - order
+    - name: Comb jellies
+      desc: Ctenophora
+      tags:
+        - phylum
+      children:
+        - name: Nuda
+          desc: Nuda
+          tags:
+            - class
+          children:
+            - name: Beroida
+              desc: Beroida
+              tags:
+                - order
+        - name: Scleroctenophora
+          desc: Scleroctenophora
+          tags:
+            - class
+        - name: Tentaculates
+          desc: Tentaculata
+          tags:
+            - class
+          children:
+            - name: Cambojiida
+              desc: Cambojiida
+              tags:
+                - order
+            - name: Ribbon comb jellies
+              desc: Cestida
+              tags:
+                - order
+            - name: Cryptolobiferida
+              desc: Cryptolobiferida
+              tags:
+                - order
+            - name: Cydippida
+              desc: Cydippida
+              tags:
+                - order
+            - name: Ganeshida
+              desc: Ganeshida
+              tags:
+                - order
+            - name: Lobate comb jellies
+              desc: Lobata
+              tags:
+                - order
+            - name: Benthic comb jellies
+              desc: Platyctenida
+              tags:
+                - order
+            - name: Thalassocalycida
+              desc: Thalassocalycida
+              tags:
+                - order
+    - name: Symbions
+      desc: Cycliophora
+      tags:
+        - phylum
+      children:
+        - name: Eucycliophoras
+          desc: Eucycliophora
+          tags:
+            - class
+          children:
+            - name: Symbiida
+              desc: Symbiida
+              tags:
+                - order
+    - name: Dicyemida
+      desc: Dicyemida
+      tags:
+        - phylum
+      children:
+        - name: Rhombozoa
+          desc: Rhombozoa
+          tags:
+            - class
+          children:
+            - name: Heterocyemida
+              desc: Heterocyemida
+              tags:
+                - order
+    - name: Echinoderms
+      desc: Echinodermata
+      pic:
+        set: emoji
+        name: ⭐
+      tags:
+        - phylum
+        - marine
+      children:
+        - name: Sea stars
+          desc: Asteroidea
+          pic:
+            set: emoji
+            name: ⭐
+          tags:
+            - class
+            - marine
+          children:
+            - name: Euaxosida
+              desc: Euaxosida
+              tags:
+                - order
+            - name: Forcipulatida
+              desc: Forcipulatida
+              pic:
+                set: emoji
+                name: ⭐
+              tags:
+                - order
+                - marine
+            - name: Hadrosida
+              desc: Hadrosida
+              tags:
+                - order
+            - name: Kermasida
+              desc: Kermasida
+              tags:
+                - order
+            - name: Notomyotida
+              desc: Notomyotida
+              tags:
+                - order
+            - name: Sand stars
+              desc: Paxillosida
+              tags:
+                - order
+            - name: Peripodida
+              desc: Peripodida
+              tags:
+                - order
+            - name: Spinulose sea stars
+              desc: Spinulosida
+              tags:
+                - order
+            - name: Trichasteropsida
+              desc: Trichasteropsida
+              tags:
+                - order
+            - name: Velatida
+              desc: Velatida
+              tags:
+                - order
+        - name: Sea lilies
+          desc: Crinoidea
+          tags:
+            - class
+          children:
+            - name: Feather stars
+              desc: Comatulida
+              tags:
+                - order
+            - name: Cyrtocrinida
+              desc: Cyrtocrinida
+              tags:
+                - order
+            - name: Diplobathrida
+              desc: Diplobathrida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Encrinida
+              desc: Encrinida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Hyocrinida
+              desc: Hyocrinida
+              tags:
+                - order
+            - name: Stalked crinoids
+              desc: Isocrinida
+              tags:
+                - order
+            - name: Millericrinida
+              desc: Millericrinida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Roveacrinida
+              desc: Roveacrinida
+              tags:
+                - order
+                - extinct
+              hidden: true
+        - name: Sea urchins
+          desc: Echinoidea
+          pic:
+            set: emoji
+            name: 🦔
+          tags:
+            - class
+            - marine
+          children:
+            - name: Arbacioida
+              desc: Arbacioida
+              tags:
+                - order
+            - name: Aspidodiadematoida
+              desc: Aspidodiadematoida
+              tags:
+                - order
+            - name: Bothriocidaroida
+              desc: Bothriocidaroida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Pencil urchins
+              desc: Cidaroida
+              tags:
+                - order
+            - name: Sand dollars
+              desc: Clypeasteroida
+              tags:
+                - order
+            - name: Diadem sea urchins
+              desc: Diadematoida
+              tags:
+                - order
+            - name: Echinoneoida
+              desc: Echinoneoida
+              tags:
+                - order
+            - name: Echinothurioida
+              desc: Echinothurioida
+              tags:
+                - order
+            - name: Holasteroida
+              desc: Holasteroida
+              tags:
+                - order
+            - name: Holectypoida
+              desc: Holectypoida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Micropygoida
+              desc: Micropygoida
+              tags:
+                - order
+            - name: Pedinoida
+              desc: Pedinoida
+              tags:
+                - order
+            - name: Phymosomatoida
+              desc: Phymosomatoida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Salenioida
+              desc: Salenioida
+              tags:
+                - order
+            - name: Heart urchins
+              desc: Spatangoida
+              tags:
+                - order
+            - name: Stomopneustoida
+              desc: Stomopneustoida
+              tags:
+                - order
+            - name: Triadotiaroida
+              desc: Triadotiaroida
+              tags:
+                - order
+                - extinct
+              hidden: true
+        - name: Sea cucumbers
+          desc: Holothuroidea
+          pic:
+            set: emoji
+            name: 🌊
+          tags:
+            - class
+            - marine
+          children:
+            - name: Apodida
+              desc: Apodida
+              tags:
+                - order
+            - name: Arthrochirotida
+              desc: Arthrochirotida
+              tags:
+                - order
+            - name: Dendrochirotida
+              desc: Dendrochirotida
+              tags:
+                - order
+            - name: Elasipodida
+              desc: Elasipodida
+              tags:
+                - order
+            - name: Sea cucumbers
+              desc: Holothuriida
+              pic:
+                set: emoji
+                name: 🌊
+              tags:
+                - order
+                - marine
+            - name: Molpadida
+              desc: Molpadida
+              tags:
+                - order
+            - name: Persiculida
+              desc: Persiculida
+              tags:
+                - order
+            - name: Synallactida
+              desc: Synallactida
+              tags:
+                - order
+        - name: Brittle stars
+          desc: Ophiuroidea
+          tags:
+            - class
+          children:
+            - name: Amphilepidida
+              desc: Amphilepidida
+              tags:
+                - order
+            - name: Basket stars
+              desc: Euryalida
+              tags:
+                - order
+            - name: Ophiacanthida
+              desc: Ophiacanthida
+              tags:
+                - order
+            - name: Ophioleucida
+              desc: Ophioleucida
+              tags:
+                - order
+            - name: Ophioscolecida
+              desc: Ophioscolecida
+              tags:
+                - order
+            - name: Ophiurida
+              desc: Ophiurida
+              tags:
+                - order
+    - name: Goblet worms
+      desc: Entoprocta
+      tags:
+        - phylum
+      children:
+        - name: Coloniales
+          desc: Coloniales
+          tags:
+            - order
+        - name: Solitaria
+          desc: Solitaria
+          tags:
+            - order
+    - name: Hairybacks
+      desc: Gastrotricha
+      tags:
+        - phylum
+      children:
+        - name: Chaetonotida
+          desc: Chaetonotida
+          tags:
+            - order
+        - name: Macrodasyida
+          desc: Macrodasyida
+          tags:
+            - order
+    - name: Jaw worms
+      desc: Gnathostomulida
+      tags:
+        - phylum
+      children:
+        - name: Bursovaginoidea
+          desc: Bursovaginoidea
+          tags:
+            - order
+        - name: Filospermoidea
+          desc: Filospermoidea
+          tags:
+            - order
+    - name: Acorn worms
+      desc: Hemichordata
+      tags:
+        - phylum
+      children:
+        - name: Acorn worms
+          desc: Enteropneusta
+          tags:
+            - class
+        - name: Pterobranchs
+          desc: Pterobranchia
+          tags:
+            - class
+          children:
+            - name: Rhabdopleurida
+              desc: Rhabdopleurida
+              tags:
+                - order
+    - name: Mud dragons
+      desc: Kinorhyncha
+      tags:
+        - phylum
+      children:
+        - name: Allomalorhagids
+          desc: Allomalorhagida
+          tags:
+            - class
+          children:
+            - name: Anomoirhaga
+              desc: Anomoirhaga
+              tags:
+                - order
+        - name: Cyclorhagids
+          desc: Cyclorhagida
+          tags:
+            - class
+          children:
+            - name: Echinorhagata
+              desc: Echinorhagata
+              tags:
+                - order
+            - name: Kentrorhagata
+              desc: Kentrorhagata
+              tags:
+                - order
+            - name: Xenosomata
+              desc: Xenosomata
+              tags:
+                - order
+    - name: Armor bearers
+      desc: Loricifera
+      tags:
+        - phylum
+      children:
+        - name: Nanaloricida
+          desc: Nanaloricida
+          tags:
+            - order
+    - name: Micrognathozoans
+      desc: Micrognathozoa
+      tags:
+        - phylum
+      children:
+        - name: Micrognathozoa
+          desc: Micrognathozoa
+          tags:
+            - class
+          children:
+            - name: Limnognathida
+              desc: Limnognathida
+              tags:
+                - order
+    - name: Mollusks
+      desc: Mollusca
+      pic:
+        set: emoji
+        name: 🐙
+      tags:
+        - phylum
+      children:
+        - name: Bivalves
+          desc: Bivalvia
+          pic:
+            set: emoji
+            name: 🦪
+          tags:
+            - class
+            - marine
+            - freshwater
+          children:
+            - name: Actinodontida
+              desc: Actinodontida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Adapedonta
+              desc: Adapedonta
+              tags:
+                - order
+            - name: Afghanodesmatida
+              desc: Afghanodesmatida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Ark clams
+              desc: Arcida
+              tags:
+                - order
+            - name: Cockles
+              desc: Cardiida
+              tags:
+                - order
+            - name: Colpomyida
+              desc: Colpomyida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Cyrtodontida
+              desc: Cyrtodontida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Fordillida
+              desc: Fordillida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Boring clams
+              desc: Gastrochaenida
+              tags:
+                - order
+            - name: Hippuritida
+              desc: Hippuritida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: File clams
+              desc: Limida
+              tags:
+                - order
+            - name: Lucinida
+              desc: Lucinida
+              tags:
+                - order
+            - name: Lunulacardiida
+              desc: Lunulacardiida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Manzanellida
+              desc: Manzanellida
+              tags:
+                - order
+            - name: Megalodontida
+              desc: Megalodontida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Modiomorphida
+              desc: Modiomorphida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Myalinida
+              desc: Myalinida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Mussels
+              desc: Mytilida
+              pic:
+                set: emoji
+                name: 🦪
+              tags:
+                - order
+                - marine
+            - name: Nuculanida
+              desc: Nuculanida
+              tags:
+                - order
+            - name: Nuculida
+              desc: Nuculida
+              tags:
+                - order
+            - name: Oysters
+              desc: Ostreida
+              pic:
+                set: emoji
+                name: 🦪
+              tags:
+                - order
+                - marine
+            - name: Scallops
+              desc: Pectinida
+              pic:
+                set: emoji
+                name: 🦪
+              tags:
+                - order
+                - marine
+            - name: Praecardiida
+              desc: Praecardiida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Solemyida
+              desc: Solemyida
+              tags:
+                - order
+            - name: Trigoniida
+              desc: Trigoniida
+              tags:
+                - order
+            - name: Venus clams
+              desc: Venerida
+              pic:
+                set: emoji
+                name: 🦪
+              tags:
+                - order
+                - marine
+                - freshwater
+        - name: Caudofoveats
+          desc: Caudofoveata
+          tags:
+            - class
+          children:
+            - name: Chaetodermatida
+              desc: Chaetodermatida
+              tags:
+                - order
+        - name: Cephalopods
+          desc: Cephalopoda
+          pic:
+            set: emoji
+            name: 🐙
+          tags:
+            - class
+            - marine
+          children:
+            - name: Actinoceratida
+              desc: Actinoceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Ammonites
+              desc: Ammonoidea
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Ascoceratida
+              desc: Ascoceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Aulacoceratida
+              desc: Aulacoceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Bactritida
+              desc: Bactritida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Bathyteuthida
+              desc: Bathyteuthida
+              tags:
+                - order
+            - name: Belemnites
+              desc: Belemnitida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Bisonoceratida
+              desc: Bisonoceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Cyrtocerinida
+              desc: Cyrtocerinida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Diplobelida
+              desc: Diplobelida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Discosorida
+              desc: Discosorida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Dissidoceratida
+              desc: Dissidoceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Ellesmeroceratida
+              desc: Ellesmeroceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Endoceratida
+              desc: Endoceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Idiosepida
+              desc: Idiosepida
+              tags:
+                - order
+            - name: Lituitida
+              desc: Lituitida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Mixosiphonata
+              desc: Mixosiphonata
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Myopsida
+              desc: Myopsida
+              tags:
+                - order
+            - name: Nautiluses
+              desc: Nautilida
+              pic:
+                set: emoji
+                name: 🐚
+              tags:
+                - order
+                - marine
+            - name: Oegopsida
+              desc: Oegopsida
+              tags:
+                - order
+            - name: Oncoceratida
+              desc: Oncoceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Orthoceratida
+              desc: Orthoceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Plectronoceratida
+              desc: Plectronoceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Pseudorthoceratida
+              desc: Pseudorthoceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Rioceratida
+              desc: Rioceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Cuttlefishes
+              desc: Sepiida
+              tags:
+                - order
+            - name: Bobtail squids
+              desc: Sepiolida
+              tags:
+                - order
+            - name: Tarphyceratida
+              desc: Tarphyceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Vampyromorpha
+              desc: Vampyromorpha
+              tags:
+                - order
+            - name: Yanheceratida
+              desc: Yanheceratida
+              tags:
+                - order
+                - extinct
+              hidden: true
+        - name: Cricoconarida
+          desc: Cricoconarida
+          tags:
+            - class
+            - extinct
+          children:
+            - name: Tentaculitida
+              desc: Tentaculitida
+              tags:
+                - order
+                - extinct
+              hidden: true
+          hidden: true
+        - name: Gastropods
+          desc: Gastropoda
+          pic:
+            set: emoji
+            name: 🐌
+          tags:
+            - class
+            - marine
+            - terrestrial
+            - freshwater
+          children:
+            - name: Sea hares
+              desc: Aplysiida
+              tags:
+                - order
+            - name: Architaenioglossa
+              desc: Architaenioglossa
+              tags:
+                - order
+            - name: Cocculinida
+              desc: Cocculinida
+              tags:
+                - order
+            - name: Cycloneritida
+              desc: Cycloneritida
+              tags:
+                - order
+            - name: Cyrtoneritida
+              desc: Cyrtoneritida
+              tags:
+                - order
+            - name: Lepetellida
+              desc: Lepetellida
+              tags:
+                - order
+            - name: Littorinimorpha
+              desc: Littorinimorpha
+              pic:
+                set: emoji
+                name: 🐚
+              tags:
+                - order
+                - marine
+                - freshwater
+            - name: Nacellida
+              desc: Nacellida
+              tags:
+                - order
+            - name: Neogastropoda
+              desc: Neogastropoda
+              tags:
+                - order
+            - name: Neomphalida
+              desc: Neomphalida
+              tags:
+                - order
+            - name: Nudibranchs
+              desc: Nudibranchia
+              pic:
+                set: emoji
+                name: 🐌
+              tags:
+                - order
+                - marine
+            - name: True limpets
+              desc: Patellida
+              tags:
+                - order
+            - name: Side-gilled sea slugs
+              desc: Pleurobranchida
+              tags:
+                - order
+            - name: Pleurotomariida
+              desc: Pleurotomariida
+              tags:
+                - order
+            - name: Pteropods
+              desc: Pteropoda
+              tags:
+                - order
+            - name: Runcinida
+              desc: Runcinida
+              tags:
+                - order
+            - name: Seguenziida
+              desc: Seguenziida
+              tags:
+                - order
+            - name: False limpets
+              desc: Siphonariida
+              tags:
+                - order
+            - name: Systellommatophora
+              desc: Systellommatophora
+              tags:
+                - order
+            - name: Tectibranchiata
+              desc: Tectibranchiata
+              tags:
+                - order
+            - name: Trochida
+              desc: Trochida
+              tags:
+                - order
+            - name: Umbraculida
+              desc: Umbraculida
+              tags:
+                - order
+        - name: Monoplacophorans
+          desc: Monoplacophora
+          tags:
+            - class
+          children:
+            - name: Cyrtonellida
+              desc: Cyrtonellida
+              tags:
+                - order
+            - name: Kirengellida
+              desc: Kirengellida
+              tags:
+                - order
+            - name: Neopilinida
+              desc: Neopilinida
+              tags:
+                - order
+            - name: Sinuitopsida
+              desc: Sinuitopsida
+              tags:
+                - order
+            - name: Tryblidiida
+              desc: Tryblidiida
+              tags:
+                - order
+        - name: Chitons
+          desc: Polyplacophora
+          tags:
+            - class
+          children:
+            - name: Callochitonida
+              desc: Callochitonida
+              tags:
+                - order
+            - name: Chelodida
+              desc: Chelodida
+              tags:
+                - order
+            - name: Chitons
+              desc: Chitonida
+              tags:
+                - order
+            - name: Lepidopleurida
+              desc: Lepidopleurida
+              tags:
+                - order
+            - name: Septemchitonida
+              desc: Septemchitonida
+              tags:
+                - order
+        - name: Rostroconchia
+          desc: Rostroconchia
+          tags:
+            - class
+            - extinct
+          children:
+            - name: Conocardiida
+              desc: Conocardiida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Ribeirioida
+              desc: Ribeirioida
+              tags:
+                - order
+                - extinct
+              hidden: true
+            - name: Tuarangiida
+              desc: Tuarangiida
+              tags:
+                - order
+                - extinct
+              hidden: true
+          hidden: true
+        - name: Tusk shells
+          desc: Scaphopoda
+          tags:
+            - class
+          children:
+            - name: Tusk shells
+              desc: Dentaliida
+              tags:
+                - order
+            - name: Tusk shells
+              desc: Gadilida
+              tags:
+                - order
+        - name: Solenogasters
+          desc: Solenogastres
+          tags:
+            - class
+      style:
+        fill: '#D8C5EB'
+    - name: Roundworms
+      desc: Nematoda
+      tags:
+        - phylum
+      children:
+        - name: Chromadoreans
+          desc: Chromadorea
+          tags:
+            - class
+          children:
+            - name: Araeolaimida
+              desc: Araeolaimida
+              tags:
+                - order
+            - name: Chromadorida
+              desc: Chromadorida
+              tags:
+                - order
+            - name: Desmodorida
+              desc: Desmodorida
+              tags:
+                - order
+            - name: Desmoscolecida
+              desc: Desmoscolecida
+              tags:
+                - order
+            - name: Monhysterida
+              desc: Monhysterida
+              tags:
+                - order
+            - name: Plectida
+              desc: Plectida
+              tags:
+                - order
+            - name: Rhabditida
+              desc: Rhabditida
+              tags:
+                - order
+        - name: Enopleans
+          desc: Enoplea
+          tags:
+            - class
+          children:
+            - name: Dioctophymatida
+              desc: Dioctophymatida
+              tags:
+                - order
+            - name: Dorylaimida
+              desc: Dorylaimida
+              tags:
+                - order
+            - name: Enoplida
+              desc: Enoplida
+              tags:
+                - order
+            - name: Isolaimida
+              desc: Isolaimida
+              tags:
+                - order
+            - name: Marimermithida
+              desc: Marimermithida
+              tags:
+                - order
+            - name: Mermithida
+              desc: Mermithida
+              tags:
+                - order
+            - name: Mononchida
+              desc: Mononchida
+              tags:
+                - order
+            - name: Muspiceida
+              desc: Muspiceida
+              tags:
+                - order
+            - name: Trichinellida
+              desc: Trichinellida
+              tags:
+                - order
+            - name: Triplonchida
+              desc: Triplonchida
+              tags:
+                - order
+    - name: Horsehair worms
+      desc: Nematomorpha
+      tags:
+        - phylum
+      children:
+        - name: Gordioids
+          desc: Gordioida
+          tags:
+            - class
+          children:
+            - name: Horsehair worms
+              desc: Gordioidea
+              tags:
+                - order
+        - name: Nectonematoids
+          desc: Nectonematoida
+          tags:
+            - class
+          children:
+            - name: Nectonematoidea
+              desc: Nectonematoidea
+              tags:
+                - order
+    - name: Ribbon worms
+      desc: Nemertea
+      tags:
+        - phylum
+      children:
+        - name: Arhynchocoela
+          desc: Arhynchocoela
+          tags:
+            - class
+          children:
+            - name: Arhynchonemertea
+              desc: Arhynchonemertea
+              tags:
+                - order
+        - name: Hoplonemerteans
+          desc: Hoplonemertea
+          tags:
+            - class
+          children:
+            - name: Monostilifera
+              desc: Monostilifera
+              tags:
+                - order
+            - name: Polystilifera
+              desc: Polystilifera
+              tags:
+                - order
+        - name: Palaeonemerteans
+          desc: Palaeonemertea
+          tags:
+            - class
+          children:
+            - name: Archinemertea
+              desc: Archinemertea
+              tags:
+                - order
+            - name: Carinomiformes
+              desc: Carinomiformes
+              tags:
+                - order
+            - name: Tubulaniformes
+              desc: Tubulaniformes
+              tags:
+                - order
+        - name: Pilidiophorans
+          desc: Pilidiophora
+          tags:
+            - class
+          children:
+            - name: Heteronemertea
+              desc: Heteronemertea
+              tags:
+                - order
+            - name: Hubrechtiiformes
+              desc: Hubrechtiiformes
+              tags:
+                - order
+    - name: Velvet worms
+      desc: Onychophora
+      tags:
+        - phylum
+    - name: Orthonectida
+      desc: Orthonectida
+      tags:
+        - phylum
+    - name: Horseshoe worms
+      desc: Phoronida
+      tags:
+        - phylum
+    - name: Placozoans
+      desc: Placozoa
+      tags:
+        - phylum
+      children:
+        - name: Polyplacotomi
+          desc: Polyplacotomia
+          tags:
+            - class
+          children:
+            - name: Polyplacotomea
+              desc: Polyplacotomea
+              tags:
+                - order
+        - name: Uniplacotomi
+          desc: Uniplacotomia
+          tags:
+            - class
+          children:
+            - name: Cladhexea
+              desc: Cladhexea
+              tags:
+                - order
+            - name: Hoilungea
+              desc: Hoilungea
+              tags:
+                - order
+            - name: Trichoplacea
+              desc: Trichoplacea
+              tags:
+                - order
+    - name: Flatworms
+      desc: Platyhelminthes
+      tags:
+        - phylum
+      children:
+        - name: Bothrioplanida
+          desc: Bothrioplanida
+          tags:
+            - order
+        - name: Tapeworms
+          desc: Cestoda
+          tags:
+            - class
+          children:
+            - name: Amphilinidea
+              desc: Amphilinidea
+              tags:
+                - order
+            - name: Bothriocephalidea
+              desc: Bothriocephalidea
+              tags:
+                - order
+            - name: Caryophyllidea
+              desc: Caryophyllidea
+              tags:
+                - order
+            - name: Cathetocephalidea
+              desc: Cathetocephalidea
+              tags:
+                - order
+            - name: Cyclophyllidea
+              desc: Cyclophyllidea
+              tags:
+                - order
+            - name: Diphyllidea
+              desc: Diphyllidea
+              tags:
+                - order
+            - name: Broad tapeworms
+              desc: Diphyllobothriidea
+              tags:
+                - order
+            - name: Gyrocotylidea
+              desc: Gyrocotylidea
+              tags:
+                - order
+            - name: Haplobothriidea
+              desc: Haplobothriidea
+              tags:
+                - order
+            - name: Lecanicephalidea
+              desc: Lecanicephalidea
+              tags:
+                - order
+            - name: Litobothriidea
+              desc: Litobothriidea
+              tags:
+                - order
+            - name: Nippotaeniidea
+              desc: Nippotaeniidea
+              tags:
+                - order
+            - name: Onchoproteocephalidea
+              desc: Onchoproteocephalidea
+              tags:
+                - order
+            - name: Phyllobothriidea
+              desc: Phyllobothriidea
+              tags:
+                - order
+            - name: Rhinebothriidea
+              desc: Rhinebothriidea
+              tags:
+                - order
+            - name: Spathebothriidea
+              desc: Spathebothriidea
+              tags:
+                - order
+            - name: Tetrabothriidea
+              desc: Tetrabothriidea
+              tags:
+                - order
+            - name: Tetraphyllidea
+              desc: Tetraphyllidea
+              tags:
+                - order
+            - name: Trypanorhyncha
+              desc: Trypanorhyncha
+              tags:
+                - order
+        - name: Dolichomicrostomida
+          desc: Dolichomicrostomida
+          tags:
+            - order
+        - name: Monogeneans
+          desc: Monogenea
+          tags:
+            - class
+          children:
+            - name: Capsalidea
+              desc: Capsalidea
+              tags:
+                - order
+            - name: Chimaericolidea
+              desc: Chimaericolidea
+              tags:
+                - order
+            - name: Dactylogyridea
+              desc: Dactylogyridea
+              tags:
+                - order
+            - name: Diclybothriidea
+              desc: Diclybothriidea
+              tags:
+                - order
+            - name: Gyrodactylidea
+              desc: Gyrodactylidea
+              tags:
+                - order
+            - name: Lagarocotylidea
+              desc: Lagarocotylidea
+              tags:
+                - order
+            - name: Mazocraeidea
+              desc: Mazocraeidea
+              tags:
+                - order
+            - name: Monocotylidea
+              desc: Monocotylidea
+              tags:
+                - order
+            - name: Montchadskyellidea
+              desc: Montchadskyellidea
+              tags:
+                - order
+            - name: Polystomatidea
+              desc: Polystomatidea
+              tags:
+                - order
+        - name: Fecampiida
+          desc: Fecampiida
+          tags:
+            - order
+        - name: Flukes / Trematodes
+          desc: Trematoda
+          tags:
+            - class
+          children:
+            - name: Aspidogastrida
+              desc: Aspidogastrida
+              tags:
+                - order
+            - name: Diplostomida
+              desc: Diplostomida
+              tags:
+                - order
+            - name: Plagiorchiida
+              desc: Plagiorchiida
+              tags:
+                - order
+            - name: Stichocotylida
+              desc: Stichocotylida
+              tags:
+                - order
+        - name: Gnosonesimida
+          desc: Gnosonesimida
+          tags:
+            - order
+        - name: Polycladida
+          desc: Polycladida
+          tags:
+            - order
+        - name: Prolecithophora
+          desc: Prolecithophora
+          tags:
+            - order
+        - name: Proplicastomata
+          desc: Proplicastomata
+          tags:
+            - order
+        - name: Prorhynchida
+          desc: Prorhynchida
+          tags:
+            - order
+        - name: Proseriata
+          desc: Proseriata
+          tags:
+            - order
+        - name: Rhabdocoela
+          desc: Rhabdocoela
+          tags:
+            - order
+        - name: Triclads
+          desc: Tricladida
+          tags:
+            - order
+    - name: Sponges
+      desc: Porifera
+      pic:
+        set: emoji
+        name: 🧽
+      tags:
+        - phylum
+        - marine
+      children:
+        - name: Calcareous sponges
+          desc: Calcarea
+          pic:
+            set: emoji
+            name: 🧽
+          tags:
+            - class
+            - marine
+          children:
+            - name: Baeriida
+              desc: Baeriida
+              tags:
+                - order
+            - name: Clathrinida
+              desc: Clathrinida
+              pic:
+                set: emoji
+                name: 🧽
+              tags:
+                - order
+                - marine
+            - name: Leucosolenida
+              desc: Leucosolenida
+              tags:
+                - order
+            - name: Lithonida
+              desc: Lithonida
+              tags:
+                - order
+        - name: Demosponges
+          desc: Demospongiae
+          pic:
+            set: emoji
+            name: 🧽
+          tags:
+            - class
+            - marine
+          children:
+            - name: Agelasida
+              desc: Agelasida
+              tags:
+                - order
+            - name: Axinellida
+              desc: Axinellida
+              tags:
+                - order
+            - name: Biemnida
+              desc: Biemnida
+              tags:
+                - order
+            - name: Bubarida
+              desc: Bubarida
+              tags:
+                - order
+            - name: Chondrillida
+              desc: Chondrillida
+              tags:
+                - order
+            - name: Chondrosiida
+              desc: Chondrosiida
+              tags:
+                - order
+            - name: Clionaida
+              desc: Clionaida
+              tags:
+                - order
+            - name: Dendroceratida
+              desc: Dendroceratida
+              tags:
+                - order
+            - name: Desmacellida
+              desc: Desmacellida
+              tags:
+                - order
+            - name: Dictyoceratida
+              desc: Dictyoceratida
+              tags:
+                - order
+            - name: Haplosclerida
+              desc: Haplosclerida
+              tags:
+                - order
+            - name: Merliida
+              desc: Merliida
+              tags:
+                - order
+            - name: Poecilosclerida
+              desc: Poecilosclerida
+              tags:
+                - order
+            - name: Polymastiida
+              desc: Polymastiida
+              tags:
+                - order
+            - name: Scopalinida
+              desc: Scopalinida
+              tags:
+                - order
+            - name: Sphaerocladina
+              desc: Sphaerocladina
+              tags:
+                - order
+            - name: Freshwater sponges
+              desc: Spongillida
+              tags:
+                - order
+            - name: Suberitida
+              desc: Suberitida
+              tags:
+                - order
+            - name: Tethyida
+              desc: Tethyida
+              tags:
+                - order
+            - name: Tetractinellida
+              desc: Tetractinellida
+              pic:
+                set: emoji
+                name: 🧽
+              tags:
+                - order
+                - marine
+            - name: Trachycladida
+              desc: Trachycladida
+              tags:
+                - order
+            - name: Verongiida
+              desc: Verongiida
+              tags:
+                - order
+            - name: Vilesida
+              desc: Vilesida
+              tags:
+                - order
+        - name: Glass sponges
+          desc: Hexactinellida
+          pic:
+            set: emoji
+            name: 🧽
+          tags:
+            - class
+            - marine
+          children:
+            - name: Amphidiscosida
+              desc: Amphidiscosida
+              tags:
+                - order
+            - name: Lychniscosida
+              desc: Lychniscosida
+              tags:
+                - order
+            - name: Lyssacinosida
+              desc: Lyssacinosida
+              pic:
+                set: emoji
+                name: 🧽
+              tags:
+                - order
+                - marine
+            - name: Sceptrulophora
+              desc: Sceptrulophora
+              tags:
+                - order
+        - name: Homoscleromorphs
+          desc: Homoscleromorpha
+          tags:
+            - class
+          children:
+            - name: Homosclerophorida
+              desc: Homosclerophorida
+              tags:
+                - order
+    - name: Penis worms
+      desc: Priapulida
+      tags:
+        - phylum
+      children:
+        - name: Halicryptomorpha
+          desc: Halicryptomorpha
+          tags:
+            - order
+        - name: Meiopriapulomorpha
+          desc: Meiopriapulomorpha
+          tags:
+            - order
+        - name: Priapulomorpha
+          desc: Priapulomorpha
+          tags:
+            - order
+        - name: Seticoronaria
+          desc: Seticoronaria
+          tags:
+            - order
+    - name: Rotifers
+      desc: Rotifera
+      tags:
+        - phylum
+      children:
+        - name: Rotifers
+          desc: Eurotatoria
+          tags:
+            - class
+          children:
+            - name: Adinetida
+              desc: Adinetida
+              tags:
+                - order
+            - name: Collothecaceae
+              desc: Collothecaceae
+              tags:
+                - order
+            - name: Flosculariaceae
+              desc: Flosculariaceae
+              tags:
+                - order
+            - name: Philodinavida
+              desc: Philodinavida
+              tags:
+                - order
+            - name: Philodinida
+              desc: Philodinida
+              tags:
+                - order
+            - name: Ploima
+              desc: Ploima
+              tags:
+                - order
+        - name: Pararotatoria
+          desc: Pararotatoria
+          tags:
+            - class
+          children:
+            - name: Seisonacea
+              desc: Seisonacea
+              tags:
+                - order
+    - name: Peanut worms
+      desc: Sipuncula
+      tags:
+        - phylum
+      children:
+        - name: Phascolosomatidea
+          desc: Phascolosomatidea
+          tags:
+            - class
+          children:
+            - name: Aspidosiphoniformes
+              desc: Aspidosiphoniformes
+              tags:
+                - order
+            - name: Phascolosomatiformes
+              desc: Phascolosomatiformes
+              tags:
+                - order
+        - name: Sipunculidea
+          desc: Sipunculidea
+          tags:
+            - class
+          children:
+            - name: Golfingiiformes
+              desc: Golfingiiformes
+              tags:
+                - order
+            - name: Sipunculiformes
+              desc: Sipunculiformes
+              tags:
+                - order
+    - name: Water bears
+      desc: Tardigrada
+      tags:
+        - phylum
+      children:
+        - name: Eutardigrades
+          desc: Eutardigrada
+          tags:
+            - class
+          children:
+            - name: Apochela
+              desc: Apochela
+              tags:
+                - order
+            - name: Parachela
+              desc: Parachela
+              tags:
+                - order
+        - name: Heterotardigrades
+          desc: Heterotardigrada
+          tags:
+            - class
+          children:
+            - name: Arthrotardigrada
+              desc: Arthrotardigrada
+              tags:
+                - order
+            - name: Echiniscoidea
+              desc: Echiniscoidea
+              tags:
+                - order
+        - name: Mesotardigrades
+          desc: Mesotardigrada
+          tags:
+            - class
+          children:
+            - name: Thermozodia
+              desc: Thermozodia
+              tags:
+                - order
+    - name: Xenacoelomorphs
+      desc: Xenacoelomorpha
+      tags:
+        - phylum
+      children:
+        - name: Acoela
+          desc: Acoela
+          tags:
+            - order
+        - name: Nemertodermatida
+          desc: Nemertodermatida
+          tags:
+            - order

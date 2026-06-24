@@ -1,0 +1,1874 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: Mavuno Everyday Retail — категорийный менеджмент и товарный каталог / v2
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — в максимально допустимом законом объёме ORGFORMAT DemoPacks отказался от авторских и
+    смежных прав на этот материал. Его можно свободно копировать, изменять, распространять и использовать,
+    включая коммерчески, без запроса разрешения и обязательного указания автора. CC0 не предоставляет прав
+    на обозначения ORGFORMAT, ORGF, логотипы и иные брендовые активы.
+  license: CC0-1.0
+  created: '2026-06-22'
+  updated: '2026-06-24'
+
+model:
+  name: Категорийный менеджмент и товарный каталог
+  desc: >-
+    Полная демо-модель: товарные роли, валовая прибыль, ABC/FMR, сезонность и выводимые категории.
+
+    Демонстрационный материал ORGFORMAT DemoPacks предназначен для иллюстрации возможностей ORGF. Если прямо
+    не указано иное, содержащиеся в модели наименования, организации, продукты, проекты, роли, данные и
+    сценарии являются условными или вымышленными; любое сходство с реальными объектами не означает связи,
+    одобрения или принадлежности. Вопросы и обращения: support@orgformat.com.
+  value_label: Валовая прибыль
+  value_unit: тыс. USD/мес.
+
+root:
+  name: Mavuno Everyday Retail — товарный портфель
+  desc: 'Демонстрационная модель: роли категорий, валовая прибыль, ABC/FMR, сезонность и выводимые ветки.'
+  pic:
+    set: lucide
+    name: package-open
+  tags:
+  - кат-менеджмент
+  - товарный-каталог
+  - омниканал
+  - валовая-прибыль
+  branch_orientation: horizontal
+  style:
+    fill: '#EAF2FF'
+    contour: solid
+    contour_width: bold
+  children:
+  - name: Продукты питания
+    desc: 'Главный коммерческий контур: сочетает трафик, регулярную корзину и private label.'
+    pic:
+      set: lucide
+      name: shopping-basket
+    tags:
+    - продукты
+    - ABC-A
+    - FMR-F
+    - ядро
+    - круглый-год
+    - омниканал
+    - трафик
+    - маржа
+    branch_orientation: vertical
+    style:
+      fill: '#FFF7E6'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#F59E0B'
+    children:
+    - name: Напитки
+      desc: 'Приоритетная категория: создаёт трафик, частоту покупки и заметную валовую прибыль.'
+      pic:
+        set: lucide
+        name: cup-soda
+      tags:
+      - напитки
+      - ABC-A
+      - FMR-F
+      - трафик
+      - ядро
+      - круглый-год
+      - омниканал
+      - рост
+      branch_orientation: vertical
+      style:
+        fill: '#FFF7E6'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#F59E0B'
+      children:
+      - name: Вода
+        desc: Трафиковая подкатегория с высокой частотой покупки; ключевой контроль наличия в жаркий сезон.
+        pic:
+          set: lucide
+          name: droplets
+        tags:
+        - вода
+        - ABC-A
+        - FMR-F
+        - трафик
+        - ядро
+        - лето-пик
+        - омниканал
+        - низкая-маржа
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: Mavuno Pure — вода 1.5 л
+          desc: 'Private label: базовая альтернатива национальным брендам с устойчивой маржой.'
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - private-label
+          - ABC-A
+          - FMR-F
+          - маржа
+          - ядро
+          - лето-пик
+          - омниканал
+          value: 58
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Aqua Vita — вода 1.5 л
+          desc: Национальный бренд для трафика и доверия; критична доступность на полке.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - нац-бренд
+          - ABC-A
+          - FMR-F
+          - трафик
+          - ядро
+          - лето-пик
+          - омниканал
+          value: 46
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Aqua Vita — вода 0.5 л
+          desc: Импульсная покупка у кассы и в e-commerce; поддерживает частоту заказа.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - нац-бренд
+          - ABC-A
+          - FMR-F
+          - трафик
+          - импульс
+          - лето-пик
+          - омниканал
+          value: 31
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Premium Springs — вода 0.75 л
+          desc: Премиальная позиция для маржи и ассортимента в цифровом канале.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - premium
+          - ABC-B
+          - FMR-M
+          - маржа
+          - лояльность
+          - круглый-год
+          - e-commerce
+          value: 22
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+      - name: Соки и нектары
+        desc: Категория для семейной корзины; балансирует промо, маржу и объём упаковки.
+        pic:
+          set: lucide
+          name: glass-water
+        tags:
+        - соки
+        - ABC-A
+        - FMR-F
+        - корзина
+        - ядро
+        - круглый-год
+        - омниканал
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: FreshDay — сок апельсин 1 л
+          desc: 'Ключевой национальный бренд: участвует в промо и поддерживает трафик категории.'
+          pic:
+            set: lucide
+            name: glass-water
+          tags:
+          - нац-бренд
+          - ABC-A
+          - FMR-F
+          - трафик
+          - promo
+          - круглый-год
+          - омниканал
+          value: 37
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Mavuno Select — нектар 1 л
+          desc: Private label с контролируемой ценой и выгодной маржой в семейной корзине.
+          pic:
+            set: lucide
+            name: glass-water
+          tags:
+          - private-label
+          - ABC-B
+          - FMR-F
+          - маржа
+          - корзина
+          - круглый-год
+          - омниканал
+          value: 28
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+      - name: Газированные напитки
+        desc: Трафиковая категория для импульсного спроса; ограничивает дублирование схожих вкусов.
+        pic:
+          set: lucide
+          name: cup-soda
+        tags:
+        - газировка
+        - ABC-A
+        - FMR-F
+        - трафик
+        - импульс
+        - лето-пик
+        - омниканал
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: FizzUp — cola 1.5 л
+          desc: Национальный бренд с высокой частотой покупки и заметным промо-эффектом.
+          pic:
+            set: lucide
+            name: cup-soda
+          tags:
+          - нац-бренд
+          - ABC-A
+          - FMR-F
+          - трафик
+          - promo
+          - лето-пик
+          - омниканал
+          value: 42
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Mavuno Mix — лимонад 1.5 л
+          desc: Private label для доступной цены и повышения валовой прибыли категории.
+          pic:
+            set: lucide
+            name: cup-soda
+          tags:
+          - private-label
+          - ABC-B
+          - FMR-F
+          - маржа
+          - трафик
+          - лето-пик
+          - омниканал
+          value: 24
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+    - name: Бакалея
+      desc: 'Ядро регулярной корзины: базовые продукты, ценовое доверие и private label.'
+      pic:
+        set: lucide
+        name: wheat
+      tags:
+      - бакалея
+      - ABC-A
+      - FMR-F
+      - корзина
+      - ядро
+      - круглый-год
+      - омниканал
+      branch_orientation: vertical
+      style:
+        fill: '#FFF7E6'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#F59E0B'
+      children:
+      - name: Рис и крупы
+        desc: Базовая продуктовая подкатегория; удерживает корзину и ценовое доверие покупателей.
+        pic:
+          set: lucide
+          name: wheat
+        tags:
+        - крупы
+        - ABC-A
+        - FMR-F
+        - корзина
+        - ядро
+        - круглый-год
+        - омниканал
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: Mavuno Basics — рис 5 кг
+          desc: Private label для семейной корзины; источник маржи при конкурентной цене.
+          pic:
+            set: lucide
+            name: package
+          tags:
+          - private-label
+          - ABC-A
+          - FMR-F
+          - маржа
+          - корзина
+          - круглый-год
+          - омниканал
+          value: 33
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Harvest Gold — рис 5 кг
+          desc: Национальный бренд, сохраняющий доверие в базовом ассортименте категории.
+          pic:
+            set: lucide
+            name: package
+          tags:
+          - нац-бренд
+          - ABC-A
+          - FMR-F
+          - лояльность
+          - корзина
+          - круглый-год
+          - омниканал
+          value: 26
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Mavuno Basics — гречка 900 г
+          desc: Дополняет базовую корзину и поддерживает частые повторные покупки.
+          pic:
+            set: lucide
+            name: package
+          tags:
+          - private-label
+          - ABC-B
+          - FMR-F
+          - корзина
+          - ядро
+          - круглый-год
+          - омниканал
+          value: 18
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+      - name: Масла и специи
+        desc: 'Маржинальная часть бакалеи: ценовые уровни, домашняя готовка и разумная ширина матрицы.'
+        pic:
+          set: lucide
+          name: cooking-pot
+        tags:
+        - масла-специи
+        - ABC-B
+        - FMR-M
+        - корзина
+        - маржа
+        - круглый-год
+        - омниканал
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: Mavuno Basics — масло подсолнечное 1 л
+          desc: Private label удерживает доступную цену и повышает валовую прибыль категории.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - private-label
+          - ABC-A
+          - FMR-F
+          - маржа
+          - корзина
+          - круглый-год
+          - омниканал
+          value: 25
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: SunGold — масло подсолнечное 1 л
+          desc: Национальный бренд сохраняет выбор для покупателей, лояльных известной марке.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - нац-бренд
+          - ABC-B
+          - FMR-F
+          - лояльность
+          - корзина
+          - круглый-год
+          - омниканал
+          value: 19
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: World Taste — специи набор
+          desc: Набор специй увеличивает корзину и стимулирует кросс-продажи с бакалеей.
+          pic:
+            set: lucide
+            name: package
+          tags:
+          - нац-бренд
+          - ABC-B
+          - FMR-M
+          - корзина
+          - импульс
+          - круглый-год
+          - омниканал
+          value: 13
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+    - name: Снэки и кондитерские
+      desc: 'Второстепенный контур с высоким импульсом: балансирует кассовый трафик и маржу.'
+      pic:
+        set: lucide
+        name: cookie
+      tags:
+      - снэки
+      - ABC-B
+      - FMR-M
+      - импульс
+      - маржа
+      - круглый-год
+      - омниканал
+      branch_orientation: vertical
+      style:
+        fill: '#FFF7E6'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#F59E0B'
+      children:
+      - name: Шоколад и батончики
+        desc: 'Импульсная подкатегория: национальные бренды привлекают, private label расширяет маржу.'
+        pic:
+          set: lucide
+          name: candy
+        tags:
+        - шоколад
+        - ABC-B
+        - FMR-M
+        - импульс
+        - маржа
+        - круглый-год
+        - омниканал
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: ChocoRise — молочный шоколад 90 г
+          desc: Брендовый импульсный SKU для кассовой зоны и цифровых допродаж.
+          pic:
+            set: lucide
+            name: candy
+          tags:
+          - нац-бренд
+          - ABC-A
+          - FMR-F
+          - импульс
+          - трафик
+          - круглый-год
+          - омниканал
+          value: 21
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Mavuno Treat — шоколад 90 г
+          desc: Private label в среднем сегменте; растит маржу без потери ценовой доступности.
+          pic:
+            set: lucide
+            name: candy
+          tags:
+          - private-label
+          - ABC-B
+          - FMR-M
+          - маржа
+          - импульс
+          - круглый-год
+          - омниканал
+          value: 16
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: NutBar — батончик 45 г
+          desc: Позиция для кассы и e-commerce; поддерживает быстрые добавления в корзину.
+          pic:
+            set: lucide
+            name: candy
+          tags:
+          - нац-бренд
+          - ABC-B
+          - FMR-F
+          - импульс
+          - касса
+          - круглый-год
+          - омниканал
+          value: 12
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+      - name: Чипсы и солёные снеки
+        desc: Категория импульса и сезонных поводов; контролирует промо и вкусовые дубли.
+        pic:
+          set: lucide
+          name: cookie
+        tags:
+        - снеки
+        - ABC-B
+        - FMR-M
+        - импульс
+        - promo
+        - круглый-год
+        - омниканал
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: CrispyGo — чипсы соль 150 г
+          desc: Национальный бренд с сильным промо-эффектом в вечернем и выходном спросе.
+          pic:
+            set: lucide
+            name: cookie
+          tags:
+          - нац-бренд
+          - ABC-A
+          - FMR-F
+          - импульс
+          - promo
+          - круглый-год
+          - омниканал
+          value: 20
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Mavuno Snack — чипсы паприка 120 г
+          desc: Private label создаёт маржу в доступном сегменте и дополняет ассортимент вкусов.
+          pic:
+            set: lucide
+            name: cookie
+          tags:
+          - private-label
+          - ABC-B
+          - FMR-M
+          - маржа
+          - импульс
+          - круглый-год
+          - омниканал
+          value: 14
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Salted Nut Mix — 100 г
+          desc: Премиальная позиция для цифрового канала и покупательской корзины выходного дня.
+          pic:
+            set: lucide
+            name: package
+          tags:
+          - premium
+          - ABC-B
+          - FMR-M
+          - маржа
+          - импульс
+          - круглый-год
+          - e-commerce
+          value: 15
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+  - name: Личная гигиена
+    desc: 'Контур лояльности и маржи: регулярные покупки, качество и сбалансированная бренд-архитектура.'
+    pic:
+      set: lucide
+      name: sparkles
+    tags:
+    - гигиена
+    - ABC-A
+    - FMR-F
+    - лояльность
+    - маржа
+    - круглый-год
+    - омниканал
+    branch_orientation: vertical
+    style:
+      fill: '#F5F0FF'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#7C3AED'
+    children:
+    - name: Уход за волосами
+      desc: Категория сочетает лояльность брендов с private label и предсказуемой повторной покупкой.
+      pic:
+        set: lucide
+        name: sparkles
+      tags:
+      - волосы
+      - ABC-A
+      - FMR-F
+      - лояльность
+      - маржа
+      - круглый-год
+      - омниканал
+      style:
+        fill: '#FAF7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: CareLine — шампунь 400 мл
+        desc: Национальный бренд для доверия и повторных покупок в среднем ценовом сегменте.
+        pic:
+          set: lucide
+          name: sparkles
+        tags:
+        - нац-бренд
+        - ABC-A
+        - FMR-F
+        - лояльность
+        - круглый-год
+        - омниканал
+        value: 29
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Mavuno Care — шампунь 400 мл
+        desc: Private label с повышенной маржой и ценовой альтернативой брендам.
+        pic:
+          set: lucide
+          name: sparkles
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-F
+        - маржа
+        - ядро
+        - круглый-год
+        - омниканал
+        value: 23
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: CareLine — бальзам 300 мл
+        desc: Дополняет основную покупку шампуня и увеличивает ценность корзины.
+        pic:
+          set: lucide
+          name: sparkles
+        tags:
+        - нац-бренд
+        - ABC-B
+        - FMR-M
+        - корзина
+        - лояльность
+        - круглый-год
+        - омниканал
+        value: 17
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: Детская гигиена
+      desc: 'Категория высокой лояльности: качество, наличие и доверие важнее ширины матрицы.'
+      pic:
+        set: lucide
+        name: baby
+      tags:
+      - дети
+      - ABC-A
+      - FMR-F
+      - лояльность
+      - ядро
+      - круглый-год
+      - омниканал
+      style:
+        fill: '#FAF7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: SoftBaby — влажные салфетки 64 шт.
+        desc: Частая покупка в семейной корзине; требует бездефицитного пополнения.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - нац-бренд
+        - ABC-A
+        - FMR-F
+        - лояльность
+        - корзина
+        - круглый-год
+        - омниканал
+        value: 34
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Mavuno Baby — салфетки 64 шт.
+        desc: Private label для ценовой доступности и роста маржи в семейной категории.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-F
+        - маржа
+        - корзина
+        - круглый-год
+        - омниканал
+        value: 21
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: Уход за телом
+      desc: 'Подкатегория регулярного спроса: частота, ценовая архитектура и ограниченное число ароматов.'
+      pic:
+        set: lucide
+        name: bath
+      tags:
+      - тело
+      - ABC-B
+      - FMR-M
+      - лояльность
+      - маржа
+      - круглый-год
+      - омниканал
+      style:
+        fill: '#FAF7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: Mavuno Care — гель для душа 400 мл
+        desc: 'Private label: маржинальная база подкатегории в среднем ценовом сегменте.'
+        pic:
+          set: lucide
+          name: bath
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - маржа
+        - ядро
+        - круглый-год
+        - омниканал
+        value: 19
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: PureSense — гель для душа 400 мл
+        desc: Национальный бренд поддерживает лояльность и даёт покупателю привычный выбор.
+        pic:
+          set: lucide
+          name: bath
+        tags:
+        - нац-бренд
+        - ABC-A
+        - FMR-F
+        - лояльность
+        - круглый-год
+        - омниканал
+        value: 24
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Mavuno Care — мыло 2×90 г
+        desc: Доступная позиция для корзины, формирует повторный спрос и ценовое доверие.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-F
+        - корзина
+        - маржа
+        - круглый-год
+        - омниканал
+        value: 13
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: Уход за полостью рта
+      desc: 'Компактная категория доверия: must-have позиции, брендовое качество и стабильная оборачиваемость.'
+      pic:
+        set: lucide
+        name: tooth
+      tags:
+      - полость-рта
+      - ABC-B
+      - FMR-F
+      - лояльность
+      - ядро
+      - круглый-год
+      - омниканал
+      style:
+        fill: '#FAF7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: BrightSmile — зубная паста 100 мл
+        desc: Must-have брендовая позиция с высокой частотой повторной покупки.
+        pic:
+          set: lucide
+          name: tooth
+        tags:
+        - нац-бренд
+        - ABC-A
+        - FMR-F
+        - ядро
+        - лояльность
+        - круглый-год
+        - омниканал
+        value: 22
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Mavuno Care — зубная паста 100 мл
+        desc: Private label расширяет ценовой выбор и удерживает маржу компактной категории.
+        pic:
+          set: lucide
+          name: tooth
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - маржа
+        - ядро
+        - круглый-год
+        - омниканал
+        value: 15
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+  - name: Товары для дома
+    desc: Повседневный контур, увеличивающий корзину и устойчивую маржу в регулярных покупках.
+    pic:
+      set: lucide
+      name: house
+    tags:
+    - дом
+    - ABC-A
+    - FMR-F
+    - корзина
+    - маржа
+    - круглый-год
+    - омниканал
+    branch_orientation: vertical
+    style:
+      fill: '#ECFDF3'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#16A34A'
+    children:
+    - name: Стирка и уход за одеждой
+      desc: 'Категория регулярной корзины: брендовое доверие, ценовые уровни и валовая прибыль.'
+      pic:
+        set: lucide
+        name: shirt
+      tags:
+      - стирка
+      - ABC-A
+      - FMR-F
+      - корзина
+      - маржа
+      - круглый-год
+      - омниканал
+      style:
+        fill: '#F5FFF8'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#16A34A'
+      children:
+      - name: CleanPro — порошок 3 кг
+        desc: Национальный бренд для доверия и крупной семейной корзины.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - нац-бренд
+        - ABC-A
+        - FMR-F
+        - лояльность
+        - корзина
+        - круглый-год
+        - омниканал
+        value: 32
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+      - name: Mavuno Home — гель 2 л
+        desc: Private label с высокой валовой прибылью и доступной ценой.
+        pic:
+          set: lucide
+          name: bottle
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-F
+        - маржа
+        - корзина
+        - круглый-год
+        - омниканал
+        value: 27
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+      - name: CleanPro — кондиционер 1 л
+        desc: Комплементарная позиция для роста корзины при покупке основных средств.
+        pic:
+          set: lucide
+          name: bottle
+        tags:
+        - нац-бренд
+        - ABC-B
+        - FMR-M
+        - корзина
+        - лояльность
+        - круглый-год
+        - омниканал
+        value: 16
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+    - name: Уборка дома
+      desc: 'Второстепенная категория регулярного спроса: типы поверхностей, промо и контроль дублей.'
+      pic:
+        set: lucide
+        name: spray-can
+      tags:
+      - уборка
+      - ABC-B
+      - FMR-M
+      - корзина
+      - маржа
+      - круглый-год
+      - омниканал
+      style:
+        fill: '#F5FFF8'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#16A34A'
+      children:
+      - name: Mavuno Home — средство для пола 1 л
+        desc: Private label удерживает маржу и покрывает базовую миссию домашней уборки.
+        pic:
+          set: lucide
+          name: bottle
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - маржа
+        - ядро
+        - круглый-год
+        - омниканал
+        value: 18
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+      - name: BrightClean — универсальный спрей 500 мл
+        desc: Брендовый SKU для доверия и промо-поддержки в базовом ассортименте.
+        pic:
+          set: lucide
+          name: spray-can
+        tags:
+        - нац-бренд
+        - ABC-A
+        - FMR-F
+        - promo
+        - лояльность
+        - круглый-год
+        - омниканал
+        value: 20
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+      - name: Mavuno Home — губки 5 шт.
+        desc: Импульсное дополнение к средствам уборки; увеличивает корзину по низкой цене.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - импульс
+        - корзина
+        - круглый-год
+        - омниканал
+        value: 10
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+    - name: Бумажная продукция
+      desc: Базовая корзина и частый повторный спрос; ассортимент строится вокруг размера упаковки.
+      pic:
+        set: lucide
+        name: toilet-paper
+      tags:
+      - бумажные-товары
+      - ABC-A
+      - FMR-F
+      - корзина
+      - ядро
+      - круглый-год
+      - омниканал
+      style:
+        fill: '#F5FFF8'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#16A34A'
+      children:
+      - name: Mavuno Home — туалетная бумага 8 рул.
+        desc: 'Private label: регулярный объёмный спрос и валовая прибыль в базовом сегменте.'
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - private-label
+        - ABC-A
+        - FMR-F
+        - маржа
+        - корзина
+        - круглый-год
+        - омниканал
+        value: 24
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+      - name: SoftHome — бумажные полотенца 2 рул.
+        desc: Брендовая позиция дополняет корзину и покрывает потребность в качестве.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - нац-бренд
+        - ABC-B
+        - FMR-F
+        - корзина
+        - лояльность
+        - круглый-год
+        - омниканал
+        value: 15
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+  - name: Сезонный ассортимент
+    desc: Тематические матрицы с планом закупок, промо, вывода и отдельным контролем остатков.
+    pic:
+      set: lucide
+      name: calendar-days
+    tags:
+    - сезонность
+    - ABC-B
+    - FMR-M
+    - сезонный-спрос
+    - promo
+    - омниканал
+    branch_orientation: vertical
+    style:
+      fill: '#FFF0F4'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#F43F5E'
+    children:
+    - name: Жаркий сезон
+      desc: 'Сезонная витрина: ускоряет трафик и импульсные покупки в периоды высокой температуры.'
+      pic:
+        set: lucide
+        name: sun
+      tags:
+      - лето
+      - ABC-B
+      - FMR-M
+      - сезонный-спрос
+      - трафик
+      - лето-пик
+      - омниканал
+      style:
+        fill: '#FFF7F9'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#F43F5E'
+      children:
+      - name: CoolBox — термосумка
+        desc: Импульсная сезонная позиция с ограниченной матрицей и повышенной маржой.
+        pic:
+          set: lucide
+          name: shopping-bag
+        tags:
+        - сезонный
+        - ABC-B
+        - FMR-M
+        - маржа
+        - импульс
+        - лето-пик
+        - розница
+        value: 14
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+      - name: Пляжная бутылка Mavuno 0.7 л
+        desc: Private label для летней витрины и дополнительной маржи у напитков.
+        pic:
+          set: lucide
+          name: bottle
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - маржа
+        - импульс
+        - лето-пик
+        - розница
+        value: 11
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+    - name: Праздничные наборы
+      desc: 'Ограниченная сезонная матрица: подарочный спрос, заранее заданный объём закупки и контроль остатков.'
+      pic:
+        set: lucide
+        name: gift
+      tags:
+      - праздник
+      - ABC-B
+      - FMR-M
+      - сезонный-спрос
+      - promo
+      - зима-пик
+      - омниканал
+      style:
+        fill: '#FFF7F9'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#F43F5E'
+      children:
+      - name: Mavuno Gift — набор ухода
+        desc: Private label-набор для праздничного спроса с высокой маржой и ограниченным тиражом.
+        pic:
+          set: lucide
+          name: gift
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - маржа
+        - праздник-пик
+        - зима-пик
+        - омниканал
+        value: 18
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+      - name: SweetBox — шоколадный набор
+        desc: Подарочный национальный бренд; нуждается в жёстком плане остатков после сезона.
+        pic:
+          set: lucide
+          name: gift
+        tags:
+        - нац-бренд
+        - ABC-B
+        - FMR-M
+        - promo
+        - праздник-пик
+        - зима-пик
+        - overstock-risk
+        value: 16
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+      - name: Mavuno Gift — семейный набор
+        desc: Премиальный набор для корзины выходного дня и цифровых заказов перед праздниками.
+        pic:
+          set: lucide
+          name: gift
+        tags:
+        - private-label
+        - ABC-C
+        - FMR-M
+        - маржа
+        - premium
+        - зима-пик
+        - e-commerce
+        value: 12
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+    - name: Back to school
+      desc: 'Осенний тематический набор: товары для учёбы, ограниченный период продажи и кросс-мерчандайзинг.'
+      pic:
+        set: lucide
+        name: school
+      tags:
+      - back-to-school
+      - ABC-B
+      - FMR-M
+      - сезонный-спрос
+      - осень-пик
+      - promo
+      - омниканал
+      style:
+        fill: '#FFF7F9'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#F43F5E'
+      children:
+      - name: Mavuno Study — тетради 10 шт.
+        desc: 'Private label: маржинальный базовый набор для школьной корзины.'
+        pic:
+          set: lucide
+          name: notebook-pen
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - маржа
+        - осень-пик
+        - корзина
+        - омниканал
+        value: 13
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+      - name: ColorSet — набор фломастеров
+        desc: Импульсный товар для витрины и e-commerce; спрос концентрируется в августе.
+        pic:
+          set: lucide
+          name: palette
+        tags:
+        - нац-бренд
+        - ABC-B
+        - FMR-M
+        - импульс
+        - осень-пик
+        - e-commerce
+        - seasonal
+        value: 10
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+      - name: Mavuno Study — пенал
+        desc: Дополняет школьную корзину и даёт заметную маржу при ограниченном ассортименте.
+        pic:
+          set: lucide
+          name: briefcase-business
+        tags:
+        - private-label
+        - ABC-C
+        - FMR-M
+        - маржа
+        - осень-пик
+        - корзина
+        - розница
+        value: 9
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+  - name: Выведенные категории
+    desc: 'Скрываемая ветка очищаемого ассортимента: позиции не входят в целевую товарную матрицу.'
+    pic:
+      set: lucide
+      name: archive-x
+    tags:
+    - выведено
+    - ABC-C
+    - FMR-R
+    - низкая-маржа
+    - неядро
+    - остатки
+    hidden: true
+    branch_orientation: vertical
+    style:
+      fill: '#F1F5F9'
+      contour: dashed
+      contour_width: regular
+    relation:
+      line: dashed
+      line_width: regular
+      color: '#94A3B8'
+    children:
+    - name: Декоративные свечи
+      desc: 'Категория снята с реализации: низкая прибыль, редкий спрос и слабая оборачиваемость.'
+      pic:
+        set: lucide
+        name: flame
+      tags:
+      - выведено
+      - ABC-C
+      - FMR-R
+      - низкая-маржа
+      - низкий-сезон
+      - неядро
+      hidden: true
+      style:
+        fill: '#F1F5F9'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#94A3B8'
+      children:
+      - name: Свеча ароматическая 200 г
+        desc: Низкий спрос вне подарочного периода; распродажа остатка завершает вывод.
+        pic:
+          set: lucide
+          name: flame
+        tags:
+        - выведено
+        - ABC-C
+        - FMR-R
+        - низкая-маржа
+        - праздник-пик
+        - остатки
+        value: 4
+        hidden: true
+        style:
+          fill: '#F1F5F9'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#94A3B8'
+      - name: Свеча декоративная 120 г
+        desc: Дублирует позиции соседних форматов и не создаёт заметной маржи.
+        pic:
+          set: lucide
+          name: flame
+        tags:
+        - выведено
+        - ABC-C
+        - FMR-R
+        - низкая-маржа
+        - дублирование
+        - остатки
+        value: 3
+        hidden: true
+        style:
+          fill: '#F1F5F9'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#94A3B8'
+    - name: Подарочная упаковка
+      desc: 'Категория снята с реализации: узкая сезонность и слабое участие в покупательской корзине.'
+      pic:
+        set: lucide
+        name: gift
+      tags:
+      - выведено
+      - ABC-C
+      - FMR-R
+      - низкая-маржа
+      - праздник-пик
+      - неядро
+      hidden: true
+      style:
+        fill: '#F1F5F9'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#94A3B8'
+      children:
+      - name: Набор подарочной упаковки
+        desc: Низкая частота покупок и остатки после сезона не оправдывают место в матрице.
+        pic:
+          set: lucide
+          name: gift
+        tags:
+        - выведено
+        - ABC-C
+        - FMR-R
+        - низкая-маржа
+        - праздник-пик
+        - остатки
+        value: 5
+        hidden: true
+        style:
+          fill: '#F1F5F9'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#94A3B8'
+    - name: Сувениры и брелоки
+      desc: 'Выведенная импульсная категория: слабая частота, сезонные остатки и дубли с подарками.'
+      pic:
+        set: lucide
+        name: party-popper
+      tags:
+      - выведено
+      - ABC-C
+      - FMR-R
+      - низкая-маржа
+      - низкий-сезон
+      - дублирование
+      hidden: true
+      style:
+        fill: '#F1F5F9'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#94A3B8'
+      children:
+      - name: Брелок Mavuno
+        desc: Не формирует устойчивой корзины и остаётся в остатках после редких промо-периодов.
+        pic:
+          set: lucide
+          name: tag
+        tags:
+        - выведено
+        - ABC-C
+        - FMR-R
+        - низкая-маржа
+        - остатки
+        - неядро
+        value: 2
+        hidden: true
+        style:
+          fill: '#F1F5F9'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#94A3B8'
+      - name: Магнит сувенирный
+        desc: Слабая оборачиваемость и низкая прибыль не оправдывают полочное пространство.
+        pic:
+          set: lucide
+          name: magnet
+        tags:
+        - выведено
+        - ABC-C
+        - FMR-R
+        - низкая-маржа
+        - остатки
+        - неядро
+        value: 1
+        hidden: true
+        style:
+          fill: '#F1F5F9'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#94A3B8'

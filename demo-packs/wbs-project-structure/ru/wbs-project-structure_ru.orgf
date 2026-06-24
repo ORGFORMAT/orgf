@@ -1,0 +1,2321 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: Mavuno ERP — WBS / ИСР проекта
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — в максимально допустимом законом объёме ORGFORMAT DemoPacks отказался от авторских и
+    смежных прав на этот материал. Его можно свободно копировать, изменять, распространять и использовать,
+    включая коммерчески, без запроса разрешения и обязательного указания автора. CC0 не предоставляет прав
+    на обозначения ORGFORMAT, ORGF, логотипы и иные брендовые активы.
+  license: CC0-1.0
+  created: '2026-06-21'
+  updated: '2026-06-24'
+
+model:
+  name: Mavuno ERP — WBS / ИСР проекта
+  desc: >-
+    Русская демонстрационная ИСР проекта внедрения вымышленной платформы Mavuno ERP. Показывает
+    функциональные потоки, трудоёмкость в человеко-часах, проектные теги, статусы работ и скрытый отложенный
+    объём.
+
+    Демонстрационный материал ORGFORMAT DemoPacks предназначен для иллюстрации возможностей ORGF. Если прямо
+    не указано иное, содержащиеся в модели наименования, организации, продукты, проекты, роли, данные и
+    сценарии являются условными или вымышленными; любое сходство с реальными объектами не означает связи,
+    одобрения или принадлежности. Вопросы и обращения: support@orgformat.com.
+  value_label: Трудоёмкость
+  value_unit: чел.-ч.
+
+root:
+  name: Mavuno ERP — WBS / ИСР проекта
+  desc: Демонстрационная структура работ проекта внедрения Mavuno ERP. Заливка обозначает функциональный контур; контур —
+    статус работ; линия связи — степень закреплённости работ в baseline. Теги дают владельца, тип работ, приоритет, milestone,
+    риск и зависимость.
+  value: 0.0
+  pic:
+    set: lucide
+    name: network
+  tags:
+  - демо-модель
+  - WBS
+  - ИСР
+  - Mavuno-ERP
+  - Wave-1
+  branch_orientation: horizontal
+  style:
+    fill: '#E6FAF8'
+    contour: solid
+    contour_width: bold
+  relation:
+    line: solid
+    line_width: bold
+    color: '#0F766E'
+  children:
+  - name: 01_Управление программой и запуск
+    desc: Контур управления сроками, решениями, рисками и изменениями. Не заменяет функциональные работы, а удерживает единый
+      baseline Wave 1.
+    value: 0.0
+    pic:
+      set: lucide
+      name: briefcase-business
+    tags:
+    - владелец-проектный-офис
+    - объём-wave-1
+    - приоритет-P1
+    branch_orientation: vertical
+    style:
+      fill: '#EDE9FE'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#7C3AED'
+    children:
+    - name: 01.01_Паспорт программы и модель управления
+      desc: Роли, полномочия, состав руководящего комитета, правила принятия решений и эскалации.
+      value: 0.0
+      pic:
+        set: lucide
+        name: landmark
+      tags:
+      - владелец-проектный-офис
+      - внутренняя-команда
+      - тип-дизайн
+      - решение-руководящий-комитет
+      - объём-wave-1
+      style:
+        fill: '#EDE9FE'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: Утвердить цели, границы Wave 1 и критерии успеха
+        desc: 'Зафиксировать, что считается готовым запуском: процессы, данные, интеграции, пользователи и контрольные показатели.'
+        value: 72.0
+        pic:
+          set: lucide
+          name: file-check-2
+        tags:
+        - владелец-проектный-офис
+        - владелец-финансы
+        - тип-дизайн
+        - приоритет-P1
+        - решение-руководящий-комитет
+        - объём-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Сформировать рабочие команды и матрицу ответственности
+        desc: Назначить владельцев процессов, ключевых пользователей, технических лидеров и представителей интегратора.
+        value: 96.0
+        pic:
+          set: lucide
+          name: users-round
+        tags:
+        - владелец-проектный-офис
+        - внутренняя-команда
+        - подрядчик-интегратор
+        - тип-изменения
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: double
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: 01.02_Интегрированный план и контроль baseline
+      desc: Единый план работ, зависимостей и контрольных точек с управлением изменениями объёма.
+      value: 0.0
+      pic:
+        set: lucide
+        name: gantt-chart-square
+      tags:
+      - владелец-проектный-офис
+      - тип-дизайн
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#EDE9FE'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: Собрать календарный план, зависимости и ресурсные допущения
+        desc: Свести функциональные потоки в единый план до запуска, включая внешние зависимости и проектные gates.
+        value: 128.0
+        pic:
+          set: lucide
+          name: calendar-clock
+        tags:
+        - владелец-проектный-офис
+        - тип-дизайн
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Вести реестр рисков, решений и изменений
+        desc: Поддерживать управленческий журнал с владельцем, сроком реакции и статусом решения.
+        value: 160.0
+        pic:
+          set: lucide
+          name: list-todo
+        tags:
+        - владелец-проектный-офис
+        - тип-изменения
+        - приоритет-P1
+        - решение-руководящий-комитет
+        - объём-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: 01.03_Коммуникации и управление изменениями
+      desc: Подготовка бизнеса к новым ролям, правилам работы и точкам принятия результата.
+      value: 0.0
+      pic:
+        set: lucide
+        name: messages-square
+      tags:
+      - владелец-проектный-офис
+      - тип-изменения
+      - приоритет-P2
+      - объём-wave-1
+      style:
+        fill: '#EDE9FE'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: Подготовить карту затрагиваемых ролей и коммуникационный план
+        desc: Определить аудитории, каналы, частоту коммуникаций и владельцев обратной связи.
+        value: 88.0
+        pic:
+          set: lucide
+          name: map
+        tags:
+        - владелец-проектный-офис
+        - внутренняя-команда
+        - тип-изменения
+        - приоритет-P2
+        - объём-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Провести сессии готовности руководителей функций
+        desc: Согласовать ограничения запуска, формат эскалаций и требования к участию ключевых пользователей.
+        value: 64.0
+        pic:
+          set: lucide
+          name: presentation
+        tags:
+        - владелец-проектный-офис
+        - владелец-финансы
+        - владелец-коммерция
+        - владелец-логистика
+        - тип-изменения
+        - решение-руководящий-комитет
+        - объём-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+  - name: 02_Целевая операционная модель и дизайн процессов
+    desc: Единые правила работы между финансами, коммерцией, закупками, складом и ИТ. Здесь фиксируется целевая модель, а
+      не настройка системы.
+    value: 0.0
+    pic:
+      set: lucide
+      name: workflow
+    tags:
+    - владелец-проектный-офис
+    - владелец-финансы
+    - владелец-коммерция
+    - владелец-логистика
+    - тип-дизайн
+    - объём-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#E0F2FE'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#0284C7'
+    children:
+    - name: 02.01_Сквозные процессы и контрольные точки
+      desc: Проектирование границ, ролей и контрольных событий для ключевых end-to-end процессов.
+      value: 0.0
+      pic:
+        set: lucide
+        name: git-branch
+      tags:
+      - владелец-проектный-офис
+      - тип-дизайн
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#E0F2FE'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#0284C7'
+      children:
+      - name: Согласовать процесс «заказ — поставка — оплата»
+        desc: Зафиксировать путь заказа, закупки, приёмки, счёта, платежа и исключений.
+        value: 176.0
+        pic:
+          set: lucide
+          name: route
+        tags:
+        - владелец-логистика
+        - владелец-финансы
+        - тип-дизайн
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0284C7'
+      - name: Согласовать процесс «заказ клиента — отгрузка — оплата»
+        desc: Определить правила резервирования, цен, отгрузки, возвратов, кредитного контроля и закрытия заказа.
+        value: 176.0
+        pic:
+          set: lucide
+          name: shopping-cart
+        tags:
+        - владелец-коммерция
+        - владелец-логистика
+        - владелец-финансы
+        - тип-дизайн
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0284C7'
+    - name: 02.02_Роли, доступы и контрольные процедуры
+      desc: Модель ответственности, разделения полномочий и правил согласования в новом контуре.
+      value: 0.0
+      pic:
+        set: lucide
+        name: shield-check
+      tags:
+      - владелец-ИТ
+      - владелец-финансы
+      - тип-дизайн
+      - приоритет-P1
+      - риск-регуляторный
+      - объём-wave-1
+      style:
+        fill: '#E0F2FE'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#0284C7'
+      children:
+      - name: Спроектировать ролевую модель и разделение полномочий
+        desc: Согласовать минимально необходимые права, конфликтующие роли и процедуры временного доступа.
+        value: 144.0
+        pic:
+          set: lucide
+          name: key-round
+        tags:
+        - владелец-ИТ
+        - владелец-финансы
+        - тип-дизайн
+        - приоритет-P1
+        - риск-регуляторный
+        - зависимость-внешняя
+        - объём-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#0284C7'
+      - name: Утвердить матрицу контрольных процедур
+        desc: Определить, какие проверки обязательны в процессах и кто подтверждает отклонения.
+        value: 112.0
+        pic:
+          set: lucide
+          name: clipboard-check
+        tags:
+        - владелец-финансы
+        - владелец-проектный-офис
+        - тип-дизайн
+        - приоритет-P1
+        - риск-регуляторный
+        - объём-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0284C7'
+    - name: 02.03_Целевая отчётность и календарь закрытия
+      desc: Набор обязательных управленческих и регламентированных результатов после запуска.
+      value: 0.0
+      pic:
+        set: lucide
+        name: chart-no-axes-combined
+      tags:
+      - владелец-финансы
+      - тип-дизайн
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#E0F2FE'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#0284C7'
+      children:
+      - name: Зафиксировать состав Wave 1 отчётности
+        desc: Согласовать минимальный набор отчётов для руководства, финансов, коммерции и логистики.
+        value: 104.0
+        pic:
+          set: lucide
+          name: layout-dashboard
+        tags:
+        - владелец-финансы
+        - владелец-коммерция
+        - владелец-логистика
+        - тип-дизайн
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0284C7'
+      - name: Определить календарь закрытия периода и контрольные сроки
+        desc: Установить последовательность операций закрытия, владельцев и контрольных дат.
+        value: 88.0
+        pic:
+          set: lucide
+          name: calendar-check-2
+        tags:
+        - владелец-финансы
+        - тип-дизайн
+        - milestone-go-live
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0284C7'
+  - name: 03_НСИ, данные и миграция
+    desc: Подготовка качественных исходных данных, правил владения НСИ, переноса остатков и сверки результата.
+    value: 0.0
+    pic:
+      set: lucide
+      name: database
+    tags:
+    - владелец-ИТ
+    - владелец-финансы
+    - владелец-коммерция
+    - владелец-логистика
+    - тип-данные
+    - приоритет-P1
+    - объём-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#FEF3C7'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#B45309'
+    children:
+    - name: 03.01_Владение НСИ и правила качества
+      desc: Единые правила для номенклатуры, контрагентов, складов, ценовых условий и финансовых аналитик.
+      value: 0.0
+      pic:
+        set: lucide
+        name: tags
+      tags:
+      - владелец-ИТ
+      - владелец-финансы
+      - владелец-коммерция
+      - владелец-логистика
+      - тип-данные
+      - приоритет-P1
+      - риск-данные
+      - объём-wave-1
+      style:
+        fill: '#FEF3C7'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#B45309'
+      children:
+      - name: Согласовать золотые записи и владельцев НСИ
+        desc: Определить источник истины, владельцев изменений и минимальные правила валидации для каждой группы данных.
+        value: 160.0
+        pic:
+          set: lucide
+          name: badge-check
+        tags:
+        - владелец-ИТ
+        - владелец-финансы
+        - владелец-коммерция
+        - владелец-логистика
+        - тип-данные
+        - приоритет-P1
+        - риск-данные
+        - объём-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B45309'
+      - name: Очистить дубли и критические ошибки исходных справочников
+        desc: Устранить дубли контрагентов, неактивную номенклатуру, пропуски аналитик и некорректные единицы измерения.
+        value: 420.0
+        pic:
+          set: lucide
+          name: eraser
+        tags:
+        - владелец-ИТ
+        - владелец-финансы
+        - владелец-коммерция
+        - владелец-логистика
+        - тип-данные
+        - приоритет-P1
+        - риск-данные
+        - объём-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B45309'
+    - name: 03.02_Миграция активного контура
+      desc: Перенос только тех данных и остатков, которые необходимы для начала операций и обязательной отчётности.
+      value: 0.0
+      pic:
+        set: lucide
+        name: arrow-right-left
+      tags:
+      - владелец-ИТ
+      - владелец-финансы
+      - тип-данные
+      - приоритет-P1
+      - milestone-go-live
+      - риск-данные
+      - объём-wave-1
+      style:
+        fill: '#FEF3C7'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#B45309'
+      children:
+      - name: Подготовить правила выгрузки, преобразования и загрузки
+        desc: Зафиксировать отображение полей, правила преобразования, обработку исключений и журнал миграции.
+        value: 240.0
+        pic:
+          set: lucide
+          name: file-cog
+        tags:
+        - владелец-ИТ
+        - подрядчик-интегратор
+        - тип-данные
+        - приоритет-P1
+        - риск-данные
+        - зависимость-внешняя
+        - объём-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B45309'
+      - name: Провести пробную миграцию и сверку остатков
+        desc: Проверить полноту, балансовые равенства, критические расхождения и готовность к финальной загрузке.
+        value: 280.0
+        pic:
+          set: lucide
+          name: scan-search
+        tags:
+        - владелец-финансы
+        - владелец-ИТ
+        - подрядчик-интегратор
+        - тип-данные
+        - milestone-UAT
+        - приоритет-P1
+        - риск-данные
+        - объём-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B45309'
+    - name: 03.03_Финальная загрузка и приёмка данных
+      desc: Контрольная загрузка согласованных срезов непосредственно перед запуском.
+      value: 0.0
+      pic:
+        set: lucide
+        name: database-zap
+      tags:
+      - владелец-финансы
+      - владелец-ИТ
+      - тип-данные
+      - milestone-go-live
+      - приоритет-P1
+      - риск-высокий
+      - объём-wave-1
+      style:
+        fill: '#FEF3C7'
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#B45309'
+      children:
+      - name: Загрузить стартовые остатки и открытые документы
+        desc: Перенести согласованный срез остатков, незакрытых обязательств, заказов и складских резервов.
+        value: 192.0
+        pic:
+          set: lucide
+          name: upload
+        tags:
+        - владелец-финансы
+        - владелец-ИТ
+        - тип-данные
+        - milestone-go-live
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B45309'
+      - name: Подписать протокол приёмки миграции
+        desc: Подтвердить допустимые расхождения, владельцев корректировок и готовность данных к эксплуатации.
+        value: 48.0
+        pic:
+          set: lucide
+          name: signature
+        tags:
+        - владелец-финансы
+        - владелец-ИТ
+        - тип-данные
+        - milestone-go-live
+        - решение-руководящий-комитет
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B45309'
+  - name: 04_Регламентированный учёт
+    desc: Функциональный контур обязательного учёта, налоговых требований и закрытия периода для юридических лиц Mavuno.
+    value: 0.0
+    pic:
+      set: lucide
+      name: receipt-text
+    tags:
+    - владелец-финансы
+    - подрядчик-интегратор
+    - тип-настройка
+    - приоритет-P1
+    - объём-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#DCFCE7'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#15803D'
+    children:
+    - name: 04.01_План счетов, аналитики и учётная политика
+      desc: Настройка структуры учёта, аналитик, правил проводок и принципов отражения операций.
+      value: 0.0
+      pic:
+        set: lucide
+        name: book-open-check
+      tags:
+      - владелец-финансы
+      - подрядчик-интегратор
+      - тип-настройка
+      - приоритет-P1
+      - риск-регуляторный
+      - объём-wave-1
+      style:
+        fill: '#DCFCE7'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Настроить план счетов и обязательные аналитики
+        desc: Создать структуру счетов, измерения учёта, правила обязательности и базовые ограничения ввода.
+        value: 240.0
+        pic:
+          set: lucide
+          name: table-properties
+        tags:
+        - владелец-финансы
+        - подрядчик-интегратор
+        - тип-настройка
+        - приоритет-P1
+        - риск-регуляторный
+        - объём-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+      - name: Согласовать правила проводок и исключений
+        desc: Проверить сценарии хозяйственных операций, корректировки и порядок обработки нештатных случаев.
+        value: 176.0
+        pic:
+          set: lucide
+          name: file-warning
+        tags:
+        - владелец-финансы
+        - подрядчик-интегратор
+        - тип-дизайн
+        - приоритет-P1
+        - риск-регуляторный
+        - объём-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+    - name: 04.02_Расчёты с контрагентами и налоги
+      desc: Работа с дебиторской и кредиторской задолженностью, налоговыми параметрами и документами.
+      value: 0.0
+      pic:
+        set: lucide
+        name: hand-coins
+      tags:
+      - владелец-финансы
+      - подрядчик-интегратор
+      - тип-настройка
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#DCFCE7'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Настроить расчёты с поставщиками и клиентами
+        desc: Настроить сроки оплаты, авансы, взаимозачёты, кредитный контроль и обработку расхождений.
+        value: 224.0
+        pic:
+          set: lucide
+          name: wallet-cards
+        tags:
+        - владелец-финансы
+        - подрядчик-интегратор
+        - тип-настройка
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+      - name: Настроить налоговые сценарии и обязательные печатные формы
+        desc: Подготовить правила расчёта налогов, контрольные отчёты и документы, необходимые для Wave 1.
+        value: 200.0
+        pic:
+          set: lucide
+          name: file-text
+        tags:
+        - владелец-финансы
+        - подрядчик-интегратор
+        - тип-настройка
+        - приоритет-P1
+        - риск-регуляторный
+        - объём-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+    - name: 04.03_Закрытие периода и регламентированная отчётность
+      desc: Первый управляемый период после запуска с контрольными процедурами и ответственными.
+      value: 0.0
+      pic:
+        set: lucide
+        name: calendar-fold
+      tags:
+      - владелец-финансы
+      - тип-тестирование
+      - milestone-go-live
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#DCFCE7'
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Протестировать закрытие периода на контрольном срезе
+        desc: Подтвердить последовательность закрытия, контрольные равенства и разбор ошибок.
+        value: 168.0
+        pic:
+          set: lucide
+          name: circle-check-big
+        tags:
+        - владелец-финансы
+        - подрядчик-интегратор
+        - тип-тестирование
+        - milestone-UAT
+        - приоритет-P1
+        - риск-регуляторный
+        - объём-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+      - name: Подготовить первый периодический пакет отчётности
+        desc: Собрать обязательные отчёты после запуска и подтвердить порядок исправления отклонений.
+        value: 128.0
+        pic:
+          set: lucide
+          name: files
+        tags:
+        - владелец-финансы
+        - тип-тестирование
+        - milestone-go-live
+        - приоритет-P1
+        - риск-регуляторный
+        - объём-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+  - name: 05_Управленческий учёт, финансы и казначейство
+    desc: Контур управленческого P&L, финансового контроля, платёжного календаря и видимости денежных потоков.
+    value: 0.0
+    pic:
+      set: lucide
+      name: chart-spline
+    tags:
+    - владелец-финансы
+    - подрядчик-интегратор
+    - тип-настройка
+    - приоритет-P1
+    - объём-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#CCFBF1'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#0F766E'
+    children:
+    - name: 05.01_Управленческий P&L и центры ответственности
+      desc: Настройка управленческих измерений, распределений и базовых форм отчётности по центрам ответственности.
+      value: 0.0
+      pic:
+        set: lucide
+        name: pie-chart
+      tags:
+      - владелец-финансы
+      - подрядчик-интегратор
+      - тип-настройка
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#CCFBF1'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#0F766E'
+      children:
+      - name: Настроить центры финансовой ответственности и статьи
+        desc: Согласовать структуру ответственности, классификатор статей и требования к обязательным аналитикам.
+        value: 184.0
+        pic:
+          set: lucide
+          name: network
+        tags:
+        - владелец-финансы
+        - тип-настройка
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+      - name: Настроить управленческий P&L и контрольные сверки
+        desc: Подготовить основной P&L, детализацию до центров ответственности и правила сверки с регламентированным учётом.
+        value: 232.0
+        pic:
+          set: lucide
+          name: chart-column-big
+        tags:
+        - владелец-финансы
+        - подрядчик-интегратор
+        - тип-настройка
+        - приоритет-P1
+        - риск-данные
+        - объём-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+    - name: 05.02_Казначейство и платёжный календарь
+      desc: Контроль заявок на платежи, лимитов, приоритетов и прогноза денежных разрывов.
+      value: 0.0
+      pic:
+        set: lucide
+        name: landmark
+      tags:
+      - владелец-финансы
+      - подрядчик-интегратор
+      - тип-настройка
+      - приоритет-P1
+      - риск-высокий
+      - объём-wave-1
+      style:
+        fill: '#CCFBF1'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#0F766E'
+      children:
+      - name: Настроить заявки на платежи, лимиты и маршруты согласования
+        desc: Сформировать единый процесс инициирования, проверки, согласования и исполнения платежей.
+        value: 216.0
+        pic:
+          set: lucide
+          name: badge-dollar-sign
+        tags:
+        - владелец-финансы
+        - подрядчик-интегратор
+        - тип-настройка
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#0F766E'
+      - name: Интегрировать банковские выписки и статусы платежей
+        desc: Обеспечить получение выписок, подтверждений и статусов исполнения с требуемой периодичностью.
+        value: 160.0
+        pic:
+          set: lucide
+          name: building-2
+        tags:
+        - владелец-финансы
+        - владелец-ИТ
+        - подрядчик-интегратор
+        - тип-интеграция
+        - приоритет-P1
+        - риск-интеграции
+        - зависимость-внешняя
+        - объём-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#0F766E'
+    - name: 05.03_Финансовая отчётность Wave 1
+      desc: Минимальный набор управленческой финансовой отчётности, готовый к работе после стабилизации.
+      value: 0.0
+      pic:
+        set: lucide
+        name: notebook-tabs
+      tags:
+      - владелец-финансы
+      - тип-тестирование
+      - milestone-go-live
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#CCFBF1'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#0F766E'
+      children:
+      - name: Проверить отчёты о прибыли, движении денег и задолженности
+        desc: Выполнить контрольные сверки на тестовых и миграционных данных, зафиксировать допустимые расхождения.
+        value: 168.0
+        pic:
+          set: lucide
+          name: scan-line
+        tags:
+        - владелец-финансы
+        - тип-тестирование
+        - milestone-UAT
+        - приоритет-P1
+        - риск-данные
+        - объём-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+      - name: Подготовить регламент выпуска финансового пакета
+        desc: Закрепить владельцев, календарь, пороги контроля и порядок действий при отклонениях.
+        value: 88.0
+        pic:
+          set: lucide
+          name: file-output
+        tags:
+        - владелец-финансы
+        - тип-дизайн
+        - milestone-go-live
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+  - name: '06_Коммерческий контур: продажи, цены и клиенты'
+    desc: Контур работы с клиентами, договорами, ценами, заказами, отгрузкой и возвратами.
+    value: 0.0
+    pic:
+      set: lucide
+      name: badge-russian-ruble
+    tags:
+    - владелец-коммерция
+    - подрядчик-интегратор
+    - тип-настройка
+    - приоритет-P1
+    - объём-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#FCE7F3'
+      contour: dotted
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#BE185D'
+    children:
+    - name: 06.01_Клиенты, договоры и коммерческие условия
+      desc: Единые карточки клиентов, договорные условия, кредитные лимиты и правила их изменения.
+      value: 0.0
+      pic:
+        set: lucide
+        name: contact-round
+      tags:
+      - владелец-коммерция
+      - тип-настройка
+      - приоритет-P1
+      - риск-данные
+      - объём-wave-1
+      style:
+        fill: '#FCE7F3'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#BE185D'
+      children:
+      - name: Настроить карточки клиентов и договорные параметры
+        desc: Согласовать обязательные атрибуты, статусы, реквизиты, кредитные условия и правила блокировки.
+        value: 200.0
+        pic:
+          set: lucide
+          name: contact
+        tags:
+        - владелец-коммерция
+        - владелец-финансы
+        - тип-настройка
+        - приоритет-P1
+        - риск-данные
+        - объём-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#BE185D'
+      - name: Подготовить правила кредитного контроля
+        desc: Определить лимиты, блокировки, маршруты согласования исключений и контроль просрочки.
+        value: 136.0
+        pic:
+          set: lucide
+          name: shield-alert
+        tags:
+        - владелец-коммерция
+        - владелец-финансы
+        - тип-дизайн
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#BE185D'
+    - name: 06.02_Ценообразование и коммерческие акции
+      desc: Настройка базовых цен, скидок, прайс-листов и ограничений для Wave 1.
+      value: 0.0
+      pic:
+        set: lucide
+        name: tags
+      tags:
+      - владелец-коммерция
+      - тип-настройка
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#FCE7F3'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#BE185D'
+      children:
+      - name: Настроить прайс-листы, скидки и правила исключений
+        desc: Определить и проверить базовые механики цен и полномочия на отклонение от стандартных условий.
+        value: 184.0
+        pic:
+          set: lucide
+          name: badge-percent
+        tags:
+        - владелец-коммерция
+        - подрядчик-интегратор
+        - тип-настройка
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#BE185D'
+      - name: Проверить перенос действующих коммерческих условий
+        desc: Сверить критичные цены, скидки, лимиты и контрактные условия на миграционном срезе.
+        value: 120.0
+        pic:
+          set: lucide
+          name: file-search-2
+        tags:
+        - владелец-коммерция
+        - владелец-ИТ
+        - тип-данные
+        - milestone-UAT
+        - приоритет-P1
+        - риск-данные
+        - объём-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#BE185D'
+    - name: 06.03_Заказ клиента, отгрузка и возвраты
+      desc: Сценарии работы с заказом до закрытия обязательств перед клиентом.
+      value: 0.0
+      pic:
+        set: lucide
+        name: package-check
+      tags:
+      - владелец-коммерция
+      - владелец-логистика
+      - тип-тестирование
+      - milestone-go-live
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#FCE7F3'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#BE185D'
+      children:
+      - name: Настроить базовые сценарии заказа и резервирования
+        desc: Покрыть заказ, резерв, частичную отгрузку, отмену, замену и контроль доступного остатка.
+        value: 216.0
+        pic:
+          set: lucide
+          name: shopping-bag
+        tags:
+        - владелец-коммерция
+        - владелец-логистика
+        - подрядчик-интегратор
+        - тип-настройка
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#BE185D'
+      - name: Проверить возвраты, корректировки и кредит-ноты
+        desc: Протестировать ключевые исключения, влияющие на склад, взаиморасчёты и финансовый результат.
+        value: 144.0
+        pic:
+          set: lucide
+          name: undo-2
+        tags:
+        - владелец-коммерция
+        - владелец-финансы
+        - владелец-логистика
+        - тип-тестирование
+        - milestone-UAT
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#BE185D'
+  - name: 07_Закупки, запасы, склад и логистика
+    desc: Контур потребности, закупок, приёмки, запасов, складских операций и отгрузки.
+    value: 0.0
+    pic:
+      set: lucide
+      name: warehouse
+    tags:
+    - владелец-логистика
+    - подрядчик-интегратор
+    - тип-настройка
+    - приоритет-P1
+    - объём-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#FFEDD5'
+      contour: dotted
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#C2410C'
+    children:
+    - name: 07.01_Закупки и поставщики
+      desc: Сценарии потребности, заказа поставщику, согласования, приёмки и контроля исполнения.
+      value: 0.0
+      pic:
+        set: lucide
+        name: shopping-basket
+      tags:
+      - владелец-логистика
+      - владелец-финансы
+      - тип-настройка
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#FFEDD5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#C2410C'
+      children:
+      - name: Настроить заявки, заказы и согласование закупок
+        desc: Согласовать маршруты, лимиты, обязательные реквизиты и обработку срочных закупок.
+        value: 216.0
+        pic:
+          set: lucide
+          name: clipboard-list
+        tags:
+        - владелец-логистика
+        - владелец-финансы
+        - подрядчик-интегратор
+        - тип-настройка
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#C2410C'
+      - name: Настроить карточки поставщиков и условия поставки
+        desc: Подготовить данные и правила для сроков, цен, валют, Incoterms и допустимых отклонений.
+        value: 136.0
+        pic:
+          set: lucide
+          name: factory
+        tags:
+        - владелец-логистика
+        - владелец-ИТ
+        - тип-данные
+        - приоритет-P1
+        - риск-данные
+        - объём-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#C2410C'
+    - name: 07.02_Запасы и складские операции
+      desc: Базовый контур учёта запасов, приёмки, размещения, перемещений, инвентаризации и отгрузки.
+      value: 0.0
+      pic:
+        set: lucide
+        name: boxes
+      tags:
+      - владелец-логистика
+      - подрядчик-интегратор
+      - тип-настройка
+      - приоритет-P1
+      - риск-высокий
+      - объём-wave-1
+      style:
+        fill: '#FFEDD5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#C2410C'
+      children:
+      - name: Настроить склады, зоны и правила движения запасов
+        desc: Описать склады, статусы запаса, перемещения, резервирование и порядок обработки расхождений.
+        value: 248.0
+        pic:
+          set: lucide
+          name: map-pinned
+        tags:
+        - владелец-логистика
+        - подрядчик-интегратор
+        - тип-настройка
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#C2410C'
+      - name: Проверить инвентаризацию и корректировки остатков
+        desc: Протестировать пересчёт, расхождения, утверждение корректировок и влияние на финансовый учёт.
+        value: 176.0
+        pic:
+          set: lucide
+          name: scan-barcode
+        tags:
+        - владелец-логистика
+        - владелец-финансы
+        - тип-тестирование
+        - milestone-UAT
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#C2410C'
+    - name: 07.03_Интерфейс с действующей складской системой
+      desc: Минимально необходимая связка с действующими складскими решениями до отдельной программы замены WMS.
+      value: 0.0
+      pic:
+        set: lucide
+        name: plug-zap
+      tags:
+      - владелец-логистика
+      - владелец-ИТ
+      - подрядчик-интегратор
+      - тип-интеграция
+      - приоритет-P1
+      - риск-интеграции
+      - зависимость-проприетарная
+      - объём-wave-1
+      style:
+        fill: '#FFEDD5'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#C2410C'
+      children:
+      - name: Согласовать протокол обмена остатками и статусами отгрузки
+        desc: Зафиксировать перечень сообщений, частоту, допустимые задержки и порядок восстановления обмена.
+        value: 184.0
+        pic:
+          set: lucide
+          name: waypoints
+        tags:
+        - владелец-логистика
+        - владелец-ИТ
+        - тип-интеграция
+        - приоритет-P1
+        - риск-интеграции
+        - риск-поставщик
+        - зависимость-проприетарная
+        - объём-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dashed
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#C2410C'
+      - name: Провести сквозной тест «заказ — склад — отгрузка»
+        desc: Проверить обмены и критические исключения между коммерческим контуром, ERP и складской системой.
+        value: 160.0
+        pic:
+          set: lucide
+          name: test-tube-diagonal
+        tags:
+        - владелец-логистика
+        - владелец-коммерция
+        - владелец-ИТ
+        - тип-тестирование
+        - milestone-UAT
+        - приоритет-P1
+        - риск-интеграции
+        - объём-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dashed
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#C2410C'
+  - name: 08_Платформа, интеграции и безопасность
+    desc: 'Технический контур Mavuno ERP: среда, интеграции, доступы, журналирование, производительность и готовность эксплуатации.'
+    value: 0.0
+    pic:
+      set: lucide
+      name: server-cog
+    tags:
+    - владелец-ИТ
+    - подрядчик-интегратор
+    - тип-интеграция
+    - приоритет-P1
+    - объём-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#E0E7FF'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#4338CA'
+    children:
+    - name: 08.01_Среды, выпуск и эксплуатационная готовность
+      desc: Подготовка сред разработки, тестирования и промышленной эксплуатации с предсказуемым выпуском изменений.
+      value: 0.0
+      pic:
+        set: lucide
+        name: cloud-cog
+      tags:
+      - владелец-ИТ
+      - подрядчик-интегратор
+      - тип-интеграция
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#E0E7FF'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#4338CA'
+      children:
+      - name: Подготовить контуры разработки, тестирования и промышленной эксплуатации
+        desc: Развернуть и проверить изолированные среды, параметры доступа, резервное копирование и журналирование.
+        value: 232.0
+        pic:
+          set: lucide
+          name: hard-drive
+        tags:
+        - владелец-ИТ
+        - подрядчик-интегратор
+        - тип-интеграция
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#4338CA'
+      - name: Определить процедуру выпуска и отката изменений
+        desc: Зафиксировать критерии готовности, роли согласования, окно выпуска и сценарий восстановления.
+        value: 104.0
+        pic:
+          set: lucide
+          name: git-pull-request-arrow
+        tags:
+        - владелец-ИТ
+        - тип-дизайн
+        - milestone-go-live
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#4338CA'
+    - name: 08.02_Критические интеграции Wave 1
+      desc: Базовые обмены с банками, складской системой, внешним документооборотом и коммерческими каналами.
+      value: 0.0
+      pic:
+        set: lucide
+        name: cable
+      tags:
+      - владелец-ИТ
+      - подрядчик-интегратор
+      - тип-интеграция
+      - приоритет-P1
+      - риск-интеграции
+      - объём-wave-1
+      style:
+        fill: '#E0E7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#4338CA'
+      children:
+      - name: Реализовать и проверить банковский обмен
+        desc: Получать выписки и подтверждения платежей с контролем ошибок, повторов и статусов обработки.
+        value: 192.0
+        pic:
+          set: lucide
+          name: landmark
+        tags:
+        - владелец-ИТ
+        - владелец-финансы
+        - подрядчик-интегратор
+        - тип-интеграция
+        - приоритет-P1
+        - риск-интеграции
+        - зависимость-внешняя
+        - объём-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#4338CA'
+      - name: Реализовать обмены со складской и EDI-системами
+        desc: Покрыть номенклатуру, остатки, заказы, отгрузки и статусы, критичные для Wave 1.
+        value: 280.0
+        pic:
+          set: lucide
+          name: radio-tower
+        tags:
+        - владелец-ИТ
+        - владелец-логистика
+        - подрядчик-интегратор
+        - тип-интеграция
+        - приоритет-P1
+        - риск-интеграции
+        - зависимость-проприетарная
+        - объём-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#4338CA'
+    - name: 08.03_Безопасность, доступы и производительность
+      desc: Проверка защиты доступа, журналирования, базовой производительности и готовности к поддержке.
+      value: 0.0
+      pic:
+        set: lucide
+        name: shield
+      tags:
+      - владелец-ИТ
+      - тип-тестирование
+      - приоритет-P1
+      - риск-высокий
+      - объём-wave-1
+      style:
+        fill: '#E0E7FF'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#4338CA'
+      children:
+      - name: Проверить критические роли, журналирование и экстренный доступ
+        desc: Убедиться, что права соответствуют модели ролей, а ключевые действия могут быть проверены.
+        value: 144.0
+        pic:
+          set: lucide
+          name: shield-check
+        tags:
+        - владелец-ИТ
+        - владелец-финансы
+        - тип-тестирование
+        - milestone-UAT
+        - приоритет-P1
+        - риск-регуляторный
+        - объём-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#4338CA'
+      - name: Провести нагрузочную проверку ключевых операций
+        desc: Проверить отклик на ключевых операциях заказа, проведения документов, обменов и отчётности.
+        value: 136.0
+        pic:
+          set: lucide
+          name: gauge
+        tags:
+        - владелец-ИТ
+        - подрядчик-интегратор
+        - тип-тестирование
+        - milestone-UAT
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#4338CA'
+  - name: 09_Тестирование, запуск и стабилизация
+    desc: Сквозная проверка готовности, подготовка пользователей, cutover, запуск и управляемая стабилизация Wave 1.
+    value: 0.0
+    pic:
+      set: lucide
+      name: rocket
+    tags:
+    - владелец-проектный-офис
+    - владелец-ИТ
+    - тип-тестирование
+    - milestone-go-live
+    - приоритет-P1
+    - объём-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#D1FAE5'
+      contour: dotted
+      contour_width: bold
+    relation:
+      line: dashed
+      line_width: regular
+      color: '#047857'
+    children:
+    - name: 09.01_Сквозное тестирование и UAT
+      desc: Проверка реальных сценариев бизнеса на интегрированном контуре перед решением о запуске.
+      value: 0.0
+      pic:
+        set: lucide
+        name: test-tubes
+      tags:
+      - владелец-проектный-офис
+      - владелец-финансы
+      - владелец-коммерция
+      - владелец-логистика
+      - тип-тестирование
+      - milestone-UAT
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#D1FAE5'
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#047857'
+      children:
+      - name: Подготовить сценарии UAT и критерии приёмки
+        desc: Собрать реалистичные end-to-end сценарии, тестовые данные, владельцев и пороги допустимых дефектов.
+        value: 192.0
+        pic:
+          set: lucide
+          name: clipboard-check
+        tags:
+        - владелец-проектный-офис
+        - внутренняя-команда
+        - тип-тестирование
+        - milestone-UAT
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#047857'
+      - name: Провести UAT, устранить критические дефекты и принять решение
+        desc: Подтвердить готовность процессов, данных и интеграций либо зафиксировать условия переноса запуска.
+        value: 360.0
+        pic:
+          set: lucide
+          name: bug-off
+        tags:
+        - владелец-проектный-офис
+        - владелец-финансы
+        - владелец-коммерция
+        - владелец-логистика
+        - тип-тестирование
+        - milestone-UAT
+        - решение-руководящий-комитет
+        - приоритет-P1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#047857'
+    - name: 09.02_Обучение пользователей и готовность поддержки
+      desc: Подготовка ключевых пользователей, инструкций, первой линии поддержки и маршрута эскалации.
+      value: 0.0
+      pic:
+        set: lucide
+        name: graduation-cap
+      tags:
+      - владелец-проектный-офис
+      - владелец-ИТ
+      - тип-обучение
+      - milestone-go-live
+      - приоритет-P1
+      - объём-wave-1
+      style:
+        fill: '#D1FAE5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#047857'
+      children:
+      - name: Подготовить ролевые инструкции и обучающие сценарии
+        desc: Сделать краткие материалы на основе реальных процессов и ключевых исключений пользователей.
+        value: 176.0
+        pic:
+          set: lucide
+          name: book-open-text
+        tags:
+        - владелец-проектный-офис
+        - внутренняя-команда
+        - тип-обучение
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#047857'
+      - name: Обучить ключевых пользователей и первую линию поддержки
+        desc: Проверить способность пользователей провести операции и правильно эскалировать проблемы.
+        value: 280.0
+        pic:
+          set: lucide
+          name: presentation
+        tags:
+        - владелец-проектный-офис
+        - владелец-ИТ
+        - внутренняя-команда
+        - тип-обучение
+        - milestone-go-live
+        - приоритет-P1
+        - объём-wave-1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#047857'
+    - name: 09.03_Cutover, запуск и hypercare
+      desc: Управляемый переход в промышленный контур, ежедневный контроль показателей и закрытие критических инцидентов.
+      value: 0.0
+      pic:
+        set: lucide
+        name: rocket
+      tags:
+      - владелец-проектный-офис
+      - владелец-ИТ
+      - тип-cutover
+      - milestone-go-live
+      - приоритет-P1
+      - риск-высокий
+      - объём-wave-1
+      style:
+        fill: '#D1FAE5'
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#047857'
+      children:
+      - name: Подготовить cutover-план и go/no-go checklist
+        desc: Свести последовательность финальной миграции, остановок, проверок, владельцев и условий отмены.
+        value: 160.0
+        pic:
+          set: lucide
+          name: list-checks
+        tags:
+        - владелец-проектный-офис
+        - владелец-ИТ
+        - тип-cutover
+        - milestone-go-live
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#047857'
+      - name: Запустить Wave 1 и вести hypercare
+        desc: Контролировать стабильность ключевых процессов, критические инциденты, сверки и ежедневные решения.
+        value: 480.0
+        pic:
+          set: lucide
+          name: activity
+        tags:
+        - владелец-проектный-офис
+        - владелец-ИТ
+        - владелец-финансы
+        - тип-cutover
+        - milestone-go-live
+        - приоритет-P1
+        - риск-высокий
+        - объём-wave-1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#047857'
+  - name: 10_Отложенный и исключённый объём
+    desc: Работы с подтверждённой ценностью, но исключённые из базового объёма Wave 1 по риску, зависимости, готовности данных
+      или приоритету.
+    value: 0.0
+    pic:
+      set: lucide
+      name: archive-restore
+    tags:
+    - объём-отложен
+    - объём-исключён
+    - после-запуска
+    - решение-руководящий-комитет
+    branch_orientation: vertical
+    style:
+      fill: '#F3F4F6'
+      contour: dashed
+      contour_width: bold
+    relation:
+      line: dotted
+      line_width: regular
+      color: '#6B7280'
+    hidden: true
+    children:
+    - name: 10.01_Полная замена складской системы
+      desc: Высокая потенциальная ценность, но риск остановки операций и параллельное изменение складской модели не допускают
+        включения в Wave 1.
+      value: 0.0
+      pic:
+        set: lucide
+        name: warehouse
+      tags:
+      - владелец-логистика
+      - владелец-ИТ
+      - тип-настройка
+      - объём-отложен
+      - после-запуска
+      - риск-высокий
+      - зависимость-проприетарная
+      - решение-руководящий-комитет
+      style:
+        fill: '#F3F4F6'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+      hidden: true
+      children:
+      - name: Спроектировать и заменить действующую WMS
+        desc: 'Отдельная программа: требует перепроектирования складских процессов, оборудования, обучения и параллельного
+          запуска.'
+        value: 2800.0
+        pic:
+          set: lucide
+          name: replace
+        tags:
+        - владелец-логистика
+        - владелец-ИТ
+        - тип-настройка
+        - объём-отложен
+        - после-запуска
+        - риск-высокий
+        - зависимость-проприетарная
+        - решение-руководящий-комитет
+        style:
+          fill: '#F3F4F6'
+          contour: dashed
+          contour_width: bold
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#6B7280'
+        hidden: true
+    - name: 10.02_Продвинутое планирование спроса и запасов
+      desc: Отложено до стабилизации данных, процессов и базовых показателей планирования после запуска.
+      value: 0.0
+      pic:
+        set: lucide
+        name: chart-line
+      tags:
+      - владелец-коммерция
+      - владелец-логистика
+      - тип-дизайн
+      - объём-отложен
+      - после-запуска
+      - риск-данные
+      - приоритет-P2
+      style:
+        fill: '#F3F4F6'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+      hidden: true
+      children:
+      - name: Внедрить прогнозирование спроса и оптимизацию запасов
+        desc: Высокая бизнес-ценность, но механика требует устойчивой НСИ, истории продаж и согласованного процесса S&OP.
+        value: 1680.0
+        pic:
+          set: lucide
+          name: brain-circuit
+        tags:
+        - владелец-коммерция
+        - владелец-логистика
+        - тип-дизайн
+        - объём-отложен
+        - после-запуска
+        - риск-данные
+        - приоритет-P2
+        style:
+          fill: '#F3F4F6'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#6B7280'
+        hidden: true
+    - name: 10.03_Полный исторический архив и корпоративная аналитика
+      desc: Не являются критическим условием операционного запуска; предполагают отдельный подход к качеству, хранению и доступу
+        к истории.
+      value: 0.0
+      pic:
+        set: lucide
+        name: archive
+      tags:
+      - владелец-ИТ
+      - владелец-финансы
+      - тип-данные
+      - объём-отложен
+      - после-запуска
+      - риск-данные
+      - приоритет-P2
+      style:
+        fill: '#F3F4F6'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+      hidden: true
+      children:
+      - name: Перенести полный исторический архив операций
+        desc: В Wave 1 переносятся активные остатки и открытые документы; глубокая история остаётся доступной в исходных системах.
+        value: 1120.0
+        pic:
+          set: lucide
+          name: database-backup
+        tags:
+        - владелец-ИТ
+        - владелец-финансы
+        - тип-данные
+        - объём-отложен
+        - после-запуска
+        - риск-данные
+        - приоритет-P2
+        style:
+          fill: '#F3F4F6'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#6B7280'
+        hidden: true
+      - name: Создать корпоративное хранилище и расширенную BI-отчётность
+        desc: 'Отдельный архитектурный поток: нужен устойчивый слой данных и договорённость о владельцах показателей.'
+        value: 2240.0
+        pic:
+          set: lucide
+          name: chart-no-axes-combined
+        tags:
+        - владелец-ИТ
+        - владелец-финансы
+        - тип-данные
+        - объём-отложен
+        - после-запуска
+        - риск-данные
+        - приоритет-P2
+        style:
+          fill: '#F3F4F6'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#6B7280'
+        hidden: true
+    - name: 10.04_Перезапуск внешней B2C-платформы и мобильного канала
+      desc: Коммерчески привлекательный, но не критичный для устойчивости ERP Core; требует самостоятельного product discovery
+        и интеграционной архитектуры.
+      value: 0.0
+      pic:
+        set: lucide
+        name: smartphone
+      tags:
+      - владелец-коммерция
+      - владелец-ИТ
+      - тип-интеграция
+      - объём-исключён
+      - после-запуска
+      - риск-интеграции
+      - приоритет-P2
+      style:
+        fill: '#F3F4F6'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+      hidden: true
+      children:
+      - name: Создать новый B2C-канал и омниканальные сценарии
+        desc: Входит в дальнейшую коммерческую трансформацию после стабилизации базовых данных, цен и заказных процессов.
+        value: 1960.0
+        pic:
+          set: lucide
+          name: store
+        tags:
+        - владелец-коммерция
+        - владелец-ИТ
+        - тип-интеграция
+        - объём-исключён
+        - после-запуска
+        - риск-интеграции
+        - приоритет-P2
+        style:
+          fill: '#F3F4F6'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#6B7280'
+        hidden: true

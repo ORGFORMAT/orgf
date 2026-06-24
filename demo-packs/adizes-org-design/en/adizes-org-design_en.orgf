@@ -1,0 +1,895 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: Mavuno Retail & Distribution Ltd. — TO BE Ownership Cost Model
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — to the extent possible under law, ORGFORMAT DemoPacks has waived copyright and
+    related or neighbouring rights to this material. You may copy, modify, distribute, and use it, including
+    commercially, without permission or required attribution. CC0 does not grant rights to the ORGFORMAT or
+    ORGF names, logos, or other brand assets.
+  license: CC0-1.0
+  created: '2026-06-14'
+  updated: '2026-06-24'
+
+model:
+  name: Mavuno Retail & Distribution — TO BE
+  desc: >-
+    Target operating model for a founder-led SME after first-step professionalization; monthly ownership
+    cost view showing clearer accountability, formal control points and reduced shadow cost.
+
+    This ORGFORMAT DemoPacks material is provided to illustrate ORGF capabilities. Unless expressly stated
+    otherwise, names, organisations, products, projects, roles, data, and scenarios in the model are
+    illustrative or fictional; any resemblance to actual entities does not imply affiliation, endorsement,
+    or origin. Questions or claims: support@orgformat.com.
+  value_label: Monthly Ownership Cost
+  value_unit: USD/month
+
+root:
+  name: "CEO / Owner"
+  desc: "Owner role refocused on strategy, key partnerships, capital allocation and performance review instead of daily firefighting."
+  value: 4200
+  pic:
+    set: lucide
+    name: user-round-check
+  tags:
+    - governance
+    - owner
+    - strategic-control
+    - clear-owner
+    - E
+    - I
+  branch_orientation: horizontal
+  style:
+    fill: "#E6FAF8"
+    contour: solid
+    contour_width: bold
+  children:
+    - name: "General Manager / COO"
+      desc: "Single accountable operating owner for day-to-day performance, coordination and execution discipline."
+      value: 2500
+      pic:
+        set: lucide
+        name: badge-check
+      tags:
+        - management-layer
+        - operating-model
+        - clear-owner
+        - founder-bottleneck-removed
+        - P
+        - A
+      branch_orientation: vertical
+      style:
+        fill: "#DDF7F4"
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: "#0F766E"
+      children:
+        - name: "Commercial Lead"
+          desc: "Owns revenue delivery across B2B, retail and digital channels with a single commercial plan."
+          value: 1600
+          pic:
+            set: lucide
+            name: chart-no-axes-combined
+          tags:
+            - commercial
+            - revenue-facing
+            - clear-owner
+            - scalable
+            - P
+            - E
+          branch_orientation: vertical
+          style:
+            fill: "#EAF2FF"
+            contour: solid
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: regular
+            color: "#2563EB"
+          children:
+            - name: "B2B Sales Supervisor"
+              desc: "Manages field sales cadence, route discipline and distributor coverage without bypassing operations."
+              value: 1150
+              pic:
+                set: lucide
+                name: route
+              tags:
+                - sales
+                - field-force
+                - management
+                - process-owner
+                - P
+              style:
+                fill: "#DBEAFE"
+                contour: solid
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: "#2563EB"
+              children:
+                - name: "Field Sales Representatives"
+                  desc: "Four focused sales reps covering kiosks, small shops and local wholesalers through planned routes."
+                  value: 3000
+                  pic:
+                    set: lucide
+                    name: users
+                  tags:
+                    - sales
+                    - field-force
+                    - revenue-facing
+                    - planned-coverage
+                    - P
+                  style:
+                    fill: "#FFFFFF"
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: "#39424E"
+                - name: "Key Account & Distributor Manager"
+                  desc: "Handles priority accounts and distributor relationships under agreed margin and stock allocation rules."
+                  value: 950
+                  pic:
+                    set: lucide
+                    name: handshake
+                  tags:
+                    - sales
+                    - key-account
+                    - distributor-management
+                    - clear-owner
+                    - P
+                    - I
+                  style:
+                    fill: "#FFFFFF"
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: "#39424E"
+            - name: "Sales Operations & CRM Coordinator"
+              desc: "Owns order hygiene, CRM updates, price lists and sales reporting; replaces scattered manual follow-up."
+              value: 700
+              pic:
+                set: lucide
+                name: list-checks
+              tags:
+                - sales-operations
+                - crm
+                - control-point
+                - merged-role
+                - A
+              style:
+                fill: "#FFFFFF"
+                contour: solid
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: "#39424E"
+            - name: "Customer Service Agents"
+              desc: "Two agents manage WhatsApp, phone orders, delivery questions and customer substitutions through one queue."
+              value: 900
+              pic:
+                set: lucide
+                name: messages-square
+              tags:
+                - customer-service
+                - digital-sales
+                - formalized-role
+                - I
+              style:
+                fill: "#EEF2FF"
+                contour: solid
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: "#4F46E5"
+            - name: "Retail Operations Supervisor"
+              desc: "Manages retail corners as a channel inside Commercial instead of a separate founder-managed branch."
+              value: 850
+              pic:
+                set: lucide
+                name: store
+              tags:
+                - retail
+                - channel-owner
+                - clear-owner
+                - P
+              style:
+                fill: "#EAF8ED"
+                contour: solid
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: "#2E7D32"
+              children:
+                - name: "Store Cashiers"
+                  desc: "Three cashiers with daily close rules and finance-controlled reconciliation."
+                  value: 1350
+                  pic:
+                    set: lucide
+                    name: receipt
+                  tags:
+                    - retail
+                    - cash-handling
+                    - daily-close
+                    - A
+                  style:
+                    fill: "#FFFFFF"
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: "#39424E"
+                - name: "Store Assistants"
+                  desc: "Three assistants covering shelf work, customer help and replenishment discipline."
+                  value: 1200
+                  pic:
+                    set: lucide
+                    name: shopping-basket
+                  tags:
+                    - retail
+                    - customer-facing
+                    - planned-coverage
+                    - P
+                  style:
+                    fill: "#FFFFFF"
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: "#39424E"
+                - name: "Merchandising Coordinator"
+                  desc: "One formal merchandising role replacing duplicated retail and field-sales merchandising work."
+                  value: 550
+                  pic:
+                    set: lucide
+                    name: shelves
+                  tags:
+                    - merchandising
+                    - merged-role
+                    - duplicate-role-removed
+                    - P
+                  style:
+                    fill: "#FFFFFF"
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: "#39424E"
+
+        - name: "Supply Chain Lead"
+          desc: "Owns procurement, inventory, warehouse and delivery as one supply-chain backbone."
+          value: 1500
+          pic:
+            set: lucide
+            name: warehouse
+          tags:
+            - operations
+            - supply-chain
+            - clear-owner
+            - stockout-risk-reduced
+            - P
+            - A
+          branch_orientation: vertical
+          style:
+            fill: "#ECFDF3"
+            contour: solid
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: regular
+            color: "#027A48"
+          children:
+            - name: "Procurement & Inventory Planner"
+              desc: "Plans replenishment, purchase timing and supplier follow-up using demand and stock data."
+              value: 850
+              pic:
+                set: lucide
+                name: clipboard-check
+              tags:
+                - procurement
+                - inventory-planning
+                - process-owner
+                - control-point
+                - A
+              style:
+                fill: "#F0F7EF"
+                contour: solid
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: "#027A48"
+              children:
+                - name: "Purchase Order Clerk"
+                  desc: "Processes purchase orders and supplier documents under planning rules, not ad hoc founder approval."
+                  value: 450
+                  pic:
+                    set: lucide
+                    name: file-check-2
+                  tags:
+                    - procurement-admin
+                    - formalized-role
+                    - A
+                  style:
+                    fill: "#FFFFFF"
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: "#39424E"
+            - name: "Warehouse Supervisor"
+              desc: "Runs warehouse execution with clear handoff from commercial orders and procurement plans."
+              value: 850
+              pic:
+                set: lucide
+                name: boxes
+              tags:
+                - warehouse
+                - management
+                - clear-owner
+                - P
+              style:
+                fill: "#D1FAE5"
+                contour: solid
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: "#027A48"
+              children:
+                - name: "Pickers & Packers"
+                  desc: "Three people covering picking, packing and dispatch preparation under standard work."
+                  value: 1500
+                  pic:
+                    set: lucide
+                    name: package-check
+                  tags:
+                    - warehouse
+                    - fulfillment
+                    - standard-work
+                    - P
+                  style:
+                    fill: "#FFFFFF"
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: "#39424E"
+                - name: "Inventory Controller"
+                  desc: "Owns cycle counts, variance follow-up and stock accuracy; replaces spreadsheet workarounds."
+                  value: 650
+                  pic:
+                    set: lucide
+                    name: clipboard-list
+                  tags:
+                    - inventory-control
+                    - control-point
+                    - automation-gap-reduced
+                    - A
+                  style:
+                    fill: "#FFFFFF"
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: "#39424E"
+            - name: "Dispatch & Route Coordinator"
+              desc: "Plans delivery routes, vehicle use and retail replenishment windows through one dispatch queue."
+              value: 550
+              pic:
+                set: lucide
+                name: map
+              tags:
+                - logistics
+                - route-planning
+                - process-owner
+                - A
+              style:
+                fill: "#FFFFFF"
+                contour: solid
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: "#39424E"
+              children:
+                - name: "Drivers"
+                  desc: "Three delivery drivers assigned through planned routes, not founder escalations."
+                  value: 2250
+                  pic:
+                    set: lucide
+                    name: truck
+                  tags:
+                    - logistics
+                    - delivery
+                    - planned-coverage
+                    - P
+                  style:
+                    fill: "#FFFFFF"
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: "#39424E"
+
+        - name: "People & Admin Coordinator"
+          desc: "Lightweight shared-service role for people records, payroll coordination and office administration."
+          value: 700
+          pic:
+            set: lucide
+            name: users-round
+          tags:
+            - people-admin
+            - shared-service
+            - formalized-role
+            - I
+            - A
+          branch_orientation: vertical
+          style:
+            fill: "#F3E8FF"
+            contour: solid
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: regular
+            color: "#7E22CE"
+          children:
+            - name: "HR & Payroll Admin"
+              desc: "Maintains contracts, attendance, payroll inputs and basic HR records."
+              value: 450
+              pic:
+                set: lucide
+                name: calendar-days
+              tags:
+                - hr-admin
+                - payroll
+                - control-point
+                - I
+                - A
+              style:
+                fill: "#FFFFFF"
+                contour: solid
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: "#39424E"
+            - name: "Office Administrator"
+              desc: "Handles licenses, office supplies, facility needs and administrative routines."
+              value: 400
+              pic:
+                set: lucide
+                name: building-2
+              tags:
+                - admin
+                - shared-service
+                - I
+              style:
+                fill: "#FFFFFF"
+                contour: solid
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: "#39424E"
+
+    - name: "Finance & Control Lead"
+      desc: "Independent control point reporting to the CEO; owns accounting, cash control and management reporting."
+      value: 1450
+      pic:
+        set: lucide
+        name: calculator
+      tags:
+        - finance
+        - control-point
+        - cash-control
+        - management-reporting
+        - A
+      branch_orientation: vertical
+      style:
+        fill: "#FFF1DF"
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: "#D9822B"
+      children:
+        - name: "Accountant"
+          desc: "Owns statutory accounting, month-end close and finance discipline."
+          value: 950
+          pic:
+            set: lucide
+            name: notebook-tabs
+          tags:
+            - accounting
+            - finance
+            - clear-owner
+            - A
+          style:
+            fill: "#FFEDD5"
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: "#D9822B"
+          children:
+            - name: "Bookkeeper"
+              desc: "Captures invoices, receipts and supplier documents with cleaner responsibilities."
+              value: 450
+              pic:
+                set: lucide
+                name: file-text
+              tags:
+                - accounting
+                - documents
+                - standard-work
+                - A
+              style:
+                fill: "#FFFFFF"
+                contour: solid
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: "#39424E"
+        - name: "Cash Control Officer"
+          desc: "Controls daily cash close, collections follow-up and segregation between retail cash and accounting."
+          value: 650
+          pic:
+            set: lucide
+            name: wallet-cards
+          tags:
+            - cash-control
+            - control-point
+            - risk-reduced
+            - A
+          style:
+            fill: "#FFFFFF"
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: "#39424E"
+        - name: "Management Reporting Analyst"
+          desc: "Part-time reporting capacity for margin, stock, cash and channel performance dashboards."
+          value: 450
+          pic:
+            set: lucide
+            name: chart-column
+          tags:
+            - management-reporting
+            - performance-cadence
+            - decision-support
+            - A
+            - E
+          style:
+            fill: "#FFFFFF"
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: "#39424E"
+
+    - name: "External Services & Advisory"
+      desc: "Explicit external-service cost layer; support is visible and contracted instead of hidden inside informal roles."
+      value: 0
+      pic:
+        set: lucide
+        name: cable
+      tags:
+        - external-service
+        - outsourced
+        - visible-cost
+        - A
+      branch_orientation: vertical
+      style:
+        fill: "#F3F4F6"
+        contour: double
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: "#6B7280"
+      children:
+        - name: "Managed IT Support Partner"
+          desc: "Monthly support contract for POS, laptops, connectivity and basic systems administration."
+          value: 600
+          pic:
+            set: lucide
+            name: monitor-cog
+          tags:
+            - it-support
+            - outsourced
+            - automation-gap-reduced
+            - A
+          style:
+            fill: "#E5E7EB"
+            contour: double
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: "#6B7280"
+        - name: "Tax & Legal Advisors"
+          desc: "Light external retainer for tax filings, employment templates and supplier contract questions."
+          value: 350
+          pic:
+            set: lucide
+            name: scale
+          tags:
+            - legal
+            - tax
+            - outsourced
+            - risk-reduced
+            - A
+          style:
+            fill: "#E5E7EB"
+            contour: double
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: "#6B7280"
+
+    - name: "Legacy Shadow Costs Removed"
+      desc: "Hidden comparison layer: AS IS roles and workarounds removed, absorbed or formalized in the target model; zero target-state monthly ownership cost."
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: eye-off
+      tags:
+        - removed-role
+        - shadow-cost-removed
+        - transformation-delta
+        - no-direct-cost
+      branch_orientation: vertical
+      style:
+        fill: "#F4F4F5"
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: "#9CA3AF"
+      children:
+        - name: "Family Business Coordinator — Removed"
+          desc: "Informal coordination absorbed into COO cadence and clear role ownership."
+          hidden: true
+          value: 0
+          pic:
+            set: lucide
+            name: user-x
+          tags:
+            - removed-role
+            - informal-role-removed
+            - founder-bottleneck-removed
+          style:
+            fill: "#F4F4F5"
+            contour: dotted
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: "#9CA3AF"
+        - name: "Credit Chasing Clerk — Absorbed"
+          desc: "Collections follow-up moved into Cash Control Officer and customer-service workflow."
+          hidden: true
+          value: 0
+          pic:
+            set: lucide
+            name: phone-off
+          tags:
+            - absorbed-role
+            - cash-control-risk-reduced
+            - shadow-cost-removed
+          style:
+            fill: "#F4F4F5"
+            contour: dotted
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: "#9CA3AF"
+        - name: "Supplier Expediter — Absorbed"
+          desc: "Ad hoc supplier chasing replaced by procurement planning and purchase-order discipline."
+          hidden: true
+          value: 0
+          pic:
+            set: lucide
+            name: timer-off
+          tags:
+            - absorbed-role
+            - procurement-control
+            - shadow-cost-removed
+          style:
+            fill: "#F4F4F5"
+            contour: dotted
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: "#9CA3AF"
+        - name: "Petty Cash Custodian — Eliminated"
+          desc: "Petty-cash workaround eliminated through cash policy and finance-controlled reconciliation."
+          hidden: true
+          value: 0
+          pic:
+            set: lucide
+            name: wallet-minimal
+          tags:
+            - eliminated-role
+            - cash-control-risk-reduced
+            - shadow-cost-removed
+          style:
+            fill: "#F4F4F5"
+            contour: dotted
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: "#9CA3AF"
+        - name: "Spreadsheet Maintainer — Eliminated"
+          desc: "Manual reconciliation replaced by reporting ownership and cleaner source-system discipline."
+          hidden: true
+          value: 0
+          pic:
+            set: lucide
+            name: table-2
+          tags:
+            - eliminated-role
+            - manual-process-reduced
+            - automation-gap-reduced
+          style:
+            fill: "#F4F4F5"
+            contour: dotted
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: "#9CA3AF"
+        - name: "Unofficial Promotions Coordinator — Absorbed"
+          desc: "Local promotions become part of Commercial planning and merchandising coordination."
+          hidden: true
+          value: 0
+          pic:
+            set: lucide
+            name: megaphone-off
+          tags:
+            - absorbed-role
+            - duplicate-role-removed
+            - shadow-cost-removed
+          style:
+            fill: "#F4F4F5"
+            contour: dotted
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: "#9CA3AF"
+        - name: "Founder Firefighting — Removed"
+          desc: "Escalations are routed through accountable managers and service queues, not the owner."
+          hidden: true
+          value: 0
+          pic:
+            set: lucide
+            name: flame-kindling
+          tags:
+            - founder-bottleneck-removed
+            - key-person-risk-reduced
+            - no-direct-cost
+          style:
+            fill: "#F4F4F5"
+            contour: dotted
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: "#9CA3AF"

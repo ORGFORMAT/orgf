@@ -1,0 +1,5582 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: Атлас животных
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — в максимально допустимом законом объёме ORGFORMAT DemoPacks отказался от авторских и
+    смежных прав на этот материал. Его можно свободно копировать, изменять, распространять и использовать,
+    включая коммерчески, без запроса разрешения и обязательного указания автора. CC0 не предоставляет прав
+    на обозначения ORGFORMAT, ORGF, логотипы и иные брендовые активы.
+  license: CC0-1.0
+  created: '2026-06-22'
+  updated: '2026-06-24'
+
+model:
+  name: Атлас животных — RU
+  desc: >-
+    Учебная иерархическая модель Animalia с таксономическим ядром и демонстрационными лифтами домашних
+    животных.
+
+    Демонстрационный материал ORGFORMAT DemoPacks предназначен для иллюстрации возможностей ORGF. Если прямо
+    не указано иное, содержащиеся в модели наименования, организации, продукты, проекты, роли, данные и
+    сценарии являются условными или вымышленными; любое сходство с реальными объектами не означает связи,
+    одобрения или принадлежности. Вопросы и обращения: support@orgformat.com.
+
+root:
+  name: Животные
+  desc: Animalia
+  pic:
+    set: emoji
+    name: 🌍
+  tags:
+    - царство
+    - глобальный
+  children:
+    - name: Скребни
+      desc: Acanthocephala
+      tags:
+        - тип
+      children:
+        - name: Архиакантоцефалы
+          desc: Archiacanthocephala
+          tags:
+            - класс
+          children:
+            - name: Apororhynchida
+              desc: Apororhynchida
+              tags:
+                - отряд
+            - name: Gigantorhynchida
+              desc: Gigantorhynchida
+              tags:
+                - отряд
+            - name: Moniliformida
+              desc: Moniliformida
+              tags:
+                - отряд
+            - name: Oligacanthorhynchida
+              desc: Oligacanthorhynchida
+              tags:
+                - отряд
+        - name: Эоакантоцефалы
+          desc: Eoacanthocephala
+          tags:
+            - класс
+          children:
+            - name: Gyracanthocephala
+              desc: Gyracanthocephala
+              tags:
+                - отряд
+            - name: Neoechinorhynchida
+              desc: Neoechinorhynchida
+              tags:
+                - отряд
+        - name: Палеакантоцефалы
+          desc: Palaeacanthocephala
+          tags:
+            - класс
+          children:
+            - name: Echinorhynchida
+              desc: Echinorhynchida
+              tags:
+                - отряд
+            - name: Heteramorphida
+              desc: Heteramorphida
+              tags:
+                - отряд
+            - name: Polymorphida
+              desc: Polymorphida
+              tags:
+                - отряд
+        - name: Полиакантоцефалы
+          desc: Polyacanthocephala
+          tags:
+            - класс
+          children:
+            - name: Polyacanthorhynchida
+              desc: Polyacanthorhynchida
+              tags:
+                - отряд
+    - name: Кольчатые черви
+      desc: Annelida
+      pic:
+        set: emoji
+        name: 🪱
+      tags:
+        - тип
+      children:
+        - name: Поясковые черви
+          desc: Clitellata
+          pic:
+            set: emoji
+            name: 🪱
+          tags:
+            - класс
+            - наземный
+            - пресноводный
+          children:
+            - name: Acanthobdellida
+              desc: Acanthobdellida
+              tags:
+                - отряд
+            - name: Alluroidida
+              desc: Alluroidida
+              tags:
+                - отряд
+            - name: Бесхоботные пиявки
+              desc: Arhynchobdellida
+              pic:
+                set: emoji
+                name: 🪱
+              tags:
+                - отряд
+                - пресноводный
+                - паразит
+            - name: Branchiobdellida
+              desc: Branchiobdellida
+              tags:
+                - отряд
+            - name: Capilloventrida
+              desc: Capilloventrida
+              tags:
+                - отряд
+            - name: Crassiclitellata
+              desc: Crassiclitellata
+              tags:
+                - отряд
+            - name: Enchytraeida
+              desc: Enchytraeida
+              tags:
+                - отряд
+            - name: Euhirudinea
+              desc: Euhirudinea
+              tags:
+                - отряд
+            - name: Гаплотаксиды
+              desc: Haplotaxida
+              pic:
+                set: emoji
+                name: 🪱
+              tags:
+                - отряд
+                - наземный
+                - пресноводный
+            - name: Haplotaxoidida
+              desc: Haplotaxoidida
+              tags:
+                - отряд
+            - name: Limpluvida
+              desc: Limpluvida
+              tags:
+                - отряд
+            - name: Lumbriculida
+              desc: Lumbriculida
+              tags:
+                - отряд
+            - name: Moniligastrida
+              desc: Moniligastrida
+              tags:
+                - отряд
+            - name: Narapida
+              desc: Narapida
+              tags:
+                - отряд
+            - name: Ohtakianida
+              desc: Ohtakianida
+              tags:
+                - отряд
+            - name: Opisthopora
+              desc: Opisthopora
+              tags:
+                - отряд
+            - name: Parvidrilida
+              desc: Parvidrilida
+              tags:
+                - отряд
+            - name: Pelodrilida
+              desc: Pelodrilida
+              tags:
+                - отряд
+            - name: Randiellida
+              desc: Randiellida
+              tags:
+                - отряд
+            - name: Хоботные пиявки
+              desc: Rhynchobdellida
+              tags:
+                - отряд
+            - name: Tubificida
+              desc: Tubificida
+              tags:
+                - отряд
+        - name: Многощетинковые черви
+          desc: Polychaeta
+          pic:
+            set: emoji
+            name: 🪱
+          tags:
+            - класс
+            - морской
+          children:
+            - name: Огненные черви
+              desc: Amphinomida
+              tags:
+                - отряд
+            - name: Эхиуры
+              desc: Echiuroidea
+              tags:
+                - отряд
+            - name: Eunicida
+              desc: Eunicida
+              tags:
+                - отряд
+            - name: Филлодоцида
+              desc: Phyllodocida
+              pic:
+                set: emoji
+                name: 🪱
+              tags:
+                - отряд
+                - морской
+            - name: Сабеллида
+              desc: Sabellida
+              pic:
+                set: emoji
+                name: 🪱
+              tags:
+                - отряд
+                - морской
+    - name: Членистоногие
+      desc: Arthropoda
+      pic:
+        set: emoji
+        name: 🦋
+      tags:
+        - тип
+      children:
+        - name: Паукообразные
+          desc: Arachnida
+          pic:
+            set: emoji
+            name: 🕷️
+          tags:
+            - класс
+            - наземный
+          children:
+            - name: Фрины
+              desc: Amblypygi
+              tags:
+                - отряд
+            - name: Пауки
+              desc: Araneae
+              pic:
+                set: emoji
+                name: 🕷️
+              tags:
+                - отряд
+                - хищный
+                - ядовитый
+                - фокус
+              style:
+                contour: solid
+                contour_width: bold
+              relation:
+                line: solid
+                line_width: bold
+                color: '#D64545'
+            - name: Holothyrida
+              desc: Holothyrida
+              tags:
+                - отряд
+            - name: Клещи
+              desc: Ixodida
+              tags:
+                - отряд
+            - name: Mesostigmata
+              desc: Mesostigmata
+              tags:
+                - отряд
+            - name: Opilioacarida
+              desc: Opilioacarida
+              tags:
+                - отряд
+            - name: Сенокосцы
+              desc: Opiliones
+              tags:
+                - отряд
+            - name: Palpigradi
+              desc: Palpigradi
+              tags:
+                - отряд
+            - name: Ложноскорпионы
+              desc: Pseudoscorpiones
+              tags:
+                - отряд
+            - name: Ricinulei
+              desc: Ricinulei
+              tags:
+                - отряд
+            - name: Sarcoptiformes
+              desc: Sarcoptiformes
+              tags:
+                - отряд
+            - name: Schizomida
+              desc: Schizomida
+              tags:
+                - отряд
+            - name: Скорпионы
+              desc: Scorpiones
+              pic:
+                set: emoji
+                name: 🦂
+              tags:
+                - отряд
+                - хищный
+                - ядовитый
+                - пустынный
+              style:
+                contour: solid
+                contour_width: bold
+              relation:
+                line: solid
+                line_width: bold
+                color: '#D64545'
+            - name: Сольпуги
+              desc: Solifugae
+              tags:
+                - отряд
+            - name: Trombidiformes
+              desc: Trombidiformes
+              tags:
+                - отряд
+            - name: Телифоны
+              desc: Uropygi
+              tags:
+                - отряд
+        - name: Жаброногие
+          desc: Branchiopoda
+          tags:
+            - класс
+          children:
+            - name: Жаброноги
+              desc: Anostraca
+              tags:
+                - отряд
+            - name: Ракушковые жаброноги
+              desc: Diplostraca
+              tags:
+                - отряд
+            - name: Щитни
+              desc: Notostraca
+              tags:
+                - отряд
+        - name: Карпоеды
+          desc: Branchiura
+          tags:
+            - класс
+        - name: Cephalocarida
+          desc: Cephalocarida
+          tags:
+            - класс
+          children:
+            - name: Brachypoda
+              desc: Brachypoda
+              tags:
+                - отряд
+        - name: Губоногие многоножки
+          desc: Chilopoda
+          pic:
+            set: emoji
+            name: 🐛
+          tags:
+            - класс
+            - наземный
+          children:
+            - name: Craterostigmomorpha
+              desc: Craterostigmomorpha
+              tags:
+                - отряд
+            - name: Земляные многоножки
+              desc: Geophilomorpha
+              tags:
+                - отряд
+            - name: Костянки
+              desc: Lithobiomorpha
+              tags:
+                - отряд
+            - name: Сколопендры
+              desc: Scolopendromorpha
+              tags:
+                - отряд
+            - name: Мухоловки
+              desc: Scutigeromorpha
+              tags:
+                - отряд
+        - name: Ногохвостки
+          desc: Collembola
+          tags:
+            - класс
+          children:
+            - name: Entomobryomorpha
+              desc: Entomobryomorpha
+              tags:
+                - отряд
+            - name: Neelipleona
+              desc: Neelipleona
+              tags:
+                - отряд
+            - name: Poduromorpha
+              desc: Poduromorpha
+              tags:
+                - отряд
+            - name: Symphypleona
+              desc: Symphypleona
+              tags:
+                - отряд
+        - name: Веслоногие ракообразные
+          desc: Copepoda
+          tags:
+            - класс
+          children:
+            - name: Canuelloida
+              desc: Canuelloida
+              tags:
+                - отряд
+            - name: Gelyelloida
+              desc: Gelyelloida
+              tags:
+                - отряд
+            - name: Misophrioida
+              desc: Misophrioida
+              tags:
+                - отряд
+            - name: Monstrilloida
+              desc: Monstrilloida
+              tags:
+                - отряд
+            - name: Mormonilloida
+              desc: Mormonilloida
+              tags:
+                - отряд
+            - name: Platycopioida
+              desc: Platycopioida
+              tags:
+                - отряд
+        - name: Двупарноногие многоножки
+          desc: Diplopoda
+          pic:
+            set: emoji
+            name: 🐛
+          tags:
+            - класс
+            - наземный
+          children:
+            - name: Glomeridesmida
+              desc: Glomeridesmida
+              tags:
+                - отряд
+            - name: Platydesmida
+              desc: Platydesmida
+              tags:
+                - отряд
+            - name: Polyxenida
+              desc: Polyxenida
+              tags:
+                - отряд
+            - name: Polyzoniida
+              desc: Polyzoniida
+              tags:
+                - отряд
+            - name: Siphoniulida
+              desc: Siphoniulida
+              tags:
+                - отряд
+            - name: Siphonocryptida
+              desc: Siphonocryptida
+              tags:
+                - отряд
+            - name: Stemmiulida
+              desc: Stemmiulida
+              tags:
+                - отряд
+            - name: Zosterogrammida
+              desc: Zosterogrammida
+              tags:
+                - отряд
+        - name: Двухвостки
+          desc: Diplura
+          tags:
+            - класс
+        - name: Euthycarcinoidea
+          desc: Euthycarcinoidea
+          tags:
+            - класс
+            - вымерший
+          children:
+            - name: Euthycarcinida
+              desc: Euthycarcinida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+          hidden: true
+        - name: Насекомые
+          desc: Insecta
+          pic:
+            set: emoji
+            name: 🐝
+          tags:
+            - класс
+            - наземный
+            - воздушный
+          children:
+            - name: Древние щетинохвостки
+              desc: Archaeognatha
+              tags:
+                - отряд
+            - name: Тараканообразные
+              desc: Blattodea
+              pic:
+                set: emoji
+                name: 🪳
+              tags:
+                - отряд
+                - синантропный
+            - name: Cnemidolestida
+              desc: Cnemidolestida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Жуки
+              desc: Coleoptera
+              pic:
+                set: emoji
+                name: 🪲
+              tags:
+                - отряд
+                - наземный
+            - name: Уховёртки
+              desc: Dermaptera
+              tags:
+                - отряд
+            - name: Двукрылые
+              desc: Diptera
+              pic:
+                set: emoji
+                name: 🪰
+              tags:
+                - отряд
+                - воздушный
+            - name: Эмбии
+              desc: Embioptera
+              tags:
+                - отряд
+            - name: Eoblattida
+              desc: Eoblattida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Подёнки
+              desc: Ephemeroptera
+              tags:
+                - отряд
+            - name: Glosselytrodea
+              desc: Glosselytrodea
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Полужесткокрылые
+              desc: Hemiptera
+              pic:
+                set: emoji
+                name: 🐞
+              tags:
+                - отряд
+            - name: Перепончатокрылые
+              desc: Hymenoptera
+              pic:
+                set: emoji
+                name: 🐝
+              tags:
+                - отряд
+                - воздушный
+              children:
+                - name: Муравьи
+                  desc: Formicidae
+                  tags:
+                    - семейство
+                    - членистоногое
+                    - насекомое
+                    - общественное
+                  children:
+                    - name: Лазиусы
+                      desc: Lasius
+                      tags:
+                        - род
+                        - членистоногое
+                        - насекомое
+                        - общественное
+                      children:
+                        - name: Чёрный садовый муравей
+                          desc: Lasius niger
+                          pic:
+                            set: emoji
+                            name: 🐜
+                          tags:
+                            - вид
+                            - членистоногое
+                            - насекомое
+                            - общественное
+                            - садовый
+                    - name: Формики
+                      desc: Formica
+                      tags:
+                        - род
+                        - членистоногое
+                        - насекомое
+                        - общественное
+                      children:
+                        - name: Рыжий лесной муравей
+                          desc: Formica rufa
+                          pic:
+                            set: emoji
+                            name: 🐜
+                          tags:
+                            - вид
+                            - членистоногое
+                            - насекомое
+                            - общественное
+                            - лесной
+                    - name: Муравьи-жнецы
+                      desc: Messor
+                      tags:
+                        - род
+                        - членистоногое
+                        - насекомое
+                        - общественное
+                      children:
+                        - name: Степной муравей-жнец
+                          desc: Messor structor
+                          pic:
+                            set: emoji
+                            name: 🐜
+                          tags:
+                            - вид
+                            - членистоногое
+                            - насекомое
+                            - общественное
+                            - формикарий
+                            - наблюдение
+                    - name: Муравьи-листорезы
+                      desc: Atta
+                      tags:
+                        - род
+                        - членистоногое
+                        - насекомое
+                        - общественное
+                      children:
+                        - name: Муравей-листорез
+                          desc: Atta cephalotes
+                          pic:
+                            set: emoji
+                            name: 🐜
+                          tags:
+                            - вид
+                            - членистоногое
+                            - насекомое
+                            - общественное
+                            - тропический
+                            - листорез
+            - name: Hypoperlida
+              desc: Hypoperlida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Чешуекрылые
+              desc: Lepidoptera
+              pic:
+                set: emoji
+                name: 🦋
+              tags:
+                - отряд
+                - воздушный
+                - фокус
+            - name: Богомолы
+              desc: Mantodea
+              pic:
+                set: emoji
+                name: 🦗
+              tags:
+                - отряд
+                - хищный
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Скорпионницы
+              desc: Mecoptera
+              tags:
+                - отряд
+            - name: Megaloptera
+              desc: Megaloptera
+              tags:
+                - отряд
+            - name: Meganisoptera
+              desc: Meganisoptera
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Megasecoptera
+              desc: Megasecoptera
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Miomoptera
+              desc: Miomoptera
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Сетчатокрылые
+              desc: Neuroptera
+              tags:
+                - отряд
+            - name: Notoptera
+              desc: Notoptera
+              tags:
+                - отряд
+            - name: Стрекозы
+              desc: Odonata
+              pic:
+                set: emoji
+                name: 🪰
+              tags:
+                - отряд
+                - воздушный
+                - пресноводный
+            - name: Прямокрылые
+              desc: Orthoptera
+              pic:
+                set: emoji
+                name: 🦗
+              tags:
+                - отряд
+                - степной
+            - name: Palaeodictyoptera
+              desc: Palaeodictyoptera
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Paoliida
+              desc: Paoliida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Permopsocida
+              desc: Permopsocida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Палочники
+              desc: Phasmida
+              tags:
+                - отряд
+            - name: Веснянки
+              desc: Plecoptera
+              tags:
+                - отряд
+            - name: Protorthoptera
+              desc: Protorthoptera
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Psocodea
+              desc: Psocodea
+              tags:
+                - отряд
+            - name: Верблюдки
+              desc: Raphidioptera
+              tags:
+                - отряд
+            - name: Reculida
+              desc: Reculida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Блохи
+              desc: Siphonaptera
+              tags:
+                - отряд
+            - name: Веерокрылые
+              desc: Strepsiptera
+              tags:
+                - отряд
+            - name: Бахромчатокрылые
+              desc: Thysanoptera
+              tags:
+                - отряд
+            - name: Ручейники
+              desc: Trichoptera
+              tags:
+                - отряд
+            - name: Zoraptera
+              desc: Zoraptera
+              tags:
+                - отряд
+            - name: Zygentoma
+              desc: Zygentoma
+              tags:
+                - отряд
+        - name: Высшие раки
+          desc: Malacostraca
+          pic:
+            set: emoji
+            name: 🦀
+          tags:
+            - класс
+            - морской
+            - пресноводный
+          children:
+            - name: Бокоплавы
+              desc: Amphipoda
+              tags:
+                - отряд
+            - name: Anaspidacea
+              desc: Anaspidacea
+              tags:
+                - отряд
+            - name: Bathynellacea
+              desc: Bathynellacea
+              tags:
+                - отряд
+            - name: Bochusacea
+              desc: Bochusacea
+              tags:
+                - отряд
+            - name: Cumacea
+              desc: Cumacea
+              tags:
+                - отряд
+            - name: Десятиногие ракообразные
+              desc: Decapoda
+              pic:
+                set: emoji
+                name: 🦀
+              tags:
+                - отряд
+                - морской
+                - пресноводный
+            - name: Криль
+              desc: Euphausiacea
+              pic:
+                set: emoji
+                name: 🦐
+              tags:
+                - отряд
+                - морской
+            - name: Равноногие ракообразные
+              desc: Isopoda
+              pic:
+                set: emoji
+                name: 🪲
+              tags:
+                - отряд
+                - морской
+                - наземный
+            - name: Leptostraca
+              desc: Leptostraca
+              tags:
+                - отряд
+            - name: Lophogastrida
+              desc: Lophogastrida
+              tags:
+                - отряд
+            - name: Мизиды
+              desc: Mysida
+              tags:
+                - отряд
+            - name: Pygocephalomorpha
+              desc: Pygocephalomorpha
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Ротоногие раки
+              desc: Stomatopoda
+              tags:
+                - отряд
+            - name: Stygiomysida
+              desc: Stygiomysida
+              tags:
+                - отряд
+            - name: Tanaidacea
+              desc: Tanaidacea
+              tags:
+                - отряд
+            - name: Thermosbaenacea
+              desc: Thermosbaenacea
+              tags:
+                - отряд
+        - name: Мечехвосты
+          desc: Merostomata
+          tags:
+            - класс
+          children:
+            - name: Мечехвосты
+              desc: Xiphosura
+              tags:
+                - отряд
+            - name: Мечехвосты
+              desc: Xiphosurida
+              tags:
+                - отряд
+        - name: Mystacocarida
+          desc: Mystacocarida
+          tags:
+            - класс
+          children:
+            - name: Mystacocaridida
+              desc: Mystacocaridida
+              tags:
+                - отряд
+        - name: Ракушковые раки
+          desc: Ostracoda
+          tags:
+            - класс
+          children:
+            - name: Halocyprida
+              desc: Halocyprida
+              tags:
+                - отряд
+            - name: Myodocopida
+              desc: Myodocopida
+              tags:
+                - отряд
+            - name: Palaeocopida
+              desc: Palaeocopida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Platycopida
+              desc: Platycopida
+              tags:
+                - отряд
+            - name: Podocopida
+              desc: Podocopida
+              tags:
+                - отряд
+            - name: Punciocopida
+              desc: Punciocopida
+              tags:
+                - отряд
+        - name: Пауроподы
+          desc: Pauropoda
+          tags:
+            - класс
+          children:
+            - name: Hexamerocerata
+              desc: Hexamerocerata
+              tags:
+                - отряд
+            - name: Tetramerocerata
+              desc: Tetramerocerata
+              tags:
+                - отряд
+        - name: Язычковые черви
+          desc: Pentastomida
+          tags:
+            - класс
+        - name: Protura
+          desc: Protura
+          tags:
+            - класс
+          children:
+            - name: Acerentomata
+              desc: Acerentomata
+              tags:
+                - отряд
+            - name: Eosentomata
+              desc: Eosentomata
+              tags:
+                - отряд
+            - name: Sinentomata
+              desc: Sinentomata
+              tags:
+                - отряд
+        - name: Морские пауки
+          desc: Pycnogonida
+          tags:
+            - класс
+          children:
+            - name: Nectopantopoda
+              desc: Nectopantopoda
+              tags:
+                - отряд
+            - name: Palaeoisopoda
+              desc: Palaeoisopoda
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Palaeopantopoda
+              desc: Palaeopantopoda
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Морские пауки
+              desc: Pantopoda
+              tags:
+                - отряд
+        - name: Remipedia
+          desc: Remipedia
+          tags:
+            - класс
+          children:
+            - name: Enantiopoda
+              desc: Enantiopoda
+              tags:
+                - отряд
+            - name: Nectiopoda
+              desc: Nectiopoda
+              tags:
+                - отряд
+        - name: Симфилы
+          desc: Symphyla
+          tags:
+            - класс
+        - name: Tantulocarida
+          desc: Tantulocarida
+          tags:
+            - класс
+        - name: Thecostraca
+          desc: Thecostraca
+          tags:
+            - класс
+          children:
+            - name: Archaeolepadomorpha
+              desc: Archaeolepadomorpha
+              tags:
+                - отряд
+            - name: Морские жёлуди
+              desc: Balanomorpha
+              tags:
+                - отряд
+            - name: Brachylepadomorpha
+              desc: Brachylepadomorpha
+              tags:
+                - отряд
+            - name: Calanticomorpha
+              desc: Calanticomorpha
+              tags:
+                - отряд
+            - name: Cryptophialida
+              desc: Cryptophialida
+              tags:
+                - отряд
+            - name: Cyprilepadiformes
+              desc: Cyprilepadiformes
+              tags:
+                - отряд
+            - name: Dendrogastrida
+              desc: Dendrogastrida
+              tags:
+                - отряд
+            - name: Eolepadomorpha
+              desc: Eolepadomorpha
+              tags:
+                - отряд
+            - name: Iblomorpha
+              desc: Iblomorpha
+              tags:
+                - отряд
+            - name: Laurida
+              desc: Laurida
+              tags:
+                - отряд
+            - name: Lithoglyptida
+              desc: Lithoglyptida
+              tags:
+                - отряд
+            - name: Морские уточки
+              desc: Pollicipedomorpha
+              tags:
+                - отряд
+            - name: Scalpellomorpha
+              desc: Scalpellomorpha
+              tags:
+                - отряд
+            - name: Sessilia
+              desc: Sessilia
+              tags:
+                - отряд
+            - name: Verrucomorpha
+              desc: Verrucomorpha
+              tags:
+                - отряд
+        - name: Трилобиты
+          desc: Trilobita
+          tags:
+            - класс
+            - вымерший
+          children:
+            - name: Agnostida
+              desc: Agnostida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Asaphida
+              desc: Asaphida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Aulacopleurida
+              desc: Aulacopleurida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Corynexochida
+              desc: Corynexochida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Harpetida
+              desc: Harpetida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Lichida
+              desc: Lichida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Odontopleurida
+              desc: Odontopleurida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Olenellida
+              desc: Olenellida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Phacopida
+              desc: Phacopida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Proetida
+              desc: Proetida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Proparia
+              desc: Proparia
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Ptychopariida
+              desc: Ptychopariida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Redlichiida
+              desc: Redlichiida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+          hidden: true
+      style:
+        fill: '#F1D29A'
+    - name: Плеченогие
+      desc: Brachiopoda
+      tags:
+        - тип
+      children:
+        - name: Chileata
+          desc: Chileata
+          tags:
+            - класс
+            - вымерший
+          children:
+            - name: Chileida
+              desc: Chileida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Dictyonellida
+              desc: Dictyonellida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+          hidden: true
+        - name: Краниаты
+          desc: Craniata
+          tags:
+            - класс
+          children:
+            - name: Craniida
+              desc: Craniida
+              tags:
+                - отряд
+            - name: Craniopsida
+              desc: Craniopsida
+              tags:
+                - отряд
+            - name: Trimerellida
+              desc: Trimerellida
+              tags:
+                - отряд
+        - name: Kutorginata
+          desc: Kutorginata
+          tags:
+            - класс
+            - вымерший
+          children:
+            - name: Kutorginida
+              desc: Kutorginida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+          hidden: true
+        - name: Лингуляты
+          desc: Lingulata
+          tags:
+            - класс
+          children:
+            - name: Acrotretida
+              desc: Acrotretida
+              tags:
+                - отряд
+            - name: Lingulida
+              desc: Lingulida
+              tags:
+                - отряд
+            - name: Siphonotretida
+              desc: Siphonotretida
+              tags:
+                - отряд
+        - name: Obolellata
+          desc: Obolellata
+          tags:
+            - класс
+            - вымерший
+          children:
+            - name: Naukatida
+              desc: Naukatida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Obolellida
+              desc: Obolellida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+          hidden: true
+        - name: Paterinata
+          desc: Paterinata
+          tags:
+            - класс
+            - вымерший
+          children:
+            - name: Paterinida
+              desc: Paterinida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+          hidden: true
+        - name: Ринхонелляты
+          desc: Rhynchonellata
+          tags:
+            - класс
+          children:
+            - name: Athyridida
+              desc: Athyridida
+              tags:
+                - отряд
+            - name: Atrypida
+              desc: Atrypida
+              tags:
+                - отряд
+            - name: Orthida
+              desc: Orthida
+              tags:
+                - отряд
+            - name: Pentamerida
+              desc: Pentamerida
+              tags:
+                - отряд
+            - name: Protorthida
+              desc: Protorthida
+              tags:
+                - отряд
+            - name: Rhynchonellida
+              desc: Rhynchonellida
+              tags:
+                - отряд
+            - name: Spiriferida
+              desc: Spiriferida
+              tags:
+                - отряд
+            - name: Spiriferinida
+              desc: Spiriferinida
+              tags:
+                - отряд
+            - name: Terebratulida
+              desc: Terebratulida
+              tags:
+                - отряд
+            - name: Thecideida
+              desc: Thecideida
+              tags:
+                - отряд
+        - name: Strophomenata
+          desc: Strophomenata
+          tags:
+            - класс
+            - вымерший
+          children:
+            - name: Billingsellida
+              desc: Billingsellida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Orthotetida
+              desc: Orthotetida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Productida
+              desc: Productida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Strophomenida
+              desc: Strophomenida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+          hidden: true
+    - name: Мшанки
+      desc: Bryozoa
+      tags:
+        - тип
+      children:
+        - name: Голоротые мшанки
+          desc: Gymnolaemata
+          tags:
+            - класс
+          children:
+            - name: Cheilostomatida
+              desc: Cheilostomatida
+              tags:
+                - отряд
+            - name: Ctenostomatida
+              desc: Ctenostomatida
+              tags:
+                - отряд
+        - name: Покрыторотые мшанки
+          desc: Phylactolaemata
+          tags:
+            - класс
+          children:
+            - name: Plumatellida
+              desc: Plumatellida
+              tags:
+                - отряд
+        - name: Узкоротые мшанки
+          desc: Stenolaemata
+          tags:
+            - класс
+          children:
+            - name: Cryptostomida
+              desc: Cryptostomida
+              tags:
+                - отряд
+            - name: Cyclostomatida
+              desc: Cyclostomatida
+              tags:
+                - отряд
+            - name: Cystoporida
+              desc: Cystoporida
+              tags:
+                - отряд
+            - name: Esthonioporata
+              desc: Esthonioporata
+              tags:
+                - отряд
+            - name: Fenestrida
+              desc: Fenestrida
+              tags:
+                - отряд
+            - name: Melicerititida
+              desc: Melicerititida
+              tags:
+                - отряд
+            - name: Trepostomatida
+              desc: Trepostomatida
+              tags:
+                - отряд
+    - name: Щетинкочелюстные
+      desc: Chaetognatha
+      tags:
+        - тип
+      children:
+        - name: Стрелки
+          desc: Sagittoidea
+          tags:
+            - класс
+          children:
+            - name: Aphragmophora
+              desc: Aphragmophora
+              tags:
+                - отряд
+            - name: Phragmophora
+              desc: Phragmophora
+              tags:
+                - отряд
+    - name: Хордовые
+      desc: Chordata
+      pic:
+        set: emoji
+        name: 🐟
+      tags:
+        - тип
+      children:
+        - name: Земноводные
+          desc: Amphibia
+          pic:
+            set: emoji
+            name: 🐸
+          tags:
+            - класс
+            - пресноводный
+          children:
+            - name: Бесхвостые
+              desc: Anura
+              pic:
+                set: emoji
+                name: 🐸
+              tags:
+                - отряд
+                - пресноводный
+                - ядовитый
+                - фокус
+              relation:
+                line: solid
+                line_width: bold
+                color: '#D64545'
+            - name: Хвостатые
+              desc: Caudata
+              pic:
+                set: emoji
+                name: 🦎
+              tags:
+                - отряд
+                - пресноводный
+            - name: Безногие земноводные
+              desc: Gymnophiona
+              pic:
+                set: emoji
+                name: 🪱
+              tags:
+                - отряд
+                - подземный
+          style:
+            fill: '#B9E3D5'
+        - name: Аппендикулярии
+          desc: Appendicularia
+          tags:
+            - класс
+          children:
+            - name: Copelata
+              desc: Copelata
+              tags:
+                - отряд
+        - name: Асцидии
+          desc: Ascidiacea
+          tags:
+            - класс
+          children:
+            - name: Aplousobranchia
+              desc: Aplousobranchia
+              tags:
+                - отряд
+            - name: Phlebobranchia
+              desc: Phlebobranchia
+              tags:
+                - отряд
+            - name: Stolidobranchia
+              desc: Stolidobranchia
+              tags:
+                - отряд
+        - name: Птицы
+          desc: Aves
+          pic:
+            set: emoji
+            name: 🦜
+          tags:
+            - класс
+            - воздушный
+          children:
+            - name: Ястребообразные
+              desc: Accipitriformes
+              pic:
+                set: emoji
+                name: 🦅
+              tags:
+                - отряд
+                - хищный
+                - воздушный
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Гусеобразные
+              desc: Anseriformes
+              pic:
+                set: emoji
+                name: 🦆
+              tags:
+                - отряд
+                - пресноводный
+                - воздушный
+            - name: Apodiformes
+              desc: Apodiformes
+              tags:
+                - отряд
+            - name: Кивиобразные
+              desc: Apterygiformes
+              tags:
+                - отряд
+            - name: Bucerotiformes
+              desc: Bucerotiformes
+              tags:
+                - отряд
+            - name: Caprimulgiformes
+              desc: Caprimulgiformes
+              tags:
+                - отряд
+            - name: Cariamiformes
+              desc: Cariamiformes
+              tags:
+                - отряд
+            - name: Casuariiformes
+              desc: Casuariiformes
+              tags:
+                - отряд
+            - name: Ржанкообразные
+              desc: Charadriiformes
+              tags:
+                - отряд
+            - name: Аистообразные
+              desc: Ciconiiformes
+              tags:
+                - отряд
+            - name: Мышанкообразные
+              desc: Coliiformes
+              tags:
+                - отряд
+            - name: Columbiformes
+              desc: Columbiformes
+              tags:
+                - отряд
+            - name: Coraciiformes
+              desc: Coraciiformes
+              tags:
+                - отряд
+            - name: Кукушкообразные
+              desc: Cuculiformes
+              tags:
+                - отряд
+            - name: Eurypygiformes
+              desc: Eurypygiformes
+              tags:
+                - отряд
+            - name: Соколообразные
+              desc: Falconiformes
+              pic:
+                set: emoji
+                name: 🦅
+              tags:
+                - отряд
+                - хищный
+                - воздушный
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Курообразные
+              desc: Galliformes
+              pic:
+                set: emoji
+                name: 🐔
+              tags:
+                - отряд
+                - наземный
+            - name: Гагарообразные
+              desc: Gaviiformes
+              tags:
+                - отряд
+            - name: Gruiformes
+              desc: Gruiformes
+              tags:
+                - отряд
+            - name: Leptosomiformes
+              desc: Leptosomiformes
+              tags:
+                - отряд
+            - name: Mesitornithiformes
+              desc: Mesitornithiformes
+              tags:
+                - отряд
+            - name: Туракообразные
+              desc: Musophagiformes
+              tags:
+                - отряд
+            - name: Nyctibiiformes
+              desc: Nyctibiiformes
+              tags:
+                - отряд
+            - name: Гоацинообразные
+              desc: Opisthocomiformes
+              tags:
+                - отряд
+            - name: Дрофообразные
+              desc: Otidiformes
+              tags:
+                - отряд
+            - name: Воробьинообразные
+              desc: Passeriformes
+              pic:
+                set: emoji
+                name: 🐦
+              tags:
+                - отряд
+                - воздушный
+            - name: Pelecaniformes
+              desc: Pelecaniformes
+              tags:
+                - отряд
+            - name: Фаэтонообразные
+              desc: Phaethontiformes
+              tags:
+                - отряд
+            - name: Фламингообразные
+              desc: Phoenicopteriformes
+              tags:
+                - отряд
+            - name: Piciformes
+              desc: Piciformes
+              tags:
+                - отряд
+            - name: Поганкообразные
+              desc: Podicipediformes
+              tags:
+                - отряд
+            - name: Буревестникообразные
+              desc: Procellariiformes
+              tags:
+                - отряд
+            - name: Попугаеобразные
+              desc: Psittaciformes
+              pic:
+                set: emoji
+                name: 🦜
+              tags:
+                - отряд
+                - тропический
+                - воздушный
+              children:
+                - name: Попугаевые Старого Света
+                  desc: Psittaculidae
+                  tags:
+                    - семейство
+                    - птица
+                    - воздушный
+                  children:
+                    - name: Волнистые попугаи
+                      desc: Melopsittacus
+                      tags:
+                        - род
+                        - птица
+                        - воздушный
+                      children:
+                        - name: Волнистый попугай
+                          desc: Melopsittacus undulatus
+                          tags:
+                            - вид
+                            - питомец
+                            - птица
+                            - воздушный
+                          children:
+                            - name: Мутации и варианты волнистого попугая
+                              tags:
+                                - демо-группа
+                                - питомец
+                                - птица
+                                - искусственный-ранг
+                                - мутация
+                              children:
+                                - name: Альбинос
+                                  tags:
+                                    - питомец
+                                    - птица
+                                    - вариант
+                                    - мутация
+                                    - светлый-окрас
+                                - name: Лютино
+                                  tags:
+                                    - питомец
+                                    - птица
+                                    - вариант
+                                    - мутация
+                                    - жёлтый-окрас
+                                - name: Хохлатый
+                                  tags:
+                                    - питомец
+                                    - птица
+                                    - вариант
+                                    - мутация
+                                    - хохлатый
+            - name: Рябкообразные
+              desc: Pterocliformes
+              tags:
+                - отряд
+            - name: Нандуобразные
+              desc: Rheiformes
+              tags:
+                - отряд
+            - name: Пингвинообразные
+              desc: Sphenisciformes
+              pic:
+                set: emoji
+                name: 🐧
+              tags:
+                - отряд
+                - морской
+                - ледниковый
+                - фокус
+            - name: Гуахарообразные
+              desc: Steatornithiformes
+              tags:
+                - отряд
+            - name: Совообразные
+              desc: Strigiformes
+              pic:
+                set: emoji
+                name: 🦉
+              tags:
+                - отряд
+                - хищный
+                - воздушный
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Страусообразные
+              desc: Struthioniformes
+              tags:
+                - отряд
+            - name: Suliformes
+              desc: Suliformes
+              tags:
+                - отряд
+            - name: Тинамуобразные
+              desc: Tinamiformes
+              tags:
+                - отряд
+            - name: Трогонообразные
+              desc: Trogoniformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9DDF4'
+        - name: Миноги
+          desc: Cephalaspidomorphi
+          tags:
+            - класс
+          style:
+            fill: '#B9D7EE'
+        - name: Chondrostei
+          desc: Chondrostei
+          tags:
+            - класс
+          children:
+            - name: Acipenseriformes
+              desc: Acipenseriformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9D7EE'
+        - name: Многопёры
+          desc: Cladistii
+          tags:
+            - класс
+          children:
+            - name: Многопёры
+              desc: Polypteriformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9D7EE'
+        - name: Целаканты
+          desc: Coelacanthi
+          tags:
+            - класс
+          children:
+            - name: Целаканты
+              desc: Coelacanthiformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9D7EE'
+        - name: Двоякодышащие рыбы
+          desc: Dipneusti
+          tags:
+            - класс
+          children:
+            - name: Ceratodontiformes
+              desc: Ceratodontiformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9D7EE'
+        - name: Пластиножаберные
+          desc: Elasmobranchii
+          tags:
+            - класс
+          children:
+            - name: Кархаринообразные
+              desc: Carcharhiniformes
+              pic:
+                set: emoji
+                name: 🦈
+              tags:
+                - отряд
+                - морской
+                - хищный
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Echinorhiniformes
+              desc: Echinorhiniformes
+              tags:
+                - отряд
+            - name: Разнозубые акулы
+              desc: Heterodontiformes
+              tags:
+                - отряд
+            - name: Многожаберные акулы
+              desc: Hexanchiformes
+              tags:
+                - отряд
+            - name: Ламнообразные
+              desc: Lamniformes
+              pic:
+                set: emoji
+                name: 🦈
+              tags:
+                - отряд
+                - морской
+                - хищный
+                - фокус
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Орлякообразные скаты
+              desc: Myliobatiformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - отряд
+                - морской
+            - name: Ковровые акулы
+              desc: Orectolobiformes
+              pic:
+                set: emoji
+                name: 🦈
+              tags:
+                - отряд
+                - морской
+            - name: Акулы-пилоносы
+              desc: Pristiophoriformes
+              tags:
+                - отряд
+            - name: Скаты
+              desc: Rajiformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - отряд
+                - морской
+            - name: Гитарные скаты
+              desc: Rhinopristiformes
+              tags:
+                - отряд
+            - name: Колючие акулы
+              desc: Squaliformes
+              tags:
+                - отряд
+            - name: Морские ангелы
+              desc: Squatiniformes
+              tags:
+                - отряд
+            - name: Электрические скаты
+              desc: Torpediniformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9D7EE'
+        - name: Цельноголовые
+          desc: Holocephali
+          tags:
+            - класс
+          children:
+            - name: Химерообразные
+              desc: Chimaeriformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9D7EE'
+        - name: Holostei
+          desc: Holostei
+          tags:
+            - класс
+          children:
+            - name: Амиеобразные
+              desc: Amiiformes
+              tags:
+                - отряд
+            - name: Панцирникообразные
+              desc: Lepisosteiformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9D7EE'
+        - name: Ланцетники
+          desc: Leptocardii
+          tags:
+            - класс
+        - name: Млекопитающие
+          desc: Mammalia
+          pic:
+            set: emoji
+            name: 🐾
+          tags:
+            - класс
+            - наземный
+          children:
+            - name: Афросорициды
+              desc: Afrosoricida
+              tags:
+                - отряд
+            - name: Парнокопытные
+              desc: Artiodactyla
+              tags:
+                - отряд
+            - name: Хищные
+              desc: Carnivora
+              pic:
+                set: emoji
+                name: 🐾
+              tags:
+                - отряд
+                - хищный
+                - фокус
+              children:
+                - name: Кошкообразные
+                  desc: Feliformia
+                  tags:
+                    - подотряд
+                    - хищный
+                  children:
+                    - name: Кошачьи
+                      desc: Felidae
+                      tags:
+                        - семейство
+                        - хищный
+                      children:
+                        - name: Кошки (Малые кошки)
+                          desc: Felis
+                          tags:
+                            - род
+                            - хищный
+                          children:
+                            - name: Кошка домашняя
+                              desc: Felis catus
+                              tags:
+                                - вид
+                                - домашний
+                              children:
+                                - name: Породы кошек
+                                  tags:
+                                    - демо-группа
+                                    - порода
+                                  children:
+                                    - name: Британская короткошерстная
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Мейн-кун
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Сфинкс (канадский)
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Сиамская
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Персидская
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Бенгальская
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Шотландская вислоухая (Скоттиш-фолд)
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Абиссинская
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Русская голубая
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Сибирская
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Бурма
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Рэгдолл
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Норвежская лесная
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Корниш-рекс
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Экзотическая короткошерстная
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Ориентальная
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Сейшельская
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Курильский бобтейл
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Манчкин
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Девон-рекс
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Невская маскарадная
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Саванна
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Бурмилла
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Сомали
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Пиксибоб
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Чаузи
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Бомбейская
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Шартрез
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Египетская мау
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Турецкая ангора
+                                      tags:
+                                        - порода
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              relation:
+                                line: dashed
+                                line_width: regular
+                          style:
+                            contour: solid
+                            contour_width: bold
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Гиены и земляные волки
+                      desc: Hyaenidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Мангустовые
+                      desc: Herpestidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Виверровые
+                      desc: Viverridae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Мадагаскарские хищники
+                      desc: Eupleridae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Нандиниевые
+                      desc: Nandiniidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Азиатские линзанги
+                      desc: Prionodontidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                  style:
+                    contour: solid
+                    contour_width: bold
+                - name: Псообразные
+                  desc: Caniformia
+                  tags:
+                    - подотряд
+                    - хищный
+                  children:
+                    - name: Псовые (Волчьи)
+                      desc: Canidae
+                      tags:
+                        - семейство
+                        - хищный
+                      children:
+                        - name: Волки
+                          desc: Canis
+                          tags:
+                            - род
+                            - хищный
+                          children:
+                            - name: Волк (Серый волк)
+                              desc: Canis lupus
+                              tags:
+                                - вид
+                                - хищный
+                              children:
+                                - name: Собака домашняя
+                                  desc: Canis lupus familiaris
+                                  tags:
+                                    - подвид
+                                    - домашний
+                                  children:
+                                    - name: Породы собак
+                                      tags:
+                                        - демо-группа
+                                        - порода
+                                      children:
+                                        - name: Немецкая овчарка
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - пастушья
+                                            - служебная
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Лабрадор-ретривер
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - охотничья
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Золотистый ретривер
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - охотничья
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Французский бульдог
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - компаньон
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Сибирский хаски
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - ездовая
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Пудель
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - компаньон
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Ротвейлер
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - служебная
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Бигль
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - охотничья
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Доберман
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - служебная
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Бордер-колли
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - пастушья
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Чихуахуа
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - компаньон
+                                            - маленькая
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Йоркширский терьер
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - охотничья
+                                            - маленькая
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Джек-рассел-терьер
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - охотничья
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Боксер
+                                          tags:
+                                            - порода
+                                            - домашний
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Такса
+                                          tags:
+                                            - порода
+                                            - домашний
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Немецкий дог
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - крупная
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Шарпей
+                                          tags:
+                                            - порода
+                                            - домашний
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Мопс
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - компаньон
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Вельш-корги пемброк
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - пастушья
+                                            - маленькая
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Кокер-спаниель (английский)
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - охотничья
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Сенбернар
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - крупная
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Английский бульдог
+                                          tags:
+                                            - порода
+                                            - домашний
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Померанский шпиц
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - маленькая
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Кане-корсо
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - служебная
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Ши-тцу
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - компаньон
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Ньюфаундленд
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - крупная
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Акита-ину
+                                          tags:
+                                            - порода
+                                            - домашний
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Далматин
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - охотничья
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Американский стаффордширский терьер
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - охотничья
+                                            - служебная
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                        - name: Мальтийская болонка (Мальтезе)
+                                          tags:
+                                            - порода
+                                            - домашний
+                                            - компаньон
+                                            - маленькая
+                                            - белая
+                                          relation:
+                                            line: dashed
+                                            line_width: regular
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              style:
+                                contour: solid
+                                contour_width: bold
+                          style:
+                            contour: solid
+                            contour_width: bold
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Медвежьи
+                      desc: Ursidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Куньи
+                      desc: Mustelidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Скунсовые
+                      desc: Mephitidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Енотовые
+                      desc: Procyonidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Пандовые
+                      desc: Ailuridae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Ушастые тюлени
+                      desc: Otariidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Настоящие тюлени
+                      desc: Phocidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                    - name: Моржовые
+                      desc: Odobenidae
+                      tags:
+                        - семейство
+                        - хищный
+                      style:
+                        contour: solid
+                        contour_width: bold
+                  style:
+                    contour: solid
+                    contour_width: bold
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Китообразные
+              desc: Cetacea
+              tags:
+                - отряд
+            - name: Рукокрылы
+              desc: Chiroptera
+              pic:
+                set: emoji
+                name: 🦇
+              tags:
+                - отряд
+                - воздушный
+            - name: Броненосцы
+              desc: Cingulata
+              tags:
+                - отряд
+            - name: Хищные сумчатые
+              desc: Dasyuromorphia
+              pic:
+                set: emoji
+                name: 🐾
+              tags:
+                - отряд
+                - австралия
+                - хищный
+              style:
+                contour: solid
+                contour_width: bold
+            - name: Шерстокрылы
+              desc: Dermoptera
+              tags:
+                - отряд
+            - name: Опоссумообразные
+              desc: Didelphimorphia
+              tags:
+                - отряд
+            - name: Двурезцовые сумчатые
+              desc: Diprotodontia
+              pic:
+                set: emoji
+                name: 🦘
+              tags:
+                - отряд
+                - австралия
+                - фокус
+            - name: Насекомоядные
+              desc: Eulipotyphla
+              pic:
+                set: emoji
+                name: 🦔
+              tags:
+                - отряд
+                - насекомоядный
+            - name: Даманы
+              desc: Hyracoidea
+              tags:
+                - отряд
+            - name: Зайцеобразные
+              desc: Lagomorpha
+              pic:
+                set: emoji
+                name: 🐇
+              tags:
+                - отряд
+                - травоядный
+              children:
+                - name: Зайцевые
+                  desc: Leporidae
+                  tags:
+                    - семейство
+                    - зайцеобразный
+                    - не-грызун
+                  children:
+                    - name: Дикие кролики
+                      desc: Oryctolagus
+                      tags:
+                        - род
+                        - зайцеобразный
+                        - не-грызун
+                      children:
+                        - name: Европейский кролик
+                          desc: Oryctolagus cuniculus
+                          tags:
+                            - вид
+                            - зайцеобразный
+                            - не-грызун
+                          children:
+                            - name: Домашний кролик
+                              tags:
+                                - домашняя-форма
+                                - питомец
+                                - домашний
+                                - зайцеобразный
+                                - не-грызун
+                              children:
+                                - name: Породы декоративных кроликов
+                                  tags:
+                                    - демо-группа
+                                    - питомец
+                                    - домашний
+                                    - искусственный-ранг
+                                    - не-грызун
+                                  children:
+                                    - name: Карликовый ангорский кролик
+                                      tags:
+                                        - питомец
+                                        - домашний
+                                        - порода
+                                        - длинношерстный
+                                        - не-грызун
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Цветной карлик
+                                      tags:
+                                        - питомец
+                                        - домашний
+                                        - порода
+                                        - маленький
+                                        - не-грызун
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                    - name: Рекс
+                                      tags:
+                                        - питомец
+                                        - домашний
+                                        - порода
+                                        - короткошерстный
+                                        - не-грызун
+                                      relation:
+                                        line: dashed
+                                        line_width: regular
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              relation:
+                                line: dashed
+                                line_width: regular
+              style:
+                contour: dashed
+                contour_width: regular
+            - name: Прыгунчики
+              desc: Macroscelidea
+              tags:
+                - отряд
+            - name: Микробиотерии
+              desc: Microbiotheria
+              tags:
+                - отряд
+            - name: Однопроходные (Яйцекладущие)
+              desc: Monotremata
+              pic:
+                set: emoji
+                name: 🦫
+              tags:
+                - отряд
+                - австралия
+            - name: Сумчатые кроты
+              desc: Notoryctemorphia
+              tags:
+                - отряд
+            - name: Малобугорчатые (Ценолестовые)
+              desc: Paucituberculata
+              tags:
+                - отряд
+            - name: Бандикутообразные
+              desc: Peramelemorphia
+              tags:
+                - отряд
+            - name: Непарнокопытные
+              desc: Perissodactyla
+              pic:
+                set: emoji
+                name: 🐴
+              tags:
+                - отряд
+                - травоядный
+                - фокус
+              children:
+                - name: Лошадиные
+                  desc: Equidae
+                  tags:
+                    - семейство
+                    - непарнокопытный
+                  children:
+                    - name: Лошади
+                      desc: Equus
+                      tags:
+                        - род
+                        - непарнокопытный
+                      children:
+                        - name: Лошадь домашняя
+                          desc: Equus caballus
+                          tags:
+                            - вид
+                            - домашний
+                            - лошадь
+                            - непарнокопытный
+                          children:
+                            - name: Породы лошадей
+                              tags:
+                                - демо-группа
+                                - домашний
+                                - лошадь
+                                - искусственный-ранг
+                              children:
+                                - name: Арабская чистокровная
+                                  tags:
+                                    - домашний
+                                    - лошадь
+                                    - порода
+                                    - верховая
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Орловский рысак
+                                  tags:
+                                    - домашний
+                                    - лошадь
+                                    - порода
+                                    - упряжная
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Шайр
+                                  tags:
+                                    - домашний
+                                    - лошадь
+                                    - порода
+                                    - крупная
+                                    - тяжеловоз
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              relation:
+                                line: dashed
+                                line_width: regular
+                          relation:
+                            line: dashed
+                            line_width: regular
+              style:
+                contour: dashed
+                contour_width: regular
+            - name: Ящеры (Панголины)
+              desc: Pholidota
+              tags:
+                - отряд
+            - name: Неполнозубые
+              desc: Pilosa
+              tags:
+                - отряд
+            - name: Приматы
+              desc: Primates
+              pic:
+                set: emoji
+                name: 🦍
+              tags:
+                - отряд
+                - всеядный
+                - фокус
+              style:
+                contour: double
+                contour_width: regular
+            - name: Хоботные
+              desc: Proboscidea
+              pic:
+                set: emoji
+                name: 🐘
+              tags:
+                - отряд
+                - травоядный
+                - фокус
+              style:
+                contour: dashed
+                contour_width: regular
+            - name: Грызуны
+              desc: Rodentia
+              pic:
+                set: emoji
+                name: 🐭
+              tags:
+                - отряд
+                - травоядный
+              children:
+                - name: Хомяковые
+                  desc: Cricetidae
+                  tags:
+                    - семейство
+                    - грызун
+                  children:
+                    - name: Средние хомяки
+                      desc: Mesocricetus
+                      tags:
+                        - род
+                        - грызун
+                      children:
+                        - name: Сирийский хомяк
+                          desc: Mesocricetus auratus
+                          tags:
+                            - вид
+                            - грызун
+                            - питомец
+                          children:
+                            - name: Варианты домашнего сирийского хомяка
+                              tags:
+                                - демо-группа
+                                - искусственный-ранг
+                                - питомец
+                                - домашний
+                              children:
+                                - name: Короткошёрстный сирийский хомяк
+                                  tags:
+                                    - искусственный-ранг
+                                    - питомец
+                                    - домашний
+                                    - вариант
+                                    - короткошерстный
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Длинношёрстный сирийский хомяк
+                                  tags:
+                                    - искусственный-ранг
+                                    - питомец
+                                    - домашний
+                                    - вариант
+                                    - длинношерстный
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Сатиновый сирийский хомяк
+                                  tags:
+                                    - искусственный-ранг
+                                    - питомец
+                                    - домашний
+                                    - вариант
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              relation:
+                                line: dashed
+                                line_width: regular
+                - name: Свинковые
+                  desc: Caviidae
+                  tags:
+                    - семейство
+                    - грызун
+                  children:
+                    - name: Морские свинки
+                      desc: Cavia
+                      tags:
+                        - род
+                        - грызун
+                      children:
+                        - name: Морская свинка домашняя
+                          desc: Cavia porcellus
+                          tags:
+                            - вид
+                            - питомец
+                            - домашний
+                            - грызун
+                          children:
+                            - name: Породы морских свинок
+                              tags:
+                                - демо-группа
+                                - питомец
+                                - домашний
+                                - искусственный-ранг
+                              children:
+                                - name: Перуанская морская свинка
+                                  tags:
+                                    - питомец
+                                    - домашний
+                                    - порода
+                                    - длинношерстная
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Скинни
+                                  tags:
+                                    - питомец
+                                    - домашний
+                                    - порода
+                                    - бесшерстная
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                                - name: Селф
+                                  tags:
+                                    - питомец
+                                    - домашний
+                                    - порода
+                                    - короткошерстная
+                                  relation:
+                                    line: dashed
+                                    line_width: regular
+                              relation:
+                                line: dashed
+                                line_width: regular
+                          relation:
+                            line: dashed
+                            line_width: regular
+              style:
+                contour: dashed
+                contour_width: regular
+            - name: Тупайи
+              desc: Scandentia
+              tags:
+                - отряд
+            - name: Сирены
+              desc: Sirenia
+              tags:
+                - отряд
+            - name: Трубкозубы
+              desc: Tubulidentata
+              tags:
+                - отряд
+          style:
+            fill: '#E8CFA4'
+        - name: Миксины
+          desc: Myxini
+          tags:
+            - класс
+          children:
+            - name: Миксины
+              desc: Myxiniformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9D7EE'
+        - name: Миноги
+          desc: Petromyzonti
+          tags:
+            - класс
+          children:
+            - name: Миногообразные
+              desc: Petromyzontiformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9D7EE'
+        - name: Пресмыкающиеся
+          desc: Reptilia
+          pic:
+            set: emoji
+            name: 🦎
+          tags:
+            - класс
+            - наземный
+          children:
+            - name: Крокодилы
+              desc: Crocodylia
+              tags:
+                - отряд
+              children:
+                - name: Настоящие крокодилы
+                  desc: Crocodylidae
+                  tags:
+                    - семейство
+                    - рептилия
+                    - пресноводный
+                    - хищный
+                  children:
+                    - name: Настоящие крокодилы
+                      desc: Crocodylus
+                      tags:
+                        - род
+                        - рептилия
+                        - пресноводный
+                        - хищный
+                      children:
+                        - name: Нильский крокодил
+                          desc: Crocodylus niloticus
+                          pic:
+                            set: emoji
+                            name: 🐊
+                          tags:
+                            - вид
+                            - рептилия
+                            - пресноводный
+                            - хищный
+                            - опасный
+                            - не-питомец
+                          style:
+                            contour: solid
+                            contour_width: bold
+                          relation:
+                            line: solid
+                            line_width: bold
+                            color: '#D64545'
+                      style:
+                        contour: solid
+                        contour_width: bold
+                  style:
+                    contour: solid
+                    contour_width: bold
+            - name: Чешуйчатые
+              desc: Squamata
+              pic:
+                set: emoji
+                name: 🐍
+              tags:
+                - отряд
+                - ядовитый
+                - наземный
+                - фокус
+              children:
+                - name: Агамовые
+                  desc: Agamidae
+                  tags:
+                    - семейство
+                    - рептилия
+                    - наземный
+                  children:
+                    - name: Бородатые агамы
+                      desc: Pogona
+                      tags:
+                        - род
+                        - рептилия
+                        - наземный
+                      children:
+                        - name: Бородатая агама
+                          desc: Pogona vitticeps
+                          pic:
+                            set: emoji
+                            name: 🦎
+                          tags:
+                            - вид
+                            - питомец
+                            - рептилия
+                            - наземный
+                            - пустынный
+                - name: Эублефаровые
+                  desc: Eublepharidae
+                  tags:
+                    - семейство
+                    - рептилия
+                    - наземный
+                  children:
+                    - name: Эублефары
+                      desc: Eublepharis
+                      tags:
+                        - род
+                        - рептилия
+                        - наземный
+                      children:
+                        - name: Леопардовый геккон
+                          desc: Eublepharis macularius
+                          pic:
+                            set: emoji
+                            name: 🦎
+                          tags:
+                            - вид
+                            - питомец
+                            - рептилия
+                            - наземный
+                            - ночной
+              relation:
+                line: solid
+                line_width: bold
+                color: '#D64545'
+            - name: Черепахи
+              desc: Testudines
+              pic:
+                set: emoji
+                name: 🐢
+              tags:
+                - отряд
+                - морской
+                - пресноводный
+                - наземный
+                - фокус
+              children:
+                - name: Пресноводные черепахи
+                  desc: Emydidae
+                  tags:
+                    - семейство
+                    - рептилия
+                    - пресноводный
+                  children:
+                    - name: Украшенные черепахи
+                      desc: Trachemys
+                      tags:
+                        - род
+                        - рептилия
+                        - пресноводный
+                      children:
+                        - name: Расписная черепаха
+                          desc: Trachemys scripta
+                          tags:
+                            - вид
+                            - рептилия
+                            - пресноводный
+                          children:
+                            - name: Красноухая черепаха
+                              desc: Trachemys scripta elegans
+                              pic:
+                                set: emoji
+                                name: 🐢
+                              tags:
+                                - подвид
+                                - питомец
+                                - рептилия
+                                - пресноводный
+                                - инвазивный
+          style:
+            fill: '#C7E5B2'
+        - name: Костистые рыбы
+          desc: Teleostei
+          tags:
+            - класс
+          children:
+            - name: Acanthuriformes
+              desc: Acanthuriformes
+              tags:
+                - отряд
+            - name: Acropomatiformes
+              desc: Acropomatiformes
+              tags:
+                - отряд
+            - name: Albuliformes
+              desc: Albuliformes
+              tags:
+                - отряд
+            - name: Alepocephaliformes
+              desc: Alepocephaliformes
+              tags:
+                - отряд
+            - name: Anabantiformes
+              desc: Anabantiformes
+              tags:
+                - отряд
+            - name: Угреобразные
+              desc: Anguilliformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - отряд
+                - морской
+                - пресноводный
+            - name: Кардиналовые рыбы
+              desc: Apogoniformes
+              tags:
+                - отряд
+            - name: Argentiniformes
+              desc: Argentiniformes
+              tags:
+                - отряд
+            - name: Ateleopodiformes
+              desc: Ateleopodiformes
+              tags:
+                - отряд
+            - name: Атеринообразные
+              desc: Atheriniformes
+              tags:
+                - отряд
+            - name: Aulopiformes
+              desc: Aulopiformes
+              tags:
+                - отряд
+            - name: Жабовидные рыбы
+              desc: Batrachoidiformes
+              tags:
+                - отряд
+            - name: Beloniformes
+              desc: Beloniformes
+              tags:
+                - отряд
+            - name: Beryciformes
+              desc: Beryciformes
+              tags:
+                - отряд
+            - name: Собачкообразные
+              desc: Blenniiformes
+              tags:
+                - отряд
+            - name: Callionymiformes
+              desc: Callionymiformes
+              tags:
+                - отряд
+            - name: Carangiformes
+              desc: Carangiformes
+              tags:
+                - отряд
+            - name: Centrarchiformes
+              desc: Centrarchiformes
+              tags:
+                - отряд
+            - name: Харацинообразные
+              desc: Characiformes
+              tags:
+                - отряд
+            - name: Цихлообразные
+              desc: Cichliformes
+              tags:
+                - отряд
+            - name: Clupeiformes
+              desc: Clupeiformes
+              tags:
+                - отряд
+            - name: Crossognathiformes
+              desc: Crossognathiformes
+              tags:
+                - отряд
+            - name: Карпообразные
+              desc: Cypriniformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - отряд
+                - пресноводный
+            - name: Карпозубообразные
+              desc: Cyprinodontiformes
+              tags:
+                - отряд
+            - name: Dactylopteriformes
+              desc: Dactylopteriformes
+              tags:
+                - отряд
+            - name: Elopiformes
+              desc: Elopiformes
+              tags:
+                - отряд
+            - name: Esociformes
+              desc: Esociformes
+              tags:
+                - отряд
+            - name: Gadiformes
+              desc: Gadiformes
+              tags:
+                - отряд
+            - name: Galaxiiformes
+              desc: Galaxiiformes
+              tags:
+                - отряд
+            - name: Присоскообразные
+              desc: Gobiesociformes
+              tags:
+                - отряд
+            - name: Бычкообразные
+              desc: Gobiiformes
+              tags:
+                - отряд
+            - name: Gonorynchiformes
+              desc: Gonorynchiformes
+              tags:
+                - отряд
+            - name: Гимнотообразные
+              desc: Gymnotiformes
+              tags:
+                - отряд
+            - name: Hiodontiformes
+              desc: Hiodontiformes
+              tags:
+                - отряд
+            - name: Holocentriformes
+              desc: Holocentriformes
+              tags:
+                - отряд
+            - name: Lampriformes
+              desc: Lampriformes
+              tags:
+                - отряд
+            - name: Lepidogalaxiiformes
+              desc: Lepidogalaxiiformes
+              tags:
+                - отряд
+            - name: Удильщикообразные
+              desc: Lophiiformes
+              tags:
+                - отряд
+            - name: Кефалеобразные
+              desc: Mugiliformes
+              tags:
+                - отряд
+            - name: Барабулеобразные
+              desc: Mulliformes
+              tags:
+                - отряд
+            - name: Myctophiformes
+              desc: Myctophiformes
+              tags:
+                - отряд
+            - name: Notacanthiformes
+              desc: Notacanthiformes
+              tags:
+                - отряд
+            - name: Ошибнеобразные
+              desc: Ophidiiformes
+              tags:
+                - отряд
+            - name: Osmeriformes
+              desc: Osmeriformes
+              tags:
+                - отряд
+            - name: Араванообразные
+              desc: Osteoglossiformes
+              tags:
+                - отряд
+            - name: Окунеобразные
+              desc: Perciformes
+              pic:
+                set: emoji
+                name: 🐠
+              tags:
+                - отряд
+                - морской
+                - пресноводный
+            - name: Percopsiformes
+              desc: Percopsiformes
+              tags:
+                - отряд
+            - name: Камбалообразные
+              desc: Pleuronectiformes
+              tags:
+                - отряд
+            - name: Polymixiiformes
+              desc: Polymixiiformes
+              tags:
+                - отряд
+            - name: Лососеобразные
+              desc: Salmoniformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - отряд
+                - пресноводный
+                - морской
+            - name: Scombriformes
+              desc: Scombriformes
+              tags:
+                - отряд
+            - name: Сомообразные
+              desc: Siluriformes
+              pic:
+                set: emoji
+                name: 🐟
+              tags:
+                - отряд
+                - пресноводный
+            - name: Stomiiformes
+              desc: Stomiiformes
+              tags:
+                - отряд
+            - name: Stylephoriformes
+              desc: Stylephoriformes
+              tags:
+                - отряд
+            - name: Synbranchiformes
+              desc: Synbranchiformes
+              tags:
+                - отряд
+            - name: Иглообразные
+              desc: Syngnathiformes
+              pic:
+                set: emoji
+                name: 🐡
+              tags:
+                - отряд
+                - морской
+            - name: Иглобрюхообразные
+              desc: Tetraodontiformes
+              pic:
+                set: emoji
+                name: 🐡
+              tags:
+                - отряд
+                - морской
+                - ядовитый
+              relation:
+                line: solid
+                line_width: bold
+                color: '#D64545'
+            - name: Trachichthyiformes
+              desc: Trachichthyiformes
+              tags:
+                - отряд
+            - name: Зееобразные
+              desc: Zeiformes
+              tags:
+                - отряд
+          style:
+            fill: '#B9D7EE'
+        - name: Thaliacea
+          desc: Thaliacea
+          tags:
+            - класс
+          children:
+            - name: Doliolida
+              desc: Doliolida
+              tags:
+                - отряд
+            - name: Pyrosomatida
+              desc: Pyrosomatida
+              tags:
+                - отряд
+            - name: Salpida
+              desc: Salpida
+              tags:
+                - отряд
+    - name: Стрекающие
+      desc: Cnidaria
+      pic:
+        set: emoji
+        name: 🪸
+      tags:
+        - тип
+        - морской
+      children:
+        - name: Коралловые полипы
+          desc: Anthozoa
+          pic:
+            set: emoji
+            name: 🪸
+          tags:
+            - класс
+            - морской
+          children:
+            - name: Актинии
+              desc: Actiniaria
+              pic:
+                set: emoji
+                name: 🪸
+              tags:
+                - отряд
+                - морской
+            - name: Чёрные кораллы
+              desc: Antipatharia
+              tags:
+                - отряд
+            - name: Трубчатые анемоны
+              desc: Ceriantharia
+              tags:
+                - отряд
+            - name: Corallimorpharia
+              desc: Corallimorpharia
+              tags:
+                - отряд
+            - name: Heliolitina
+              desc: Heliolitina
+              tags:
+                - отряд
+            - name: Мадрепоровые кораллы
+              desc: Scleractinia
+              pic:
+                set: emoji
+                name: 🪸
+              tags:
+                - отряд
+                - морской
+                - тропический
+            - name: Зоантарии
+              desc: Zoantharia
+              tags:
+                - отряд
+        - name: Кубомедузы
+          desc: Cubozoa
+          tags:
+            - класс
+          children:
+            - name: Кубомедузы
+              desc: Carybdeida
+              tags:
+                - отряд
+            - name: Кубомедузы
+              desc: Chirodropida
+              tags:
+                - отряд
+        - name: Гидроидные
+          desc: Hydrozoa
+          pic:
+            set: emoji
+            name: 🪼
+          tags:
+            - класс
+            - морской
+            - пресноводный
+          children:
+            - name: Actinulida
+              desc: Actinulida
+              tags:
+                - отряд
+            - name: Антоатекаты
+              desc: Anthoathecata
+              pic:
+                set: emoji
+                name: 🪼
+              tags:
+                - отряд
+                - морской
+                - пресноводный
+            - name: Lemniscaterina
+              desc: Lemniscaterina
+              tags:
+                - отряд
+            - name: Leptothecata
+              desc: Leptothecata
+              tags:
+                - отряд
+            - name: Пресноводные медузы
+              desc: Limnomedusae
+              tags:
+                - отряд
+            - name: Narcomedusae
+              desc: Narcomedusae
+              tags:
+                - отряд
+            - name: Сифонофоры
+              desc: Siphonophorae
+              tags:
+                - отряд
+            - name: Trachymedusae
+              desc: Trachymedusae
+              tags:
+                - отряд
+        - name: Миксоспоридии
+          desc: Myxozoa
+          tags:
+            - класс
+          children:
+            - name: Bivalvulida
+              desc: Bivalvulida
+              tags:
+                - отряд
+            - name: Malacovalvulida
+              desc: Malacovalvulida
+              tags:
+                - отряд
+            - name: Multivalvulida
+              desc: Multivalvulida
+              tags:
+                - отряд
+        - name: Восьмилучевые кораллы
+          desc: Octocorallia
+          tags:
+            - класс
+          children:
+            - name: Malacalcyonacea
+              desc: Malacalcyonacea
+              tags:
+                - отряд
+            - name: Scleralcyonacea
+              desc: Scleralcyonacea
+              tags:
+                - отряд
+        - name: Сцифоидные медузы
+          desc: Scyphozoa
+          pic:
+            set: emoji
+            name: 🪼
+          tags:
+            - класс
+            - морской
+          children:
+            - name: Коронные медузы
+              desc: Coronatae
+              tags:
+                - отряд
+            - name: Корнероты
+              desc: Rhizostomeae
+              tags:
+                - отряд
+            - name: Дискомедузы
+              desc: Semaeostomeae
+              pic:
+                set: emoji
+                name: 🪼
+              tags:
+                - отряд
+                - морской
+        - name: Ставромедузы
+          desc: Staurozoa
+          tags:
+            - класс
+          children:
+            - name: Conulatae
+              desc: Conulatae
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Стебельчатые медузы
+              desc: Stauromedusae
+              tags:
+                - отряд
+    - name: Гребневики
+      desc: Ctenophora
+      tags:
+        - тип
+      children:
+        - name: Бесщупальцевые гребневики
+          desc: Nuda
+          tags:
+            - класс
+          children:
+            - name: Beroida
+              desc: Beroida
+              tags:
+                - отряд
+        - name: Scleroctenophora
+          desc: Scleroctenophora
+          tags:
+            - класс
+        - name: Щупальцевые гребневики
+          desc: Tentaculata
+          tags:
+            - класс
+          children:
+            - name: Cambojiida
+              desc: Cambojiida
+              tags:
+                - отряд
+            - name: Поясковые гребневики
+              desc: Cestida
+              tags:
+                - отряд
+            - name: Cryptolobiferida
+              desc: Cryptolobiferida
+              tags:
+                - отряд
+            - name: Cydippida
+              desc: Cydippida
+              tags:
+                - отряд
+            - name: Ganeshida
+              desc: Ganeshida
+              tags:
+                - отряд
+            - name: Лопастные гребневики
+              desc: Lobata
+              tags:
+                - отряд
+            - name: Ползающие гребневики
+              desc: Platyctenida
+              tags:
+                - отряд
+            - name: Thalassocalycida
+              desc: Thalassocalycida
+              tags:
+                - отряд
+    - name: Циклиофоры
+      desc: Cycliophora
+      tags:
+        - тип
+      children:
+        - name: Эуциклиофоры
+          desc: Eucycliophora
+          tags:
+            - класс
+          children:
+            - name: Symbiida
+              desc: Symbiida
+              tags:
+                - отряд
+    - name: Dicyemida
+      desc: Dicyemida
+      tags:
+        - тип
+      children:
+        - name: Rhombozoa
+          desc: Rhombozoa
+          tags:
+            - класс
+          children:
+            - name: Heterocyemida
+              desc: Heterocyemida
+              tags:
+                - отряд
+    - name: Иглокожие
+      desc: Echinodermata
+      pic:
+        set: emoji
+        name: ⭐
+      tags:
+        - тип
+        - морской
+      children:
+        - name: Морские звезды
+          desc: Asteroidea
+          pic:
+            set: emoji
+            name: ⭐
+          tags:
+            - класс
+            - морской
+          children:
+            - name: Euaxosida
+              desc: Euaxosida
+              tags:
+                - отряд
+            - name: Форципулатиды
+              desc: Forcipulatida
+              pic:
+                set: emoji
+                name: ⭐
+              tags:
+                - отряд
+                - морской
+            - name: Hadrosida
+              desc: Hadrosida
+              tags:
+                - отряд
+            - name: Kermasida
+              desc: Kermasida
+              tags:
+                - отряд
+            - name: Notomyotida
+              desc: Notomyotida
+              tags:
+                - отряд
+            - name: Песчаные морские звёзды
+              desc: Paxillosida
+              tags:
+                - отряд
+            - name: Peripodida
+              desc: Peripodida
+              tags:
+                - отряд
+            - name: Игольчатые морские звёзды
+              desc: Spinulosida
+              tags:
+                - отряд
+            - name: Trichasteropsida
+              desc: Trichasteropsida
+              tags:
+                - отряд
+            - name: Velatida
+              desc: Velatida
+              tags:
+                - отряд
+        - name: Морские лилии
+          desc: Crinoidea
+          tags:
+            - класс
+          children:
+            - name: Бесстебельчатые морские лилии
+              desc: Comatulida
+              tags:
+                - отряд
+            - name: Cyrtocrinida
+              desc: Cyrtocrinida
+              tags:
+                - отряд
+            - name: Diplobathrida
+              desc: Diplobathrida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Encrinida
+              desc: Encrinida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Hyocrinida
+              desc: Hyocrinida
+              tags:
+                - отряд
+            - name: Стебельчатые морские лилии
+              desc: Isocrinida
+              tags:
+                - отряд
+            - name: Millericrinida
+              desc: Millericrinida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Roveacrinida
+              desc: Roveacrinida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+        - name: Морские ежи
+          desc: Echinoidea
+          pic:
+            set: emoji
+            name: 🦔
+          tags:
+            - класс
+            - морской
+          children:
+            - name: Arbacioida
+              desc: Arbacioida
+              tags:
+                - отряд
+            - name: Aspidodiadematoida
+              desc: Aspidodiadematoida
+              tags:
+                - отряд
+            - name: Bothriocidaroida
+              desc: Bothriocidaroida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Грифельные морские ежи
+              desc: Cidaroida
+              tags:
+                - отряд
+            - name: Песчаные доллары
+              desc: Clypeasteroida
+              tags:
+                - отряд
+            - name: Диадемовые морские ежи
+              desc: Diadematoida
+              tags:
+                - отряд
+            - name: Echinoneoida
+              desc: Echinoneoida
+              tags:
+                - отряд
+            - name: Echinothurioida
+              desc: Echinothurioida
+              tags:
+                - отряд
+            - name: Holasteroida
+              desc: Holasteroida
+              tags:
+                - отряд
+            - name: Holectypoida
+              desc: Holectypoida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Micropygoida
+              desc: Micropygoida
+              tags:
+                - отряд
+            - name: Pedinoida
+              desc: Pedinoida
+              tags:
+                - отряд
+            - name: Phymosomatoida
+              desc: Phymosomatoida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Salenioida
+              desc: Salenioida
+              tags:
+                - отряд
+            - name: Сердцевидные морские ежи
+              desc: Spatangoida
+              tags:
+                - отряд
+            - name: Stomopneustoida
+              desc: Stomopneustoida
+              tags:
+                - отряд
+            - name: Triadotiaroida
+              desc: Triadotiaroida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+        - name: Голотурии
+          desc: Holothuroidea
+          pic:
+            set: emoji
+            name: 🌊
+          tags:
+            - класс
+            - морской
+          children:
+            - name: Apodida
+              desc: Apodida
+              tags:
+                - отряд
+            - name: Arthrochirotida
+              desc: Arthrochirotida
+              tags:
+                - отряд
+            - name: Dendrochirotida
+              desc: Dendrochirotida
+              tags:
+                - отряд
+            - name: Elasipodida
+              desc: Elasipodida
+              tags:
+                - отряд
+            - name: Голотурии
+              desc: Holothuriida
+              pic:
+                set: emoji
+                name: 🌊
+              tags:
+                - отряд
+                - морской
+            - name: Molpadida
+              desc: Molpadida
+              tags:
+                - отряд
+            - name: Persiculida
+              desc: Persiculida
+              tags:
+                - отряд
+            - name: Synallactida
+              desc: Synallactida
+              tags:
+                - отряд
+        - name: Офиуры
+          desc: Ophiuroidea
+          tags:
+            - класс
+          children:
+            - name: Amphilepidida
+              desc: Amphilepidida
+              tags:
+                - отряд
+            - name: Корзинчатые звёзды
+              desc: Euryalida
+              tags:
+                - отряд
+            - name: Ophiacanthida
+              desc: Ophiacanthida
+              tags:
+                - отряд
+            - name: Ophioleucida
+              desc: Ophioleucida
+              tags:
+                - отряд
+            - name: Ophioscolecida
+              desc: Ophioscolecida
+              tags:
+                - отряд
+            - name: Ophiurida
+              desc: Ophiurida
+              tags:
+                - отряд
+    - name: Внутрипорошицевые
+      desc: Entoprocta
+      tags:
+        - тип
+      children:
+        - name: Coloniales
+          desc: Coloniales
+          tags:
+            - отряд
+        - name: Solitaria
+          desc: Solitaria
+          tags:
+            - отряд
+    - name: Брюхоресничные черви
+      desc: Gastrotricha
+      tags:
+        - тип
+      children:
+        - name: Chaetonotida
+          desc: Chaetonotida
+          tags:
+            - отряд
+        - name: Macrodasyida
+          desc: Macrodasyida
+          tags:
+            - отряд
+    - name: Гнатостомулиды
+      desc: Gnathostomulida
+      tags:
+        - тип
+      children:
+        - name: Bursovaginoidea
+          desc: Bursovaginoidea
+          tags:
+            - отряд
+        - name: Filospermoidea
+          desc: Filospermoidea
+          tags:
+            - отряд
+    - name: Полухордовые
+      desc: Hemichordata
+      tags:
+        - тип
+      children:
+        - name: Кишечнодышащие
+          desc: Enteropneusta
+          tags:
+            - класс
+        - name: Крыложаберные
+          desc: Pterobranchia
+          tags:
+            - класс
+          children:
+            - name: Rhabdopleurida
+              desc: Rhabdopleurida
+              tags:
+                - отряд
+    - name: Киноринхи
+      desc: Kinorhyncha
+      tags:
+        - тип
+      children:
+        - name: Алломалорагиды
+          desc: Allomalorhagida
+          tags:
+            - класс
+          children:
+            - name: Anomoirhaga
+              desc: Anomoirhaga
+              tags:
+                - отряд
+        - name: Циклорагиды
+          desc: Cyclorhagida
+          tags:
+            - класс
+          children:
+            - name: Echinorhagata
+              desc: Echinorhagata
+              tags:
+                - отряд
+            - name: Kentrorhagata
+              desc: Kentrorhagata
+              tags:
+                - отряд
+            - name: Xenosomata
+              desc: Xenosomata
+              tags:
+                - отряд
+    - name: Лорициферы
+      desc: Loricifera
+      tags:
+        - тип
+      children:
+        - name: Nanaloricida
+          desc: Nanaloricida
+          tags:
+            - отряд
+    - name: Микрогнатозои
+      desc: Micrognathozoa
+      tags:
+        - тип
+      children:
+        - name: Micrognathozoa
+          desc: Micrognathozoa
+          tags:
+            - класс
+          children:
+            - name: Limnognathida
+              desc: Limnognathida
+              tags:
+                - отряд
+    - name: Моллюски
+      desc: Mollusca
+      pic:
+        set: emoji
+        name: 🐙
+      tags:
+        - тип
+      children:
+        - name: Двустворчатые
+          desc: Bivalvia
+          pic:
+            set: emoji
+            name: 🦪
+          tags:
+            - класс
+            - морской
+            - пресноводный
+          children:
+            - name: Actinodontida
+              desc: Actinodontida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Adapedonta
+              desc: Adapedonta
+              tags:
+                - отряд
+            - name: Afghanodesmatida
+              desc: Afghanodesmatida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Арки
+              desc: Arcida
+              tags:
+                - отряд
+            - name: Сердцевидки
+              desc: Cardiida
+              tags:
+                - отряд
+            - name: Colpomyida
+              desc: Colpomyida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Cyrtodontida
+              desc: Cyrtodontida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Fordillida
+              desc: Fordillida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Камнеточцы
+              desc: Gastrochaenida
+              tags:
+                - отряд
+            - name: Hippuritida
+              desc: Hippuritida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Лимы
+              desc: Limida
+              tags:
+                - отряд
+            - name: Lucinida
+              desc: Lucinida
+              tags:
+                - отряд
+            - name: Lunulacardiida
+              desc: Lunulacardiida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Manzanellida
+              desc: Manzanellida
+              tags:
+                - отряд
+            - name: Megalodontida
+              desc: Megalodontida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Modiomorphida
+              desc: Modiomorphida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Myalinida
+              desc: Myalinida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Мидии
+              desc: Mytilida
+              pic:
+                set: emoji
+                name: 🦪
+              tags:
+                - отряд
+                - морской
+            - name: Nuculanida
+              desc: Nuculanida
+              tags:
+                - отряд
+            - name: Nuculida
+              desc: Nuculida
+              tags:
+                - отряд
+            - name: Устрицы
+              desc: Ostreida
+              pic:
+                set: emoji
+                name: 🦪
+              tags:
+                - отряд
+                - морской
+            - name: Морские гребешки
+              desc: Pectinida
+              pic:
+                set: emoji
+                name: 🦪
+              tags:
+                - отряд
+                - морской
+            - name: Praecardiida
+              desc: Praecardiida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Solemyida
+              desc: Solemyida
+              tags:
+                - отряд
+            - name: Trigoniida
+              desc: Trigoniida
+              tags:
+                - отряд
+            - name: Венерки
+              desc: Venerida
+              pic:
+                set: emoji
+                name: 🦪
+              tags:
+                - отряд
+                - морской
+                - пресноводный
+        - name: Ямкохвостые
+          desc: Caudofoveata
+          tags:
+            - класс
+          children:
+            - name: Chaetodermatida
+              desc: Chaetodermatida
+              tags:
+                - отряд
+        - name: Головоногие
+          desc: Cephalopoda
+          pic:
+            set: emoji
+            name: 🐙
+          tags:
+            - класс
+            - морской
+          children:
+            - name: Actinoceratida
+              desc: Actinoceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Аммониты
+              desc: Ammonoidea
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Ascoceratida
+              desc: Ascoceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Aulacoceratida
+              desc: Aulacoceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Bactritida
+              desc: Bactritida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Bathyteuthida
+              desc: Bathyteuthida
+              tags:
+                - отряд
+            - name: Белемниты
+              desc: Belemnitida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Bisonoceratida
+              desc: Bisonoceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Cyrtocerinida
+              desc: Cyrtocerinida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Diplobelida
+              desc: Diplobelida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Discosorida
+              desc: Discosorida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Dissidoceratida
+              desc: Dissidoceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Ellesmeroceratida
+              desc: Ellesmeroceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Endoceratida
+              desc: Endoceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Idiosepida
+              desc: Idiosepida
+              tags:
+                - отряд
+            - name: Lituitida
+              desc: Lituitida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Mixosiphonata
+              desc: Mixosiphonata
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Myopsida
+              desc: Myopsida
+              tags:
+                - отряд
+            - name: Наутилусы
+              desc: Nautilida
+              pic:
+                set: emoji
+                name: 🐚
+              tags:
+                - отряд
+                - морской
+            - name: Oegopsida
+              desc: Oegopsida
+              tags:
+                - отряд
+            - name: Oncoceratida
+              desc: Oncoceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Orthoceratida
+              desc: Orthoceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Plectronoceratida
+              desc: Plectronoceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Pseudorthoceratida
+              desc: Pseudorthoceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Rioceratida
+              desc: Rioceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Каракатицы
+              desc: Sepiida
+              tags:
+                - отряд
+            - name: Карликовые кальмары
+              desc: Sepiolida
+              tags:
+                - отряд
+            - name: Tarphyceratida
+              desc: Tarphyceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Vampyromorpha
+              desc: Vampyromorpha
+              tags:
+                - отряд
+            - name: Yanheceratida
+              desc: Yanheceratida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+        - name: Cricoconarida
+          desc: Cricoconarida
+          tags:
+            - класс
+            - вымерший
+          children:
+            - name: Tentaculitida
+              desc: Tentaculitida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+          hidden: true
+        - name: Брюхоногие
+          desc: Gastropoda
+          pic:
+            set: emoji
+            name: 🐌
+          tags:
+            - класс
+            - морской
+            - наземный
+            - пресноводный
+          children:
+            - name: Морские зайцы
+              desc: Aplysiida
+              tags:
+                - отряд
+            - name: Architaenioglossa
+              desc: Architaenioglossa
+              tags:
+                - отряд
+            - name: Cocculinida
+              desc: Cocculinida
+              tags:
+                - отряд
+            - name: Cycloneritida
+              desc: Cycloneritida
+              tags:
+                - отряд
+            - name: Cyrtoneritida
+              desc: Cyrtoneritida
+              tags:
+                - отряд
+            - name: Lepetellida
+              desc: Lepetellida
+              tags:
+                - отряд
+            - name: Литториниморфы
+              desc: Littorinimorpha
+              pic:
+                set: emoji
+                name: 🐚
+              tags:
+                - отряд
+                - морской
+                - пресноводный
+            - name: Nacellida
+              desc: Nacellida
+              tags:
+                - отряд
+            - name: Neogastropoda
+              desc: Neogastropoda
+              tags:
+                - отряд
+            - name: Neomphalida
+              desc: Neomphalida
+              tags:
+                - отряд
+            - name: Голожаберные моллюски
+              desc: Nudibranchia
+              pic:
+                set: emoji
+                name: 🐌
+              tags:
+                - отряд
+                - морской
+            - name: Морские блюдечки
+              desc: Patellida
+              tags:
+                - отряд
+            - name: Бокожаберные моллюски
+              desc: Pleurobranchida
+              tags:
+                - отряд
+            - name: Pleurotomariida
+              desc: Pleurotomariida
+              tags:
+                - отряд
+            - name: Крылоногие моллюски
+              desc: Pteropoda
+              tags:
+                - отряд
+            - name: Runcinida
+              desc: Runcinida
+              tags:
+                - отряд
+            - name: Seguenziida
+              desc: Seguenziida
+              tags:
+                - отряд
+            - name: Ложные морские блюдечки
+              desc: Siphonariida
+              tags:
+                - отряд
+            - name: Systellommatophora
+              desc: Systellommatophora
+              tags:
+                - отряд
+            - name: Tectibranchiata
+              desc: Tectibranchiata
+              tags:
+                - отряд
+            - name: Trochida
+              desc: Trochida
+              tags:
+                - отряд
+            - name: Umbraculida
+              desc: Umbraculida
+              tags:
+                - отряд
+        - name: Моноплакофоры
+          desc: Monoplacophora
+          tags:
+            - класс
+          children:
+            - name: Cyrtonellida
+              desc: Cyrtonellida
+              tags:
+                - отряд
+            - name: Kirengellida
+              desc: Kirengellida
+              tags:
+                - отряд
+            - name: Neopilinida
+              desc: Neopilinida
+              tags:
+                - отряд
+            - name: Sinuitopsida
+              desc: Sinuitopsida
+              tags:
+                - отряд
+            - name: Tryblidiida
+              desc: Tryblidiida
+              tags:
+                - отряд
+        - name: Панцирные
+          desc: Polyplacophora
+          tags:
+            - класс
+          children:
+            - name: Callochitonida
+              desc: Callochitonida
+              tags:
+                - отряд
+            - name: Chelodida
+              desc: Chelodida
+              tags:
+                - отряд
+            - name: Хитоны
+              desc: Chitonida
+              tags:
+                - отряд
+            - name: Lepidopleurida
+              desc: Lepidopleurida
+              tags:
+                - отряд
+            - name: Septemchitonida
+              desc: Septemchitonida
+              tags:
+                - отряд
+        - name: Rostroconchia
+          desc: Rostroconchia
+          tags:
+            - класс
+            - вымерший
+          children:
+            - name: Conocardiida
+              desc: Conocardiida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Ribeirioida
+              desc: Ribeirioida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+            - name: Tuarangiida
+              desc: Tuarangiida
+              tags:
+                - отряд
+                - вымерший
+              hidden: true
+          hidden: true
+        - name: Лопатоногие
+          desc: Scaphopoda
+          tags:
+            - класс
+          children:
+            - name: Морские зубы
+              desc: Dentaliida
+              tags:
+                - отряд
+            - name: Морские зубы
+              desc: Gadilida
+              tags:
+                - отряд
+        - name: Бороздчатобрюхие
+          desc: Solenogastres
+          tags:
+            - класс
+      style:
+        fill: '#D8C5EB'
+    - name: Круглые черви
+      desc: Nematoda
+      tags:
+        - тип
+      children:
+        - name: Хромадории
+          desc: Chromadorea
+          tags:
+            - класс
+          children:
+            - name: Araeolaimida
+              desc: Araeolaimida
+              tags:
+                - отряд
+            - name: Chromadorida
+              desc: Chromadorida
+              tags:
+                - отряд
+            - name: Desmodorida
+              desc: Desmodorida
+              tags:
+                - отряд
+            - name: Desmoscolecida
+              desc: Desmoscolecida
+              tags:
+                - отряд
+            - name: Monhysterida
+              desc: Monhysterida
+              tags:
+                - отряд
+            - name: Plectida
+              desc: Plectida
+              tags:
+                - отряд
+            - name: Rhabditida
+              desc: Rhabditida
+              tags:
+                - отряд
+        - name: Эноплии
+          desc: Enoplea
+          tags:
+            - класс
+          children:
+            - name: Dioctophymatida
+              desc: Dioctophymatida
+              tags:
+                - отряд
+            - name: Dorylaimida
+              desc: Dorylaimida
+              tags:
+                - отряд
+            - name: Enoplida
+              desc: Enoplida
+              tags:
+                - отряд
+            - name: Isolaimida
+              desc: Isolaimida
+              tags:
+                - отряд
+            - name: Marimermithida
+              desc: Marimermithida
+              tags:
+                - отряд
+            - name: Mermithida
+              desc: Mermithida
+              tags:
+                - отряд
+            - name: Mononchida
+              desc: Mononchida
+              tags:
+                - отряд
+            - name: Muspiceida
+              desc: Muspiceida
+              tags:
+                - отряд
+            - name: Trichinellida
+              desc: Trichinellida
+              tags:
+                - отряд
+            - name: Triplonchida
+              desc: Triplonchida
+              tags:
+                - отряд
+    - name: Волосатики
+      desc: Nematomorpha
+      tags:
+        - тип
+      children:
+        - name: Гордиоидеи
+          desc: Gordioida
+          tags:
+            - класс
+          children:
+            - name: Волосатики
+              desc: Gordioidea
+              tags:
+                - отряд
+        - name: Нектонематоидеи
+          desc: Nectonematoida
+          tags:
+            - класс
+          children:
+            - name: Nectonematoidea
+              desc: Nectonematoidea
+              tags:
+                - отряд
+    - name: Немертины
+      desc: Nemertea
+      tags:
+        - тип
+      children:
+        - name: Arhynchocoela
+          desc: Arhynchocoela
+          tags:
+            - класс
+          children:
+            - name: Arhynchonemertea
+              desc: Arhynchonemertea
+              tags:
+                - отряд
+        - name: Вооруженные немертины
+          desc: Hoplonemertea
+          tags:
+            - класс
+          children:
+            - name: Monostilifera
+              desc: Monostilifera
+              tags:
+                - отряд
+            - name: Polystilifera
+              desc: Polystilifera
+              tags:
+                - отряд
+        - name: Древние немертины
+          desc: Palaeonemertea
+          tags:
+            - класс
+          children:
+            - name: Archinemertea
+              desc: Archinemertea
+              tags:
+                - отряд
+            - name: Carinomiformes
+              desc: Carinomiformes
+              tags:
+                - отряд
+            - name: Tubulaniformes
+              desc: Tubulaniformes
+              tags:
+                - отряд
+        - name: Пилидиофоры
+          desc: Pilidiophora
+          tags:
+            - класс
+          children:
+            - name: Heteronemertea
+              desc: Heteronemertea
+              tags:
+                - отряд
+            - name: Hubrechtiiformes
+              desc: Hubrechtiiformes
+              tags:
+                - отряд
+    - name: Онихофоры
+      desc: Onychophora
+      tags:
+        - тип
+    - name: Orthonectida
+      desc: Orthonectida
+      tags:
+        - тип
+    - name: Форониды
+      desc: Phoronida
+      tags:
+        - тип
+    - name: Пластинчатые
+      desc: Placozoa
+      tags:
+        - тип
+      children:
+        - name: Полиплакотомии
+          desc: Polyplacotomia
+          tags:
+            - класс
+          children:
+            - name: Polyplacotomea
+              desc: Polyplacotomea
+              tags:
+                - отряд
+        - name: Униплакотомии
+          desc: Uniplacotomia
+          tags:
+            - класс
+          children:
+            - name: Cladhexea
+              desc: Cladhexea
+              tags:
+                - отряд
+            - name: Hoilungea
+              desc: Hoilungea
+              tags:
+                - отряд
+            - name: Trichoplacea
+              desc: Trichoplacea
+              tags:
+                - отряд
+    - name: Плоские черви
+      desc: Platyhelminthes
+      tags:
+        - тип
+      children:
+        - name: Bothrioplanida
+          desc: Bothrioplanida
+          tags:
+            - отряд
+        - name: Ленточные черви
+          desc: Cestoda
+          tags:
+            - класс
+          children:
+            - name: Amphilinidea
+              desc: Amphilinidea
+              tags:
+                - отряд
+            - name: Bothriocephalidea
+              desc: Bothriocephalidea
+              tags:
+                - отряд
+            - name: Caryophyllidea
+              desc: Caryophyllidea
+              tags:
+                - отряд
+            - name: Cathetocephalidea
+              desc: Cathetocephalidea
+              tags:
+                - отряд
+            - name: Cyclophyllidea
+              desc: Cyclophyllidea
+              tags:
+                - отряд
+            - name: Diphyllidea
+              desc: Diphyllidea
+              tags:
+                - отряд
+            - name: Лентецы
+              desc: Diphyllobothriidea
+              tags:
+                - отряд
+            - name: Gyrocotylidea
+              desc: Gyrocotylidea
+              tags:
+                - отряд
+            - name: Haplobothriidea
+              desc: Haplobothriidea
+              tags:
+                - отряд
+            - name: Lecanicephalidea
+              desc: Lecanicephalidea
+              tags:
+                - отряд
+            - name: Litobothriidea
+              desc: Litobothriidea
+              tags:
+                - отряд
+            - name: Nippotaeniidea
+              desc: Nippotaeniidea
+              tags:
+                - отряд
+            - name: Onchoproteocephalidea
+              desc: Onchoproteocephalidea
+              tags:
+                - отряд
+            - name: Phyllobothriidea
+              desc: Phyllobothriidea
+              tags:
+                - отряд
+            - name: Rhinebothriidea
+              desc: Rhinebothriidea
+              tags:
+                - отряд
+            - name: Spathebothriidea
+              desc: Spathebothriidea
+              tags:
+                - отряд
+            - name: Tetrabothriidea
+              desc: Tetrabothriidea
+              tags:
+                - отряд
+            - name: Tetraphyllidea
+              desc: Tetraphyllidea
+              tags:
+                - отряд
+            - name: Trypanorhyncha
+              desc: Trypanorhyncha
+              tags:
+                - отряд
+        - name: Dolichomicrostomida
+          desc: Dolichomicrostomida
+          tags:
+            - отряд
+        - name: Моногенеи
+          desc: Monogenea
+          tags:
+            - класс
+          children:
+            - name: Capsalidea
+              desc: Capsalidea
+              tags:
+                - отряд
+            - name: Chimaericolidea
+              desc: Chimaericolidea
+              tags:
+                - отряд
+            - name: Dactylogyridea
+              desc: Dactylogyridea
+              tags:
+                - отряд
+            - name: Diclybothriidea
+              desc: Diclybothriidea
+              tags:
+                - отряд
+            - name: Gyrodactylidea
+              desc: Gyrodactylidea
+              tags:
+                - отряд
+            - name: Lagarocotylidea
+              desc: Lagarocotylidea
+              tags:
+                - отряд
+            - name: Mazocraeidea
+              desc: Mazocraeidea
+              tags:
+                - отряд
+            - name: Monocotylidea
+              desc: Monocotylidea
+              tags:
+                - отряд
+            - name: Montchadskyellidea
+              desc: Montchadskyellidea
+              tags:
+                - отряд
+            - name: Polystomatidea
+              desc: Polystomatidea
+              tags:
+                - отряд
+        - name: Fecampiida
+          desc: Fecampiida
+          tags:
+            - отряд
+        - name: Сосальщики
+          desc: Trematoda
+          tags:
+            - класс
+          children:
+            - name: Aspidogastrida
+              desc: Aspidogastrida
+              tags:
+                - отряд
+            - name: Diplostomida
+              desc: Diplostomida
+              tags:
+                - отряд
+            - name: Plagiorchiida
+              desc: Plagiorchiida
+              tags:
+                - отряд
+            - name: Stichocotylida
+              desc: Stichocotylida
+              tags:
+                - отряд
+        - name: Gnosonesimida
+          desc: Gnosonesimida
+          tags:
+            - отряд
+        - name: Polycladida
+          desc: Polycladida
+          tags:
+            - отряд
+        - name: Prolecithophora
+          desc: Prolecithophora
+          tags:
+            - отряд
+        - name: Proplicastomata
+          desc: Proplicastomata
+          tags:
+            - отряд
+        - name: Prorhynchida
+          desc: Prorhynchida
+          tags:
+            - отряд
+        - name: Proseriata
+          desc: Proseriata
+          tags:
+            - отряд
+        - name: Rhabdocoela
+          desc: Rhabdocoela
+          tags:
+            - отряд
+        - name: Трёхветвистые планарии
+          desc: Tricladida
+          tags:
+            - отряд
+    - name: Губки
+      desc: Porifera
+      pic:
+        set: emoji
+        name: 🧽
+      tags:
+        - тип
+        - морской
+      children:
+        - name: Известковые губки
+          desc: Calcarea
+          pic:
+            set: emoji
+            name: 🧽
+          tags:
+            - класс
+            - морской
+          children:
+            - name: Baeriida
+              desc: Baeriida
+              tags:
+                - отряд
+            - name: Клатриниды
+              desc: Clathrinida
+              pic:
+                set: emoji
+                name: 🧽
+              tags:
+                - отряд
+                - морской
+            - name: Leucosolenida
+              desc: Leucosolenida
+              tags:
+                - отряд
+            - name: Lithonida
+              desc: Lithonida
+              tags:
+                - отряд
+        - name: Обыкновенные губки
+          desc: Demospongiae
+          pic:
+            set: emoji
+            name: 🧽
+          tags:
+            - класс
+            - морской
+          children:
+            - name: Agelasida
+              desc: Agelasida
+              tags:
+                - отряд
+            - name: Axinellida
+              desc: Axinellida
+              tags:
+                - отряд
+            - name: Biemnida
+              desc: Biemnida
+              tags:
+                - отряд
+            - name: Bubarida
+              desc: Bubarida
+              tags:
+                - отряд
+            - name: Chondrillida
+              desc: Chondrillida
+              tags:
+                - отряд
+            - name: Chondrosiida
+              desc: Chondrosiida
+              tags:
+                - отряд
+            - name: Clionaida
+              desc: Clionaida
+              tags:
+                - отряд
+            - name: Dendroceratida
+              desc: Dendroceratida
+              tags:
+                - отряд
+            - name: Desmacellida
+              desc: Desmacellida
+              tags:
+                - отряд
+            - name: Dictyoceratida
+              desc: Dictyoceratida
+              tags:
+                - отряд
+            - name: Haplosclerida
+              desc: Haplosclerida
+              tags:
+                - отряд
+            - name: Merliida
+              desc: Merliida
+              tags:
+                - отряд
+            - name: Poecilosclerida
+              desc: Poecilosclerida
+              tags:
+                - отряд
+            - name: Polymastiida
+              desc: Polymastiida
+              tags:
+                - отряд
+            - name: Scopalinida
+              desc: Scopalinida
+              tags:
+                - отряд
+            - name: Sphaerocladina
+              desc: Sphaerocladina
+              tags:
+                - отряд
+            - name: Пресноводные губки
+              desc: Spongillida
+              tags:
+                - отряд
+            - name: Suberitida
+              desc: Suberitida
+              tags:
+                - отряд
+            - name: Tethyida
+              desc: Tethyida
+              tags:
+                - отряд
+            - name: Тетрактиниды
+              desc: Tetractinellida
+              pic:
+                set: emoji
+                name: 🧽
+              tags:
+                - отряд
+                - морской
+            - name: Trachycladida
+              desc: Trachycladida
+              tags:
+                - отряд
+            - name: Verongiida
+              desc: Verongiida
+              tags:
+                - отряд
+            - name: Vilesida
+              desc: Vilesida
+              tags:
+                - отряд
+        - name: Стеклянные губки
+          desc: Hexactinellida
+          pic:
+            set: emoji
+            name: 🧽
+          tags:
+            - класс
+            - морской
+          children:
+            - name: Amphidiscosida
+              desc: Amphidiscosida
+              tags:
+                - отряд
+            - name: Lychniscosida
+              desc: Lychniscosida
+              tags:
+                - отряд
+            - name: Лиссациносиды
+              desc: Lyssacinosida
+              pic:
+                set: emoji
+                name: 🧽
+              tags:
+                - отряд
+                - морской
+            - name: Sceptrulophora
+              desc: Sceptrulophora
+              tags:
+                - отряд
+        - name: Гомосклероморфиды
+          desc: Homoscleromorpha
+          tags:
+            - класс
+          children:
+            - name: Homosclerophorida
+              desc: Homosclerophorida
+              tags:
+                - отряд
+    - name: Приапулиды
+      desc: Priapulida
+      tags:
+        - тип
+      children:
+        - name: Halicryptomorpha
+          desc: Halicryptomorpha
+          tags:
+            - отряд
+        - name: Meiopriapulomorpha
+          desc: Meiopriapulomorpha
+          tags:
+            - отряд
+        - name: Priapulomorpha
+          desc: Priapulomorpha
+          tags:
+            - отряд
+        - name: Seticoronaria
+          desc: Seticoronaria
+          tags:
+            - отряд
+    - name: Коловратки
+      desc: Rotifera
+      tags:
+        - тип
+      children:
+        - name: Коловратки
+          desc: Eurotatoria
+          tags:
+            - класс
+          children:
+            - name: Adinetida
+              desc: Adinetida
+              tags:
+                - отряд
+            - name: Collothecaceae
+              desc: Collothecaceae
+              tags:
+                - отряд
+            - name: Flosculariaceae
+              desc: Flosculariaceae
+              tags:
+                - отряд
+            - name: Philodinavida
+              desc: Philodinavida
+              tags:
+                - отряд
+            - name: Philodinida
+              desc: Philodinida
+              tags:
+                - отряд
+            - name: Ploima
+              desc: Ploima
+              tags:
+                - отряд
+        - name: Pararotatoria
+          desc: Pararotatoria
+          tags:
+            - класс
+          children:
+            - name: Seisonacea
+              desc: Seisonacea
+              tags:
+                - отряд
+    - name: Сипункулиды
+      desc: Sipuncula
+      tags:
+        - тип
+      children:
+        - name: Phascolosomatidea
+          desc: Phascolosomatidea
+          tags:
+            - класс
+          children:
+            - name: Aspidosiphoniformes
+              desc: Aspidosiphoniformes
+              tags:
+                - отряд
+            - name: Phascolosomatiformes
+              desc: Phascolosomatiformes
+              tags:
+                - отряд
+        - name: Sipunculidea
+          desc: Sipunculidea
+          tags:
+            - класс
+          children:
+            - name: Golfingiiformes
+              desc: Golfingiiformes
+              tags:
+                - отряд
+            - name: Sipunculiformes
+              desc: Sipunculiformes
+              tags:
+                - отряд
+    - name: Тихоходки
+      desc: Tardigrada
+      tags:
+        - тип
+      children:
+        - name: Настоящие тихоходки
+          desc: Eutardigrada
+          tags:
+            - класс
+          children:
+            - name: Apochela
+              desc: Apochela
+              tags:
+                - отряд
+            - name: Parachela
+              desc: Parachela
+              tags:
+                - отряд
+        - name: Гетеротихоходки
+          desc: Heterotardigrada
+          tags:
+            - класс
+          children:
+            - name: Arthrotardigrada
+              desc: Arthrotardigrada
+              tags:
+                - отряд
+            - name: Echiniscoidea
+              desc: Echiniscoidea
+              tags:
+                - отряд
+        - name: Мезотихоходки
+          desc: Mesotardigrada
+          tags:
+            - класс
+          children:
+            - name: Thermozodia
+              desc: Thermozodia
+              tags:
+                - отряд
+    - name: Ксенацеломорфы
+      desc: Xenacoelomorpha
+      tags:
+        - тип
+      children:
+        - name: Acoela
+          desc: Acoela
+          tags:
+            - отряд
+        - name: Nemertodermatida
+          desc: Nemertodermatida
+          tags:
+            - отряд

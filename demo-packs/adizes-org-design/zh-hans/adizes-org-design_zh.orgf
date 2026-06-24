@@ -1,0 +1,885 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: Mavuno 零售与分销有限公司 — 目标持有成本模型
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal——在法律允许的最大范围内，ORGFORMAT DemoPacks
+    已放弃对本材料享有的著作权及相关权利。可自由复制、修改、传播和使用本材料，包括商业用途；无需另行许可或强制署名。CC0 不授予对 ORGFORMAT、ORGF 名称、标志或其他品牌资产的权利。
+  license: CC0-1.0
+  created: '2026-06-14'
+  updated: '2026-06-24'
+
+model:
+  name: Mavuno 零售与分销 — 目标模型
+  desc: >-
+    创始人主导型中小企业第一阶段专业化后的目标运营模型；以月度持有成本视角展示更清晰的责任归属、正式管控点和更低的影子成本。
+
+    本 ORGFORMAT DemoPacks 材料仅用于说明 ORGF
+    的功能。除非另有明确说明，模型中的名称、机构、产品、项目、角色、数据和情景均为示意性或虚构内容；与真实对象的任何相似之处均不表示关联、认可或来源关系。疑问或权利主张请联系：support@orgformat.com。
+  value_label: 月度持有成本
+  value_unit: 美元/月
+
+root:
+  name: 首席执行官 / 业主
+  desc: 业主角色重新聚焦于战略、关键伙伴关系、资本配置和绩效复盘，而不是日常救火。
+  value: 4200
+  pic:
+    set: lucide
+    name: user-round-check
+  tags:
+  - 治理
+  - 业主
+  - 战略控制
+  - 责任人清晰
+  - E
+  - I
+  branch_orientation: horizontal
+  style:
+    fill: '#E6FAF8'
+    contour: solid
+    contour_width: bold
+  children:
+  - name: 总经理 / 首席运营官
+    desc: 对日常绩效、协调和执行纪律负责的单一运营责任人。
+    value: 2500
+    pic:
+      set: lucide
+      name: badge-check
+    tags:
+    - 管理层
+    - 运营模型
+    - 责任人清晰
+    - 创始人瓶颈已消除
+    - P
+    - A
+    branch_orientation: vertical
+    style:
+      fill: '#DDF7F4'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#0F766E'
+    children:
+    - name: 商业负责人
+      desc: 通过统一的商业计划，对 B2B、零售和数字渠道的收入交付负责。
+      value: 1600
+      pic:
+        set: lucide
+        name: chart-no-axes-combined
+      tags:
+      - 商业
+      - 面向收入
+      - 责任人清晰
+      - 可扩展
+      - P
+      - E
+      branch_orientation: vertical
+      style:
+        fill: '#EAF2FF'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#2563EB'
+      children:
+      - name: B2B 销售主管
+        desc: 管理外勤销售节奏、路线纪律和经销覆盖，不再绕过运营。
+        value: 1150
+        pic:
+          set: lucide
+          name: route
+        tags:
+        - 销售
+        - 外勤队伍
+        - 管理
+        - 流程责任人
+        - P
+        style:
+          fill: '#DBEAFE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#2563EB'
+        children:
+        - name: 外勤销售代表
+          desc: 四名聚焦的销售代表，通过计划路线覆盖亭店、小商店和本地批发商。
+          value: 3000
+          pic:
+            set: lucide
+            name: users
+          tags:
+          - 销售
+          - 外勤队伍
+          - 面向收入
+          - 计划覆盖
+          - P
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+        - name: 重点客户与经销商经理
+          desc: 在约定的毛利和库存分配规则下管理重点客户和经销商关系。
+          value: 950
+          pic:
+            set: lucide
+            name: handshake
+          tags:
+          - 销售
+          - 重点客户
+          - 经销商管理
+          - 责任人清晰
+          - P
+          - I
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+      - name: 销售运营与 CRM 协调员
+        desc: 负责订单规范、CRM 更新、价格表和销售报告；取代分散的人工跟进。
+        value: 700
+        pic:
+          set: lucide
+          name: list-checks
+        tags:
+        - 销售运营
+        - CRM
+        - 管控点
+        - 合并角色
+        - A
+        style:
+          fill: '#FFFFFF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#39424E'
+      - name: 客户服务专员
+        desc: 两名专员通过统一队列管理 WhatsApp、电话订单、配送问题和客户替代品。
+        value: 900
+        pic:
+          set: lucide
+          name: messages-square
+        tags:
+        - 客户服务
+        - 数字销售
+        - 正式化角色
+        - I
+        style:
+          fill: '#EEF2FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#4F46E5'
+      - name: 零售运营主管
+        desc: 将零售网点作为商业职能内的一个渠道管理，而不是创始人单独管理的分支。
+        value: 850
+        pic:
+          set: lucide
+          name: store
+        tags:
+        - 零售
+        - 渠道责任人
+        - 责任人清晰
+        - P
+        style:
+          fill: '#EAF8ED'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#2E7D32'
+        children:
+        - name: 门店收银员
+          desc: 三名收银员按照每日结账规则工作，并由财务控制对账。
+          value: 1350
+          pic:
+            set: lucide
+            name: receipt
+          tags:
+          - 零售
+          - 现金处理
+          - 每日结账
+          - A
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+        - name: 门店助理
+          desc: 三名助理负责货架工作、客户协助和补货纪律。
+          value: 1200
+          pic:
+            set: lucide
+            name: shopping-basket
+          tags:
+          - 零售
+          - 面向客户
+          - 计划覆盖
+          - P
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+        - name: 陈列协调员
+          desc: 一个正式陈列角色，取代零售和外勤销售中重复的陈列工作。
+          value: 550
+          pic:
+            set: lucide
+            name: shelves
+          tags:
+          - 陈列
+          - 合并角色
+          - 重复角色已移除
+          - P
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+    - name: 供应链负责人
+      desc: 将采购、库存、仓储和配送作为统一的供应链骨干进行负责。
+      value: 1500
+      pic:
+        set: lucide
+        name: warehouse
+      tags:
+      - 运营
+      - 供应链
+      - 责任人清晰
+      - 缺货风险降低
+      - P
+      - A
+      branch_orientation: vertical
+      style:
+        fill: '#ECFDF3'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#027A48'
+      children:
+      - name: 采购与库存计划员
+        desc: 利用需求和库存数据规划补货、采购时点和供应商跟进。
+        value: 850
+        pic:
+          set: lucide
+          name: clipboard-check
+        tags:
+        - 采购
+        - 库存计划
+        - 流程责任人
+        - 管控点
+        - A
+        style:
+          fill: '#F0F7EF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#027A48'
+        children:
+        - name: 采购订单文员
+          desc: 按照计划规则处理采购订单和供应商文件，而不是临时等待创始人审批。
+          value: 450
+          pic:
+            set: lucide
+            name: file-check-2
+          tags:
+          - 采购行政
+          - 正式化角色
+          - A
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+      - name: 仓库主管
+        desc: 基于商业订单和采购计划的清晰交接，负责仓库执行。
+        value: 850
+        pic:
+          set: lucide
+          name: boxes
+        tags:
+        - 仓储
+        - 管理
+        - 责任人清晰
+        - P
+        style:
+          fill: '#D1FAE5'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#027A48'
+        children:
+        - name: 拣货与打包员
+          desc: 三人按照标准作业覆盖拣货、打包和发运准备。
+          value: 1500
+          pic:
+            set: lucide
+            name: package-check
+          tags:
+          - 仓储
+          - 履约
+          - 标准作业
+          - P
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+        - name: 库存控制员
+          desc: 负责循环盘点、差异跟进和库存准确性；取代电子表格绕行方案。
+          value: 650
+          pic:
+            set: lucide
+            name: clipboard-list
+          tags:
+          - 库存控制
+          - 管控点
+          - 自动化缺口降低
+          - A
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+      - name: 调度与路线协调员
+        desc: 通过统一调度队列规划配送路线、车辆使用和零售补货窗口。
+        value: 550
+        pic:
+          set: lucide
+          name: map
+        tags:
+        - 物流
+        - 路线计划
+        - 流程责任人
+        - A
+        style:
+          fill: '#FFFFFF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#39424E'
+        children:
+        - name: 司机
+          desc: 三名配送司机按计划路线分配，而不是根据创始人升级事项临时安排。
+          value: 2250
+          pic:
+            set: lucide
+            name: truck
+          tags:
+          - 物流
+          - 配送
+          - 计划覆盖
+          - P
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+    - name: 人事与行政协调员
+      desc: 面向人员记录、薪资协调和办公室行政的轻量共享服务角色。
+      value: 700
+      pic:
+        set: lucide
+        name: users-round
+      tags:
+      - 人事行政
+      - 共享服务
+      - 正式化角色
+      - I
+      - A
+      branch_orientation: vertical
+      style:
+        fill: '#F3E8FF'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7E22CE'
+      children:
+      - name: 人力资源与薪资行政
+        desc: 维护合同、考勤、薪资输入和基础人事记录。
+        value: 450
+        pic:
+          set: lucide
+          name: calendar-days
+        tags:
+        - 人力资源行政
+        - 薪资
+        - 管控点
+        - I
+        - A
+        style:
+          fill: '#FFFFFF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#39424E'
+      - name: 办公室行政专员
+        desc: 处理许可证、办公用品、设施需求和行政例行事务。
+        value: 400
+        pic:
+          set: lucide
+          name: building-2
+        tags:
+        - 行政
+        - 共享服务
+        - I
+        style:
+          fill: '#FFFFFF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#39424E'
+  - name: 财务与管控负责人
+    desc: 向 CEO 汇报的独立管控点；负责会计、现金管控和管理报告。
+    value: 1450
+    pic:
+      set: lucide
+      name: calculator
+    tags:
+    - 财务
+    - 管控点
+    - 现金管控
+    - 管理报告
+    - A
+    branch_orientation: vertical
+    style:
+      fill: '#FFF1DF'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#D9822B'
+    children:
+    - name: 会计
+      desc: 负责法定会计、月末关账和财务纪律。
+      value: 950
+      pic:
+        set: lucide
+        name: notebook-tabs
+      tags:
+      - 会计
+      - 财务
+      - 责任人清晰
+      - A
+      style:
+        fill: '#FFEDD5'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#D9822B'
+      children:
+      - name: 记账员
+        desc: 在更清晰的职责边界下录入发票、收据和供应商文件。
+        value: 450
+        pic:
+          set: lucide
+          name: file-text
+        tags:
+        - 会计
+        - 单据
+        - 标准作业
+        - A
+        style:
+          fill: '#FFFFFF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#39424E'
+    - name: 现金管控专员
+      desc: 控制每日现金结账、收款跟进，以及零售现金与会计之间的职责分离。
+      value: 650
+      pic:
+        set: lucide
+        name: wallet-cards
+      tags:
+      - 现金管控
+      - 管控点
+      - 风险降低
+      - A
+      style:
+        fill: '#FFFFFF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#39424E'
+    - name: 管理报告分析师
+      desc: 为毛利、库存、现金和渠道绩效仪表板提供兼职报告能力。
+      value: 450
+      pic:
+        set: lucide
+        name: chart-column
+      tags:
+      - 管理报告
+      - 绩效节奏
+      - 决策支持
+      - A
+      - E
+      style:
+        fill: '#FFFFFF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#39424E'
+  - name: 外部服务与顾问
+    desc: 显性的外部服务成本层；支持通过合同可见化，而不是隐藏在非正式角色中。
+    value: 0
+    pic:
+      set: lucide
+      name: cable
+    tags:
+    - 外部服务
+    - 外包
+    - 可见成本
+    - A
+    branch_orientation: vertical
+    style:
+      fill: '#F3F4F6'
+      contour: double
+      contour_width: bold
+    relation:
+      line: dotted
+      line_width: regular
+      color: '#6B7280'
+    children:
+    - name: 托管 IT 支持伙伴
+      desc: 覆盖 POS、笔记本电脑、网络连接和基础系统管理的月度支持合同。
+      value: 600
+      pic:
+        set: lucide
+        name: monitor-cog
+      tags:
+      - IT支持
+      - 外包
+      - 自动化缺口降低
+      - A
+      style:
+        fill: '#E5E7EB'
+        contour: double
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+    - name: 税务与法律顾问
+      desc: 轻量外部顾问费，用于税务申报、雇佣模板和供应商合同问题。
+      value: 350
+      pic:
+        set: lucide
+        name: scale
+      tags:
+      - 法律
+      - 税务
+      - 外包
+      - 风险降低
+      - A
+      style:
+        fill: '#E5E7EB'
+        contour: double
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+  - name: 已移除的历史影子成本
+    desc: 隐藏的对比层：现状中的角色和绕行做法在目标模型中被移除、吸收或正式化；目标状态月度持有成本为零。
+    hidden: true
+    value: 0
+    pic:
+      set: lucide
+      name: eye-off
+    tags:
+    - 已移除角色
+    - 影子成本已移除
+    - 转型差异
+    - 无直接成本
+    branch_orientation: vertical
+    style:
+      fill: '#F4F4F5'
+      contour: dotted
+      contour_width: bold
+    relation:
+      line: dotted
+      line_width: regular
+      color: '#9CA3AF'
+    children:
+    - name: 家族业务协调员 — 已移除
+      desc: 非正式协调被吸收到 COO 管理节奏和清晰的角色责任中。
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: user-x
+      tags:
+      - 已移除角色
+      - 非正式角色已移除
+      - 创始人瓶颈已消除
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: 应收账款催收文员 — 已吸收
+      desc: 收款跟进转入现金管控专员和客户服务流程。
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: phone-off
+      tags:
+      - 已吸收角色
+      - 现金管控风险降低
+      - 影子成本已移除
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: 供应商催交员 — 已吸收
+      desc: 临时供应商催交被采购计划和采购订单纪律取代。
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: timer-off
+      tags:
+      - 已吸收角色
+      - 采购管控
+      - 影子成本已移除
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: 备用金保管人 — 已取消
+      desc: 通过现金政策和财务控制对账，取消备用金绕行做法。
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: wallet-minimal
+      tags:
+      - 已取消角色
+      - 现金管控风险降低
+      - 影子成本已移除
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: 电子表格维护员 — 已取消
+      desc: 人工核对由报告责任和更清晰的源系统纪律取代。
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: table-2
+      tags:
+      - 已取消角色
+      - 人工流程减少
+      - 自动化缺口降低
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: 非正式促销协调员 — 已吸收
+      desc: 本地促销并入商业计划和陈列协调。
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: megaphone-off
+      tags:
+      - 已吸收角色
+      - 重复角色已移除
+      - 影子成本已移除
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: 创始人救火 — 已移除
+      desc: 升级事项通过有责任归属的经理和服务队列处理，而不是流向业主。
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: flame-kindling
+      tags:
+      - 创始人瓶颈已消除
+      - 关键人风险降低
+      - 无直接成本
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'

@@ -1,0 +1,1512 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: British Royal Line — educational ORGF model
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — to the extent possible under law, ORGFORMAT DemoPacks has waived copyright and
+    related or neighbouring rights to this material. You may copy, modify, distribute, and use it, including
+    commercially, without permission or required attribution. CC0 does not grant rights to the ORGFORMAT or
+    ORGF names, logos, or other brand assets.
+  license: CC0-1.0
+  created: '2026-06-18'
+  updated: '2026-06-24'
+
+model:
+  name: British Royal Line — family tree
+  desc: >-
+    Educational family tree: rulers, side blood branches, and key titles.
+
+    This ORGFORMAT DemoPacks material is provided to illustrate ORGF capabilities. Unless expressly stated
+    otherwise, names, organisations, products, projects, roles, data, and scenarios in the model are
+    illustrative or fictional; any resemblance to actual entities does not imply affiliation, endorsement,
+    or origin. Questions or claims: support@orgformat.com.
+  value_label: Reign length
+  value_unit: years
+
+root:
+  name: British Royal Line
+  desc: Family tree of British monarchs from James I to Charles III
+  value: 0
+  pic:
+    set: lucide
+    name: crown
+  tags:
+  - dynasty
+  - Britain
+  - education
+  - family-tree
+  - monarchs
+  branch_orientation: horizontal
+  style:
+    fill: '#FFF7ED'
+    contour: solid
+    contour_width: bold
+  children:
+  - name: James I
+    desc: 1566–1625
+    value: 22
+    pic:
+      set: lucide
+      name: crown
+    tags:
+    - deceased
+    - king
+    - ruled
+    - Stuart
+    - Union-of-Crowns-1603
+    branch_orientation: horizontal
+    style:
+      fill: '#E0E7FF'
+      contour: solid
+      contour_width: regular
+    relation:
+      line: solid
+      line_width: bold
+      color: '#3730A3'
+    children:
+    - name: Charles I
+      desc: 1600–1649
+      value: 24
+      pic:
+        set: lucide
+        name: crown
+      tags:
+      - deceased
+      - king
+      - ruled
+      - Stuart
+      - Civil-War
+      - executed-1649
+      branch_orientation: horizontal
+      style:
+        fill: '#E0E7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: bold
+        color: '#3730A3'
+      children:
+      - name: Mary, Princess Royal
+        desc: 1631–1660
+        value: 0
+        pic:
+          set: lucide
+          name: shield-user
+        tags:
+        - deceased
+        - princess
+        - did-not-rule
+        - Stuart
+        - mother-of-William-III
+        branch_orientation: vertical
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#3730A3'
+        children:
+        - name: William III
+          desc: 1650–1702
+          value: 13
+          pic:
+            set: lucide
+            name: crown
+          tags:
+          - deceased
+          - king
+          - ruled
+          - Orange-Stuart
+          - Glorious-Revolution
+          - joint-reign
+          style:
+            fill: '#EDE9FE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: bold
+            color: '#6D28D9'
+      - name: Charles II
+        desc: 1630–1685
+        value: 25
+        pic:
+          set: lucide
+          name: crown
+        tags:
+        - deceased
+        - king
+        - ruled
+        - Stuart
+        - Restoration-1660
+        style:
+          fill: '#E0E7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#3730A3'
+      - name: James II
+        desc: 1633–1701
+        value: 3
+        pic:
+          set: lucide
+          name: crown
+        tags:
+        - deceased
+        - king
+        - ruled
+        - Stuart
+        - Glorious-Revolution
+        branch_orientation: horizontal
+        style:
+          fill: '#E0E7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#3730A3'
+        children:
+        - name: Mary II
+          desc: 1662–1694
+          value: 5
+          pic:
+            set: lucide
+            name: crown
+          tags:
+          - deceased
+          - queen
+          - ruled
+          - Stuart
+          - Glorious-Revolution
+          - joint-reign
+          style:
+            fill: '#E0E7FF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#3730A3'
+        - name: Anne
+          desc: 1665–1714
+          value: 12
+          pic:
+            set: lucide
+            name: crown
+          tags:
+          - deceased
+          - queen
+          - ruled
+          - Stuart
+          - Act-of-Union-1707
+          style:
+            fill: '#E0E7FF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#3730A3'
+        - name: James Francis Edward Stuart
+          desc: 1688–1766
+          value: 0
+          pic:
+            set: lucide
+            name: shield-user
+          tags:
+          - deceased
+          - prince
+          - claimant
+          - did-not-rule
+          - Stuart
+          - Jacobite
+          style:
+            fill: '#EEF2FF'
+            contour: dashed
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#3730A3'
+      - name: Henry, Duke of Gloucester
+        desc: 1640–1660
+        value: 0
+        pic:
+          set: lucide
+          name: shield-user
+        tags:
+        - deceased
+        - duke
+        - did-not-rule
+        - Stuart
+        style:
+          fill: '#EEF2FF'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#3730A3'
+      - name: Henrietta Anne
+        desc: 1644–1670
+        value: 0
+        pic:
+          set: lucide
+          name: shield-user
+        tags:
+        - deceased
+        - princess
+        - did-not-rule
+        - Stuart
+        - Duchess-Orleans
+        style:
+          fill: '#EEF2FF'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#3730A3'
+    - name: Elizabeth Stuart
+      desc: 1596–1662
+      value: 0
+      pic:
+        set: lucide
+        name: shield-user
+      tags:
+      - deceased
+      - princess
+      - did-not-rule
+      - Stuart
+      - grandmother-of-Sophia
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: bold
+        color: '#3730A3'
+      children:
+      - name: Sophia of Hanover
+        desc: 1630–1714
+        value: 0
+        pic:
+          set: lucide
+          name: shield-user
+        tags:
+        - deceased
+        - electress
+        - did-not-rule
+        - Hanover
+        - succession-link
+        branch_orientation: vertical
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: bold
+          color: '#166534'
+        children:
+        - name: George I
+          desc: 1660–1727
+          value: 13
+          pic:
+            set: lucide
+            name: crown
+          tags:
+          - deceased
+          - king
+          - ruled
+          - Hanover
+          - Act-of-Settlement
+          branch_orientation: vertical
+          style:
+            fill: '#DCFCE7'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: bold
+            color: '#166534'
+          children:
+          - name: George II
+            desc: 1683–1760
+            value: 33
+            pic:
+              set: lucide
+              name: crown
+            tags:
+            - deceased
+            - king
+            - ruled
+            - Hanover
+            - last-battle-1743
+            branch_orientation: horizontal
+            style:
+              fill: '#DCFCE7'
+              contour: solid
+              contour_width: regular
+            relation:
+              line: solid
+              line_width: regular
+              color: '#166534'
+            children:
+            - name: Frederick, Prince of Wales
+              desc: 1707–1751
+              value: 0
+              pic:
+                set: lucide
+                name: shield-user
+              tags:
+              - deceased
+              - prince
+              - did-not-rule
+              - Hanover
+              - father-of-George-III
+              branch_orientation: vertical
+              style:
+                fill: '#FEF3C7'
+                contour: dashed
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: '#166534'
+              children:
+              - name: George III
+                desc: 1738–1820
+                value: 60
+                pic:
+                  set: lucide
+                  name: crown
+                tags:
+                - deceased
+                - king
+                - ruled
+                - Hanover
+                - American-Revolution
+                - Act-of-Union-1801
+                branch_orientation: horizontal
+                style:
+                  fill: '#DCFCE7'
+                  contour: solid
+                  contour_width: regular
+                relation:
+                  line: solid
+                  line_width: bold
+                  color: '#166534'
+                children:
+                - name: George IV
+                  desc: 1762–1830
+                  value: 10
+                  pic:
+                    set: lucide
+                    name: crown
+                  tags:
+                  - deceased
+                  - king
+                  - ruled
+                  - Hanover
+                  - Regency-era
+                  - regent-1811
+                  style:
+                    fill: '#DCFCE7'
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: '#166534'
+                  branch_orientation: horizontal
+                  children:
+                  - name: Princess Charlotte of Wales
+                    desc: 1796–1817
+                    value: 0
+                    pic:
+                      set: lucide
+                      name: shield-user
+                    tags:
+                    - deceased
+                    - princess
+                    - heir
+                    - did-not-rule
+                    - Hanover
+                    style:
+                      fill: '#F0FDF4'
+                      contour: dashed
+                      contour_width: regular
+                    relation:
+                      line: solid
+                      line_width: regular
+                      color: '#166534'
+                - name: William IV
+                  desc: 1765–1837
+                  value: 7
+                  pic:
+                    set: lucide
+                    name: crown
+                  tags:
+                  - deceased
+                  - king
+                  - ruled
+                  - Hanover
+                  - Reform-Act-1832
+                  style:
+                    fill: '#DCFCE7'
+                    contour: solid
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: '#166534'
+                - name: Edward, Duke of Kent
+                  desc: 1767–1820
+                  value: 0
+                  pic:
+                    set: lucide
+                    name: shield-user
+                  tags:
+                  - deceased
+                  - duke
+                  - did-not-rule
+                  - Hanover
+                  - father-of-Victoria
+                  branch_orientation: vertical
+                  style:
+                    fill: '#FEF3C7'
+                    contour: dashed
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: bold
+                    color: '#166534'
+                  children:
+                  - name: Victoria
+                    desc: 1819–1901
+                    value: 64
+                    pic:
+                      set: lucide
+                      name: crown
+                    tags:
+                    - deceased
+                    - queen
+                    - ruled
+                    - Hanover
+                    - Victorian-era
+                    - empire
+                    branch_orientation: horizontal
+                    style:
+                      fill: '#DCFCE7'
+                      contour: solid
+                      contour_width: regular
+                    relation:
+                      line: solid
+                      line_width: bold
+                      color: '#166534'
+                    children:
+                    - name: Edward VII
+                      desc: 1841–1910
+                      value: 9
+                      pic:
+                        set: lucide
+                        name: crown
+                      tags:
+                      - deceased
+                      - king
+                      - ruled
+                      - Saxe-Coburg
+                      - Edwardian-era
+                      branch_orientation: horizontal
+                      style:
+                        fill: '#E0F2FE'
+                        contour: solid
+                        contour_width: regular
+                      relation:
+                        line: solid
+                        line_width: bold
+                        color: '#0369A1'
+                      children:
+                      - name: George V
+                        desc: 1865–1936
+                        value: 26
+                        pic:
+                          set: lucide
+                          name: crown
+                        tags:
+                        - deceased
+                        - king
+                        - ruled
+                        - Windsor
+                        - house-renamed-1917
+                        branch_orientation: horizontal
+                        style:
+                          fill: '#DBEAFE'
+                          contour: solid
+                          contour_width: regular
+                        relation:
+                          line: solid
+                          line_width: bold
+                          color: '#1D4ED8'
+                        children:
+                        - name: Edward VIII
+                          desc: 1894–1972
+                          value: 1
+                          pic:
+                            set: lucide
+                            name: crown
+                          tags:
+                          - deceased
+                          - king
+                          - ruled
+                          - Windsor
+                          - abdication-1936
+                          style:
+                            fill: '#DBEAFE'
+                            contour: solid
+                            contour_width: regular
+                          relation:
+                            line: solid
+                            line_width: regular
+                            color: '#1D4ED8'
+                        - name: George VI
+                          desc: 1895–1952
+                          value: 16
+                          pic:
+                            set: lucide
+                            name: crown
+                          tags:
+                          - deceased
+                          - king
+                          - ruled
+                          - Windsor
+                          - wartime-king
+                          - abdication-crisis
+                          branch_orientation: horizontal
+                          style:
+                            fill: '#DBEAFE'
+                            contour: solid
+                            contour_width: regular
+                          relation:
+                            line: solid
+                            line_width: regular
+                            color: '#1D4ED8'
+                          children:
+                          - name: Elizabeth II
+                            desc: 1926–2022
+                            value: 70
+                            pic:
+                              set: lucide
+                              name: crown
+                            tags:
+                            - deceased
+                            - queen
+                            - ruled
+                            - Windsor
+                            - longest-reign
+                            - postwar-era
+                            branch_orientation: horizontal
+                            style:
+                              fill: '#DBEAFE'
+                              contour: solid
+                              contour_width: regular
+                            relation:
+                              line: solid
+                              line_width: bold
+                              color: '#1D4ED8'
+                            children:
+                            - name: Charles III
+                              desc: 1948–
+                              value: 4
+                              pic:
+                                set: lucide
+                                name: crown
+                              tags:
+                              - alive
+                              - king
+                              - ruled
+                              - Windsor
+                              - current-monarch
+                              - succession-2022
+                              branch_orientation: horizontal
+                              style:
+                                fill: '#CCFBF1'
+                                contour: solid
+                                contour_width: regular
+                              relation:
+                                line: solid
+                                line_width: bold
+                                color: '#1D4ED8'
+                              children:
+                              - name: William, Prince of Wales
+                                desc: 1982–
+                                value: 0
+                                pic:
+                                  set: lucide
+                                  name: user-round
+                                tags:
+                                - alive
+                                - prince
+                                - heir
+                                - Windsor
+                                - succession-line
+                                branch_orientation: horizontal
+                                style:
+                                  fill: '#F8FAFC'
+                                  contour: dashed
+                                  contour_width: regular
+                                relation:
+                                  line: solid
+                                  line_width: regular
+                                  color: '#1D4ED8'
+                                children:
+                                - name: Prince George of Wales
+                                  desc: 2013–
+                                  value: 0
+                                  pic:
+                                    set: lucide
+                                    name: user-round
+                                  tags:
+                                  - alive
+                                  - prince
+                                  - heir
+                                  - Windsor
+                                  - succession-line
+                                  style:
+                                    fill: '#F8FAFC'
+                                    contour: dashed
+                                    contour_width: regular
+                                  relation:
+                                    line: solid
+                                    line_width: regular
+                                    color: '#1D4ED8'
+                                - name: Princess Charlotte of Wales
+                                  desc: 2015–
+                                  value: 0
+                                  pic:
+                                    set: lucide
+                                    name: user-round
+                                  tags:
+                                  - alive
+                                  - princess
+                                  - heir
+                                  - Windsor
+                                  - succession-line
+                                  style:
+                                    fill: '#F8FAFC'
+                                    contour: dashed
+                                    contour_width: regular
+                                  relation:
+                                    line: solid
+                                    line_width: regular
+                                    color: '#1D4ED8'
+                                - name: Prince Louis of Wales
+                                  desc: 2018–
+                                  value: 0
+                                  pic:
+                                    set: lucide
+                                    name: user-round
+                                  tags:
+                                  - alive
+                                  - prince
+                                  - heir
+                                  - Windsor
+                                  - succession-line
+                                  style:
+                                    fill: '#F8FAFC'
+                                    contour: dashed
+                                    contour_width: regular
+                                  relation:
+                                    line: solid
+                                    line_width: regular
+                                    color: '#1D4ED8'
+                              - name: Prince Harry, Duke of Sussex
+                                desc: 1984–
+                                value: 0
+                                pic:
+                                  set: lucide
+                                  name: user-round
+                                tags:
+                                - alive
+                                - prince
+                                - duke
+                                - succession-line
+                                - Windsor
+                                style:
+                                  fill: '#ECFEFF'
+                                  contour: dashed
+                                  contour_width: regular
+                                relation:
+                                  line: solid
+                                  line_width: regular
+                                  color: '#0F766E'
+                                branch_orientation: horizontal
+                                children:
+                                - name: Prince Archie of Sussex
+                                  desc: 2019–
+                                  value: 0
+                                  pic:
+                                    set: lucide
+                                    name: user-round
+                                  tags:
+                                  - alive
+                                  - prince
+                                  - succession-line
+                                  - Windsor
+                                  style:
+                                    fill: '#ECFEFF'
+                                    contour: dashed
+                                    contour_width: regular
+                                  relation:
+                                    line: solid
+                                    line_width: regular
+                                    color: '#0F766E'
+                                - name: Princess Lilibet of Sussex
+                                  desc: 2021–
+                                  value: 0
+                                  pic:
+                                    set: lucide
+                                    name: user-round
+                                  tags:
+                                  - alive
+                                  - princess
+                                  - succession-line
+                                  - Windsor
+                                  style:
+                                    fill: '#ECFEFF'
+                                    contour: dashed
+                                    contour_width: regular
+                                  relation:
+                                    line: solid
+                                    line_width: regular
+                                    color: '#0F766E'
+                            - name: Anne, Princess Royal
+                              desc: 1950–
+                              value: 0
+                              pic:
+                                set: lucide
+                                name: user-round
+                              tags:
+                              - alive
+                              - princess
+                              - Princess-Royal
+                              - did-not-rule
+                              - Windsor
+                              style:
+                                fill: '#ECFEFF'
+                                contour: dashed
+                                contour_width: regular
+                              relation:
+                                line: solid
+                                line_width: regular
+                                color: '#0F766E'
+                            - name: Andrew Mountbatten-Windsor
+                              desc: 1960–
+                              value: 0
+                              pic:
+                                set: lucide
+                                name: user-round
+                              tags:
+                              - alive
+                              - succession-line
+                              - did-not-rule
+                              - Mountbatten-Windsor
+                              style:
+                                fill: '#ECFEFF'
+                                contour: dashed
+                                contour_width: regular
+                              relation:
+                                line: solid
+                                line_width: regular
+                                color: '#0F766E'
+                              branch_orientation: horizontal
+                              children:
+                              - name: Princess Beatrice
+                                desc: 1988–
+                                value: 0
+                                pic:
+                                  set: lucide
+                                  name: user-round
+                                tags:
+                                - alive
+                                - princess
+                                - succession-line
+                                - Windsor
+                                style:
+                                  fill: '#ECFEFF'
+                                  contour: dashed
+                                  contour_width: regular
+                                relation:
+                                  line: solid
+                                  line_width: regular
+                                  color: '#0F766E'
+                              - name: Princess Eugenie
+                                desc: 1990–
+                                value: 0
+                                pic:
+                                  set: lucide
+                                  name: user-round
+                                tags:
+                                - alive
+                                - princess
+                                - succession-line
+                                - Windsor
+                                style:
+                                  fill: '#ECFEFF'
+                                  contour: dashed
+                                  contour_width: regular
+                                relation:
+                                  line: solid
+                                  line_width: regular
+                                  color: '#0F766E'
+                            - name: Edward, Duke of Edinburgh
+                              desc: 1964–
+                              value: 0
+                              pic:
+                                set: lucide
+                                name: user-round
+                              tags:
+                              - alive
+                              - prince
+                              - duke
+                              - succession-line
+                              - Windsor
+                              style:
+                                fill: '#ECFEFF'
+                                contour: dashed
+                                contour_width: regular
+                              relation:
+                                line: solid
+                                line_width: regular
+                                color: '#0F766E'
+                              branch_orientation: horizontal
+                              children:
+                              - name: Lady Louise Windsor
+                                desc: 2003–
+                                value: 0
+                                pic:
+                                  set: lucide
+                                  name: user-round
+                                tags:
+                                - alive
+                                - lady
+                                - succession-line
+                                - Windsor
+                                style:
+                                  fill: '#ECFEFF'
+                                  contour: dashed
+                                  contour_width: regular
+                                relation:
+                                  line: solid
+                                  line_width: regular
+                                  color: '#0F766E'
+                              - name: James, Earl of Wessex
+                                desc: 2007–
+                                value: 0
+                                pic:
+                                  set: lucide
+                                  name: user-round
+                                tags:
+                                - alive
+                                - earl
+                                - succession-line
+                                - Windsor
+                                style:
+                                  fill: '#ECFEFF'
+                                  contour: dashed
+                                  contour_width: regular
+                                relation:
+                                  line: solid
+                                  line_width: regular
+                                  color: '#0F766E'
+                          - name: Princess Margaret
+                            desc: 1930–2002
+                            value: 0
+                            pic:
+                              set: lucide
+                              name: shield-user
+                            tags:
+                            - deceased
+                            - princess
+                            - did-not-rule
+                            - Windsor
+                            - sister-of-Elizabeth-II
+                            style:
+                              fill: '#EFF6FF'
+                              contour: dashed
+                              contour_width: regular
+                            relation:
+                              line: solid
+                              line_width: regular
+                              color: '#1D4ED8'
+                        - name: Mary, Princess Royal
+                          desc: 1897–1965
+                          value: 0
+                          pic:
+                            set: lucide
+                            name: shield-user
+                          tags:
+                          - deceased
+                          - princess
+                          - Princess-Royal
+                          - did-not-rule
+                          - Windsor
+                          style:
+                            fill: '#EFF6FF'
+                            contour: dashed
+                            contour_width: regular
+                          relation:
+                            line: solid
+                            line_width: regular
+                            color: '#1D4ED8'
+                        - name: Henry, Duke of Gloucester
+                          desc: 1900–1974
+                          value: 0
+                          pic:
+                            set: lucide
+                            name: shield-user
+                          tags:
+                          - deceased
+                          - prince
+                          - duke
+                          - did-not-rule
+                          - Windsor
+                          style:
+                            fill: '#EFF6FF'
+                            contour: dashed
+                            contour_width: regular
+                          relation:
+                            line: solid
+                            line_width: regular
+                            color: '#1D4ED8'
+                        - name: George, Duke of Kent
+                          desc: 1902–1942
+                          value: 0
+                          pic:
+                            set: lucide
+                            name: shield-user
+                          tags:
+                          - deceased
+                          - prince
+                          - duke
+                          - did-not-rule
+                          - Windsor
+                          style:
+                            fill: '#EFF6FF'
+                            contour: dashed
+                            contour_width: regular
+                          relation:
+                            line: solid
+                            line_width: regular
+                            color: '#1D4ED8'
+                        - name: Prince John
+                          desc: 1905–1919
+                          value: 0
+                          pic:
+                            set: lucide
+                            name: shield-user
+                          tags:
+                          - deceased
+                          - prince
+                          - did-not-rule
+                          - Windsor
+                          style:
+                            fill: '#EFF6FF'
+                            contour: dashed
+                            contour_width: regular
+                          relation:
+                            line: solid
+                            line_width: regular
+                            color: '#1D4ED8'
+                      - name: Prince Albert Victor
+                        desc: 1864–1892
+                        value: 0
+                        pic:
+                          set: lucide
+                          name: shield-user
+                        tags:
+                        - deceased
+                        - prince
+                        - heir
+                        - did-not-rule
+                        - Saxe-Coburg
+                        style:
+                          fill: '#F0F9FF'
+                          contour: dashed
+                          contour_width: regular
+                        relation:
+                          line: solid
+                          line_width: regular
+                          color: '#0369A1'
+                      - name: Louise, Princess Royal
+                        desc: 1867–1931
+                        value: 0
+                        pic:
+                          set: lucide
+                          name: shield-user
+                        tags:
+                        - deceased
+                        - princess
+                        - Princess-Royal
+                        - did-not-rule
+                        - Saxe-Coburg
+                        style:
+                          fill: '#F0F9FF'
+                          contour: dashed
+                          contour_width: regular
+                        relation:
+                          line: solid
+                          line_width: regular
+                          color: '#0369A1'
+                      - name: Princess Victoria
+                        desc: 1868–1935
+                        value: 0
+                        pic:
+                          set: lucide
+                          name: shield-user
+                        tags:
+                        - deceased
+                        - princess
+                        - did-not-rule
+                        - Saxe-Coburg
+                        style:
+                          fill: '#F0F9FF'
+                          contour: dashed
+                          contour_width: regular
+                        relation:
+                          line: solid
+                          line_width: regular
+                          color: '#0369A1'
+                      - name: Maud of Wales
+                        desc: 1869–1938
+                        value: 0
+                        pic:
+                          set: lucide
+                          name: shield-user
+                        tags:
+                        - deceased
+                        - princess
+                        - Queen-Norway
+                        - did-not-rule-UK
+                        - Saxe-Coburg
+                        style:
+                          fill: '#F0F9FF'
+                          contour: dashed
+                          contour_width: regular
+                        relation:
+                          line: solid
+                          line_width: regular
+                          color: '#0369A1'
+                    - name: Victoria, Princess Royal
+                      desc: 1840–1901
+                      value: 0
+                      pic:
+                        set: lucide
+                        name: shield-user
+                      tags:
+                      - deceased
+                      - princess
+                      - Princess-Royal
+                      - German-empress
+                      - Saxe-Coburg
+                      style:
+                        fill: '#F0F9FF'
+                        contour: dashed
+                        contour_width: regular
+                      relation:
+                        line: solid
+                        line_width: regular
+                        color: '#0369A1'
+                    - name: Princess Alice
+                      desc: 1843–1878
+                      value: 0
+                      pic:
+                        set: lucide
+                        name: shield-user
+                      tags:
+                      - deceased
+                      - princess
+                      - did-not-rule
+                      - Grand-Duchess-Hesse
+                      - Saxe-Coburg
+                      style:
+                        fill: '#F0F9FF'
+                        contour: dashed
+                        contour_width: regular
+                      relation:
+                        line: solid
+                        line_width: regular
+                        color: '#0369A1'
+                    - name: Prince Alfred
+                      desc: 1844–1900
+                      value: 0
+                      pic:
+                        set: lucide
+                        name: shield-user
+                      tags:
+                      - deceased
+                      - prince
+                      - duke
+                      - Saxe-Coburg
+                      - Duke-Edinburgh
+                      style:
+                        fill: '#F0F9FF'
+                        contour: dashed
+                        contour_width: regular
+                      relation:
+                        line: solid
+                        line_width: regular
+                        color: '#0369A1'
+                    - name: Princess Helena
+                      desc: 1846–1923
+                      value: 0
+                      pic:
+                        set: lucide
+                        name: shield-user
+                      tags:
+                      - deceased
+                      - princess
+                      - did-not-rule
+                      - Saxe-Coburg
+                      style:
+                        fill: '#F0F9FF'
+                        contour: dashed
+                        contour_width: regular
+                      relation:
+                        line: solid
+                        line_width: regular
+                        color: '#0369A1'
+                    - name: Princess Louise
+                      desc: 1848–1939
+                      value: 0
+                      pic:
+                        set: lucide
+                        name: shield-user
+                      tags:
+                      - deceased
+                      - princess
+                      - did-not-rule
+                      - Duchess-Argyll
+                      - Saxe-Coburg
+                      style:
+                        fill: '#F0F9FF'
+                        contour: dashed
+                        contour_width: regular
+                      relation:
+                        line: solid
+                        line_width: regular
+                        color: '#0369A1'
+                    - name: Prince Arthur
+                      desc: 1850–1942
+                      value: 0
+                      pic:
+                        set: lucide
+                        name: shield-user
+                      tags:
+                      - deceased
+                      - prince
+                      - duke
+                      - Duke-Connaught
+                      - Saxe-Coburg
+                      style:
+                        fill: '#F0F9FF'
+                        contour: dashed
+                        contour_width: regular
+                      relation:
+                        line: solid
+                        line_width: regular
+                        color: '#0369A1'
+                    - name: Prince Leopold
+                      desc: 1853–1884
+                      value: 0
+                      pic:
+                        set: lucide
+                        name: shield-user
+                      tags:
+                      - deceased
+                      - prince
+                      - duke
+                      - Duke-Albany
+                      - Saxe-Coburg
+                      style:
+                        fill: '#F0F9FF'
+                        contour: dashed
+                        contour_width: regular
+                      relation:
+                        line: solid
+                        line_width: regular
+                        color: '#0369A1'
+                    - name: Princess Beatrice
+                      desc: 1857–1944
+                      value: 0
+                      pic:
+                        set: lucide
+                        name: shield-user
+                      tags:
+                      - deceased
+                      - princess
+                      - did-not-rule
+                      - Saxe-Coburg
+                      style:
+                        fill: '#F0F9FF'
+                        contour: dashed
+                        contour_width: regular
+                      relation:
+                        line: solid
+                        line_width: regular
+                        color: '#0369A1'
+                - name: Frederick, Duke of York
+                  desc: 1763–1827
+                  value: 0
+                  pic:
+                    set: lucide
+                    name: shield-user
+                  tags:
+                  - deceased
+                  - duke
+                  - did-not-rule
+                  - Hanover
+                  - army-commander
+                  style:
+                    fill: '#F0FDF4'
+                    contour: dashed
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: '#166534'
+                - name: Charlotte, Princess Royal
+                  desc: 1766–1828
+                  value: 0
+                  pic:
+                    set: lucide
+                    name: shield-user
+                  tags:
+                  - deceased
+                  - princess
+                  - Princess-Royal
+                  - did-not-rule
+                  - Hanover
+                  style:
+                    fill: '#F0FDF4'
+                    contour: dashed
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: '#166534'
+                - name: Ernest Augustus
+                  desc: 1771–1851
+                  value: 0
+                  pic:
+                    set: lucide
+                    name: shield-user
+                  tags:
+                  - deceased
+                  - king-Hanover
+                  - duke
+                  - did-not-rule-UK
+                  - Hanover
+                  style:
+                    fill: '#F0FDF4'
+                    contour: dashed
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: '#166534'
+                - name: Augustus Frederick, Duke of Sussex
+                  desc: 1773–1843
+                  value: 0
+                  pic:
+                    set: lucide
+                    name: shield-user
+                  tags:
+                  - deceased
+                  - duke
+                  - did-not-rule
+                  - Hanover
+                  - Sussex-title
+                  style:
+                    fill: '#F0FDF4'
+                    contour: dashed
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: '#166534'
+                - name: Adolphus, Duke of Cambridge
+                  desc: 1774–1850
+                  value: 0
+                  pic:
+                    set: lucide
+                    name: shield-user
+                  tags:
+                  - deceased
+                  - duke
+                  - did-not-rule
+                  - Hanover
+                  - Cambridge-title
+                  style:
+                    fill: '#F0FDF4'
+                    contour: dashed
+                    contour_width: regular
+                  relation:
+                    line: solid
+                    line_width: regular
+                    color: '#166534'
+            - name: Anne, Princess Royal
+              desc: 1709–1759
+              value: 0
+              pic:
+                set: lucide
+                name: shield-user
+              tags:
+              - deceased
+              - princess
+              - Princess-Royal
+              - did-not-rule
+              - Hanover
+              style:
+                fill: '#F0FDF4'
+                contour: dashed
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: '#166534'
+            - name: William, Duke of Cumberland
+              desc: 1721–1765
+              value: 0
+              pic:
+                set: lucide
+                name: shield-user
+              tags:
+              - deceased
+              - duke
+              - did-not-rule
+              - Hanover
+              - Culloden-1746
+              style:
+                fill: '#F0FDF4'
+                contour: dashed
+                contour_width: regular
+              relation:
+                line: solid
+                line_width: regular
+                color: '#166534'
+    - name: Henry Frederick, Prince of Wales
+      desc: 1594–1612
+      value: 0
+      pic:
+        set: lucide
+        name: shield-user
+      tags:
+      - deceased
+      - prince
+      - heir-apparent
+      - did-not-rule
+      - Stuart
+      style:
+        fill: '#EEF2FF'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#3730A3'

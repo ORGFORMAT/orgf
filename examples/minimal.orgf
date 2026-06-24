@@ -1,0 +1,25 @@
+orgformat: "1.0.0"
+
+meta:
+  title: Minimal ORGF 1.0.0 model
+  author: ORGFORMAT
+  rights_holder: ORGFORMAT
+  copyright: >-
+    MIT License. The ORGFORMAT and ORGF names, logos, and other brand assets are not licensed by this file.
+  license: MIT
+  created: '2026-06-24'
+  updated: '2026-06-24'
+
+model:
+  name: Minimal ORGF 1.0.0 model
+  desc: >-
+    Smallest practical ORGF 1.0.0 model without an embedded reference.
+
+root:
+  name: Example root
+  desc: A minimal root block.
+  children:
+    - name: Example child
+      desc: A minimal child block.
+      tags:
+        - example

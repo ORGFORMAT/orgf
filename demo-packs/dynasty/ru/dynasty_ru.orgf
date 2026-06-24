@@ -1,0 +1,1087 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: Линия правления Руси и России — учебная ORGF-модель
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — в максимально допустимом законом объёме ORGFORMAT DemoPacks отказался от авторских и
+    смежных прав на этот материал. Его можно свободно копировать, изменять, распространять и использовать,
+    включая коммерчески, без запроса разрешения и обязательного указания автора. CC0 не предоставляет прав
+    на обозначения ORGFORMAT, ORGF, логотипы и иные брендовые активы.
+  license: CC0-1.0
+  created: '2026-06-22'
+  updated: '2026-06-24'
+
+model:
+  name: Линия правления Руси и России
+  desc: >-
+    Главный ствол — правление; красные линии — близкая кровь; 1161–1598 оставлен для пополнения.
+
+    Демонстрационный материал ORGFORMAT DemoPacks предназначен для иллюстрации возможностей ORGF. Если прямо
+    не указано иное, содержащиеся в модели наименования, организации, продукты, проекты, роли, данные и
+    сценарии являются условными или вымышленными; любое сходство с реальными объектами не означает связи,
+    одобрения или принадлежности. Вопросы и обращения: support@orgformat.com.
+  value_label: Длительность правления
+  value_unit: лет
+
+root:
+  name: Линия правления Руси и России
+  desc: 862–1917
+  value: 0
+  pic:
+    set: lucide
+    name: landmark
+  tags:
+  - Русь
+  - Россия
+  - учебная-модель
+  - линия-правления
+  - Рюриковичи
+  - Романовы
+  branch_orientation: vertical
+  style: &id001
+    fill: '#FFF7ED'
+    contour: solid
+    contour_width: bold
+  children:
+  - name: Рюрик Новгородский
+    desc: 'правление: 862–879'
+    value: 17
+    pic:
+      set: lucide
+      name: crown
+    tags:
+    - правил
+    - Киевская-Русь
+    - Рюриковичи
+    - реестр-862–1160
+    style: *id001
+    children:
+    - name: Олег Вещий
+      desc: 'правление: 879–912'
+      value: 33
+      pic:
+        set: lucide
+        name: crown
+      tags:
+      - правил
+      - Киевская-Русь
+      - Рюриковичи
+      - реестр-862–1160
+      children:
+      - name: Игорь Старый
+        desc: 'правление: 912–946'
+        value: 34
+        pic:
+          set: lucide
+          name: crown
+        tags:
+        - правил
+        - Киевская-Русь
+        - Рюриковичи
+        - реестр-862–1160
+        children:
+        - name: Святослав I
+          desc: 'правление: 946–972'
+          value: 26
+          pic:
+            set: lucide
+            name: crown
+          tags:
+          - правил
+          - Киевская-Русь
+          - Рюриковичи
+          - реестр-862–1160
+          relation:
+            line: solid
+            line_width: regular
+            color: '#DC2626'
+          children:
+          - name: Ярополк Святославич
+            desc: 'правление: 972–980'
+            value: 8
+            pic:
+              set: lucide
+              name: crown
+            tags:
+            - правил
+            - Киевская-Русь
+            - Рюриковичи
+            - реестр-862–1160
+            relation:
+              line: solid
+              line_width: regular
+              color: '#DC2626'
+            children:
+            - name: Владимир I Святославич Красное Солнышко
+              desc: 'правление: 980–1015'
+              value: 35
+              pic:
+                set: lucide
+                name: crown
+              tags:
+              - правил
+              - Киевская-Русь
+              - Рюриковичи
+              - реестр-862–1160
+              - крещение-Руси
+              style:
+                fill: '#FEF3C7'
+                contour: double
+                contour_width: bold
+              relation:
+                line: dotted
+                line_width: regular
+                color: '#DC2626'
+              children:
+              - name: Святополк I Ярополкович Окаянный
+                desc: 'правление: 1015–1015'
+                value: 0.5
+                pic:
+                  set: lucide
+                  name: crown
+                tags:
+                - правил
+                - Киевская-Русь
+                - Рюриковичи
+                - реестр-862–1160
+                children:
+                - name: Ярослав Владимирович Мудрый
+                  desc: 'правление: 1015–1017'
+                  value: 2
+                  pic:
+                    set: lucide
+                    name: crown
+                  tags:
+                  - правил
+                  - Киевская-Русь
+                  - Рюриковичи
+                  - реестр-862–1160
+                  children:
+                  - name: Святополк I Ярополкович Окаянный
+                    desc: 'правление: 1017–1019'
+                    value: 2
+                    pic:
+                      set: lucide
+                      name: crown
+                    tags:
+                    - правил
+                    - Киевская-Русь
+                    - Рюриковичи
+                    - реестр-862–1160
+                    - 2-е-правление
+                    children:
+                    - name: Ярослав Владимирович Мудрый
+                      desc: 'правление: 1019–1024'
+                      value: 5
+                      pic:
+                        set: lucide
+                        name: crown
+                      tags:
+                      - правил
+                      - Киевская-Русь
+                      - Рюриковичи
+                      - реестр-862–1160
+                      - 2-е-правление
+                      children:
+                      - name: Ярослав Владимирович Мудрый и Мстислав Владимирович
+                        desc: 'правление: 1024–1036'
+                        value: 12
+                        pic:
+                          set: lucide
+                          name: crown
+                        tags:
+                        - правил
+                        - Киевская-Русь
+                        - Рюриковичи
+                        - реестр-862–1160
+                        - совместное-правление
+                        style: &id002
+                          fill: '#F1F5F9'
+                          contour: dashed
+                          contour_width: regular
+                        children:
+                        - name: Ярослав Владимирович Мудрый
+                          desc: 'правление: 1036–1054'
+                          value: 18
+                          pic:
+                            set: lucide
+                            name: crown
+                          tags:
+                          - правил
+                          - Киевская-Русь
+                          - Рюриковичи
+                          - реестр-862–1160
+                          children:
+                          - name: Изяслав I Ярославич
+                            desc: 'правление: 1054–1068'
+                            value: 14
+                            pic:
+                              set: lucide
+                              name: crown
+                            tags:
+                            - правил
+                            - Киевская-Русь
+                            - Рюриковичи
+                            - реестр-862–1160
+                            children:
+                            - name: Всеслав Брячиславич Полоцкий
+                              desc: 'правление: 1068–1069'
+                              value: 1
+                              pic:
+                                set: lucide
+                                name: crown
+                              tags:
+                              - правил
+                              - Киевская-Русь
+                              - Рюриковичи
+                              - реестр-862–1160
+                              children:
+                              - name: Изяслав I Ярославич
+                                desc: 'правление: 1069–1073'
+                                value: 4
+                                pic:
+                                  set: lucide
+                                  name: crown
+                                tags:
+                                - правил
+                                - Киевская-Русь
+                                - Рюриковичи
+                                - реестр-862–1160
+                                - 2-е-правление
+                                children:
+                                - name: Святослав II Ярославич
+                                  desc: 'правление: 1073–1076'
+                                  value: 3
+                                  pic:
+                                    set: lucide
+                                    name: crown
+                                  tags:
+                                  - правил
+                                  - Киевская-Русь
+                                  - Рюриковичи
+                                  - реестр-862–1160
+                                  children:
+                                  - name: Всеволод I Ярославич
+                                    desc: 'правление: 1076–1077'
+                                    value: 1
+                                    pic:
+                                      set: lucide
+                                      name: crown
+                                    tags:
+                                    - правил
+                                    - Киевская-Русь
+                                    - Рюриковичи
+                                    - реестр-862–1160
+                                    children:
+                                    - name: Изяслав I Ярославич
+                                      desc: 'правление: 1077–1078'
+                                      value: 1
+                                      pic:
+                                        set: lucide
+                                        name: crown
+                                      tags:
+                                      - правил
+                                      - Киевская-Русь
+                                      - Рюриковичи
+                                      - реестр-862–1160
+                                      - 3-е-правление
+                                      children:
+                                      - name: Всеволод I Ярославич
+                                        desc: 'правление: 1078–1093'
+                                        value: 15
+                                        pic:
+                                          set: lucide
+                                          name: crown
+                                        tags:
+                                        - правил
+                                        - Киевская-Русь
+                                        - Рюриковичи
+                                        - реестр-862–1160
+                                        - 2-е-правление
+                                        children:
+                                        - name: Святополк II Изяславич
+                                          desc: 'правление: 1093–1113'
+                                          value: 20
+                                          pic:
+                                            set: lucide
+                                            name: crown
+                                          tags:
+                                          - правил
+                                          - Киевская-Русь
+                                          - Рюриковичи
+                                          - реестр-862–1160
+                                          children:
+                                          - name: Владимир II Всеволодович Мономах
+                                            desc: 'правление: 1113–1125'
+                                            value: 12
+                                            pic:
+                                              set: lucide
+                                              name: crown
+                                            tags:
+                                            - правил
+                                            - Киевская-Русь
+                                            - Рюриковичи
+                                            - реестр-862–1160
+                                            children:
+                                            - name: Мстислав Владимирович Великий
+                                              desc: 'правление: 1125–1132'
+                                              value: 7
+                                              pic:
+                                                set: lucide
+                                                name: crown
+                                              tags:
+                                              - правил
+                                              - Киевская-Русь
+                                              - Рюриковичи
+                                              - реестр-862–1160
+                                              relation:
+                                                line: solid
+                                                line_width: regular
+                                                color: '#DC2626'
+                                              children:
+                                              - name: Ярополк Владимирович
+                                                desc: 'правление: 1132–1139'
+                                                value: 7
+                                                pic:
+                                                  set: lucide
+                                                  name: crown
+                                                tags:
+                                                - правил
+                                                - Киевская-Русь
+                                                - Рюриковичи
+                                                - реестр-862–1160
+                                                relation:
+                                                  line: dotted
+                                                  line_width: regular
+                                                  color: '#DC2626'
+                                                children:
+                                                - name: Вячеслав Владимирович
+                                                  desc: 'правление: 1139–1139'
+                                                  value: 0.5
+                                                  pic:
+                                                    set: lucide
+                                                    name: crown
+                                                  tags:
+                                                  - правил
+                                                  - Киевская-Русь
+                                                  - Рюриковичи
+                                                  - реестр-862–1160
+                                                  - правление-менее-года
+                                                  relation:
+                                                    line: dotted
+                                                    line_width: regular
+                                                    color: '#DC2626'
+                                                  children:
+                                                  - name: Всеволод Ольгович
+                                                    desc: 'правление: 1139–1146'
+                                                    value: 7
+                                                    pic:
+                                                      set: lucide
+                                                      name: crown
+                                                    tags:
+                                                    - правил
+                                                    - Киевская-Русь
+                                                    - Рюриковичи
+                                                    - реестр-862–1160
+                                                    children:
+                                                    - name: Игорь Ольгович
+                                                      desc: 'правление: 1146–1146'
+                                                      value: 0.5
+                                                      pic:
+                                                        set: lucide
+                                                        name: crown
+                                                      tags:
+                                                      - правил
+                                                      - Киевская-Русь
+                                                      - Рюриковичи
+                                                      - реестр-862–1160
+                                                      - правление-менее-года
+                                                      relation:
+                                                        line: dotted
+                                                        line_width: regular
+                                                        color: '#DC2626'
+                                                      children:
+                                                      - name: Изяслав Мстиславич
+                                                        desc: 'правление: 1146–1149'
+                                                        value: 3
+                                                        pic:
+                                                          set: lucide
+                                                          name: crown
+                                                        tags:
+                                                        - правил
+                                                        - Киевская-Русь
+                                                        - Рюриковичи
+                                                        - реестр-862–1160
+                                                        children:
+                                                        - name: Юрий Владимирович Долгорукий
+                                                          desc: 'правление: 1149–1150'
+                                                          value: 1
+                                                          pic:
+                                                            set: lucide
+                                                            name: crown
+                                                          tags:
+                                                          - правил
+                                                          - Киевская-Русь
+                                                          - Рюриковичи
+                                                          - реестр-862–1160
+                                                          children:
+                                                          - name: Вячеслав Владимирович
+                                                            desc: 'правление: 1150–1150'
+                                                            value: 0.5
+                                                            pic:
+                                                              set: lucide
+                                                              name: crown
+                                                            tags:
+                                                            - правил
+                                                            - Киевская-Русь
+                                                            - Рюриковичи
+                                                            - реестр-862–1160
+                                                            - 2-е-правление
+                                                            - правление-менее-года
+                                                            children:
+                                                            - name: Изяслав Мстиславич
+                                                              desc: 'правление: 1150–1150'
+                                                              value: 0.5
+                                                              pic:
+                                                                set: lucide
+                                                                name: crown
+                                                              tags:
+                                                              - правил
+                                                              - Киевская-Русь
+                                                              - Рюриковичи
+                                                              - реестр-862–1160
+                                                              - 2-е-правление
+                                                              - правление-менее-года
+                                                              children:
+                                                              - name: Юрий Владимирович Долгорукий
+                                                                desc: 'правление: 1150–1150'
+                                                                value: 0.5
+                                                                pic:
+                                                                  set: lucide
+                                                                  name: crown
+                                                                tags:
+                                                                - правил
+                                                                - Киевская-Русь
+                                                                - Рюриковичи
+                                                                - реестр-862–1160
+                                                                - 2-е-правление
+                                                                - правление-менее-года
+                                                                children:
+                                                                - name: Изяслав Мстиславич
+                                                                  desc: 'правление: 1150–1151'
+                                                                  value: 1
+                                                                  pic:
+                                                                    set: lucide
+                                                                    name: crown
+                                                                  tags:
+                                                                  - правил
+                                                                  - Киевская-Русь
+                                                                  - Рюриковичи
+                                                                  - реестр-862–1160
+                                                                  - 3-е-правление
+                                                                  children:
+                                                                  - name: Ростислав Мстиславич
+                                                                    desc: 'правление: 1151–1154'
+                                                                    value: 3
+                                                                    pic:
+                                                                      set: lucide
+                                                                      name: crown
+                                                                    tags:
+                                                                    - правил
+                                                                    - Киевская-Русь
+                                                                    - Рюриковичи
+                                                                    - реестр-862–1160
+                                                                    children:
+                                                                    - name: Ростислав Мстиславич
+                                                                      desc: 'правление: 1154–1154'
+                                                                      value: 0.5
+                                                                      pic:
+                                                                        set: lucide
+                                                                        name: crown
+                                                                      tags:
+                                                                      - правил
+                                                                      - Киевская-Русь
+                                                                      - Рюриковичи
+                                                                      - реестр-862–1160
+                                                                      - правление-менее-года
+                                                                      children:
+                                                                      - name: Изяслав Давыдович
+                                                                        desc: 'правление: 1155–1155'
+                                                                        value: 0.5
+                                                                        pic:
+                                                                          set: lucide
+                                                                          name: crown
+                                                                        tags:
+                                                                        - правил
+                                                                        - Киевская-Русь
+                                                                        - Рюриковичи
+                                                                        - реестр-862–1160
+                                                                        - правление-менее-года
+                                                                        children:
+                                                                        - name: Юрий Владимирович Долгорукий
+                                                                          desc: 'правление: 1155–1157'
+                                                                          value: 2
+                                                                          pic:
+                                                                            set: lucide
+                                                                            name: crown
+                                                                          tags:
+                                                                          - правил
+                                                                          - Киевская-Русь
+                                                                          - Рюриковичи
+                                                                          - реестр-862–1160
+                                                                          - 3-е-правление
+                                                                          children:
+                                                                          - name: Изяслав Давыдович
+                                                                            desc: 'правление: 1157–1159'
+                                                                            value: 2
+                                                                            pic:
+                                                                              set: lucide
+                                                                              name: crown
+                                                                            tags:
+                                                                            - правил
+                                                                            - Киевская-Русь
+                                                                            - Рюриковичи
+                                                                            - реестр-862–1160
+                                                                            - 2-е-правление
+                                                                            children:
+                                                                            - name: Ростислав Мстиславич
+                                                                              desc: 'правление: 1159–1159'
+                                                                              value: 0.5
+                                                                              pic:
+                                                                                set: lucide
+                                                                                name: crown
+                                                                              tags:
+                                                                              - правил
+                                                                              - Киевская-Русь
+                                                                              - Рюриковичи
+                                                                              - реестр-862–1160
+                                                                              - 2-е-правление
+                                                                              - правление-менее-года
+                                                                              children:
+                                                                              - name: Изяслав Давыдович
+                                                                                desc: 'правление: 1159–1160'
+                                                                                value: 1
+                                                                                pic:
+                                                                                  set: lucide
+                                                                                  name: crown
+                                                                                tags:
+                                                                                - правил
+                                                                                - Киевская-Русь
+                                                                                - Рюриковичи
+                                                                                - реестр-862–1160
+                                                                                - 3-е-правление
+                                                                                children:
+                                                                                - name: Продолжение реестра
+                                                                                  desc: 1161–1598
+                                                                                  value: 0
+                                                                                  pic:
+                                                                                    set: lucide
+                                                                                    name: ellipsis
+                                                                                  tags:
+                                                                                  - для-пополнения
+                                                                                  - Рюриковичи
+                                                                                  - линия-правления
+                                                                                  - вне-реестра
+                                                                                  style: *id002
+                                                                                  relation: &id003
+                                                                                    line: dashed
+                                                                                    line_width: bold
+                                                                                    color: '#334155'
+                                                                                  children:
+                                                                                  - name: Переход к Романовым
+                                                                                    desc: 1598–1613
+                                                                                    value: 0
+                                                                                    pic:
+                                                                                      set: lucide
+                                                                                      name: milestone
+                                                                                    tags:
+                                                                                    - Смутное-время
+                                                                                    - династический-кризис
+                                                                                    - Земский-собор-1613
+                                                                                    - переход-власти
+                                                                                    style: *id002
+                                                                                    relation: *id003
+                                                                                    children:
+                                                                                    - name: Михаил Фёдорович
+                                                                                      desc: 1596–1645
+                                                                                      value: 32
+                                                                                      pic:
+                                                                                        set: lucide
+                                                                                        name: crown
+                                                                                      tags:
+                                                                                      - умерший
+                                                                                      - царь
+                                                                                      - правил
+                                                                                      - Романовы
+                                                                                      - основатель
+                                                                                      - Земский-собор-1613
+                                                                                      style: *id001
+                                                                                      relation: *id003
+                                                                                      children:
+                                                                                      - name: Алексей Михайлович
+                                                                                        desc: 1629–1676
+                                                                                        value: 31
+                                                                                        pic:
+                                                                                          set: lucide
+                                                                                          name: crown
+                                                                                        tags:
+                                                                                        - умерший
+                                                                                        - царь
+                                                                                        - правил
+                                                                                        - Романовы
+                                                                                        - Соборное-уложение
+                                                                                        - церковный-раскол
+                                                                                        relation: &id004
+                                                                                          line: solid
+                                                                                          line_width: regular
+                                                                                          color: '#DC2626'
+                                                                                        children:
+                                                                                        - name: Фёдор III
+                                                                                          desc: 1661–1682
+                                                                                          value: 6
+                                                                                          pic:
+                                                                                            set: lucide
+                                                                                            name: crown
+                                                                                          tags:
+                                                                                          - умерший
+                                                                                          - царь
+                                                                                          - правил
+                                                                                          - Романовы
+                                                                                          - местничество-1682
+                                                                                          relation: *id004
+                                                                                          children:
+                                                                                          - name: Соправление Ивана V и Петра I
+                                                                                            desc: 1682–1696
+                                                                                            value: 0
+                                                                                            pic:
+                                                                                              set: lucide
+                                                                                              name: git-merge
+                                                                                            tags:
+                                                                                            - соправление
+                                                                                            - Романовы
+                                                                                            - переход-власти
+                                                                                            - Иван-V
+                                                                                            - Пётр-I
+                                                                                            branch_orientation: horizontal
+                                                                                            style: *id002
+                                                                                            relation: &id005
+                                                                                              line: dashed
+                                                                                              line_width: regular
+                                                                                              color: '#64748B'
+                                                                                            children:
+                                                                                            - name: Пётр I Великий
+                                                                                              desc: 1672–1725
+                                                                                              value: 43
+                                                                                              pic:
+                                                                                                set: lucide
+                                                                                                name: crown
+                                                                                              tags:
+                                                                                              - умерший
+                                                                                              - царь
+                                                                                              - император
+                                                                                              - правил
+                                                                                              - Романовы
+                                                                                              - Северная-война
+                                                                                              - империя-1721
+                                                                                              - реформы
+                                                                                              branch_orientation: horizontal
+                                                                                              relation: *id005
+                                                                                              children:
+                                                                                              - name: Екатерина I
+                                                                                                desc: 1684–1727
+                                                                                                value: 2
+                                                                                                pic:
+                                                                                                  set: lucide
+                                                                                                  name: crown
+                                                                                                tags:
+                                                                                                - умершая
+                                                                                                - императрица
+                                                                                                - правила
+                                                                                                - Романовы
+                                                                                                - супруга-Петра-I
+                                                                                                - Верховный-тайный-совет
+                                                                                                relation: &id006
+                                                                                                  line: dotted
+                                                                                                  line_width: regular
+                                                                                                  color: '#7E22CE'
+                                                                                                children:
+                                                                                                - name: Пётр II
+                                                                                                  desc: 1715–1730
+                                                                                                  value: 3
+                                                                                                  pic:
+                                                                                                    set: lucide
+                                                                                                    name: crown
+                                                                                                  tags:
+                                                                                                  - умерший
+                                                                                                  - император
+                                                                                                  - правил
+                                                                                                  - Романовы
+                                                                                                  - сын-царевича-Алексея
+                                                                                                  - ранняя-смерть
+                                                                                                  relation: *id005
+                                                                                                  children:
+                                                                                                  - name: Анна Иоанновна
+                                                                                                    desc: 1693–1740
+                                                                                                    value: 10
+                                                                                                    pic:
+                                                                                                      set: lucide
+                                                                                                      name: crown
+                                                                                                    tags:
+                                                                                                    - умершая
+                                                                                                    - императрица
+                                                                                                    - правила
+                                                                                                    - Романовы
+                                                                                                    - кондиции-1730
+                                                                                                    - бироновщина
+                                                                                                    relation: *id005
+                                                                                                    children:
+                                                                                                    - name: Иван VI
+                                                                                                      desc: 1740–1764
+                                                                                                      value: 1
+                                                                                                      pic:
+                                                                                                        set: lucide
+                                                                                                        name: crown
+                                                                                                      tags:
+                                                                                                      - умерший
+                                                                                                      - император
+                                                                                                      - правил
+                                                                                                      - Романовы
+                                                                                                      - сын-Анны-Леопольдовны
+                                                                                                      - младенец-император
+                                                                                                      - свержение-1741
+                                                                                                      relation: *id005
+                                                                                                      children:
+                                                                                                      - name: Елизавета Петровна
+                                                                                                        desc: 1709–1762
+                                                                                                        value: 21
+                                                                                                        pic:
+                                                                                                          set: lucide
+                                                                                                          name: crown
+                                                                                                        tags:
+                                                                                                        - умершая
+                                                                                                        - императрица
+                                                                                                        - правила
+                                                                                                        - Романовы
+                                                                                                        - МГУ-1755
+                                                                                                        - Семилетняя-война
+                                                                                                        relation: *id005
+                                                                                                        children:
+                                                                                                        - name: Пётр III
+                                                                                                          desc: 1728–1762
+                                                                                                          value: 1
+                                                                                                          pic:
+                                                                                                            set: lucide
+                                                                                                            name: crown
+                                                                                                          tags:
+                                                                                                          - умерший
+                                                                                                          - император
+                                                                                                          - правил
+                                                                                                          - Голштин-Готторп-Романовы
+                                                                                                          - сын-Анны-Петровны
+                                                                                                          - манифест-1762
+                                                                                                          relation: *id005
+                                                                                                          children:
+                                                                                                          - name: Екатерина II
+                                                                                                            desc: 1729–1796
+                                                                                                            value: 34
+                                                                                                            pic:
+                                                                                                              set: lucide
+                                                                                                              name: crown
+                                                                                                            tags:
+                                                                                                            - умершая
+                                                                                                            - императрица
+                                                                                                            - правила
+                                                                                                            - Романовы
+                                                                                                            - супруга-Петра-III
+                                                                                                            - губернская-реформа
+                                                                                                            - жалованная-грамота
+                                                                                                            relation: *id006
+                                                                                                            children:
+                                                                                                            - name: Павел I
+                                                                                                              desc: 1754–1801
+                                                                                                              value: 5
+                                                                                                              pic:
+                                                                                                                set: lucide
+                                                                                                                name: crown
+                                                                                                              tags:
+                                                                                                              - умерший
+                                                                                                              - император
+                                                                                                              - правил
+                                                                                                              - Романовы
+                                                                                                              - акт-1797
+                                                                                                              - Мальтийский-орден
+                                                                                                              relation: *id004
+                                                                                                              children:
+                                                                                                              - name: Александр I
+                                                                                                                desc: 1777–1825
+                                                                                                                value: 24
+                                                                                                                pic:
+                                                                                                                  set: lucide
+                                                                                                                  name: crown
+                                                                                                                tags:
+                                                                                                                - умерший
+                                                                                                                - император
+                                                                                                                - правил
+                                                                                                                - Романовы
+                                                                                                                - война-1812
+                                                                                                                - Венский-конгресс
+                                                                                                                branch_orientation: horizontal
+                                                                                                                relation: *id004
+                                                                                                                children:
+                                                                                                                - name: Николай I
+                                                                                                                  desc: 1796–1855
+                                                                                                                  value: 30
+                                                                                                                  pic:
+                                                                                                                    set: lucide
+                                                                                                                    name: crown
+                                                                                                                  tags:
+                                                                                                                  - умерший
+                                                                                                                  - император
+                                                                                                                  - правил
+                                                                                                                  - Романовы
+                                                                                                                  - брат-Александра-I
+                                                                                                                  - кодификация-законов
+                                                                                                                  - Крымская-война
+                                                                                                                  relation: &id008
+                                                                                                                    line: dotted
+                                                                                                                    line_width: regular
+                                                                                                                    color: '#DC2626'
+                                                                                                                  children:
+                                                                                                                  - name: Александр II
+                                                                                                                    desc: 1818–1881
+                                                                                                                    value: 26
+                                                                                                                    pic:
+                                                                                                                      set: lucide
+                                                                                                                      name: crown
+                                                                                                                    tags:
+                                                                                                                    - умерший
+                                                                                                                    - император
+                                                                                                                    - правил
+                                                                                                                    - Романовы
+                                                                                                                    - отмена-крепостничества
+                                                                                                                    - судебная-реформа
+                                                                                                                    relation: *id004
+                                                                                                                    children:
+                                                                                                                    - name: Александр III
+                                                                                                                      desc: 1845–1894
+                                                                                                                      value: 13
+                                                                                                                      pic:
+                                                                                                                        set: lucide
+                                                                                                                        name: crown
+                                                                                                                      tags:
+                                                                                                                      - умерший
+                                                                                                                      - император
+                                                                                                                      - правил
+                                                                                                                      - Романовы
+                                                                                                                      - контрреформы
+                                                                                                                      - Транссиб
+                                                                                                                      relation: *id004
+                                                                                                                      children:
+                                                                                                                      - name: Николай II
+                                                                                                                        desc: 1868–1918
+                                                                                                                        value: 23
+                                                                                                                        pic:
+                                                                                                                          set: lucide
+                                                                                                                          name: crown
+                                                                                                                        tags:
+                                                                                                                        - умерший
+                                                                                                                        - император
+                                                                                                                        - правил
+                                                                                                                        - Романовы
+                                                                                                                        - революция-1905
+                                                                                                                        - отречение-1917
+                                                                                                                        branch_orientation: horizontal
+                                                                                                                        relation: *id004
+                                                                                                                        children:
+                                                                                                                        - name: Алексей Николаевич
+                                                                                                                          desc: 1904–1918
+                                                                                                                          value: 0
+                                                                                                                          pic:
+                                                                                                                            set: lucide
+                                                                                                                            name: user-round
+                                                                                                                          tags:
+                                                                                                                          - умерший
+                                                                                                                          - цесаревич
+                                                                                                                          - наследник
+                                                                                                                          - Романовы
+                                                                                                                          - не-правил
+                                                                                                                          style: &id007
+                                                                                                                            fill: '#FEF2F2'
+                                                                                                                            contour: solid
+                                                                                                                            contour_width: regular
+                                                                                                                          relation: *id004
+                                                                                                                - name: Константин Павлович
+                                                                                                                  desc: 1779–1831
+                                                                                                                  value: 0
+                                                                                                                  pic:
+                                                                                                                    set: lucide
+                                                                                                                    name: user-round
+                                                                                                                  tags:
+                                                                                                                  - умерший
+                                                                                                                  - цесаревич
+                                                                                                                  - Романовы
+                                                                                                                  - брат-Александра-I
+                                                                                                                  - не-правил
+                                                                                                                  - кризис-1825
+                                                                                                                  style: *id007
+                                                                                                                  relation: *id008
+                                                                                                    - name: Анна Леопольдовна
+                                                                                                      desc: 1718–1746
+                                                                                                      value: 0
+                                                                                                      pic:
+                                                                                                        set: lucide
+                                                                                                        name: shield-user
+                                                                                                      tags:
+                                                                                                      - умершая
+                                                                                                      - регент
+                                                                                                      - Романовы
+                                                                                                      - не-правила
+                                                                                                      - мать-Ивана-VI
+                                                                                                      - свержение-1741
+                                                                                                      style: *id007
+                                                                                                      relation: *id008
+                                                                                              - name: Алексей Петрович
+                                                                                                desc: 1690–1718
+                                                                                                value: 0
+                                                                                                pic:
+                                                                                                  set: lucide
+                                                                                                  name: user-round
+                                                                                                tags:
+                                                                                                - умерший
+                                                                                                - царевич
+                                                                                                - наследник
+                                                                                                - Романовы
+                                                                                                - не-правил
+                                                                                                - отец-Петра-II
+                                                                                                style: *id007
+                                                                                                relation: *id004
+                                                                                              - name: Анна Петровна
+                                                                                                desc: 1708–1728
+                                                                                                value: 0
+                                                                                                pic:
+                                                                                                  set: lucide
+                                                                                                  name: user-round
+                                                                                                tags:
+                                                                                                - умершая
+                                                                                                - цесаревна
+                                                                                                - Романовы
+                                                                                                - не-правила
+                                                                                                - мать-Петра-III
+                                                                                                - династический-переход
+                                                                                                style: *id007
+                                                                                                relation: *id004
+                                                                                            - name: Иван V
+                                                                                              desc: 1666–1696
+                                                                                              value: 14
+                                                                                              pic:
+                                                                                                set: lucide
+                                                                                                name: crown
+                                                                                              tags:
+                                                                                              - умерший
+                                                                                              - царь
+                                                                                              - правил
+                                                                                              - Романовы
+                                                                                              - соправитель-Петра-I
+                                                                                              style: *id007
+                                                                                              relation: *id005
+                                                                                          - name: Софья Алексеевна
+                                                                                            desc: 1657–1704
+                                                                                            value: 0
+                                                                                            pic:
+                                                                                              set: lucide
+                                                                                              name: shield-user
+                                                                                            tags:
+                                                                                            - умершая
+                                                                                            - царевна
+                                                                                            - регент
+                                                                                            - Романовы
+                                                                                            - сестра-Фёдора-III
+                                                                                            - регентство-1682
+                                                                                            style: *id007
+                                                                                            relation: *id008

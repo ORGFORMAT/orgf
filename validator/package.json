@@ -1,0 +1,18 @@
+{
+  "name": "orgf-reference-validator",
+  "version": "1.0.0",
+  "description": "Reference validator for ORGF 1.0.0.",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "validate": "node src/validate-orgf.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "yaml": "2.8.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

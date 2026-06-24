@@ -1,0 +1,1874 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: Mavuno Everyday Retail — Category Management & Product Catalogue / v2
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — to the extent possible under law, ORGFORMAT DemoPacks has waived copyright and
+    related or neighbouring rights to this material. You may copy, modify, distribute, and use it, including
+    commercially, without permission or required attribution. CC0 does not grant rights to the ORGFORMAT or
+    ORGF names, logos, or other brand assets.
+  license: CC0-1.0
+  created: '2026-06-22'
+  updated: '2026-06-24'
+
+model:
+  name: Category Management & Product Catalogue
+  desc: >-
+    Full demo model: category roles, gross profit, ABC/FMR, seasonality and delisted categories.
+
+    This ORGFORMAT DemoPacks material is provided to illustrate ORGF capabilities. Unless expressly stated
+    otherwise, names, organisations, products, projects, roles, data, and scenarios in the model are
+    illustrative or fictional; any resemblance to actual entities does not imply affiliation, endorsement,
+    or origin. Questions or claims: support@orgformat.com.
+  value_label: Gross profit
+  value_unit: USDk / month
+
+root:
+  name: Mavuno Everyday Retail — Product Portfolio
+  desc: 'Demo model: category roles, gross profit, ABC/FMR, seasonality and delisted branches.'
+  pic:
+    set: lucide
+    name: package-open
+  tags:
+  - category-mgmt
+  - product-catalog
+  - omnichannel
+  - gross-profit
+  branch_orientation: horizontal
+  style:
+    fill: '#EAF2FF'
+    contour: solid
+    contour_width: bold
+  children:
+  - name: Food & Grocery
+    desc: 'Primary commercial stream: combines traffic, routine basket spend and private label.'
+    pic:
+      set: lucide
+      name: shopping-basket
+    tags:
+    - food
+    - ABC-A
+    - FMR-F
+    - core
+    - year-round
+    - omnichannel
+    - traffic-driver
+    - margin-driver
+    branch_orientation: vertical
+    style:
+      fill: '#FFF7E6'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#F59E0B'
+    children:
+    - name: Beverages
+      desc: Priority category driving shopper traffic, purchase frequency and meaningful gross profit.
+      pic:
+        set: lucide
+        name: cup-soda
+      tags:
+      - beverages
+      - ABC-A
+      - FMR-F
+      - traffic-driver
+      - core
+      - year-round
+      - omnichannel
+      - growth
+      branch_orientation: vertical
+      style:
+        fill: '#FFF7E6'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#F59E0B'
+      children:
+      - name: Water
+        desc: High-frequency traffic subcategory; on-shelf availability needs tight control in hot weather.
+        pic:
+          set: lucide
+          name: droplets
+        tags:
+        - water
+        - ABC-A
+        - FMR-F
+        - traffic-driver
+        - core
+        - summer-peak
+        - omnichannel
+        - low-margin
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: Mavuno Pure — Water 1.5 L
+          desc: Private label entry point to national brands, with stable gross margin.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - private-label
+          - ABC-A
+          - FMR-F
+          - margin-driver
+          - core
+          - summer-peak
+          - omnichannel
+          value: 58
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Aqua Vita — Water 1.5 L
+          desc: National brand that builds traffic and trust; shelf availability is business-critical.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - national-brand
+          - ABC-A
+          - FMR-F
+          - traffic-driver
+          - core
+          - summer-peak
+          - omnichannel
+          value: 46
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Aqua Vita — Water 0.5 L
+          desc: Impulse format for checkout and e-commerce; supports order frequency.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - national-brand
+          - ABC-A
+          - FMR-F
+          - traffic-driver
+          - impulse
+          - summer-peak
+          - omnichannel
+          value: 31
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Premium Springs — Water 0.75 L
+          desc: Premium SKU supporting margin and digital assortment depth.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - premium
+          - ABC-B
+          - FMR-M
+          - margin-driver
+          - loyalty
+          - year-round
+          - e-commerce
+          value: 22
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+      - name: Juices & Nectars
+        desc: Family-basket category balancing promotions, margin and pack-size architecture.
+        pic:
+          set: lucide
+          name: glass-water
+        tags:
+        - juice
+        - ABC-A
+        - FMR-F
+        - basket-builder
+        - core
+        - year-round
+        - omnichannel
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: FreshDay — Orange Juice 1 L
+          desc: Anchor national brand for promotions and category traffic.
+          pic:
+            set: lucide
+            name: glass-water
+          tags:
+          - national-brand
+          - ABC-A
+          - FMR-F
+          - traffic-driver
+          - promo
+          - year-round
+          - omnichannel
+          value: 37
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Mavuno Select — Nectar 1 L
+          desc: Private label with controlled pricing and attractive family-basket margin.
+          pic:
+            set: lucide
+            name: glass-water
+          tags:
+          - private-label
+          - ABC-B
+          - FMR-F
+          - margin-driver
+          - basket-builder
+          - year-round
+          - omnichannel
+          value: 28
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+      - name: Carbonated Soft Drinks
+        desc: Traffic category for impulse demand; limits duplication across similar flavours.
+        pic:
+          set: lucide
+          name: cup-soda
+        tags:
+        - carbonated
+        - ABC-A
+        - FMR-F
+        - traffic-driver
+        - impulse
+        - summer-peak
+        - omnichannel
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: FizzUp — Cola 1.5 L
+          desc: National brand with high purchase frequency and strong promotional response.
+          pic:
+            set: lucide
+            name: cup-soda
+          tags:
+          - national-brand
+          - ABC-A
+          - FMR-F
+          - traffic-driver
+          - promo
+          - summer-peak
+          - omnichannel
+          value: 42
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Mavuno Mix — Lemonade 1.5 L
+          desc: Private label supporting an accessible price point and stronger category gross profit.
+          pic:
+            set: lucide
+            name: cup-soda
+          tags:
+          - private-label
+          - ABC-B
+          - FMR-F
+          - margin-driver
+          - traffic-driver
+          - summer-peak
+          - omnichannel
+          value: 24
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+    - name: Grocery Staples
+      desc: 'Routine-basket core: staple products, price trust and private-label leverage.'
+      pic:
+        set: lucide
+        name: wheat
+      tags:
+      - grocery
+      - ABC-A
+      - FMR-F
+      - basket-builder
+      - core
+      - year-round
+      - omnichannel
+      branch_orientation: vertical
+      style:
+        fill: '#FFF7E6'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#F59E0B'
+      children:
+      - name: Rice & Grains
+        desc: Staple grocery subcategory that protects basket retention and price trust.
+        pic:
+          set: lucide
+          name: wheat
+        tags:
+        - grains
+        - ABC-A
+        - FMR-F
+        - basket-builder
+        - core
+        - year-round
+        - omnichannel
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: Mavuno Basics — Rice 5 kg
+          desc: Family-basket private label; a margin source at a competitive price point.
+          pic:
+            set: lucide
+            name: package
+          tags:
+          - private-label
+          - ABC-A
+          - FMR-F
+          - margin-driver
+          - basket-builder
+          - year-round
+          - omnichannel
+          value: 33
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Harvest Gold — Rice 5 kg
+          desc: National brand that maintains shopper trust within the category core range.
+          pic:
+            set: lucide
+            name: package
+          tags:
+          - national-brand
+          - ABC-A
+          - FMR-F
+          - loyalty
+          - basket-builder
+          - year-round
+          - omnichannel
+          value: 26
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Mavuno Basics — Buckwheat 900 g
+          desc: Complements the core basket and supports frequent repeat purchase.
+          pic:
+            set: lucide
+            name: package
+          tags:
+          - private-label
+          - ABC-B
+          - FMR-F
+          - basket-builder
+          - core
+          - year-round
+          - omnichannel
+          value: 18
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+      - name: Cooking Oils & Spices
+        desc: 'Margin-led grocery segment: price tiers, home cooking and disciplined range breadth.'
+        pic:
+          set: lucide
+          name: cooking-pot
+        tags:
+        - oils-spices
+        - ABC-B
+        - FMR-M
+        - basket-builder
+        - margin-driver
+        - year-round
+        - omnichannel
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: Mavuno Basics — Sunflower Oil 1 L
+          desc: Private label protects value pricing while lifting category gross profit.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - private-label
+          - ABC-A
+          - FMR-F
+          - margin-driver
+          - basket-builder
+          - year-round
+          - omnichannel
+          value: 25
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: SunGold — Sunflower Oil 1 L
+          desc: National brand preserves choice for shoppers loyal to established labels.
+          pic:
+            set: lucide
+            name: bottle
+          tags:
+          - national-brand
+          - ABC-B
+          - FMR-F
+          - loyalty
+          - basket-builder
+          - year-round
+          - omnichannel
+          value: 19
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: World Taste — Spice Set
+          desc: Spice set grows basket value and enables grocery cross-sell.
+          pic:
+            set: lucide
+            name: package
+          tags:
+          - national-brand
+          - ABC-B
+          - FMR-M
+          - basket-builder
+          - impulse
+          - year-round
+          - omnichannel
+          value: 13
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+    - name: Snacks & Confectionery
+      desc: Secondary high-impulse stream balancing checkout traffic and margin.
+      pic:
+        set: lucide
+        name: cookie
+      tags:
+      - snacks
+      - ABC-B
+      - FMR-M
+      - impulse
+      - margin-driver
+      - year-round
+      - omnichannel
+      branch_orientation: vertical
+      style:
+        fill: '#FFF7E6'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#F59E0B'
+      children:
+      - name: Chocolate & Bars
+        desc: 'Impulse subcategory: national brands attract, while private label expands margin.'
+        pic:
+          set: lucide
+          name: candy
+        tags:
+        - chocolate
+        - ABC-B
+        - FMR-M
+        - impulse
+        - margin-driver
+        - year-round
+        - omnichannel
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: ChocoRise — Milk Chocolate 90 g
+          desc: Branded impulse SKU for checkout zones and digital add-on sales.
+          pic:
+            set: lucide
+            name: candy
+          tags:
+          - national-brand
+          - ABC-A
+          - FMR-F
+          - impulse
+          - traffic-driver
+          - year-round
+          - omnichannel
+          value: 21
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Mavuno Treat — Chocolate 90 g
+          desc: Mid-tier private label that lifts margin without losing price accessibility.
+          pic:
+            set: lucide
+            name: candy
+          tags:
+          - private-label
+          - ABC-B
+          - FMR-M
+          - margin-driver
+          - impulse
+          - year-round
+          - omnichannel
+          value: 16
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: NutBar — Bar 45 g
+          desc: Checkout and e-commerce SKU that enables quick basket add-ons.
+          pic:
+            set: lucide
+            name: candy
+          tags:
+          - national-brand
+          - ABC-B
+          - FMR-F
+          - impulse
+          - checkout
+          - year-round
+          - omnichannel
+          value: 12
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+      - name: Crisps & Savoury Snacks
+        desc: Impulse and occasion-led category; controls promotions and flavour duplication.
+        pic:
+          set: lucide
+          name: cookie
+        tags:
+        - savoury-snacks
+        - ABC-B
+        - FMR-M
+        - impulse
+        - promo
+        - year-round
+        - omnichannel
+        style:
+          fill: '#FFF9EE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F59E0B'
+        children:
+        - name: CrispyGo — Salted Crisps 150 g
+          desc: National brand with strong promotional pull in evening and weekend demand.
+          pic:
+            set: lucide
+            name: cookie
+          tags:
+          - national-brand
+          - ABC-A
+          - FMR-F
+          - impulse
+          - promo
+          - year-round
+          - omnichannel
+          value: 20
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Mavuno Snack — Paprika Crisps 120 g
+          desc: Private label adds margin in value tier and rounds out flavour choice.
+          pic:
+            set: lucide
+            name: cookie
+          tags:
+          - private-label
+          - ABC-B
+          - FMR-M
+          - margin-driver
+          - impulse
+          - year-round
+          - omnichannel
+          value: 14
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+        - name: Salted Nut Mix — 100 g
+          desc: Premium SKU for digital shoppers and weekend basket missions.
+          pic:
+            set: lucide
+            name: package
+          tags:
+          - premium
+          - ABC-B
+          - FMR-M
+          - margin-driver
+          - impulse
+          - year-round
+          - e-commerce
+          value: 15
+          style:
+            fill: '#FFF9EE'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#F59E0B'
+  - name: Personal Care
+    desc: 'Loyalty and margin stream: repeat purchases, quality cues and balanced brand architecture.'
+    pic:
+      set: lucide
+      name: sparkles
+    tags:
+    - personal-care
+    - ABC-A
+    - FMR-F
+    - loyalty
+    - margin-driver
+    - year-round
+    - omnichannel
+    branch_orientation: vertical
+    style:
+      fill: '#F5F0FF'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#7C3AED'
+    children:
+    - name: Hair Care
+      desc: Combines brand loyalty, private label and predictable repeat purchase.
+      pic:
+        set: lucide
+        name: sparkles
+      tags:
+      - hair-care
+      - ABC-A
+      - FMR-F
+      - loyalty
+      - margin-driver
+      - year-round
+      - omnichannel
+      style:
+        fill: '#FAF7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: CareLine — Shampoo 400 ml
+        desc: National brand supporting trust and repeat purchase in the mid-price tier.
+        pic:
+          set: lucide
+          name: sparkles
+        tags:
+        - national-brand
+        - ABC-A
+        - FMR-F
+        - loyalty
+        - year-round
+        - omnichannel
+        value: 29
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Mavuno Care — Shampoo 400 ml
+        desc: Higher-margin private label providing a credible price alternative to brands.
+        pic:
+          set: lucide
+          name: sparkles
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-F
+        - margin-driver
+        - core
+        - year-round
+        - omnichannel
+        value: 23
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: CareLine — Conditioner 300 ml
+        desc: Complements the core shampoo purchase and increases basket value.
+        pic:
+          set: lucide
+          name: sparkles
+        tags:
+        - national-brand
+        - ABC-B
+        - FMR-M
+        - basket-builder
+        - loyalty
+        - year-round
+        - omnichannel
+        value: 17
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: Baby Care
+      desc: 'High-loyalty category: quality, availability and trust outweigh range breadth.'
+      pic:
+        set: lucide
+        name: baby
+      tags:
+      - baby-care
+      - ABC-A
+      - FMR-F
+      - loyalty
+      - core
+      - year-round
+      - omnichannel
+      style:
+        fill: '#FAF7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: SoftBaby — Wet Wipes 64-pack
+        desc: Frequent family-basket purchase requiring dependable replenishment.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - national-brand
+        - ABC-A
+        - FMR-F
+        - loyalty
+        - basket-builder
+        - year-round
+        - omnichannel
+        value: 34
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Mavuno Baby — Wipes 64-pack
+        desc: Private label securing affordability and margin growth in a family category.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-F
+        - margin-driver
+        - basket-builder
+        - year-round
+        - omnichannel
+        value: 21
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: Body Care
+      desc: 'Repeat-demand subcategory: frequency, price architecture and disciplined scent count.'
+      pic:
+        set: lucide
+        name: bath
+      tags:
+      - body-care
+      - ABC-B
+      - FMR-M
+      - loyalty
+      - margin-driver
+      - year-round
+      - omnichannel
+      style:
+        fill: '#FAF7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: Mavuno Care — Shower Gel 400 ml
+        desc: Private label forms the margin base of the mid-tier subcategory.
+        pic:
+          set: lucide
+          name: bath
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - margin-driver
+        - core
+        - year-round
+        - omnichannel
+        value: 19
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: PureSense — Shower Gel 400 ml
+        desc: National brand supports loyalty and gives shoppers a familiar choice.
+        pic:
+          set: lucide
+          name: bath
+        tags:
+        - national-brand
+        - ABC-A
+        - FMR-F
+        - loyalty
+        - year-round
+        - omnichannel
+        value: 24
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Mavuno Care — Soap 2 × 90 g
+        desc: Accessible basket SKU that builds repeat demand and price trust.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-F
+        - basket-builder
+        - margin-driver
+        - year-round
+        - omnichannel
+        value: 13
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: Oral Care
+      desc: 'Compact trust category: must-have SKUs, branded quality and stable turnover.'
+      pic:
+        set: lucide
+        name: tooth
+      tags:
+      - oral-care
+      - ABC-B
+      - FMR-F
+      - loyalty
+      - core
+      - year-round
+      - omnichannel
+      style:
+        fill: '#FAF7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: BrightSmile — Toothpaste 100 ml
+        desc: Must-have branded SKU with high repeat-purchase frequency.
+        pic:
+          set: lucide
+          name: tooth
+        tags:
+        - national-brand
+        - ABC-A
+        - FMR-F
+        - core
+        - loyalty
+        - year-round
+        - omnichannel
+        value: 22
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Mavuno Care — Toothpaste 100 ml
+        desc: Private label broadens price choice and protects margin in a compact category.
+        pic:
+          set: lucide
+          name: tooth
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - margin-driver
+        - core
+        - year-round
+        - omnichannel
+        value: 15
+        style:
+          fill: '#FAF7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+  - name: Household Care
+    desc: Everyday stream that grows basket value and reliable margin in repeat missions.
+    pic:
+      set: lucide
+      name: house
+    tags:
+    - household
+    - ABC-A
+    - FMR-F
+    - basket-builder
+    - margin-driver
+    - year-round
+    - omnichannel
+    branch_orientation: vertical
+    style:
+      fill: '#ECFDF3'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#16A34A'
+    children:
+    - name: Laundry Care
+      desc: 'Routine-basket category: brand trust, price tiers and gross-profit delivery.'
+      pic:
+        set: lucide
+        name: shirt
+      tags:
+      - laundry
+      - ABC-A
+      - FMR-F
+      - basket-builder
+      - margin-driver
+      - year-round
+      - omnichannel
+      style:
+        fill: '#F5FFF8'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#16A34A'
+      children:
+      - name: CleanPro — Detergent Powder 3 kg
+        desc: National brand for trust and large family-basket missions.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - national-brand
+        - ABC-A
+        - FMR-F
+        - loyalty
+        - basket-builder
+        - year-round
+        - omnichannel
+        value: 32
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+      - name: Mavuno Home — Laundry Gel 2 L
+        desc: Private label with strong gross profit and accessible pricing.
+        pic:
+          set: lucide
+          name: bottle
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-F
+        - margin-driver
+        - basket-builder
+        - year-round
+        - omnichannel
+        value: 27
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+      - name: CleanPro — Fabric Conditioner 1 L
+        desc: Complementary SKU that grows basket value alongside core products.
+        pic:
+          set: lucide
+          name: bottle
+        tags:
+        - national-brand
+        - ABC-B
+        - FMR-M
+        - basket-builder
+        - loyalty
+        - year-round
+        - omnichannel
+        value: 16
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+    - name: Home Cleaning
+      desc: 'Secondary repeat-demand category: surface needs, promotions and duplicate control.'
+      pic:
+        set: lucide
+        name: spray-can
+      tags:
+      - cleaning
+      - ABC-B
+      - FMR-M
+      - basket-builder
+      - margin-driver
+      - year-round
+      - omnichannel
+      style:
+        fill: '#F5FFF8'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#16A34A'
+      children:
+      - name: Mavuno Home — Floor Cleaner 1 L
+        desc: Private label protects margin and covers the core home-cleaning mission.
+        pic:
+          set: lucide
+          name: bottle
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - margin-driver
+        - core
+        - year-round
+        - omnichannel
+        value: 18
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+      - name: BrightClean — Multi-Surface Spray 500 ml
+        desc: Branded SKU providing trust and promotional support in the core range.
+        pic:
+          set: lucide
+          name: spray-can
+        tags:
+        - national-brand
+        - ABC-A
+        - FMR-F
+        - promo
+        - loyalty
+        - year-round
+        - omnichannel
+        value: 20
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+      - name: Mavuno Home — Sponges 5-pack
+        desc: Low-price impulse add-on to cleaning missions that grows the basket.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - impulse
+        - basket-builder
+        - year-round
+        - omnichannel
+        value: 10
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+    - name: Paper Products
+      desc: Core basket and frequent repeat demand; range is structured around pack size.
+      pic:
+        set: lucide
+        name: toilet-paper
+      tags:
+      - paper-goods
+      - ABC-A
+      - FMR-F
+      - basket-builder
+      - core
+      - year-round
+      - omnichannel
+      style:
+        fill: '#F5FFF8'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#16A34A'
+      children:
+      - name: Mavuno Home — Toilet Tissue 8-roll
+        desc: Private label capturing routine bulk demand and gross profit in the core tier.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - private-label
+        - ABC-A
+        - FMR-F
+        - margin-driver
+        - basket-builder
+        - year-round
+        - omnichannel
+        value: 24
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+      - name: SoftHome — Paper Towels 2-roll
+        desc: Branded SKU complements the basket and covers the need for quality.
+        pic:
+          set: lucide
+          name: package
+        tags:
+        - national-brand
+        - ABC-B
+        - FMR-F
+        - basket-builder
+        - loyalty
+        - year-round
+        - omnichannel
+        value: 15
+        style:
+          fill: '#F5FFF8'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#16A34A'
+  - name: Seasonal Range
+    desc: Seasonal ranges with purchase plans, promotions, exit dates and stock control.
+    pic:
+      set: lucide
+      name: calendar-days
+    tags:
+    - seasonality
+    - ABC-B
+    - FMR-M
+    - seasonal-demand
+    - promo
+    - omnichannel
+    branch_orientation: vertical
+    style:
+      fill: '#FFF0F4'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#F43F5E'
+    children:
+    - name: Hot-Weather Range
+      desc: Seasonal display that accelerates traffic and impulse buys during hot periods.
+      pic:
+        set: lucide
+        name: sun
+      tags:
+      - summer
+      - ABC-B
+      - FMR-M
+      - seasonal-demand
+      - traffic-driver
+      - summer-peak
+      - omnichannel
+      style:
+        fill: '#FFF7F9'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#F43F5E'
+      children:
+      - name: CoolBox — Cooler Bag
+        desc: Impulse seasonal SKU with a tightly limited range and elevated margin.
+        pic:
+          set: lucide
+          name: shopping-bag
+        tags:
+        - seasonal
+        - ABC-B
+        - FMR-M
+        - margin-driver
+        - impulse
+        - summer-peak
+        - retail-store
+        value: 14
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+      - name: Mavuno Beach Bottle 0.7 L
+        desc: Private label for summer displays and incremental margin in beverages.
+        pic:
+          set: lucide
+          name: bottle
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - margin-driver
+        - impulse
+        - summer-peak
+        - retail-store
+        value: 11
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+    - name: Holiday Gift Sets
+      desc: 'Limited seasonal range: gifting demand, fixed buys and end-of-season stock control.'
+      pic:
+        set: lucide
+        name: gift
+      tags:
+      - holiday
+      - ABC-B
+      - FMR-M
+      - seasonal-demand
+      - promo
+      - winter-peak
+      - omnichannel
+      style:
+        fill: '#FFF7F9'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#F43F5E'
+      children:
+      - name: Mavuno Gift — Care Set
+        desc: Private-label gift set for holiday demand, with high margin and limited run.
+        pic:
+          set: lucide
+          name: gift
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - margin-driver
+        - holiday-peak
+        - winter-peak
+        - omnichannel
+        value: 18
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+      - name: SweetBox — Chocolate Gift Set
+        desc: National-brand gift SKU requiring strict end-of-season stock planning.
+        pic:
+          set: lucide
+          name: gift
+        tags:
+        - national-brand
+        - ABC-B
+        - FMR-M
+        - promo
+        - holiday-peak
+        - winter-peak
+        - overstock-risk
+        value: 16
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+      - name: Mavuno Gift — Family Set
+        desc: Premium set for weekend baskets and pre-holiday digital orders.
+        pic:
+          set: lucide
+          name: gift
+        tags:
+        - private-label
+        - ABC-C
+        - FMR-M
+        - margin-driver
+        - premium
+        - winter-peak
+        - e-commerce
+        value: 12
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+    - name: Back to School
+      desc: 'Autumn theme range: school supplies, limited selling window and cross-merchandising.'
+      pic:
+        set: lucide
+        name: school
+      tags:
+      - back-to-school
+      - ABC-B
+      - FMR-M
+      - seasonal-demand
+      - fall-peak
+      - promo
+      - omnichannel
+      style:
+        fill: '#FFF7F9'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#F43F5E'
+      children:
+      - name: Mavuno Study — Notebooks 10-pack
+        desc: 'Private label: margin-led core set for the back-to-school basket.'
+        pic:
+          set: lucide
+          name: notebook-pen
+        tags:
+        - private-label
+        - ABC-B
+        - FMR-M
+        - margin-driver
+        - fall-peak
+        - basket-builder
+        - omnichannel
+        value: 13
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+      - name: ColorSet — Marker Set
+        desc: Impulse display and e-commerce item; demand is concentrated in August.
+        pic:
+          set: lucide
+          name: palette
+        tags:
+        - national-brand
+        - ABC-B
+        - FMR-M
+        - impulse
+        - fall-peak
+        - e-commerce
+        - seasonal
+        value: 10
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+      - name: Mavuno Study — Pencil Case
+        desc: Complements the school basket and delivers notable margin with limited range breadth.
+        pic:
+          set: lucide
+          name: briefcase-business
+        tags:
+        - private-label
+        - ABC-C
+        - FMR-M
+        - margin-driver
+        - fall-peak
+        - basket-builder
+        - retail-store
+        value: 9
+        style:
+          fill: '#FFF7F9'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#F43F5E'
+  - name: Delisted Categories
+    desc: 'Hidden rationalisation branch: SKUs excluded from the target assortment architecture.'
+    pic:
+      set: lucide
+      name: archive-x
+    tags:
+    - delisted
+    - ABC-C
+    - FMR-R
+    - low-margin
+    - non-core
+    - residual-stock
+    hidden: true
+    branch_orientation: vertical
+    style:
+      fill: '#F1F5F9'
+      contour: dashed
+      contour_width: regular
+    relation:
+      line: dashed
+      line_width: regular
+      color: '#94A3B8'
+    children:
+    - name: Decorative Candles
+      desc: 'Delisted category: low profit, infrequent demand and weak stock rotation.'
+      pic:
+        set: lucide
+        name: flame
+      tags:
+      - delisted
+      - ABC-C
+      - FMR-R
+      - low-margin
+      - low-season
+      - non-core
+      hidden: true
+      style:
+        fill: '#F1F5F9'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#94A3B8'
+      children:
+      - name: Scented Candle 200 g
+        desc: Low demand outside gifting periods; residual-stock sell-through completes delisting.
+        pic:
+          set: lucide
+          name: flame
+        tags:
+        - delisted
+        - ABC-C
+        - FMR-R
+        - low-margin
+        - holiday-peak
+        - residual-stock
+        value: 4
+        hidden: true
+        style:
+          fill: '#F1F5F9'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#94A3B8'
+      - name: Decorative Candle 120 g
+        desc: Duplicates adjacent formats and does not generate material margin.
+        pic:
+          set: lucide
+          name: flame
+        tags:
+        - delisted
+        - ABC-C
+        - FMR-R
+        - low-margin
+        - duplicate
+        - residual-stock
+        value: 3
+        hidden: true
+        style:
+          fill: '#F1F5F9'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#94A3B8'
+    - name: Gift Wrap
+      desc: 'Delisted category: narrow seasonality and weak contribution to basket missions.'
+      pic:
+        set: lucide
+        name: gift
+      tags:
+      - delisted
+      - ABC-C
+      - FMR-R
+      - low-margin
+      - holiday-peak
+      - non-core
+      hidden: true
+      style:
+        fill: '#F1F5F9'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#94A3B8'
+      children:
+      - name: Gift-Wrap Set
+        desc: Low purchase frequency and post-season stock do not justify range space.
+        pic:
+          set: lucide
+          name: gift
+        tags:
+        - delisted
+        - ABC-C
+        - FMR-R
+        - low-margin
+        - holiday-peak
+        - residual-stock
+        value: 5
+        hidden: true
+        style:
+          fill: '#F1F5F9'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#94A3B8'
+    - name: Souvenirs & Keyrings
+      desc: 'Delisted impulse category: weak frequency, seasonal stock and gifting duplication.'
+      pic:
+        set: lucide
+        name: party-popper
+      tags:
+      - delisted
+      - ABC-C
+      - FMR-R
+      - low-margin
+      - low-season
+      - duplicate
+      hidden: true
+      style:
+        fill: '#F1F5F9'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#94A3B8'
+      children:
+      - name: Mavuno Keyring
+        desc: Does not create a repeatable basket mission and lingers after sparse promotions.
+        pic:
+          set: lucide
+          name: tag
+        tags:
+        - delisted
+        - ABC-C
+        - FMR-R
+        - low-margin
+        - residual-stock
+        - non-core
+        value: 2
+        hidden: true
+        style:
+          fill: '#F1F5F9'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#94A3B8'
+      - name: Souvenir Magnet
+        desc: Weak stock rotation and low profit do not justify shelf space.
+        pic:
+          set: lucide
+          name: magnet
+        tags:
+        - delisted
+        - ABC-C
+        - FMR-R
+        - low-margin
+        - residual-stock
+        - non-core
+        value: 1
+        hidden: true
+        style:
+          fill: '#F1F5F9'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#94A3B8'

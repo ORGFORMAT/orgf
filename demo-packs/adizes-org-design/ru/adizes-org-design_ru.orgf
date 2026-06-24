@@ -1,0 +1,898 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: 'Mavuno Retail & Distribution Ltd. — TO BE / «Целевая модель»: модель стоимости владения'
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — в максимально допустимом законом объёме ORGFORMAT DemoPacks отказался от авторских и
+    смежных прав на этот материал. Его можно свободно копировать, изменять, распространять и использовать,
+    включая коммерчески, без запроса разрешения и обязательного указания автора. CC0 не предоставляет прав
+    на обозначения ORGFORMAT, ORGF, логотипы и иные брендовые активы.
+  license: CC0-1.0
+  created: '2026-06-14'
+  updated: '2026-06-24'
+
+model:
+  name: Mavuno Retail & Distribution — TO BE / «Целевая модель»
+  desc: >-
+    Целевая операционная модель для малого бизнеса, управляемого основателем, после первого шага
+    профессионализации; модель ежемесячной стоимости владения показывает ясную ответственность, формальные
+    точки контроля и снижение теневых затрат.
+
+    Демонстрационный материал ORGFORMAT DemoPacks предназначен для иллюстрации возможностей ORGF. Если прямо
+    не указано иное, содержащиеся в модели наименования, организации, продукты, проекты, роли, данные и
+    сценарии являются условными или вымышленными; любое сходство с реальными объектами не означает связи,
+    одобрения или принадлежности. Вопросы и обращения: support@orgformat.com.
+  value_label: Ежемесячная стоимость владения
+  value_unit: USD/мес.
+
+root:
+  name: CEO / Владелец
+  desc: Роль владельца сфокусирована на стратегии, ключевых партнёрствах, распределении капитала и обзоре результатов вместо
+    ежедневного тушения пожаров.
+  value: 4200
+  pic:
+    set: lucide
+    name: user-round-check
+  tags:
+  - управление
+  - владелец
+  - стратегический-контроль
+  - ясный-владелец
+  - E
+  - I
+  branch_orientation: horizontal
+  style:
+    fill: '#E6FAF8'
+    contour: solid
+    contour_width: bold
+  children:
+  - name: Генеральный менеджер / COO
+    desc: Единый ответственный операционный владелец за ежедневные результаты, координацию и дисциплину исполнения.
+    value: 2500
+    pic:
+      set: lucide
+      name: badge-check
+    tags:
+    - управленческий-слой
+    - операционная-модель
+    - ясный-владелец
+    - узкое-место-основатель-устранено
+    - P
+    - A
+    branch_orientation: vertical
+    style:
+      fill: '#DDF7F4'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#0F766E'
+    children:
+    - name: Коммерческий руководитель
+      desc: Отвечает за выручку в B2B, розничном и цифровом каналах через единый коммерческий план.
+      value: 1600
+      pic:
+        set: lucide
+        name: chart-no-axes-combined
+      tags:
+      - коммерция
+      - выручка
+      - ясный-владелец
+      - масштабируемо
+      - P
+      - E
+      branch_orientation: vertical
+      style:
+        fill: '#EAF2FF'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#2563EB'
+      children:
+      - name: Супервайзер B2B-продаж
+        desc: Управляет ритмом полевых продаж, дисциплиной маршрутов и покрытием дистрибьюторов без обхода операционных правил.
+        value: 1150
+        pic:
+          set: lucide
+          name: route
+        tags:
+        - продажи
+        - полевая-команда
+        - управление-командой
+        - владелец-процесса
+        - P
+        style:
+          fill: '#DBEAFE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#2563EB'
+        children:
+        - name: Полевые торговые представители
+          desc: Четыре сфокусированных представителя покрывают киоски, небольшие магазины и локальных оптовиков по плановым
+            маршрутам.
+          value: 3000
+          pic:
+            set: lucide
+            name: users
+          tags:
+          - продажи
+          - полевая-команда
+          - выручка
+          - плановое-покрытие
+          - P
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+        - name: Менеджер по ключевым клиентам и дистрибьюторам
+          desc: Ведёт приоритетных клиентов и отношения с дистрибьюторами в рамках согласованных правил маржи и распределения
+            запасов.
+          value: 950
+          pic:
+            set: lucide
+            name: handshake
+          tags:
+          - продажи
+          - ключевые-клиенты
+          - управление-дистрибьюторами
+          - ясный-владелец
+          - P
+          - I
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+      - name: Координатор операционной поддержки продаж и CRM
+        desc: Отвечает за чистоту заказов, обновление CRM, прайс-листы и отчётность продаж; заменяет разрозненную ручную отработку
+          открытых вопросов.
+        value: 700
+        pic:
+          set: lucide
+          name: list-checks
+        tags:
+        - операционная-поддержка-продаж
+        - crm
+        - точка-контроля
+        - объединенная-роль
+        - A
+        style:
+          fill: '#FFFFFF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#39424E'
+      - name: Операторы клиентского сервиса
+        desc: Два оператора ведут WhatsApp, телефонные заказы, вопросы доставки и замены товаров через единую очередь.
+        value: 900
+        pic:
+          set: lucide
+          name: messages-square
+        tags:
+        - клиентский-сервис
+        - цифровые-продажи
+        - формализованная-роль
+        - I
+        style:
+          fill: '#EEF2FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#4F46E5'
+      - name: Супервайзер розничных операций
+        desc: Управляет розничными точками как каналом внутри коммерции, а не как отдельной веткой под основателем.
+        value: 850
+        pic:
+          set: lucide
+          name: store
+        tags:
+        - розница
+        - владелец-канала
+        - ясный-владелец
+        - P
+        style:
+          fill: '#EAF8ED'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#2E7D32'
+        children:
+        - name: Кассиры торговых точек
+          desc: Три кассира работают по правилам ежедневного закрытия и сверки под контролем финансов.
+          value: 1350
+          pic:
+            set: lucide
+            name: receipt
+          tags:
+          - розница
+          - работа-с-наличными
+          - ежедневное-закрытие
+          - A
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+        - name: Продавцы-консультанты
+          desc: Три сотрудника обеспечивают выкладку, помощь клиентам и дисциплину пополнения.
+          value: 1200
+          pic:
+            set: lucide
+            name: shopping-basket
+          tags:
+          - розница
+          - клиентский-фронт
+          - плановое-покрытие
+          - P
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+        - name: Координатор мерчандайзинга
+          desc: Одна формальная роль вместо дублирующегося мерчандайзинга в рознице и полевых продажах.
+          value: 550
+          pic:
+            set: lucide
+            name: shelves
+          tags:
+          - мерчандайзинг
+          - объединенная-роль
+          - дублирование-роли-устранено
+          - P
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+    - name: Руководитель цепочки поставок
+      desc: Отвечает за закупки, запасы, склад и доставку как за единый supply-chain контур.
+      value: 1500
+      pic:
+        set: lucide
+        name: warehouse
+      tags:
+      - операции
+      - цепочка-поставок
+      - ясный-владелец
+      - риск-дефицита-товара-снижен
+      - P
+      - A
+      branch_orientation: vertical
+      style:
+        fill: '#ECFDF3'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#027A48'
+      children:
+      - name: Планировщик закупок и запасов
+        desc: Планирует пополнение, сроки закупок и контроль поставщиков на основе спроса и данных по остаткам.
+        value: 850
+        pic:
+          set: lucide
+          name: clipboard-check
+        tags:
+        - закупки
+        - планирование-запасов
+        - владелец-процесса
+        - точка-контроля
+        - A
+        style:
+          fill: '#F0F7EF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#027A48'
+        children:
+        - name: Специалист по заказам поставщикам
+          desc: Обрабатывает заказы поставщикам и документы по правилам планирования, а не через ситуативное согласование
+            с основателем.
+          value: 450
+          pic:
+            set: lucide
+            name: file-check-2
+          tags:
+          - администрирование-закупок
+          - формализованная-роль
+          - A
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+      - name: Начальник склада
+        desc: Управляет складским исполнением с ясной передачей от коммерческих заказов и планов закупок.
+        value: 850
+        pic:
+          set: lucide
+          name: boxes
+        tags:
+        - склад
+        - управление-командой
+        - ясный-владелец
+        - P
+        style:
+          fill: '#D1FAE5'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#027A48'
+        children:
+        - name: Комплектовщики и упаковщики
+          desc: Три сотрудника собирают, упаковывают и готовят отгрузки по стандартной работе.
+          value: 1500
+          pic:
+            set: lucide
+            name: package-check
+          tags:
+          - склад
+          - исполнение-заказов
+          - стандартная-работа
+          - P
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+        - name: Контролёр запасов
+          desc: Отвечает за циклические пересчёты, разбор расхождений и точность запасов; заменяет табличные обходные процессы.
+          value: 650
+          pic:
+            set: lucide
+            name: clipboard-list
+          tags:
+          - контроль-запасов
+          - точка-контроля
+          - разрыв-автоматизации-снижен
+          - A
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+      - name: Координатор маршрутов и отгрузок
+        desc: Планирует маршруты доставки, использование транспорта и окна пополнения розницы через единую очередь диспетчеризации.
+        value: 550
+        pic:
+          set: lucide
+          name: map
+        tags:
+        - логистика
+        - планирование-маршрутов
+        - владелец-процесса
+        - A
+        style:
+          fill: '#FFFFFF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#39424E'
+        children:
+        - name: Водители
+          desc: Три водителя назначаются через плановые маршруты, а не через эскалации основателя.
+          value: 2250
+          pic:
+            set: lucide
+            name: truck
+          tags:
+          - логистика
+          - доставка
+          - плановое-покрытие
+          - P
+          style:
+            fill: '#FFFFFF'
+            contour: solid
+            contour_width: regular
+          relation:
+            line: solid
+            line_width: regular
+            color: '#39424E'
+    - name: Координатор по персоналу и администрированию
+      desc: Лёгкая сервисная роль общего обслуживания для кадровых записей, координации зарплаты и офисной администрации.
+      value: 700
+      pic:
+        set: lucide
+        name: users-round
+      tags:
+      - персонал-и-админ
+      - общий-сервис
+      - формализованная-роль
+      - I
+      - A
+      branch_orientation: vertical
+      style:
+        fill: '#F3E8FF'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7E22CE'
+      children:
+      - name: HR-администратор и расчёт зарплаты
+        desc: Ведёт договоры, посещаемость, исходные данные для расчёта зарплаты и базовые HR-записи.
+        value: 450
+        pic:
+          set: lucide
+          name: calendar-days
+        tags:
+        - hr-администрирование
+        - зарплата
+        - точка-контроля
+        - I
+        - A
+        style:
+          fill: '#FFFFFF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#39424E'
+      - name: Офис-администратор
+        desc: Ведёт лицензии, офисные закупки, хозяйственные потребности и административные рутины.
+        value: 400
+        pic:
+          set: lucide
+          name: building-2
+        tags:
+        - администрирование
+        - общий-сервис
+        - I
+        style:
+          fill: '#FFFFFF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#39424E'
+  - name: Руководитель финансов и контроля
+    desc: Независимая точка контроля с подчинением CEO; отвечает за бухучёт, кассовый контроль и управленческую отчётность.
+    value: 1450
+    pic:
+      set: lucide
+      name: calculator
+    tags:
+    - финансы
+    - точка-контроля
+    - кассовый-контроль
+    - управленческая-отчетность
+    - A
+    branch_orientation: vertical
+    style:
+      fill: '#FFF1DF'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#D9822B'
+    children:
+    - name: Бухгалтер
+      desc: Отвечает за обязательный учёт, закрытие месяца и финансовую дисциплину.
+      value: 950
+      pic:
+        set: lucide
+        name: notebook-tabs
+      tags:
+      - бухучет
+      - финансы
+      - ясный-владелец
+      - A
+      style:
+        fill: '#FFEDD5'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#D9822B'
+      children:
+      - name: Бухгалтер-учётчик
+        desc: Заносит счета, чеки и документы поставщиков с более чистым разделением ответственности.
+        value: 450
+        pic:
+          set: lucide
+          name: file-text
+        tags:
+        - бухучет
+        - документы
+        - стандартная-работа
+        - A
+        style:
+          fill: '#FFFFFF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#39424E'
+    - name: Специалист по кассовому контролю
+      desc: Контролирует ежедневное закрытие кассы, работу по оплатам и разделение розничной кассы с бухгалтерским учётом.
+      value: 650
+      pic:
+        set: lucide
+        name: wallet-cards
+      tags:
+      - кассовый-контроль
+      - точка-контроля
+      - риск-снижен
+      - A
+      style:
+        fill: '#FFFFFF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#39424E'
+    - name: Аналитик управленческой отчётности
+      desc: Частичная аналитическая мощность для дашбордов по марже, запасам, cash flow и результатам каналов.
+      value: 450
+      pic:
+        set: lucide
+        name: chart-column
+      tags:
+      - управленческая-отчетность
+      - ритм-результативности
+      - поддержка-решений
+      - A
+      - E
+      style:
+        fill: '#FFFFFF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#39424E'
+  - name: Внешние сервисы и консультанты
+    desc: 'Явный слой внешних сервисов: поддержка видима и законтрактована, а не спрятана внутри неформальных ролей.'
+    value: 0
+    pic:
+      set: lucide
+      name: cable
+    tags:
+    - внешний-сервис
+    - аутсорсинг
+    - видимая-стоимость
+    - A
+    branch_orientation: vertical
+    style:
+      fill: '#F3F4F6'
+      contour: double
+      contour_width: bold
+    relation:
+      line: dotted
+      line_width: regular
+      color: '#6B7280'
+    children:
+    - name: Партнёр по управляемой ИТ-поддержке
+      desc: Ежемесячный контракт поддержки POS, ноутбуков, подключения и базового администрирования систем.
+      value: 600
+      pic:
+        set: lucide
+        name: monitor-cog
+      tags:
+      - ит-поддержка
+      - аутсорсинг
+      - разрыв-автоматизации-снижен
+      - A
+      style:
+        fill: '#E5E7EB'
+        contour: double
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+    - name: Налоговые и юридические консультанты
+      desc: Лёгкий внешний абонентский договор для налоговой отчётности, шаблонов трудовых документов и вопросов по договорам
+        с поставщиками.
+      value: 350
+      pic:
+        set: lucide
+        name: scale
+      tags:
+      - юридическое
+      - налоги
+      - аутсорсинг
+      - риск-снижен
+      - A
+      style:
+        fill: '#E5E7EB'
+        contour: double
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+  - name: Устранённые теневые затраты
+    desc: 'Скрытый сравнительный слой: AS IS-роли и обходные процессы, устранённые, поглощённые или формализованные в целевой
+      модели; нулевая стоимость владения в целевом состоянии.'
+    hidden: true
+    value: 0
+    pic:
+      set: lucide
+      name: eye-off
+    tags:
+    - удаленная-роль
+    - теневая-стоимость-устранена
+    - дельта-трансформации
+    - без-прямой-стоимости
+    branch_orientation: vertical
+    style:
+      fill: '#F4F4F5'
+      contour: dotted
+      contour_width: bold
+    relation:
+      line: dotted
+      line_width: regular
+      color: '#9CA3AF'
+    children:
+    - name: Семейный координатор бизнеса — устранено
+      desc: Неформальная координация поглощена ритмом COO и ясным владением ролями.
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: user-x
+      tags:
+      - удаленная-роль
+      - неформальная-роль-устранена
+      - узкое-место-основатель-устранено
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: Специалист по просроченной дебиторке — поглощено
+      desc: Контроль оплат перенесён в роль кассового контроля и процесс клиентского сервиса.
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: phone-off
+      tags:
+      - поглощенная-роль
+      - риск-кассового-контроля-снижен
+      - теневая-стоимость-устранена
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: Неформальный координатор поставок — поглощено
+      desc: Ситуативное ускорение поставщиков заменено планированием закупок и дисциплиной заказов поставщикам.
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: timer-off
+      tags:
+      - поглощенная-роль
+      - контроль-закупок
+      - теневая-стоимость-устранена
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: Ответственный за мелкую кассу — устранено
+      desc: Обходной процесс мелкой кассы устранён через кассовую политику и сверку под контролем финансов.
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: wallet-minimal
+      tags:
+      - устраненная-роль
+      - риск-кассового-контроля-снижен
+      - теневая-стоимость-устранена
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: Ведущий таблиц — устранено
+      desc: Ручная сверка заменена владельцем отчётности и более чистой дисциплиной исходных систем.
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: table-2
+      tags:
+      - устраненная-роль
+      - ручной-процесс-снижен
+      - разрыв-автоматизации-снижен
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: Неформальный координатор промоакций — поглощено
+      desc: Локальные промо становятся частью коммерческого планирования и координации мерчандайзинга.
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: megaphone-off
+      tags:
+      - поглощенная-роль
+      - дублирование-роли-устранено
+      - теневая-стоимость-устранена
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+    - name: Ручное тушение эскалаций основателем — устранено
+      desc: Эскалации маршрутизируются через ответственных менеджеров и сервисные очереди, а не через владельца.
+      hidden: true
+      value: 0
+      pic:
+        set: lucide
+        name: flame-kindling
+      tags:
+      - узкое-место-основатель-устранено
+      - риск-ключевого-человека-снижен
+      - без-прямой-стоимости
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'

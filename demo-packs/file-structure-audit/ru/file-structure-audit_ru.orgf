@@ -1,0 +1,2757 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: 'Mavuno Retail & Distribution — аудит файловой структуры: расширенная целевая модель и наследие'
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — в максимально допустимом законом объёме ORGFORMAT DemoPacks отказался от авторских и
+    смежных прав на этот материал. Его можно свободно копировать, изменять, распространять и использовать,
+    включая коммерчески, без запроса разрешения и обязательного указания автора. CC0 не предоставляет прав
+    на обозначения ORGFORMAT, ORGF, логотипы и иные брендовые активы.
+  license: CC0-1.0
+  created: '2026-06-21'
+  updated: '2026-06-24'
+
+model:
+  name: Mavuno File Estate — аудит файловой структуры, проход 2
+  desc: >-
+    Расширенная демонстрационная модель корпоративного файлового пространства. Файлы организованы по работе,
+    аудитории доступа и жизненному циклу; скрытая ветвь сохраняет старую персонализированную структуру для
+    аудита и миграции.
+
+    Демонстрационный материал ORGFORMAT DemoPacks предназначен для иллюстрации возможностей ORGF. Если прямо
+    не указано иное, содержащиеся в модели наименования, организации, продукты, проекты, роли, данные и
+    сценарии являются условными или вымышленными; любое сходство с реальными объектами не означает связи,
+    одобрения или принадлежности. Вопросы и обращения: support@orgformat.com.
+  value_label: Объём данных
+  value_unit: ГБ
+
+root:
+  name: Корпоративное файловое пространство Mavuno
+  desc: Целевая модель файловой структуры Mavuno Retail & Distribution. Заливка показывает важность для бизнеса,
+    контур — уровень приватности, линия — частоту использования, цвет связи — рабочий контекст.
+  value: 0.0
+  pic:
+    set: lucide
+    name: folder-tree
+  tags:
+  - корпоративные-данные
+  - общая-модель
+  - актуальная
+  branch_orientation: horizontal
+  style:
+    fill: '#E6FAF8'
+    contour: solid
+    contour_width: bold
+  relation:
+    line: solid
+    line_width: bold
+    color: '#0F766E'
+  children:
+  - name: 01_Управление и решения
+    desc: Ограниченный контур для решений, планов и управленческих материалов. Здесь фиксируется, чем руководствуется
+      компания, а не чьи-то личные копии.
+    value: 0.0
+    pic:
+      set: lucide
+      name: scale
+    tags:
+    - топы
+    - общая
+    - конфиденциально
+    - актуальная
+    branch_orientation: vertical
+    style:
+      fill: '#FEF3C7'
+      contour: double
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#7C3AED'
+    children:
+    - name: Стратегия и планы
+      desc: Утверждённые ориентиры роста, ресурсы и приоритеты для CEO, COO и руководителей функций.
+      value: 0.0
+      pic:
+        set: lucide
+        name: target
+      tags:
+      - топы
+      - общая
+      - конфиденциально
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#7C3AED'
+      children:
+      - name: 2026_Цели и сценарии
+        desc: Единая версия целей компании, сценариев спроса и ключевых предположений на 2026 год.
+        value: 2.6
+        pic:
+          set: lucide
+          name: goal
+        tags:
+        - топы
+        - общая
+        - конфиденциально
+        - утвержденные-документы
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#7C3AED'
+      - name: Операционный план
+        desc: Связка коммерческих, закупочных и финансовых допущений, по которой планируется неделя и месяц.
+        value: 0.0
+        pic:
+          set: lucide
+          name: route
+        tags:
+        - топы
+        - продажи
+        - закупки
+        - бухгалтерия
+        - межфункциональная
+        - актуальная
+        branch_orientation: vertical
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#7C3AED'
+        children:
+        - name: План продаж и запасов
+          desc: Рабочая сводка спроса, поставок и целевых запасов для исполнения плана.
+          value: 3.3
+          pic:
+            set: lucide
+            name: chart-no-axes-combined
+          tags:
+          - топы
+          - продажи
+          - закупки
+          - склад
+          - межфункциональная
+          - актуальная
+          style:
+            fill: '#FECACA'
+            contour: solid
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: bold
+            color: '#7C3AED'
+        - name: План денежных разрывов
+          desc: Прогноз платежей и кассовых рисков, используемый в еженедельных решениях.
+          value: 1.7
+          pic:
+            set: lucide
+            name: wallet-cards
+          tags:
+          - топы
+          - бухгалтерия
+          - конфиденциально
+          - актуальная
+          style:
+            fill: '#FECACA'
+            contour: double
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: bold
+            color: '#7C3AED'
+    - name: Протоколы и решения
+      desc: Фиксация управленческих решений, исключений и следующих действий с понятным владельцем.
+      value: 0.0
+      pic:
+        set: lucide
+        name: file-check-2
+      tags:
+      - топы
+      - общая
+      - конфиденциально
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: Еженедельный операционный комитет
+        desc: Решения по спросу, запасам, доставке и критичным клиентским вопросам.
+        value: 1.9
+        pic:
+          set: lucide
+          name: notebook-tabs
+        tags:
+        - топы
+        - продажи
+        - закупки
+        - склад
+        - межфункциональная
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#7C3AED'
+      - name: Исключения и эскалации
+        desc: Согласованные исключения по ценам, лимитам, срокам и поставщикам.
+        value: 0.8
+        pic:
+          set: lucide
+          name: triangle-alert
+        tags:
+        - топы
+        - бухгалтерия
+        - продажи
+        - межфункциональная
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: Пакеты топ-команды
+      desc: 'Регулярные управленческие пакеты: продажи, валовая маржа, дебиторка, запасы и ключевые риски.'
+      value: 0.0
+      pic:
+        set: lucide
+        name: presentation
+      tags:
+      - топы
+      - межфункциональная
+      - конфиденциально
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#7C3AED'
+      children:
+      - name: Еженедельный dashboard
+        desc: Сжатая версия актуальных показателей для CEO и COO.
+        value: 2.1
+        pic:
+          set: lucide
+          name: gauge
+        tags:
+        - топы
+        - межфункциональная
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#7C3AED'
+  - name: 02_Продажи и клиенты
+    desc: 'Рабочее пространство коммерческой команды: клиентские данные, цены, сделки, онлайн-каналы и коммерческие
+      обязательства.'
+    value: 0.0
+    pic:
+      set: lucide
+      name: shopping-bag
+    tags:
+    - продажи
+    - межфункциональная
+    - актуальная
+    branch_orientation: vertical
+    style:
+      fill: '#FEF3C7'
+      contour: dashed
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#B45309'
+    children:
+    - name: CRM и данные клиентов
+      desc: Единый набор клиентских записей, контактов и истории взаимодействия.
+      value: 0.0
+      pic:
+        set: lucide
+        name: database
+      tags:
+      - продажи
+      - бухгалтерия
+      - межфункциональная
+      - персональные-данные
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B45309'
+      children:
+      - name: Клиентский справочник
+        desc: Базовые карточки клиентов, торговые точки и согласованные реквизиты.
+        value: 8.4
+        pic:
+          set: lucide
+          name: contact-round
+        tags:
+        - продажи
+        - бухгалтерия
+        - межфункциональная
+        - персональные-данные
+        - единый-источник
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+      - name: История сделок и встреч
+        desc: Рабочие записи менеджеров по активным сделкам и договорённостям с клиентами.
+        value: 11.6
+        pic:
+          set: lucide
+          name: messages-square
+        tags:
+        - продажи
+        - межфункциональная
+        - коммерческая-тайна
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+    - name: Цены и промо
+      desc: Управляемое пространство для утверждённых цен, механик скидок и промо-календаря.
+      value: 0.0
+      pic:
+        set: lucide
+        name: badge-dollar-sign
+      tags:
+      - продажи
+      - закупки
+      - бухгалтерия
+      - межфункциональная
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B45309'
+      children:
+      - name: Утверждённые прайсы
+        desc: Единые действующие цены для каналов продаж и клиентов.
+        value: 0.0
+        pic:
+          set: lucide
+          name: tags
+        tags:
+        - продажи
+        - закупки
+        - общая
+        - единый-источник
+        - актуальная
+        branch_orientation: vertical
+        style:
+          fill: '#FECACA'
+          contour: dashed
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+        children:
+        - name: Розница и независимые клиенты
+          desc: Актуальные ценовые листы для базового коммерческого канала.
+          value: 2.9
+          pic:
+            set: lucide
+            name: file-spreadsheet
+          tags:
+          - продажи
+          - общая
+          - единый-источник
+          - актуальная
+          style:
+            fill: '#FECACA'
+            contour: dashed
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: bold
+            color: '#B45309'
+        - name: Ключевые сети и опт
+          desc: Согласованные условия для крупных сетей и оптовых клиентов.
+          value: 3.7
+          pic:
+            set: lucide
+            name: store
+          tags:
+          - продажи
+          - топы
+          - коммерческая-тайна
+          - актуальная
+          style:
+            fill: '#FECACA'
+            contour: double
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: bold
+            color: '#B45309'
+      - name: Промо-календарь
+        desc: Согласованные активности, сроки, механики и бюджеты по каналам.
+        value: 4.8
+        pic:
+          set: lucide
+          name: calendar-days
+        tags:
+        - продажи
+        - закупки
+        - бухгалтерия
+        - межфункциональная
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+    - name: Ключевые клиенты
+      desc: Коммерческие планы, совместные акции и закрытые материалы по крупным клиентам.
+      value: 0.0
+      pic:
+        set: lucide
+        name: users-round
+      tags:
+      - продажи
+      - топы
+      - коммерческая-тайна
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B45309'
+      children:
+      - name: Сетевые клиенты
+        desc: Планы развития, листинги, коммерческие условия и отчёты по торговым сетям.
+        value: 35.4
+        pic:
+          set: lucide
+          name: building-2
+        tags:
+        - продажи
+        - топы
+        - коммерческая-тайна
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+      - name: Региональные дистрибьюторы
+        desc: Договорённости, планы и реестры по оптовому и региональному каналу.
+        value: 18.9
+        pic:
+          set: lucide
+          name: map-pinned
+        tags:
+        - продажи
+        - коммерческая-тайна
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B45309'
+    - name: Онлайн-каналы и маркетплейсы
+      desc: Операционные материалы для интернет-магазина и маркетплейсов.
+      value: 0.0
+      pic:
+        set: lucide
+        name: monitor-smartphone
+      tags:
+      - продажи
+      - внешний-обмен
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B45309'
+      children:
+      - name: Карточки товаров и контент
+        desc: Тексты, характеристики и утверждённые материалы для публикации.
+        value: 36.8
+        pic:
+          set: lucide
+          name: panels-top-left
+        tags:
+        - продажи
+        - общая
+        - внешний-обмен
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+      - name: Заказы и исключения
+        desc: Выгрузки, разбор отмен и ручные корректировки по онлайн-заказам.
+        value: 22.0
+        pic:
+          set: lucide
+          name: shopping-cart
+        tags:
+        - продажи
+        - склад
+        - межфункциональная
+        - операционные-данные
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+      - name: Отчёты площадок
+        desc: Отчёты маркетплейсов, удержания и финансовые сверки по каналам.
+        value: 17.5
+        pic:
+          set: lucide
+          name: bar-chart-3
+        tags:
+        - продажи
+        - бухгалтерия
+        - межфункциональная
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B45309'
+    - name: Коммерческая аналитика
+      desc: Отчёты по продажам, каналам, клиентам, марже и эффективности активностей.
+      value: 0.0
+      pic:
+        set: lucide
+        name: chart-no-axes-combined
+      tags:
+      - продажи
+      - топы
+      - межфункциональная
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#B45309'
+      children:
+      - name: Продажи и маржа
+        desc: Регулярные срезы по выручке, марже, товарным группам и клиентам.
+        value: 15.1
+        pic:
+          set: lucide
+          name: chart-line
+        tags:
+        - продажи
+        - бухгалтерия
+        - топы
+        - межфункциональная
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+  - name: 03_Закупки, склад и доставка
+    desc: Операционные данные о поставках, товарах, запасах, движении и исполнении заказов.
+    value: 0.0
+    pic:
+      set: lucide
+      name: package
+    tags:
+    - закупки
+    - склад
+    - межфункциональная
+    - актуальная
+    branch_orientation: vertical
+    style:
+      fill: '#FEF3C7'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#0F766E'
+    children:
+    - name: Поставщики и закупки
+      desc: Материалы по поиску, выбору и ведению поставщиков; заказы и подтверждения поставок.
+      value: 0.0
+      pic:
+        set: lucide
+        name: handshake
+      tags:
+      - закупки
+      - бухгалтерия
+      - коммерческая-тайна
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#0F766E'
+      children:
+      - name: Карточки и квалификация поставщиков
+        desc: Актуальные реквизиты, условия, оценка и подтверждающие документы поставщиков.
+        value: 12.3
+        pic:
+          set: lucide
+          name: id-card
+        tags:
+        - закупки
+        - бухгалтерия
+        - конфиденциально
+        - единый-источник
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+      - name: Коммерческие предложения и тендеры
+        desc: Сравнения поставщиков, предложения, расчёты и согласования выбора.
+        value: 22.5
+        pic:
+          set: lucide
+          name: file-search
+        tags:
+        - закупки
+        - топы
+        - коммерческая-тайна
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+      - name: Заказы и подтверждения
+        desc: Рабочие заказы, подтверждения, спецификации и изменения сроков поставки.
+        value: 18.7
+        pic:
+          set: lucide
+          name: clipboard-list
+        tags:
+        - закупки
+        - склад
+        - межфункциональная
+        - операционные-данные
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+    - name: Каталог товара и медиаматериалы
+      desc: Единая база товарных карточек, фото, описаний и материалов для каналов продаж.
+      value: 0.0
+      pic:
+        set: lucide
+        name: image
+      tags:
+      - продажи
+      - закупки
+      - общая
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#0F766E'
+      children:
+      - name: Мастер-карточки SKU
+        desc: Базовые характеристики, штрихкоды, упаковка, артикулы и статусы товара.
+        value: 8.9
+        pic:
+          set: lucide
+          name: barcode
+        tags:
+        - закупки
+        - продажи
+        - склад
+        - межфункциональная
+        - единый-источник
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+      - name: Фотобанк продукции
+        desc: Фотографии, packshots и изображения, используемые в коммерческих и онлайн-каналах.
+        value: 412.6
+        pic:
+          set: lucide
+          name: images
+        tags:
+        - продажи
+        - закупки
+        - общая
+        - внешний-обмен
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+      - name: Этикетки и технические листы
+        desc: Макеты этикеток, листы безопасности, спецификации и обязательная маркировка.
+        value: 28.5
+        pic:
+          set: lucide
+          name: tag
+        tags:
+        - закупки
+        - склад
+        - продажи
+        - межфункциональная
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+    - name: Запасы и склад
+      desc: Контур инвентаризации, движения товара и разборов складских исключений.
+      value: 0.0
+      pic:
+        set: lucide
+        name: warehouse
+      tags:
+      - склад
+      - закупки
+      - межфункциональная
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#0F766E'
+      children:
+      - name: Остатки и движение товара
+        desc: Рабочие выгрузки по запасам, резервам и фактическому движению SKU.
+        value: 46.0
+        pic:
+          set: lucide
+          name: boxes
+        tags:
+        - склад
+        - закупки
+        - продажи
+        - межфункциональная
+        - операционные-данные
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+      - name: Инвентаризации
+        desc: Акты, фото, сверки и решения по результатам инвентаризаций.
+        value: 71.4
+        pic:
+          set: lucide
+          name: scan-barcode
+        tags:
+        - склад
+        - бухгалтерия
+        - межфункциональная
+        - операционные-данные
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+      - name: Расхождения, брак и списания
+        desc: Фото, акты и решения по расхождениям, браку и списанию товара.
+        value: 54.8
+        pic:
+          set: lucide
+          name: package-x
+        tags:
+        - склад
+        - бухгалтерия
+        - закупки
+        - межфункциональная
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+    - name: Доставка и возвраты
+      desc: Данные о маршрутах, подтверждениях, возвратах и исключениях в исполнении заказа.
+      value: 0.0
+      pic:
+        set: lucide
+        name: truck
+      tags:
+      - склад
+      - продажи
+      - межфункциональная
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#0F766E'
+      children:
+      - name: Маршруты и подтверждения доставки
+        desc: Реестры рейсов, proof of delivery и закрывающие подтверждения.
+        value: 86.9
+        pic:
+          set: lucide
+          name: route
+        tags:
+        - склад
+        - продажи
+        - межфункциональная
+        - операционные-данные
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+      - name: Возвраты клиентов
+        desc: Заявки, фото, причины возврата и согласованные действия по товарам.
+        value: 49.3
+        pic:
+          set: lucide
+          name: undo-2
+        tags:
+        - склад
+        - продажи
+        - бухгалтерия
+        - межфункциональная
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+    - name: Качество и соответствие
+      desc: Материалы, подтверждающие качество товара и соответствие обязательным требованиям.
+      value: 0.0
+      pic:
+        set: lucide
+        name: shield-check
+      tags:
+      - закупки
+      - склад
+      - бухгалтерия
+      - межфункциональная
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#0F766E'
+      children:
+      - name: Сертификаты и декларации
+        desc: Действующие документы соответствия по товарным группам и поставкам.
+        value: 19.1
+        pic:
+          set: lucide
+          name: badge-check
+        tags:
+        - закупки
+        - продажи
+        - внешний-обмен
+        - утвержденные-документы
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#0F766E'
+  - name: 04_Финансы, договоры и контроль
+    desc: Контролируемое пространство финансовых, договорных и юридически значимых данных с максимальной приватностью.
+    value: 0.0
+    pic:
+      set: lucide
+      name: landmark
+    tags:
+    - бухгалтерия
+    - топы
+    - личная
+    - конфиденциально
+    - актуальная
+    branch_orientation: vertical
+    style:
+      fill: '#FECACA'
+      contour: double
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#B91C1C'
+    children:
+    - name: Учёт, налоги и закрытие периода
+      desc: Первичные документы, учётные выгрузки, налоговые расчёты и закрытие периодов.
+      value: 0.0
+      pic:
+        set: lucide
+        name: calculator
+      tags:
+      - бухгалтерия
+      - топы
+      - личная
+      - конфиденциально
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B91C1C'
+      children:
+      - name: Первичные документы
+        desc: Счета, УПД, накладные и комплект первичных документов для учёта.
+        value: 138.2
+        pic:
+          set: lucide
+          name: files
+        tags:
+        - бухгалтерия
+        - личная
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B91C1C'
+      - name: Выгрузки учёта и ERP
+        desc: Регламентные выгрузки для анализа, сверок и восстановления проводок.
+        value: 164.7
+        pic:
+          set: lucide
+          name: database-backup
+        tags:
+        - бухгалтерия
+        - топы
+        - конфиденциально
+        - операционные-данные
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B91C1C'
+      - name: Налоги и отчётность
+        desc: Налоговые расчёты, декларации и подтверждения сдачи отчётности.
+        value: 17.8
+        pic:
+          set: lucide
+          name: file-chart-column
+        tags:
+        - бухгалтерия
+        - топы
+        - личная
+        - конфиденциально
+        - утвержденные-документы
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+      - name: Закрытие месяца
+        desc: Рабочие файлы закрытия, сверки и финальные пакеты по отчётному периоду.
+        value: 31.6
+        pic:
+          set: lucide
+          name: calendar-check
+        tags:
+        - бухгалтерия
+        - топы
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B91C1C'
+    - name: Деньги, банк и платежи
+      desc: 'Платёжный контур: реестры, выписки, лимиты и подтверждения расчётов.'
+      value: 0.0
+      pic:
+        set: lucide
+        name: wallet
+      tags:
+      - бухгалтерия
+      - топы
+      - личная
+      - конфиденциально
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B91C1C'
+      children:
+      - name: Платёжный календарь
+        desc: План платежей, приоритеты и согласования денежных обязательств.
+        value: 5.8
+        pic:
+          set: lucide
+          name: calendar-clock
+        tags:
+        - бухгалтерия
+        - топы
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B91C1C'
+      - name: Банковские выписки и сверки
+        desc: Выписки, банковские подтверждения и рабочие сверки платежей.
+        value: 41.2
+        pic:
+          set: lucide
+          name: landmark
+        tags:
+        - бухгалтерия
+        - личная
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B91C1C'
+      - name: Кредитные лимиты и гарантии
+        desc: Подтверждения лимитов, банковские условия и контроль гарантий.
+        value: 4.1
+        pic:
+          set: lucide
+          name: badge-dollar-sign
+        tags:
+        - бухгалтерия
+        - топы
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+    - name: Договоры и юридические документы
+      desc: Подписанные договоры, приложения, доверенности и юридически значимые версии.
+      value: 0.0
+      pic:
+        set: lucide
+        name: file-signature
+      tags:
+      - бухгалтерия
+      - топы
+      - личная
+      - конфиденциально
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#B91C1C'
+      children:
+      - name: Договоры с клиентами
+        desc: Подписанные условия, спецификации и приложения по продажам.
+        value: 44.0
+        pic:
+          set: lucide
+          name: handshake
+        tags:
+        - бухгалтерия
+        - продажи
+        - топы
+        - конфиденциально
+        - утвержденные-документы
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+      - name: Договоры с поставщиками
+        desc: Подписанные условия, закупочные спецификации и приложения к договорам.
+        value: 39.4
+        pic:
+          set: lucide
+          name: file-pen-line
+        tags:
+        - бухгалтерия
+        - закупки
+        - топы
+        - конфиденциально
+        - утвержденные-документы
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+      - name: Доверенности и корпоративные документы
+        desc: Доверенности, решения и корпоративные документы ограниченного доступа.
+        value: 9.6
+        pic:
+          set: lucide
+          name: scroll-text
+        tags:
+        - бухгалтерия
+        - топы
+        - личная
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+    - name: Управленческая отчётность и контроль
+      desc: Сводки по прибыли, задолженности, запасам и отклонениям от плана.
+      value: 0.0
+      pic:
+        set: lucide
+        name: chart-no-axes-combined
+      tags:
+      - бухгалтерия
+      - топы
+      - межфункциональная
+      - конфиденциально
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#B91C1C'
+      children:
+      - name: P&L и управленческий баланс
+        desc: Рабочие и утверждённые версии управленческой финансовой отчётности.
+        value: 11.3
+        pic:
+          set: lucide
+          name: chart-pie
+        tags:
+        - бухгалтерия
+        - топы
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B91C1C'
+      - name: Дебиторка и кредитный контроль
+        desc: Реестры задолженности, лимиты клиентов и планы взыскания.
+        value: 14.8
+        pic:
+          set: lucide
+          name: badge-alert
+        tags:
+        - бухгалтерия
+        - продажи
+        - топы
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B91C1C'
+      - name: Аудит и внутренние проверки
+        desc: Материалы проверок, замечания и планы корректирующих действий.
+        value: 7.7
+        pic:
+          set: lucide
+          name: search-check
+        tags:
+        - бухгалтерия
+        - топы
+        - личная
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+  - name: 05_Люди, офис и ИТ
+    desc: Служебная информация о людях, офисной поддержке и цифровых сервисах; личные данные изолированы от общих
+      рабочих материалов.
+    value: 0.0
+    pic:
+      set: lucide
+      name: building-2
+    tags:
+    - офис
+    - межфункциональная
+    - актуальная
+    branch_orientation: vertical
+    style:
+      fill: '#E2E8F0'
+      contour: solid
+      contour_width: regular
+    relation:
+      line: solid
+      line_width: regular
+      color: '#64748B'
+    children:
+    - name: Кадровые документы
+      desc: Контур трудовых документов, персональных данных и обязательных кадровых подтверждений.
+      value: 0.0
+      pic:
+        set: lucide
+        name: contact-round
+      tags:
+      - офис
+      - топы
+      - личная
+      - персональные-данные
+      - конфиденциально
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#64748B'
+      children:
+      - name: Трудовые договоры и изменения
+        desc: Договоры, приказы, изменения условий и подтверждающие документы сотрудников.
+        value: 19.4
+        pic:
+          set: lucide
+          name: file-signature
+        tags:
+        - офис
+        - личная
+        - персональные-данные
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#64748B'
+      - name: Личные дела и обязательные сведения
+        desc: Персональные сведения, необходимые для кадрового учёта и обязательных процедур.
+        value: 27.3
+        pic:
+          set: lucide
+          name: folder-lock
+        tags:
+        - офис
+        - личная
+        - персональные-данные
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#64748B'
+      - name: Отпуска, больничные и отсутствия
+        desc: Рабочие реестры отсутствий и подтверждающие материалы.
+        value: 4.6
+        pic:
+          set: lucide
+          name: calendar-off
+        tags:
+        - офис
+        - личная
+        - персональные-данные
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#64748B'
+    - name: Подбор и онбординг
+      desc: Материалы найма и ввода в должность, отделённые от личных дел действующих сотрудников.
+      value: 0.0
+      pic:
+        set: lucide
+        name: user-plus
+      tags:
+      - офис
+      - топы
+      - личная
+      - персональные-данные
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#64748B'
+      children:
+      - name: Кандидаты и интервью
+        desc: Резюме, интервью и решения по найму ограниченного доступа.
+        value: 12.4
+        pic:
+          set: lucide
+          name: users
+        tags:
+        - офис
+        - топы
+        - личная
+        - персональные-данные
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#64748B'
+      - name: Пакеты онбординга
+        desc: Чек-листы, доступы и учебные материалы для новых сотрудников.
+        value: 3.8
+        pic:
+          set: lucide
+          name: graduation-cap
+        tags:
+        - офис
+        - общая
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#64748B'
+    - name: Офис и административная поддержка
+      desc: Общие сервисы офиса, закупки для поддержки и календарь административных действий.
+      value: 0.0
+      pic:
+        set: lucide
+        name: briefcase-business
+      tags:
+      - офис
+      - общая
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#DCFCE7'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#64748B'
+      children:
+      - name: Офисные закупки и расходы
+        desc: Заявки, документы и реестры административных расходов.
+        value: 8.1
+        pic:
+          set: lucide
+          name: shopping-basket
+        tags:
+        - офис
+        - бухгалтерия
+        - межфункциональная
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#64748B'
+    - name: ИТ-сервисы и поддержка
+      desc: Инструкции, реестры сервисов, оборудование и обращения пользователей.
+      value: 0.0
+      pic:
+        set: lucide
+        name: laptop
+      tags:
+      - офис
+      - топы
+      - межфункциональная
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#DCFCE7'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#64748B'
+      children:
+      - name: Правила общего диска
+        desc: Структура, правила именования, жизненный цикл и ответственные за файловое пространство.
+        value: 1.8
+        pic:
+          set: lucide
+          name: folder-tree
+        tags:
+        - все
+        - общая
+        - утвержденные-документы
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#64748B'
+      - name: Учётные записи и доступы
+        desc: Реестры сервисов, выдачи и отзывов доступов; без технических ACL в самой модели.
+        value: 5.2
+        pic:
+          set: lucide
+          name: key-round
+        tags:
+        - офис
+        - топы
+        - личная
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#64748B'
+      - name: Оборудование и лицензии
+        desc: Реестр устройств, лицензий и подтверждающих документов.
+        value: 8.8
+        pic:
+          set: lucide
+          name: monitor-cog
+        tags:
+        - офис
+        - бухгалтерия
+        - межфункциональная
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#64748B'
+      - name: Инциденты и обращения
+        desc: История запросов, инцидентов и решений по поддержке сотрудников.
+        value: 14.2
+        pic:
+          set: lucide
+          name: messages-square
+        tags:
+        - офис
+        - межфункциональная
+        - операционные-данные
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#64748B'
+  - name: 90_Шаблоны и база знаний
+    desc: Повторно используемые знания компании, вынесенные из личных папок и доступные понятной аудитории.
+    value: 0.0
+    pic:
+      set: lucide
+      name: book-open
+    tags:
+    - все
+    - общая
+    - актуальная
+    branch_orientation: vertical
+    style:
+      fill: '#DCFCE7'
+      contour: dotted
+      contour_width: regular
+    relation:
+      line: dashed
+      line_width: regular
+      color: '#15803D'
+    children:
+    - name: Регламенты и политики
+      desc: Утверждённые правила работы, доступа и хранения корпоративных данных.
+      value: 0.0
+      pic:
+        set: lucide
+        name: book-open-check
+      tags:
+      - все
+      - общая
+      - утвержденные-документы
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#DCFCE7'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Политика файлового пространства
+        desc: Правила структуры папок, владельцев, архивации и доступа на языке бизнеса.
+        value: 0.9
+        pic:
+          set: lucide
+          name: folder-check
+        tags:
+        - все
+        - общая
+        - утвержденные-документы
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+      - name: Операционные регламенты
+        desc: 'Регламенты ключевых процессов: продажи, закупки, склад и закрытие периода.'
+        value: 6.1
+        pic:
+          set: lucide
+          name: clipboard-check
+        tags:
+        - все
+        - межфункциональная
+        - утвержденные-документы
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+    - name: Рабочие шаблоны
+      desc: Согласованные формы для повторяемых задач, чтобы рабочий процесс не начинался с поиска старого файла.
+      value: 0.0
+      pic:
+        set: lucide
+        name: file-text
+      tags:
+      - все
+      - общая
+      - шаблоны
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#DCFCE7'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Коммерческие шаблоны
+        desc: Шаблоны предложений, прайсов, писем и коммерческих расчётов.
+        value: 3.7
+        pic:
+          set: lucide
+          name: file-spreadsheet
+        tags:
+        - продажи
+        - общая
+        - шаблоны
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+      - name: Операционные шаблоны
+        desc: Шаблоны заказов, актов, реестров и контрольных листов.
+        value: 4.1
+        pic:
+          set: lucide
+          name: clipboard-list
+        tags:
+        - закупки
+        - склад
+        - общая
+        - шаблоны
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+      - name: Административные шаблоны
+        desc: Шаблоны заявок, служебных записок и офисных форм.
+        value: 2.6
+        pic:
+          set: lucide
+          name: file-pen-line
+        tags:
+        - офис
+        - общая
+        - шаблоны
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+    - name: Онбординг и обучение
+      desc: Материалы для ввода новых сотрудников в продукты, процессы и цифровые сервисы.
+      value: 0.0
+      pic:
+        set: lucide
+        name: graduation-cap
+      tags:
+      - все
+      - общая
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#DCFCE7'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Введение в Mavuno
+        desc: История, продуктовые основы и карта ключевых функций компании.
+        value: 3.4
+        pic:
+          set: lucide
+          name: map
+        tags:
+        - все
+        - общая
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+      - name: Ролевые чек-листы
+        desc: Короткие контрольные списки для продаж, склада, офиса и руководителей.
+        value: 2.9
+        pic:
+          set: lucide
+          name: list-checks
+        tags:
+        - все
+        - общая
+        - актуальная
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+  - name: 98_Внешний обмен
+    desc: 'Отделённый контур для согласованной передачи файлов внешним сторонам: без смешения с внутренними рабочими
+      папками.'
+    value: 0.0
+    pic:
+      set: lucide
+      name: share-2
+    tags:
+    - внешний-обмен
+    - межфункциональная
+    - актуальная
+    branch_orientation: vertical
+    style:
+      fill: '#FEF3C7'
+      contour: dashed
+      contour_width: regular
+    relation:
+      line: solid
+      line_width: regular
+      color: '#2563EB'
+    children:
+    - name: Обмен с клиентами
+      desc: Папки для безопасной передачи согласованных прайсов, материалов и закрывающих документов клиентам.
+      value: 0.0
+      pic:
+        set: lucide
+        name: send
+      tags:
+      - продажи
+      - внешний-обмен
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#2563EB'
+      children:
+      - name: Коммерческие материалы
+        desc: Актуальные презентации, прайсы и файлы для передачи клиентам.
+        value: 14.4
+        pic:
+          set: lucide
+          name: send-horizontal
+        tags:
+        - продажи
+        - внешний-обмен
+        - общая
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#2563EB'
+      - name: Документы по заказам
+        desc: Согласованные документы по заказам и их исполнению.
+        value: 9.2
+        pic:
+          set: lucide
+          name: package-check
+        tags:
+        - продажи
+        - склад
+        - внешний-обмен
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#2563EB'
+    - name: Обмен с поставщиками
+      desc: Выделенное пространство для заявок, спецификаций и подтверждений внешних поставщиков.
+      value: 0.0
+      pic:
+        set: lucide
+        name: handshake
+      tags:
+      - закупки
+      - внешний-обмен
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#2563EB'
+      children:
+      - name: Заявки и спецификации
+        desc: Файлы для передачи и получения согласованных спецификаций по закупкам.
+        value: 11.6
+        pic:
+          set: lucide
+          name: file-up
+        tags:
+        - закупки
+        - внешний-обмен
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#2563EB'
+      - name: Сертификаты для партнёров
+        desc: Подготовленные к передаче документы соответствия и сертификаты.
+        value: 6.7
+        pic:
+          set: lucide
+          name: badge-check
+        tags:
+        - закупки
+        - продажи
+        - внешний-обмен
+        - утвержденные-документы
+        - актуальная
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#2563EB'
+    - name: Банк, аудит и консультанты
+      desc: Контролируемая передача данных доверенным внешним профессиональным сторонам.
+      value: 0.0
+      pic:
+        set: lucide
+        name: landmark
+      tags:
+      - бухгалтерия
+      - топы
+      - внешний-обмен
+      - конфиденциально
+      - актуальная
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#2563EB'
+      children:
+      - name: Запросы аудитора
+        desc: Только согласованный набор материалов по запросам аудитора.
+        value: 7.9
+        pic:
+          set: lucide
+          name: search-check
+        tags:
+        - бухгалтерия
+        - топы
+        - внешний-обмен
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#2563EB'
+      - name: Банк и страхование
+        desc: Подтверждения и пакеты документов для банка и страховых партнёров.
+        value: 4.8
+        pic:
+          set: lucide
+          name: shield
+        tags:
+        - бухгалтерия
+        - топы
+        - внешний-обмен
+        - конфиденциально
+        - актуальная
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#2563EB'
+  - name: 99_Наследие старой файловой структуры
+    desc: Скрытый слой старых личных папок, копий, ручных каналов и неактуальных систем. Он раскрывается для аудита,
+      миграции и расследования происхождения данных.
+    value: 0.0
+    pic:
+      set: lucide
+      name: archive
+    tags:
+    - без-владельца
+    - исторический-слой
+    - архив
+    - к-миграции
+    branch_orientation: vertical
+    style:
+      fill: '#F4F4F5'
+      contour: dotted
+      contour_width: bold
+    relation:
+      line: dotted
+      line_width: regular
+      color: '#9CA3AF'
+    hidden: true
+    children:
+    - name: Личные папки и локальные копии
+      desc: 'След старой персонализированной модели: данные привязаны к людям, а не к процессам и владельцам.'
+      value: 0.0
+      pic:
+        set: lucide
+        name: users-round
+      tags:
+      - личная
+      - без-владельца
+      - архив
+      - к-миграции
+      branch_orientation: vertical
+      style:
+        fill: '#F4F4F5'
+        contour: double
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+      hidden: true
+      children:
+      - name: Основатель_старое
+        desc: Личная папка основателя, которая долго заменяла управленческое и договорное пространство.
+        value: 0.0
+        pic:
+          set: lucide
+          name: user-round-x
+        tags:
+        - топы
+        - личная
+        - без-владельца
+        - дубликат
+        - архив
+        - к-миграции
+        branch_orientation: vertical
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+        children:
+        - name: Договоры_копии
+          desc: Копии договоров, приложений и сканов, сохранённые в личной логике владельца.
+          value: 72.8
+          pic:
+            set: lucide
+            name: files
+          tags:
+          - топы
+          - личная
+          - дубликат
+          - коммерческая-тайна
+          - архив
+          - к-миграции
+          style:
+            fill: '#F4F4F5'
+            contour: double
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: '#9CA3AF'
+          hidden: true
+        - name: Прайсы_для_пересылки
+          desc: Старые прайсы и расчёты, которые могли попадать в поиск рядом с действующими версиями.
+          value: 18.6
+          pic:
+            set: lucide
+            name: file-warning
+          tags:
+          - продажи
+          - личная
+          - дубликат
+          - риск-ошибки
+          - архив
+          - к-миграции
+          style:
+            fill: '#F4F4F5'
+            contour: double
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: '#9CA3AF'
+          hidden: true
+      - name: Руководитель_продаж_2024
+        desc: Неочищенная папка бывшего руководителя продаж с клиентскими материалами и отчётами.
+        value: 0.0
+        pic:
+          set: lucide
+          name: user-round-x
+        tags:
+        - продажи
+        - личная
+        - без-владельца
+        - персональные-данные
+        - архив
+        - к-миграции
+        branch_orientation: vertical
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+        children:
+        - name: Клиенты_и_контакты
+          desc: Экспорт контактов и заметок по клиентам без единого владельца после ухода сотрудника.
+          value: 36.7
+          pic:
+            set: lucide
+            name: contact-round
+          tags:
+          - продажи
+          - личная
+          - персональные-данные
+          - без-владельца
+          - архив
+          - к-миграции
+          style:
+            fill: '#F4F4F5'
+            contour: double
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: '#9CA3AF'
+          hidden: true
+        - name: Презентации_личные
+          desc: Личные варианты коммерческих презентаций с устаревшими фактами и ценами.
+          value: 41.3
+          pic:
+            set: lucide
+            name: presentation
+          tags:
+          - продажи
+          - личная
+          - дубликат
+          - риск-ошибки
+          - архив
+          - к-миграции
+          style:
+            fill: '#F4F4F5'
+            contour: double
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: '#9CA3AF'
+          hidden: true
+      - name: Рабочий_стол_склада
+        desc: Снятая копия общего рабочего стола склада с фото и неструктурированными актами.
+        value: 118.4
+        pic:
+          set: lucide
+          name: monitor-off
+        tags:
+        - склад
+        - личная
+        - без-владельца
+        - операционные-данные
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+    - name: Версии и дубли
+      desc: Хаотичные копии «финальных» файлов, старых прайсов и повторяющихся материалов.
+      value: 0.0
+      pic:
+        set: lucide
+        name: copy
+      tags:
+      - общая
+      - дубликат
+      - без-владельца
+      - архив
+      - к-миграции
+      branch_orientation: vertical
+      style:
+        fill: '#F4F4F5'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+      hidden: true
+      children:
+      - name: FINAL_2_точно_финал
+        desc: Папка с несколькими «финальными» версиями коммерческих материалов без статуса утверждения.
+        value: 21.8
+        pic:
+          set: lucide
+          name: files
+        tags:
+        - продажи
+        - общая
+        - дубликат
+        - без-владельца
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Старые_прайсы_разослать
+        desc: Исторические прайсы, скидки и форматы расчётов, которые продолжают находиться по поиску.
+        value: 29.6
+        pic:
+          set: lucide
+          name: file-warning
+        tags:
+        - продажи
+        - общая
+        - дубликат
+        - риск-ошибки
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Фото_товаров_копии
+        desc: Дубликаты фотографий и материалов для карточек товара без понятного использования.
+        value: 214.5
+        pic:
+          set: lucide
+          name: images
+        tags:
+        - продажи
+        - закупки
+        - общая
+        - дубликат
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Договор_подписан_новый
+        desc: Многочисленные сканы и пересланные копии договоров вне юридического контура.
+        value: 45.2
+        pic:
+          set: lucide
+          name: file-signature
+        tags:
+        - бухгалтерия
+        - общая
+        - дубликат
+        - конфиденциально
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+    - name: Ручные каналы и несортированные материалы
+      desc: Неформальные каналы, общие буферы и временные папки, не привязанные к действующему процессу.
+      value: 0.0
+      pic:
+        set: lucide
+        name: message-square-warning
+      tags:
+      - межфункциональная
+      - ручной-процесс
+      - без-владельца
+      - архив
+      - к-миграции
+      branch_orientation: vertical
+      style:
+        fill: '#F4F4F5'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+      hidden: true
+      children:
+      - name: WhatsApp_выгрузки_заказы
+        desc: Экспорт переписок, фото заказов и скриншоты договорённостей вместо формального канала обработки.
+        value: 86.2
+        pic:
+          set: lucide
+          name: message-circle-warning
+        tags:
+        - продажи
+        - закупки
+        - межфункциональная
+        - ручной-процесс
+        - без-владельца
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Почта_вложения_сохранить
+        desc: Файлы из почты, сохранённые без связки с процессом, клиентом или периодом.
+        value: 64.9
+        pic:
+          set: lucide
+          name: mail-warning
+        tags:
+        - все
+        - общая
+        - без-владельца
+        - ручной-процесс
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Разное_срочно_новая-папка
+        desc: Общий буфер исключений, куда попадали несортированные материалы и срочные просьбы.
+        value: 79.3
+        pic:
+          set: lucide
+          name: folder-x
+        tags:
+        - все
+        - общая
+        - без-владельца
+        - риск-ошибки
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+    - name: Архив ушедших сотрудников
+      desc: 'Неочищенные рабочие материалы бывших сотрудников: часть полезна, часть дублирует действующие папки.'
+      value: 0.0
+      pic:
+        set: lucide
+        name: archive-x
+      tags:
+      - личная
+      - персональные-данные
+      - без-владельца
+      - архив
+      - к-миграции
+      branch_orientation: vertical
+      style:
+        fill: '#F4F4F5'
+        contour: double
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+      hidden: true
+      children:
+      - name: Бывший_ассистент_2023
+        desc: Копии календарных решений, документов и материалов для руководителя.
+        value: 54.7
+        pic:
+          set: lucide
+          name: user-round-x
+        tags:
+        - офис
+        - личная
+        - дубликат
+        - без-владельца
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Менеджер_ключевых_клиентов
+        desc: Исторические переписки, файлы клиентов и локальные коммерческие материалы.
+        value: 97.1
+        pic:
+          set: lucide
+          name: user-round-x
+        tags:
+        - продажи
+        - личная
+        - персональные-данные
+        - без-владельца
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Бухгалтер_архив
+        desc: Старые выгрузки учёта и закрытий, оставшиеся вне финансового контура.
+        value: 126.4
+        pic:
+          set: lucide
+          name: user-round-x
+        tags:
+        - бухгалтерия
+        - личная
+        - конфиденциально
+        - без-владельца
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+    - name: Старые системы и мёртвые проекты
+      desc: Снимки прошлых сервисов и закрытых инициатив, которые продолжают занимать место и создавать ложные источники
+        истины.
+      value: 0.0
+      pic:
+        set: lucide
+        name: database-zap
+      tags:
+      - без-владельца
+      - устаревшая-система
+      - архив
+      - к-миграции
+      branch_orientation: vertical
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+      hidden: true
+      children:
+      - name: Backup_ERP_2019
+        desc: Устаревшие полные выгрузки предыдущей учётной системы без обозначенного срока хранения.
+        value: 318.8
+        pic:
+          set: lucide
+          name: database-backup
+        tags:
+        - бухгалтерия
+        - без-владельца
+        - устаревшая-система
+        - конфиденциально
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Проект_Новая_сеть_не_запущен
+        desc: Закрытый проект с презентациями, расчётами и копиями коммерческих материалов.
+        value: 37.8
+        pic:
+          set: lucide
+          name: folder-archive
+        tags:
+        - продажи
+        - топы
+        - без-владельца
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Старый_сайт_материалы
+        desc: Исходники и старые изображения предыдущего сайта без действующего назначения.
+        value: 143.6
+        pic:
+          set: lucide
+          name: globe-2
+        tags:
+        - продажи
+        - общая
+        - без-владельца
+        - дубликат
+        - архив
+        - к-миграции
+        style:
+          fill: '#F4F4F5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true

@@ -1,0 +1,2760 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: 'Mavuno Retail & Distribution — File Estate Audit: Expanded Target Model and Legacy Footprint'
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — to the extent possible under law, ORGFORMAT DemoPacks has waived copyright and
+    related or neighbouring rights to this material. You may copy, modify, distribute, and use it, including
+    commercially, without permission or required attribution. CC0 does not grant rights to the ORGFORMAT or
+    ORGF names, logos, or other brand assets.
+  license: CC0-1.0
+  created: '2026-06-21'
+  updated: '2026-06-24'
+
+model:
+  name: Mavuno File Estate — File Structure Audit, Pass 2
+  desc: >-
+    Expanded demonstration model of a corporate file estate. Files are organised by work, access audience
+    and lifecycle; the hidden branch preserves the former person-centred structure for audit and migration.
+
+    This ORGFORMAT DemoPacks material is provided to illustrate ORGF capabilities. Unless expressly stated
+    otherwise, names, organisations, products, projects, roles, data, and scenarios in the model are
+    illustrative or fictional; any resemblance to actual entities does not imply affiliation, endorsement,
+    or origin. Questions or claims: support@orgformat.com.
+  value_label: Data volume
+  value_unit: GB
+
+root:
+  name: Mavuno Corporate File Estate
+  desc: Target-state file structure for Mavuno Retail & Distribution. Fill indicates business criticality, border
+    indicates privacy level, connector style indicates use frequency, and connector colour indicates operating context.
+  value: 0.0
+  pic:
+    set: lucide
+    name: folder-tree
+  tags:
+  - corporate-data
+  - governed-model
+  - current
+  branch_orientation: horizontal
+  style:
+    fill: '#E6FAF8'
+    contour: solid
+    contour_width: bold
+  relation:
+    line: solid
+    line_width: bold
+    color: '#0F766E'
+  children:
+  - name: 01_Executive Governance & Decisions
+    desc: Restricted space for decisions, plans and executive materials. It records the information that guides
+      the company, rather than personal copies.
+    value: 0.0
+    pic:
+      set: lucide
+      name: scale
+    tags:
+    - executive-team
+    - shared
+    - confidential
+    - current
+    branch_orientation: vertical
+    style:
+      fill: '#FEF3C7'
+      contour: double
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#7C3AED'
+    children:
+    - name: Strategy & Planning
+      desc: Approved growth ambitions, resource choices and priorities for the CEO, COO and functional leaders.
+      value: 0.0
+      pic:
+        set: lucide
+        name: target
+      tags:
+      - executive-team
+      - shared
+      - confidential
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#7C3AED'
+      children:
+      - name: 2026_Objectives & Scenarios
+        desc: Single approved view of company objectives, demand scenarios and key assumptions for 2026.
+        value: 2.6
+        pic:
+          set: lucide
+          name: goal
+        tags:
+        - executive-team
+        - shared
+        - confidential
+        - approved
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#7C3AED'
+      - name: Integrated Operating Plan
+        desc: The linked commercial, procurement and financial assumptions used to plan the week and month.
+        value: 0.0
+        pic:
+          set: lucide
+          name: route
+        tags:
+        - executive-team
+        - sales
+        - procurement
+        - finance
+        - cross-functional
+        - current
+        branch_orientation: vertical
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#7C3AED'
+        children:
+        - name: Sales & Inventory Plan
+          desc: Working view of demand, inbound supply and target inventory required to deliver the plan.
+          value: 3.3
+          pic:
+            set: lucide
+            name: chart-no-axes-combined
+          tags:
+          - executive-team
+          - sales
+          - procurement
+          - warehouse
+          - cross-functional
+          - current
+          style:
+            fill: '#FECACA'
+            contour: solid
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: bold
+            color: '#7C3AED'
+        - name: Cash Exposure Plan
+          desc: Payment forecast and liquidity risk outlook used in weekly management decisions.
+          value: 1.7
+          pic:
+            set: lucide
+            name: wallet-cards
+          tags:
+          - executive-team
+          - finance
+          - confidential
+          - current
+          style:
+            fill: '#FECACA'
+            contour: double
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: bold
+            color: '#7C3AED'
+    - name: Decision Records & Actions
+      desc: Documented management decisions, exceptions and next actions with a clearly accountable owner.
+      value: 0.0
+      pic:
+        set: lucide
+        name: file-check-2
+      tags:
+      - executive-team
+      - shared
+      - confidential
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: Weekly Operating Committee
+        desc: Decisions on demand, inventory, delivery performance and critical customer issues.
+        value: 1.9
+        pic:
+          set: lucide
+          name: notebook-tabs
+        tags:
+        - executive-team
+        - sales
+        - procurement
+        - warehouse
+        - cross-functional
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#7C3AED'
+      - name: Exceptions & Escalations
+        desc: Approved exceptions relating to pricing, limits, deadlines and suppliers.
+        value: 0.8
+        pic:
+          set: lucide
+          name: triangle-alert
+        tags:
+        - executive-team
+        - finance
+        - sales
+        - cross-functional
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: Executive Management Packs
+      desc: Recurring management packs covering sales, gross margin, receivables, inventory and major risks.
+      value: 0.0
+      pic:
+        set: lucide
+        name: presentation
+      tags:
+      - executive-team
+      - cross-functional
+      - confidential
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#7C3AED'
+      children:
+      - name: Weekly Executive Dashboard
+        desc: Concise current performance view for the CEO and COO.
+        value: 2.1
+        pic:
+          set: lucide
+          name: gauge
+        tags:
+        - executive-team
+        - cross-functional
+        - confidential
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#7C3AED'
+  - name: 02_Sales & Customer Management
+    desc: Commercial team workspace covering customer data, pricing, deals, online channels and commercial commitments.
+    value: 0.0
+    pic:
+      set: lucide
+      name: shopping-bag
+    tags:
+    - sales
+    - cross-functional
+    - current
+    branch_orientation: vertical
+    style:
+      fill: '#FEF3C7'
+      contour: dashed
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#B45309'
+    children:
+    - name: CRM & Customer Data
+      desc: Authoritative customer records, contacts and interaction history.
+      value: 0.0
+      pic:
+        set: lucide
+        name: database
+      tags:
+      - sales
+      - finance
+      - cross-functional
+      - personal-data
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B45309'
+      children:
+      - name: Customer Master Data
+        desc: Core customer records, locations and approved legal and trading details.
+        value: 8.4
+        pic:
+          set: lucide
+          name: contact-round
+        tags:
+        - sales
+        - finance
+        - cross-functional
+        - personal-data
+        - source-of-truth
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+      - name: Opportunity & Meeting History
+        desc: Working records of active opportunities and customer agreements maintained by account managers.
+        value: 11.6
+        pic:
+          set: lucide
+          name: messages-square
+        tags:
+        - sales
+        - cross-functional
+        - commercially-sensitive
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+    - name: Pricing & Promotions
+      desc: Governed space for approved pricing, discount mechanics and the promotion calendar.
+      value: 0.0
+      pic:
+        set: lucide
+        name: badge-dollar-sign
+      tags:
+      - sales
+      - procurement
+      - finance
+      - cross-functional
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B45309'
+      children:
+      - name: Approved Price Lists
+        desc: Current approved prices for sales channels and customers.
+        value: 0.0
+        pic:
+          set: lucide
+          name: tags
+        tags:
+        - sales
+        - procurement
+        - shared
+        - source-of-truth
+        - current
+        branch_orientation: vertical
+        style:
+          fill: '#FECACA'
+          contour: dashed
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+        children:
+        - name: Retail & Independent Accounts
+          desc: Current price lists for the company’s core retail and independent-account channel.
+          value: 2.9
+          pic:
+            set: lucide
+            name: file-spreadsheet
+          tags:
+          - sales
+          - shared
+          - source-of-truth
+          - current
+          style:
+            fill: '#FECACA'
+            contour: dashed
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: bold
+            color: '#B45309'
+        - name: Key Accounts & Wholesale
+          desc: Approved terms for major retail chains and wholesale customers.
+          value: 3.7
+          pic:
+            set: lucide
+            name: store
+          tags:
+          - sales
+          - executive-team
+          - commercially-sensitive
+          - current
+          style:
+            fill: '#FECACA'
+            contour: double
+            contour_width: bold
+          relation:
+            line: solid
+            line_width: bold
+            color: '#B45309'
+      - name: Promotion Calendar
+        desc: Approved activities, timing, mechanics and budgets by channel.
+        value: 4.8
+        pic:
+          set: lucide
+          name: calendar-days
+        tags:
+        - sales
+        - procurement
+        - finance
+        - cross-functional
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+    - name: Key Accounts
+      desc: Account plans, joint promotions and restricted materials for major customers.
+      value: 0.0
+      pic:
+        set: lucide
+        name: users-round
+      tags:
+      - sales
+      - executive-team
+      - commercially-sensitive
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B45309'
+      children:
+      - name: National & Chain Accounts
+        desc: Growth plans, product listings, commercial terms and reports for retail chains.
+        value: 35.4
+        pic:
+          set: lucide
+          name: building-2
+        tags:
+        - sales
+        - executive-team
+        - commercially-sensitive
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+      - name: Regional Distributors
+        desc: Agreements, plans and registers for wholesale and regional distribution channels.
+        value: 18.9
+        pic:
+          set: lucide
+          name: map-pinned
+        tags:
+        - sales
+        - commercially-sensitive
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B45309'
+    - name: Online Channels & Marketplaces
+      desc: Operating materials for the online store and marketplace channels.
+      value: 0.0
+      pic:
+        set: lucide
+        name: monitor-smartphone
+      tags:
+      - sales
+      - external-sharing
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B45309'
+      children:
+      - name: Product Listings & Content
+        desc: Approved copy, specifications and publication materials.
+        value: 36.8
+        pic:
+          set: lucide
+          name: panels-top-left
+        tags:
+        - sales
+        - shared
+        - external-sharing
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+      - name: Orders & Exceptions
+        desc: Data extracts, cancellation reviews and manual adjustments for online orders.
+        value: 22.0
+        pic:
+          set: lucide
+          name: shopping-cart
+        tags:
+        - sales
+        - warehouse
+        - cross-functional
+        - operational-data
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+      - name: Marketplace Reports
+        desc: Marketplace reports, deductions and financial reconciliations by channel.
+        value: 17.5
+        pic:
+          set: lucide
+          name: bar-chart-3
+        tags:
+        - sales
+        - finance
+        - cross-functional
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B45309'
+    - name: Commercial Analytics
+      desc: Reports on sales, channels, customers, margin and campaign effectiveness.
+      value: 0.0
+      pic:
+        set: lucide
+        name: chart-no-axes-combined
+      tags:
+      - sales
+      - executive-team
+      - cross-functional
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#B45309'
+      children:
+      - name: Sales & Margin
+        desc: Recurring views of revenue, margin, product groups and customers.
+        value: 15.1
+        pic:
+          set: lucide
+          name: chart-line
+        tags:
+        - sales
+        - finance
+        - executive-team
+        - cross-functional
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B45309'
+  - name: 03_Procurement, Warehouse & Delivery
+    desc: Operational data on supply, products, inventory, movements and order fulfilment.
+    value: 0.0
+    pic:
+      set: lucide
+      name: package
+    tags:
+    - procurement
+    - warehouse
+    - cross-functional
+    - current
+    branch_orientation: vertical
+    style:
+      fill: '#FEF3C7'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#0F766E'
+    children:
+    - name: Suppliers & Procurement
+      desc: Supplier sourcing, selection and management materials, together with purchase orders and delivery confirmations.
+      value: 0.0
+      pic:
+        set: lucide
+        name: handshake
+      tags:
+      - procurement
+      - finance
+      - commercially-sensitive
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#0F766E'
+      children:
+      - name: Supplier Master Data & Qualification
+        desc: Current supplier details, terms, assessments and supporting qualification documents.
+        value: 12.3
+        pic:
+          set: lucide
+          name: id-card
+        tags:
+        - procurement
+        - finance
+        - confidential
+        - source-of-truth
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+      - name: Supplier Quotes & Tenders
+        desc: Supplier comparisons, quotes, calculations and selection approvals.
+        value: 22.5
+        pic:
+          set: lucide
+          name: file-search
+        tags:
+        - procurement
+        - executive-team
+        - commercially-sensitive
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+      - name: Purchase Orders & Confirmations
+        desc: Working purchase orders, confirmations, specifications and changes to delivery dates.
+        value: 18.7
+        pic:
+          set: lucide
+          name: clipboard-list
+        tags:
+        - procurement
+        - warehouse
+        - cross-functional
+        - operational-data
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+    - name: Product Catalogue & Media Assets
+      desc: Authoritative product records, images, descriptions and materials used by sales channels.
+      value: 0.0
+      pic:
+        set: lucide
+        name: image
+      tags:
+      - sales
+      - procurement
+      - shared
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#0F766E'
+      children:
+      - name: SKU Master Records
+        desc: Core attributes, barcodes, pack configurations, item codes and product statuses.
+        value: 8.9
+        pic:
+          set: lucide
+          name: barcode
+        tags:
+        - procurement
+        - sales
+        - warehouse
+        - cross-functional
+        - source-of-truth
+        - current
+        style:
+          fill: '#FECACA'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+      - name: Product Image Library
+        desc: Photography, packshots and images used across commercial and online channels.
+        value: 412.6
+        pic:
+          set: lucide
+          name: images
+        tags:
+        - sales
+        - procurement
+        - shared
+        - external-sharing
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+      - name: Labels & Technical Data Sheets
+        desc: Label artwork, safety data sheets, specifications and mandatory labelling.
+        value: 28.5
+        pic:
+          set: lucide
+          name: tag
+        tags:
+        - procurement
+        - warehouse
+        - sales
+        - cross-functional
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+    - name: Inventory & Warehouse
+      desc: Control area for stocktakes, product movements and investigation of warehouse exceptions.
+      value: 0.0
+      pic:
+        set: lucide
+        name: warehouse
+      tags:
+      - warehouse
+      - procurement
+      - cross-functional
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#0F766E'
+      children:
+      - name: Inventory Positions & Movements
+        desc: Working extracts of stock, reservations and actual SKU movements.
+        value: 46.0
+        pic:
+          set: lucide
+          name: boxes
+        tags:
+        - warehouse
+        - procurement
+        - sales
+        - cross-functional
+        - operational-data
+        - current
+        style:
+          fill: '#FECACA'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+      - name: Stocktakes
+        desc: Count sheets, photographs, reconciliations and decisions arising from stocktakes.
+        value: 71.4
+        pic:
+          set: lucide
+          name: scan-barcode
+        tags:
+        - warehouse
+        - finance
+        - cross-functional
+        - operational-data
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+      - name: Discrepancies, Damages & Write-offs
+        desc: Photographs, records and decisions for discrepancies, damages and inventory write-offs.
+        value: 54.8
+        pic:
+          set: lucide
+          name: package-x
+        tags:
+        - warehouse
+        - finance
+        - procurement
+        - cross-functional
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+    - name: Delivery & Returns
+      desc: Data on routes, delivery confirmations, returns and fulfilment exceptions.
+      value: 0.0
+      pic:
+        set: lucide
+        name: truck
+      tags:
+      - warehouse
+      - sales
+      - cross-functional
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#0F766E'
+      children:
+      - name: Delivery Routes & Proof of Delivery
+        desc: Route registers, proof-of-delivery records and completion evidence.
+        value: 86.9
+        pic:
+          set: lucide
+          name: route
+        tags:
+        - warehouse
+        - sales
+        - cross-functional
+        - operational-data
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#0F766E'
+      - name: Customer Returns
+        desc: Cases, photographs, return reasons and agreed actions on returned goods.
+        value: 49.3
+        pic:
+          set: lucide
+          name: undo-2
+        tags:
+        - warehouse
+        - sales
+        - finance
+        - cross-functional
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+    - name: Quality & Compliance
+      desc: Materials evidencing product quality and compliance with mandatory requirements.
+      value: 0.0
+      pic:
+        set: lucide
+        name: shield-check
+      tags:
+      - procurement
+      - warehouse
+      - finance
+      - cross-functional
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#0F766E'
+      children:
+      - name: Certificates & Declarations
+        desc: Current conformity documents by product group and supply line.
+        value: 19.1
+        pic:
+          set: lucide
+          name: badge-check
+        tags:
+        - procurement
+        - sales
+        - external-sharing
+        - approved
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#0F766E'
+  - name: 04_Finance, Legal & Control
+    desc: Controlled space for financial, contractual and legally significant information with the highest privacy
+      safeguards.
+    value: 0.0
+    pic:
+      set: lucide
+      name: landmark
+    tags:
+    - finance
+    - executive-team
+    - private
+    - confidential
+    - current
+    branch_orientation: vertical
+    style:
+      fill: '#FECACA'
+      contour: double
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: bold
+      color: '#B91C1C'
+    children:
+    - name: Accounting, Tax & Period Close
+      desc: Source documents, accounting extracts, tax calculations and period-close materials.
+      value: 0.0
+      pic:
+        set: lucide
+        name: calculator
+      tags:
+      - finance
+      - executive-team
+      - private
+      - confidential
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B91C1C'
+      children:
+      - name: Source Documents
+        desc: Invoices, delivery documents and the supporting document set required for accounting.
+        value: 138.2
+        pic:
+          set: lucide
+          name: files
+        tags:
+        - finance
+        - private
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B91C1C'
+      - name: Accounting & ERP Exports
+        desc: Controlled exports used for analysis, reconciliations and transaction recovery.
+        value: 164.7
+        pic:
+          set: lucide
+          name: database-backup
+        tags:
+        - finance
+        - executive-team
+        - confidential
+        - operational-data
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B91C1C'
+      - name: Tax & Statutory Reporting
+        desc: Tax calculations, returns and evidence of statutory submission.
+        value: 17.8
+        pic:
+          set: lucide
+          name: file-chart-column
+        tags:
+        - finance
+        - executive-team
+        - private
+        - confidential
+        - approved
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+      - name: Month-End Close
+        desc: Working close files, reconciliations and final reporting packs by period.
+        value: 31.6
+        pic:
+          set: lucide
+          name: calendar-check
+        tags:
+        - finance
+        - executive-team
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B91C1C'
+    - name: Cash, Banking & Payments
+      desc: 'Payment operations: registers, statements, limits and settlement evidence.'
+      value: 0.0
+      pic:
+        set: lucide
+        name: wallet
+      tags:
+      - finance
+      - executive-team
+      - private
+      - confidential
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: bold
+        color: '#B91C1C'
+      children:
+      - name: Payment Calendar
+        desc: Cash-out plan, priorities and approvals for payment obligations.
+        value: 5.8
+        pic:
+          set: lucide
+          name: calendar-clock
+        tags:
+        - finance
+        - executive-team
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B91C1C'
+      - name: Bank Statements & Reconciliations
+        desc: Bank statements, confirmations and working payment reconciliations.
+        value: 41.2
+        pic:
+          set: lucide
+          name: landmark
+        tags:
+        - finance
+        - private
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B91C1C'
+      - name: Credit Facilities & Guarantees
+        desc: Facility confirmations, bank terms and guarantee controls.
+        value: 4.1
+        pic:
+          set: lucide
+          name: badge-dollar-sign
+        tags:
+        - finance
+        - executive-team
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+    - name: Contracts & Legal Documents
+      desc: Signed agreements, schedules, powers of attorney and legally binding versions.
+      value: 0.0
+      pic:
+        set: lucide
+        name: file-signature
+      tags:
+      - finance
+      - executive-team
+      - private
+      - confidential
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#B91C1C'
+      children:
+      - name: Customer Contracts
+        desc: Signed commercial terms, specifications and appendices for customers.
+        value: 44.0
+        pic:
+          set: lucide
+          name: handshake
+        tags:
+        - finance
+        - sales
+        - executive-team
+        - confidential
+        - approved
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+      - name: Supplier Contracts
+        desc: Signed supplier terms, procurement specifications and contractual appendices.
+        value: 39.4
+        pic:
+          set: lucide
+          name: file-pen-line
+        tags:
+        - finance
+        - procurement
+        - executive-team
+        - confidential
+        - approved
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+      - name: Powers of Attorney & Corporate Records
+        desc: Powers of attorney, resolutions and restricted-access corporate records.
+        value: 9.6
+        pic:
+          set: lucide
+          name: scroll-text
+        tags:
+        - finance
+        - executive-team
+        - private
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+    - name: Management Reporting & Control
+      desc: Management views of profitability, receivables, inventory and plan variances.
+      value: 0.0
+      pic:
+        set: lucide
+        name: chart-no-axes-combined
+      tags:
+      - finance
+      - executive-team
+      - cross-functional
+      - confidential
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#B91C1C'
+      children:
+      - name: P&L & Management Balance Sheet
+        desc: Working and approved versions of management financial statements.
+        value: 11.3
+        pic:
+          set: lucide
+          name: chart-pie
+        tags:
+        - finance
+        - executive-team
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: bold
+          color: '#B91C1C'
+      - name: Receivables & Credit Control
+        desc: Receivables registers, customer limits and collection plans.
+        value: 14.8
+        pic:
+          set: lucide
+          name: badge-alert
+        tags:
+        - finance
+        - sales
+        - executive-team
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B91C1C'
+      - name: Audit & Internal Reviews
+        desc: Review materials, findings and corrective-action plans.
+        value: 7.7
+        pic:
+          set: lucide
+          name: search-check
+        tags:
+        - finance
+        - executive-team
+        - private
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B91C1C'
+  - name: 05_People, Workplace & IT
+    desc: Support information covering people, workplace services and digital tools; personal data is separated
+      from shared working materials.
+    value: 0.0
+    pic:
+      set: lucide
+      name: building-2
+    tags:
+    - workplace
+    - cross-functional
+    - current
+    branch_orientation: vertical
+    style:
+      fill: '#E2E8F0'
+      contour: solid
+      contour_width: regular
+    relation:
+      line: solid
+      line_width: regular
+      color: '#64748B'
+    children:
+    - name: Employment Records
+      desc: Employment-document, personal-data and mandatory HR-records area.
+      value: 0.0
+      pic:
+        set: lucide
+        name: contact-round
+      tags:
+      - workplace
+      - executive-team
+      - private
+      - personal-data
+      - confidential
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#64748B'
+      children:
+      - name: Employment Contracts & Changes
+        desc: Employment agreements, orders, terms changes and supporting employee documents.
+        value: 19.4
+        pic:
+          set: lucide
+          name: file-signature
+        tags:
+        - workplace
+        - private
+        - personal-data
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#64748B'
+      - name: Personnel Files & Mandatory Records
+        desc: Personal information required for employment administration and statutory processes.
+        value: 27.3
+        pic:
+          set: lucide
+          name: folder-lock
+        tags:
+        - workplace
+        - private
+        - personal-data
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#64748B'
+      - name: Leave, Sick Leave & Absence
+        desc: Working absence registers and supporting evidence.
+        value: 4.6
+        pic:
+          set: lucide
+          name: calendar-off
+        tags:
+        - workplace
+        - private
+        - personal-data
+        - confidential
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#64748B'
+    - name: Recruitment & Onboarding
+      desc: Hiring and role-entry materials, kept separate from personnel files of active employees.
+      value: 0.0
+      pic:
+        set: lucide
+        name: user-plus
+      tags:
+      - workplace
+      - executive-team
+      - private
+      - personal-data
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#64748B'
+      children:
+      - name: Candidates & Interviews
+        desc: Restricted-access CVs, interview records and hiring decisions.
+        value: 12.4
+        pic:
+          set: lucide
+          name: users
+        tags:
+        - workplace
+        - executive-team
+        - private
+        - personal-data
+        - confidential
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#64748B'
+      - name: Onboarding Packs
+        desc: Checklists, access requirements and learning materials for new employees.
+        value: 3.8
+        pic:
+          set: lucide
+          name: graduation-cap
+        tags:
+        - workplace
+        - shared
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#64748B'
+    - name: Workplace & Administration
+      desc: Shared office services, support procurement and the calendar of administrative actions.
+      value: 0.0
+      pic:
+        set: lucide
+        name: briefcase-business
+      tags:
+      - workplace
+      - shared
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#DCFCE7'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#64748B'
+      children:
+      - name: Office Procurement & Expenses
+        desc: Requests, documents and registers for administrative spend.
+        value: 8.1
+        pic:
+          set: lucide
+          name: shopping-basket
+        tags:
+        - workplace
+        - finance
+        - cross-functional
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#64748B'
+    - name: IT Services & Support
+      desc: Guidance, service registers, equipment records and employee support requests.
+      value: 0.0
+      pic:
+        set: lucide
+        name: laptop
+      tags:
+      - workplace
+      - executive-team
+      - cross-functional
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#DCFCE7'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#64748B'
+      children:
+      - name: Shared Drive Governance
+        desc: Folder structure, naming standards, lifecycle rules and accountable owners for the file estate.
+        value: 1.8
+        pic:
+          set: lucide
+          name: folder-tree
+        tags:
+        - all-staff
+        - shared
+        - approved
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#64748B'
+      - name: User Accounts & Access
+        desc: Service registers and access provisioning or deprovisioning records; no technical ACLs are modelled
+          here.
+        value: 5.2
+        pic:
+          set: lucide
+          name: key-round
+        tags:
+        - workplace
+        - executive-team
+        - private
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#64748B'
+      - name: Devices & Licences
+        desc: Register of devices, licences and supporting documentation.
+        value: 8.8
+        pic:
+          set: lucide
+          name: monitor-cog
+        tags:
+        - workplace
+        - finance
+        - cross-functional
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#64748B'
+      - name: Incidents & Service Requests
+        desc: History of support requests, incidents and their resolution.
+        value: 14.2
+        pic:
+          set: lucide
+          name: messages-square
+        tags:
+        - workplace
+        - cross-functional
+        - operational-data
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#64748B'
+  - name: 90_Templates & Knowledge Base
+    desc: Reusable company knowledge extracted from personal folders and made available to a clearly defined audience.
+    value: 0.0
+    pic:
+      set: lucide
+      name: book-open
+    tags:
+    - all-staff
+    - shared
+    - current
+    branch_orientation: vertical
+    style:
+      fill: '#DCFCE7'
+      contour: dotted
+      contour_width: regular
+    relation:
+      line: dashed
+      line_width: regular
+      color: '#15803D'
+    children:
+    - name: Policies & Operating Standards
+      desc: Approved rules for working with, accessing and retaining corporate information.
+      value: 0.0
+      pic:
+        set: lucide
+        name: book-open-check
+      tags:
+      - all-staff
+      - shared
+      - approved
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#DCFCE7'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: File Estate Policy
+        desc: Business-language rules for folder structure, ownership, archiving and access.
+        value: 0.9
+        pic:
+          set: lucide
+          name: folder-check
+        tags:
+        - all-staff
+        - shared
+        - approved
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+      - name: Operating Procedures
+        desc: 'Approved procedures for key processes: sales, procurement, warehousing and period close.'
+        value: 6.1
+        pic:
+          set: lucide
+          name: clipboard-check
+        tags:
+        - all-staff
+        - cross-functional
+        - approved
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+    - name: Working Templates
+      desc: Approved forms for recurring work so that execution does not start with searching for an old file.
+      value: 0.0
+      pic:
+        set: lucide
+        name: file-text
+      tags:
+      - all-staff
+      - shared
+      - templates
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#DCFCE7'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Commercial Templates
+        desc: Templates for proposals, price lists, customer emails and commercial calculations.
+        value: 3.7
+        pic:
+          set: lucide
+          name: file-spreadsheet
+        tags:
+        - sales
+        - shared
+        - templates
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+      - name: Operations Templates
+        desc: Templates for orders, records, registers and control checklists.
+        value: 4.1
+        pic:
+          set: lucide
+          name: clipboard-list
+        tags:
+        - procurement
+        - warehouse
+        - shared
+        - templates
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+      - name: Administrative Templates
+        desc: Templates for requests, internal memos and office forms.
+        value: 2.6
+        pic:
+          set: lucide
+          name: file-pen-line
+        tags:
+        - workplace
+        - shared
+        - templates
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+    - name: Onboarding & Learning
+      desc: Materials that introduce new employees to products, processes and digital services.
+      value: 0.0
+      pic:
+        set: lucide
+        name: graduation-cap
+      tags:
+      - all-staff
+      - shared
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#DCFCE7'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Welcome to Mavuno
+        desc: Company story, product fundamentals and a map of Mavuno’s key functions.
+        value: 3.4
+        pic:
+          set: lucide
+          name: map
+        tags:
+        - all-staff
+        - shared
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+      - name: Role-based Checklists
+        desc: Short practical checklists for sales, warehouse, workplace and management roles.
+        value: 2.9
+        pic:
+          set: lucide
+          name: list-checks
+        tags:
+        - all-staff
+        - shared
+        - current
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+  - name: 98_External Collaboration
+    desc: Separated space for approved file exchange with external parties, without mixing it with internal working
+      folders.
+    value: 0.0
+    pic:
+      set: lucide
+      name: share-2
+    tags:
+    - external-sharing
+    - cross-functional
+    - current
+    branch_orientation: vertical
+    style:
+      fill: '#FEF3C7'
+      contour: dashed
+      contour_width: regular
+    relation:
+      line: solid
+      line_width: regular
+      color: '#2563EB'
+    children:
+    - name: Customer Sharing
+      desc: Folders for secure sharing of approved price lists, materials and completion documents with customers.
+      value: 0.0
+      pic:
+        set: lucide
+        name: send
+      tags:
+      - sales
+      - external-sharing
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#2563EB'
+      children:
+      - name: Commercial Materials
+        desc: Current presentations, price lists and files approved for customer sharing.
+        value: 14.4
+        pic:
+          set: lucide
+          name: send-horizontal
+        tags:
+        - sales
+        - external-sharing
+        - shared
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#2563EB'
+      - name: Order Documents
+        desc: Approved documents related to orders and their fulfilment.
+        value: 9.2
+        pic:
+          set: lucide
+          name: package-check
+        tags:
+        - sales
+        - warehouse
+        - external-sharing
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#2563EB'
+    - name: Supplier Sharing
+      desc: Dedicated space for requests, specifications and confirmations exchanged with external suppliers.
+      value: 0.0
+      pic:
+        set: lucide
+        name: handshake
+      tags:
+      - procurement
+      - external-sharing
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FEF3C7'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#2563EB'
+      children:
+      - name: Requests & Specifications
+        desc: Files used to send and receive approved procurement specifications.
+        value: 11.6
+        pic:
+          set: lucide
+          name: file-up
+        tags:
+        - procurement
+        - external-sharing
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#2563EB'
+      - name: Partner Certificates
+        desc: Compliance documents and certificates prepared for partner sharing.
+        value: 6.7
+        pic:
+          set: lucide
+          name: badge-check
+        tags:
+        - procurement
+        - sales
+        - external-sharing
+        - approved
+        - current
+        style:
+          fill: '#FEF3C7'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#2563EB'
+    - name: Bank, Audit & Advisors
+      desc: Controlled information sharing with trusted external professional parties.
+      value: 0.0
+      pic:
+        set: lucide
+        name: landmark
+      tags:
+      - finance
+      - executive-team
+      - external-sharing
+      - confidential
+      - current
+      branch_orientation: vertical
+      style:
+        fill: '#FECACA'
+        contour: double
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#2563EB'
+      children:
+      - name: Audit Requests
+        desc: Only the approved set of materials requested by the auditor.
+        value: 7.9
+        pic:
+          set: lucide
+          name: search-check
+        tags:
+        - finance
+        - executive-team
+        - external-sharing
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#2563EB'
+      - name: Banking & Insurance
+        desc: Evidence and document packs for banking and insurance partners.
+        value: 4.8
+        pic:
+          set: lucide
+          name: shield
+        tags:
+        - finance
+        - executive-team
+        - external-sharing
+        - confidential
+        - current
+        style:
+          fill: '#FECACA'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#2563EB'
+  - name: 99_Legacy File Estate
+    desc: Hidden layer of old personal folders, copies, manual channels and retired systems. It is revealed for
+      audit, migration and data-lineage investigation.
+    value: 0.0
+    pic:
+      set: lucide
+      name: archive
+    tags:
+    - no-owner
+    - legacy-layer
+    - archive
+    - migration-review
+    branch_orientation: vertical
+    style:
+      fill: '#F4F4F5'
+      contour: dotted
+      contour_width: bold
+    relation:
+      line: dotted
+      line_width: regular
+      color: '#9CA3AF'
+    hidden: true
+    children:
+    - name: Personal Folders & Local Copies
+      desc: 'Trace of the former person-centred model: information is attached to individuals rather than processes
+        and accountable owners.'
+      value: 0.0
+      pic:
+        set: lucide
+        name: users-round
+      tags:
+      - private
+      - no-owner
+      - archive
+      - migration-review
+      branch_orientation: vertical
+      style:
+        fill: '#F4F4F5'
+        contour: double
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+      hidden: true
+      children:
+      - name: Founder_Legacy
+        desc: The founder’s personal folder, which long substituted for a governed management and contracts space.
+        value: 0.0
+        pic:
+          set: lucide
+          name: user-round-x
+        tags:
+        - executive-team
+        - private
+        - no-owner
+        - duplicate
+        - archive
+        - migration-review
+        branch_orientation: vertical
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+        children:
+        - name: Contracts_Copies
+          desc: Copies of agreements, schedules and scans retained in the owner’s personal filing logic.
+          value: 72.8
+          pic:
+            set: lucide
+            name: files
+          tags:
+          - executive-team
+          - private
+          - duplicate
+          - commercially-sensitive
+          - archive
+          - migration-review
+          style:
+            fill: '#F4F4F5'
+            contour: double
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: '#9CA3AF'
+          hidden: true
+        - name: PriceLists_ToSend
+          desc: Old price lists and calculations that can surface in search beside current approved versions.
+          value: 18.6
+          pic:
+            set: lucide
+            name: file-warning
+          tags:
+          - sales
+          - private
+          - duplicate
+          - error-risk
+          - archive
+          - migration-review
+          style:
+            fill: '#F4F4F5'
+            contour: double
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: '#9CA3AF'
+          hidden: true
+      - name: SalesLead_2024
+        desc: Uncleaned folder of a former sales lead containing customer materials and reports.
+        value: 0.0
+        pic:
+          set: lucide
+          name: user-round-x
+        tags:
+        - sales
+        - private
+        - no-owner
+        - personal-data
+        - archive
+        - migration-review
+        branch_orientation: vertical
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: bold
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+        children:
+        - name: Customers_&_Contacts
+          desc: Exported contacts and customer notes with no single accountable owner after the employee’s departure.
+          value: 36.7
+          pic:
+            set: lucide
+            name: contact-round
+          tags:
+          - sales
+          - private
+          - personal-data
+          - no-owner
+          - archive
+          - migration-review
+          style:
+            fill: '#F4F4F5'
+            contour: double
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: '#9CA3AF'
+          hidden: true
+        - name: Personal_Presentations
+          desc: Personal variants of commercial presentations containing outdated facts and pricing.
+          value: 41.3
+          pic:
+            set: lucide
+            name: presentation
+          tags:
+          - sales
+          - private
+          - duplicate
+          - error-risk
+          - archive
+          - migration-review
+          style:
+            fill: '#F4F4F5'
+            contour: double
+            contour_width: regular
+          relation:
+            line: dotted
+            line_width: regular
+            color: '#9CA3AF'
+          hidden: true
+      - name: Warehouse_Desktop
+        desc: Captured copy of the shared warehouse desktop with photographs and unstructured records.
+        value: 118.4
+        pic:
+          set: lucide
+          name: monitor-off
+        tags:
+        - warehouse
+        - private
+        - no-owner
+        - operational-data
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+    - name: Versions & Duplicates
+      desc: Chaotic copies of ‘final’ files, old price lists and repeated materials.
+      value: 0.0
+      pic:
+        set: lucide
+        name: copy
+      tags:
+      - shared
+      - duplicate
+      - no-owner
+      - archive
+      - migration-review
+      branch_orientation: vertical
+      style:
+        fill: '#F4F4F5'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+      hidden: true
+      children:
+      - name: FINAL_v2_REALLY_FINAL
+        desc: Folder containing several supposedly final versions of commercial materials with no approval status.
+        value: 21.8
+        pic:
+          set: lucide
+          name: files
+        tags:
+        - sales
+        - shared
+        - duplicate
+        - no-owner
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Old_PriceLists_Send
+        desc: Historic price lists, discounts and calculation formats that still appear in search results.
+        value: 29.6
+        pic:
+          set: lucide
+          name: file-warning
+        tags:
+        - sales
+        - shared
+        - duplicate
+        - error-risk
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Product_Images_Copies
+        desc: Duplicate product photographs and listing materials with no clear current use.
+        value: 214.5
+        pic:
+          set: lucide
+          name: images
+        tags:
+        - sales
+        - procurement
+        - shared
+        - duplicate
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Contract_Signed_New
+        desc: Numerous scans and forwarded contract copies kept outside the legal records area.
+        value: 45.2
+        pic:
+          set: lucide
+          name: file-signature
+        tags:
+        - finance
+        - shared
+        - duplicate
+        - confidential
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+    - name: Manual Channels & Unsorted Material
+      desc: Informal channels, shared buffers and temporary folders not tied to an active business process.
+      value: 0.0
+      pic:
+        set: lucide
+        name: message-square-warning
+      tags:
+      - cross-functional
+      - manual-workaround
+      - no-owner
+      - archive
+      - migration-review
+      branch_orientation: vertical
+      style:
+        fill: '#F4F4F5'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+      hidden: true
+      children:
+      - name: WhatsApp_Exports_Orders
+        desc: Exported messages, order photos and screenshots of agreements used instead of a formal processing
+          channel.
+        value: 86.2
+        pic:
+          set: lucide
+          name: message-circle-warning
+        tags:
+        - sales
+        - procurement
+        - cross-functional
+        - manual-workaround
+        - no-owner
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Email_Attachments_Save
+        desc: Email attachments saved without a link to a process, customer or reporting period.
+        value: 64.9
+        pic:
+          set: lucide
+          name: mail-warning
+        tags:
+        - all-staff
+        - shared
+        - no-owner
+        - manual-workaround
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Misc_Urgent_NewFolder
+        desc: Shared exception buffer where unclassified material and urgent requests accumulated.
+        value: 79.3
+        pic:
+          set: lucide
+          name: folder-x
+        tags:
+        - all-staff
+        - shared
+        - no-owner
+        - error-risk
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+    - name: Former Employee Archive
+      desc: 'Uncleansed working material from former employees: some remains useful, while some duplicates current
+        folders.'
+      value: 0.0
+      pic:
+        set: lucide
+        name: archive-x
+      tags:
+      - private
+      - personal-data
+      - no-owner
+      - archive
+      - migration-review
+      branch_orientation: vertical
+      style:
+        fill: '#F4F4F5'
+        contour: double
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+      hidden: true
+      children:
+      - name: Former_Assistant_2023
+        desc: Copies of calendar decisions, documents and materials prepared for the executive team.
+        value: 54.7
+        pic:
+          set: lucide
+          name: user-round-x
+        tags:
+        - workplace
+        - private
+        - duplicate
+        - no-owner
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Key_Account_Manager
+        desc: Historic correspondence, customer files and local commercial materials.
+        value: 97.1
+        pic:
+          set: lucide
+          name: user-round-x
+        tags:
+        - sales
+        - private
+        - personal-data
+        - no-owner
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Accountant_Archive
+        desc: Old accounting and close exports retained outside the finance control area.
+        value: 126.4
+        pic:
+          set: lucide
+          name: user-round-x
+        tags:
+        - finance
+        - private
+        - confidential
+        - no-owner
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+    - name: Retired Systems & Dead Projects
+      desc: Snapshots of past systems and discontinued initiatives that continue to consume space and create false
+        sources of truth.
+      value: 0.0
+      pic:
+        set: lucide
+        name: database-zap
+      tags:
+      - no-owner
+      - retired-system
+      - archive
+      - migration-review
+      branch_orientation: vertical
+      style:
+        fill: '#F4F4F5'
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#9CA3AF'
+      hidden: true
+      children:
+      - name: ERP_Backup_2019
+        desc: Obsolete full exports from the prior accounting system with no stated retention period.
+        value: 318.8
+        pic:
+          set: lucide
+          name: database-backup
+        tags:
+        - finance
+        - no-owner
+        - retired-system
+        - confidential
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: double
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: New_Chain_Project_Not_Launched
+        desc: Discontinued project containing presentations, calculations and copied commercial materials.
+        value: 37.8
+        pic:
+          set: lucide
+          name: folder-archive
+        tags:
+        - sales
+        - executive-team
+        - no-owner
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true
+      - name: Legacy_Website_Assets
+        desc: Source files and imagery from the previous website with no current business purpose.
+        value: 143.6
+        pic:
+          set: lucide
+          name: globe-2
+        tags:
+        - sales
+        - shared
+        - no-owner
+        - duplicate
+        - archive
+        - migration-review
+        style:
+          fill: '#F4F4F5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#9CA3AF'
+        hidden: true

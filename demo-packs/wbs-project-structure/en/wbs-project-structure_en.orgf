@@ -1,0 +1,2331 @@
+orgformat: "1.0.0"
+
+# Embedded canonical reference: ORGF 1.0.0.
+# The embedded reference is MIT-licensed as part of the ORGF specification.
+# DemoPack model content is released under CC0-1.0 as declared in meta below.
+
+reference:
+  format: "ORGF 1.0.0"
+  syntax: "YAML|UTF-8 without BOM"
+
+  sections_fixed:
+    orgformat: "string|required"
+    reference: "section|optional"
+    meta: "section|required"
+    model: "section|optional"
+    root: "block|required"
+    hierarchy: "root.children[*].children[*]..."
+
+  meta:
+    title: "string|max250|optional"
+    author: "string|max250|optional"
+    rights_holder: "string|max250|optional"
+    copyright: "string|max500|optional"
+    license: "string|max120|optional"
+    created: "string|optional|YYYY-MM-DD/ISO 8601"
+    updated: "string|optional|YYYY-MM-DD/ISO 8601"
+    status: "draft/final/archived|optional"
+
+  model:
+    name: "string|max250|optional"
+    desc: "string|max1000|optional"
+    value_label: "string|max80|optional|one_value_type_per_model"
+    value_unit: "string|max40|optional|one_value_unit_per_model"
+
+  block:
+    name: "string|max250|optional|empty_allowed"
+    desc: "string|max500|optional"
+    value: "number|optional|own_value_only"
+    pic: "section|optional"
+    pic.set: "emoji/lucide/feather/simple-icons/iconify|required_if_pic"
+    pic.name: "string|required_if_pic"
+    tags: "array[string|max80]|optional|default:[]"
+    hidden: "boolean|optional|default:false"
+    branch_orientation: "auto/horizontal/vertical|optional|default:auto"
+    style:
+      fill: "default/#HEX|optional|default:default"
+      contour: "default/solid/dashed/dotted/double|optional|default:default"
+      contour_width: "default/regular/bold|optional|default:default"
+    relation:
+      line: "default/solid/dashed/dotted|optional|default:default"
+      line_width: "default/regular/bold|optional|default:default"
+      color: "default/#HEX|optional|default:default"
+    children: "array[block]|optional|default:[]"
+
+  authoring_rules:
+    - "one_file=one_model"
+    - "hierarchy=children"
+    - "no_id_parent_order"
+    - "empty_blocks_allowed"
+    - "tags=plain_classifiers_not_key_value"
+    - "desc=short_human_note_not_data_dump"
+    - "style_relation=custom_overrides_only"
+    - "tag_colors_not_stored_in_orgf"
+    - "value_one_type_per_model"
+    - "value_one_unit_per_model"
+    - "value_on_block_is_own_value_only"
+    - "value_totals_are_computed_not_stored"
+    - "reference_if_present=complete_unmodified_canonical_copy_published_for_declared_orgformat_version_at_https://github.com/orgformat/orgf/releases"
+    - "hidden=true_on_a_block_requires_hidden=true_on_every_descendant"
+
+  normalization:
+    unknown_fields: remark
+    invalid_values: default
+    over_limit: truncate
+    invalid_yaml: reject
+    invalid_structure: reject
+
+  normalization_rules:
+    - "missing_optional=default"
+    - "unknown_fields=remark"
+    - "invalid_values=default"
+    - "over_limit=truncate"
+    - "normalization=view_only_not_source_mutation"
+    - "hidden_branch_inconsistency=remark_not_reject"
+    - "normalization_propagates_hidden=true_to_all_descendants"
+
+meta:
+  title: Mavuno ERP — Project Work Breakdown Structure
+  author: ORGFORMAT DemoPacks
+  rights_holder: ORGFORMAT
+  copyright: >-
+    CC0 1.0 Universal — to the extent possible under law, ORGFORMAT DemoPacks has waived copyright and
+    related or neighbouring rights to this material. You may copy, modify, distribute, and use it, including
+    commercially, without permission or required attribution. CC0 does not grant rights to the ORGFORMAT or
+    ORGF names, logos, or other brand assets.
+  license: CC0-1.0
+  created: '2026-06-21'
+  updated: '2026-06-24'
+
+model:
+  name: Mavuno ERP — Project Work Breakdown Structure
+  desc: >-
+    English demonstration WBS for an implementation of the fictional Mavuno ERP platform. It shows
+    functional workstreams, effort in person-hours, project tags, work status and deferred scope.
+
+    This ORGFORMAT DemoPacks material is provided to illustrate ORGF capabilities. Unless expressly stated
+    otherwise, names, organisations, products, projects, roles, data, and scenarios in the model are
+    illustrative or fictional; any resemblance to actual entities does not imply affiliation, endorsement,
+    or origin. Questions or claims: support@orgformat.com.
+  value_label: Effort
+  value_unit: person-hours
+
+root:
+  name: Mavuno ERP — Project Work Breakdown Structure
+  desc: Demonstration work breakdown structure for a Mavuno ERP implementation. Fill colour identifies the functional
+    workstream; the border shows work status; the connector shows how firmly the work is committed to the baseline.
+    Tags capture ownership, work type, priority, milestone, risk and dependency.
+  value: 0.0
+  pic:
+    set: lucide
+    name: network
+  tags:
+  - demo-model
+  - WBS
+  - project-structure
+  - Mavuno-ERP
+  - Wave-1
+  branch_orientation: horizontal
+  style:
+    fill: '#E6FAF8'
+    contour: solid
+    contour_width: bold
+  relation:
+    line: solid
+    line_width: bold
+    color: '#0F766E'
+  children:
+  - name: 01_Programme Governance and Initiation
+    desc: Governance for schedule, decisions, risks and change. It does not replace functional delivery work; it
+      protects one integrated Wave 1 baseline.
+    value: 0.0
+    pic:
+      set: lucide
+      name: briefcase-business
+    tags:
+    - owner-pmo
+    - scope-wave-1
+    - priority-p1
+    branch_orientation: vertical
+    style:
+      fill: '#EDE9FE'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#7C3AED'
+    children:
+    - name: 01.01_Programme Charter and Governance Model
+      desc: Roles, decision rights, Steering Committee membership, and the operating rules for decisions and escalation.
+      value: 0.0
+      pic:
+        set: lucide
+        name: landmark
+      tags:
+      - owner-pmo
+      - team-internal
+      - work-design
+      - decision-steering-committee
+      - scope-wave-1
+      style:
+        fill: '#EDE9FE'
+        contour: double
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: Approve Wave 1 objectives, scope boundaries and success criteria
+        desc: Define what constitutes launch readiness across processes, data, integrations, users and control metrics.
+        value: 72.0
+        pic:
+          set: lucide
+          name: file-check-2
+        tags:
+        - owner-pmo
+        - owner-finance
+        - work-design
+        - priority-p1
+        - decision-steering-committee
+        - scope-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: double
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Establish delivery teams and the responsibility matrix
+        desc: Assign process owners, key users, technical leads and implementation-partner representatives.
+        value: 96.0
+        pic:
+          set: lucide
+          name: users-round
+        tags:
+        - owner-pmo
+        - team-internal
+        - contractor-integrator
+        - work-change
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: double
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: 01.02_Integrated Plan and Baseline Control
+      desc: One integrated plan for work, dependencies and control points, with formal scope-change control.
+      value: 0.0
+      pic:
+        set: lucide
+        name: gantt-chart-square
+      tags:
+      - owner-pmo
+      - work-design
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#EDE9FE'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: Build the delivery schedule, dependency map and resource assumptions
+        desc: Consolidate functional workstreams into one plan through go-live, including external dependencies
+          and programme gates.
+        value: 128.0
+        pic:
+          set: lucide
+          name: calendar-clock
+        tags:
+        - owner-pmo
+        - work-design
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Maintain the risk, decision and change register
+        desc: Maintain the management log with an accountable owner, response due date and decision status.
+        value: 160.0
+        pic:
+          set: lucide
+          name: list-todo
+        tags:
+        - owner-pmo
+        - work-change
+        - priority-p1
+        - decision-steering-committee
+        - scope-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+    - name: 01.03_Communications and Change Management
+      desc: Prepare the business for new roles, ways of working and formal acceptance points.
+      value: 0.0
+      pic:
+        set: lucide
+        name: messages-square
+      tags:
+      - owner-pmo
+      - work-change
+      - priority-p2
+      - scope-wave-1
+      style:
+        fill: '#EDE9FE'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#7C3AED'
+      children:
+      - name: Prepare the stakeholder impact map and communications plan
+        desc: Define audiences, channels, communication cadence and owners for collecting feedback.
+        value: 88.0
+        pic:
+          set: lucide
+          name: map
+        tags:
+        - owner-pmo
+        - team-internal
+        - work-change
+        - priority-p2
+        - scope-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+      - name: Run functional-lead readiness sessions
+        desc: Align on launch constraints, escalation protocols and the participation required from key users.
+        value: 64.0
+        pic:
+          set: lucide
+          name: presentation
+        tags:
+        - owner-pmo
+        - owner-finance
+        - owner-commercial
+        - owner-logistics
+        - work-change
+        - decision-steering-committee
+        - scope-wave-1
+        style:
+          fill: '#EDE9FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#7C3AED'
+  - name: 02_Target Operating Model and Process Design
+    desc: Common operating rules across finance, commercial, procurement, warehouse and IT. This workstream defines
+      the target operating model rather than system configuration.
+    value: 0.0
+    pic:
+      set: lucide
+      name: workflow
+    tags:
+    - owner-pmo
+    - owner-finance
+    - owner-commercial
+    - owner-logistics
+    - work-design
+    - scope-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#E0F2FE'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#0284C7'
+    children:
+    - name: 02.01_End-to-End Processes and Control Points
+      desc: Design process boundaries, roles and control events for the critical end-to-end flows.
+      value: 0.0
+      pic:
+        set: lucide
+        name: git-branch
+      tags:
+      - owner-pmo
+      - work-design
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#E0F2FE'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#0284C7'
+      children:
+      - name: Agree the procure-to-pay process
+        desc: Confirm the flow from requisition through purchase order, receipt, invoice, payment and exception
+          handling.
+        value: 176.0
+        pic:
+          set: lucide
+          name: route
+        tags:
+        - owner-logistics
+        - owner-finance
+        - work-design
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0284C7'
+      - name: Agree the order-to-cash process
+        desc: Define rules for allocation, pricing, shipment, returns, credit control and order closure.
+        value: 176.0
+        pic:
+          set: lucide
+          name: shopping-cart
+        tags:
+        - owner-commercial
+        - owner-logistics
+        - owner-finance
+        - work-design
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0284C7'
+    - name: 02.02_Roles, Access and Control Procedures
+      desc: The accountability model, segregation-of-duties design and approval rules for the new operating environment.
+      value: 0.0
+      pic:
+        set: lucide
+        name: shield-check
+      tags:
+      - owner-it
+      - owner-finance
+      - work-design
+      - priority-p1
+      - risk-regulatory
+      - scope-wave-1
+      style:
+        fill: '#E0F2FE'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#0284C7'
+      children:
+      - name: Design the role model and segregation of duties
+        desc: Agree least-privilege access, conflicting roles and procedures for temporary access.
+        value: 144.0
+        pic:
+          set: lucide
+          name: key-round
+        tags:
+        - owner-it
+        - owner-finance
+        - work-design
+        - priority-p1
+        - risk-regulatory
+        - dependency-external
+        - scope-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#0284C7'
+      - name: Approve the control-procedure matrix
+        desc: Define which checks are mandatory in each process and who approves exceptions.
+        value: 112.0
+        pic:
+          set: lucide
+          name: clipboard-check
+        tags:
+        - owner-finance
+        - owner-pmo
+        - work-design
+        - priority-p1
+        - risk-regulatory
+        - scope-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0284C7'
+    - name: 02.03_Target Reporting and Close Calendar
+      desc: The mandatory management and statutory reporting outputs required after go-live.
+      value: 0.0
+      pic:
+        set: lucide
+        name: chart-no-axes-combined
+      tags:
+      - owner-finance
+      - work-design
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#E0F2FE'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#0284C7'
+      children:
+      - name: Confirm the Wave 1 reporting scope
+        desc: Agree the minimum report set for leadership, finance, commercial operations and logistics.
+        value: 104.0
+        pic:
+          set: lucide
+          name: layout-dashboard
+        tags:
+        - owner-finance
+        - owner-commercial
+        - owner-logistics
+        - work-design
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0284C7'
+      - name: Define the period-close calendar and key control deadlines
+        desc: Set the close sequence, accountable owners and control dates.
+        value: 88.0
+        pic:
+          set: lucide
+          name: calendar-check-2
+        tags:
+        - owner-finance
+        - work-design
+        - milestone-go-live
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#E0F2FE'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0284C7'
+  - name: 03_Master Data, Data Quality and Migration
+    desc: Prepare trusted source data, master-data ownership rules, opening-balance migration and reconciliation.
+    value: 0.0
+    pic:
+      set: lucide
+      name: database
+    tags:
+    - owner-it
+    - owner-finance
+    - owner-commercial
+    - owner-logistics
+    - work-data
+    - priority-p1
+    - scope-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#FEF3C7'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#B45309'
+    children:
+    - name: 03.01_Master Data Ownership and Quality Rules
+      desc: Common rules for items, business partners, warehouses, price conditions and financial dimensions.
+      value: 0.0
+      pic:
+        set: lucide
+        name: tags
+      tags:
+      - owner-it
+      - owner-finance
+      - owner-commercial
+      - owner-logistics
+      - work-data
+      - priority-p1
+      - risk-data
+      - scope-wave-1
+      style:
+        fill: '#FEF3C7'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#B45309'
+      children:
+      - name: Agree golden records and master-data owners
+        desc: Define the system of record, change owners and minimum validation rules for each data domain.
+        value: 160.0
+        pic:
+          set: lucide
+          name: badge-check
+        tags:
+        - owner-it
+        - owner-finance
+        - owner-commercial
+        - owner-logistics
+        - work-data
+        - priority-p1
+        - risk-data
+        - scope-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B45309'
+      - name: Clean duplicates and critical defects in source master data
+        desc: Resolve duplicate business partners, inactive items, missing dimensions and invalid units of measure.
+        value: 420.0
+        pic:
+          set: lucide
+          name: eraser
+        tags:
+        - owner-it
+        - owner-finance
+        - owner-commercial
+        - owner-logistics
+        - work-data
+        - priority-p1
+        - risk-data
+        - scope-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B45309'
+    - name: 03.02_Active-Scope Data Migration
+      desc: Migrate only the data and balances required to start operations and produce mandatory reporting.
+      value: 0.0
+      pic:
+        set: lucide
+        name: arrow-right-left
+      tags:
+      - owner-it
+      - owner-finance
+      - work-data
+      - priority-p1
+      - milestone-go-live
+      - risk-data
+      - scope-wave-1
+      style:
+        fill: '#FEF3C7'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#B45309'
+      children:
+      - name: Prepare extract, transform and load rules
+        desc: Document field mappings, transformation rules, exception handling and the migration audit trail.
+        value: 240.0
+        pic:
+          set: lucide
+          name: file-cog
+        tags:
+        - owner-it
+        - contractor-integrator
+        - work-data
+        - priority-p1
+        - risk-data
+        - dependency-external
+        - scope-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B45309'
+      - name: Run a mock migration and reconcile balances
+        desc: Verify completeness, accounting control totals, material variances and readiness for the final load.
+        value: 280.0
+        pic:
+          set: lucide
+          name: scan-search
+        tags:
+        - owner-finance
+        - owner-it
+        - contractor-integrator
+        - work-data
+        - milestone-uat
+        - priority-p1
+        - risk-data
+        - scope-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B45309'
+    - name: 03.03_Final Data Load and Acceptance
+      desc: Controlled loading of agreed data snapshots immediately before go-live.
+      value: 0.0
+      pic:
+        set: lucide
+        name: database-zap
+      tags:
+      - owner-finance
+      - owner-it
+      - work-data
+      - milestone-go-live
+      - priority-p1
+      - risk-high
+      - scope-wave-1
+      style:
+        fill: '#FEF3C7'
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#B45309'
+      children:
+      - name: Load opening balances and open transactions
+        desc: Migrate the agreed population of balances, open commitments, orders and warehouse reservations.
+        value: 192.0
+        pic:
+          set: lucide
+          name: upload
+        tags:
+        - owner-finance
+        - owner-it
+        - work-data
+        - milestone-go-live
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#B45309'
+      - name: Sign off the migration acceptance record
+        desc: Confirm acceptable variances, correction owners and data readiness for production use.
+        value: 48.0
+        pic:
+          set: lucide
+          name: signature
+        tags:
+        - owner-finance
+        - owner-it
+        - work-data
+        - milestone-go-live
+        - decision-steering-committee
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#FEF3C7'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#B45309'
+  - name: 04_Statutory Accounting and Tax
+    desc: The functional workstream for statutory accounting, tax requirements and period close across Mavuno legal
+      entities.
+    value: 0.0
+    pic:
+      set: lucide
+      name: receipt-text
+    tags:
+    - owner-finance
+    - contractor-integrator
+    - work-configuration
+    - priority-p1
+    - scope-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#DCFCE7'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#15803D'
+    children:
+    - name: 04.01_Chart of Accounts, Dimensions and Accounting Policy
+      desc: Configure the accounting structure, dimensions, posting rules and policies for recording transactions.
+      value: 0.0
+      pic:
+        set: lucide
+        name: book-open-check
+      tags:
+      - owner-finance
+      - contractor-integrator
+      - work-configuration
+      - priority-p1
+      - risk-regulatory
+      - scope-wave-1
+      style:
+        fill: '#DCFCE7'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Configure the chart of accounts and mandatory dimensions
+        desc: Set up the account structure, accounting dimensions, mandatory-entry rules and baseline validation
+          controls.
+        value: 240.0
+        pic:
+          set: lucide
+          name: table-properties
+        tags:
+        - owner-finance
+        - contractor-integrator
+        - work-configuration
+        - priority-p1
+        - risk-regulatory
+        - scope-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+      - name: Agree posting rules and exception handling
+        desc: Validate transaction scenarios, adjustments and the procedure for non-standard cases.
+        value: 176.0
+        pic:
+          set: lucide
+          name: file-warning
+        tags:
+        - owner-finance
+        - contractor-integrator
+        - work-design
+        - priority-p1
+        - risk-regulatory
+        - scope-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+    - name: 04.02_Payables, Receivables and Tax
+      desc: Manage accounts payable, accounts receivable, tax parameters and supporting documents.
+      value: 0.0
+      pic:
+        set: lucide
+        name: hand-coins
+      tags:
+      - owner-finance
+      - contractor-integrator
+      - work-configuration
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#DCFCE7'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Configure supplier and customer settlements
+        desc: Configure payment terms, advances, netting, credit control and discrepancy handling.
+        value: 224.0
+        pic:
+          set: lucide
+          name: wallet-cards
+        tags:
+        - owner-finance
+        - contractor-integrator
+        - work-configuration
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+      - name: Configure tax scenarios and mandatory document outputs
+        desc: Prepare tax-calculation rules, control reports and the documents required for Wave 1.
+        value: 200.0
+        pic:
+          set: lucide
+          name: file-text
+        tags:
+        - owner-finance
+        - contractor-integrator
+        - work-configuration
+        - priority-p1
+        - risk-regulatory
+        - scope-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+    - name: 04.03_Period Close and Statutory Reporting
+      desc: The first controlled post-go-live period, with defined controls and accountable owners.
+      value: 0.0
+      pic:
+        set: lucide
+        name: calendar-fold
+      tags:
+      - owner-finance
+      - work-testing
+      - milestone-go-live
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#DCFCE7'
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#15803D'
+      children:
+      - name: Test period close on a controlled data set
+        desc: Confirm the close sequence, accounting control totals and error-resolution process.
+        value: 168.0
+        pic:
+          set: lucide
+          name: circle-check-big
+        tags:
+        - owner-finance
+        - contractor-integrator
+        - work-testing
+        - milestone-uat
+        - priority-p1
+        - risk-regulatory
+        - scope-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#15803D'
+      - name: Prepare the first recurring reporting pack
+        desc: Produce mandatory post-go-live reports and confirm the procedure for correcting variances.
+        value: 128.0
+        pic:
+          set: lucide
+          name: files
+        tags:
+        - owner-finance
+        - work-testing
+        - milestone-go-live
+        - priority-p1
+        - risk-regulatory
+        - scope-wave-1
+        style:
+          fill: '#DCFCE7'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#15803D'
+  - name: 05_Management Accounting, Finance and Treasury
+    desc: The workstream for management P&L, financial control, payment scheduling and cash-flow visibility.
+    value: 0.0
+    pic:
+      set: lucide
+      name: chart-spline
+    tags:
+    - owner-finance
+    - contractor-integrator
+    - work-configuration
+    - priority-p1
+    - scope-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#CCFBF1'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#0F766E'
+    children:
+    - name: 05.01_Management P&L and Responsibility Centres
+      desc: Configure management dimensions, allocations and core reporting by responsibility centre.
+      value: 0.0
+      pic:
+        set: lucide
+        name: pie-chart
+      tags:
+      - owner-finance
+      - contractor-integrator
+      - work-configuration
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#CCFBF1'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#0F766E'
+      children:
+      - name: Configure financial responsibility centres and reporting lines
+        desc: Agree the accountability structure, reporting-line taxonomy and mandatory-dimension requirements.
+        value: 184.0
+        pic:
+          set: lucide
+          name: network
+        tags:
+        - owner-finance
+        - work-configuration
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+      - name: Configure management P&L and reconciliation controls
+        desc: Build the core P&L, drill-down to responsibility centres and reconciliation rules against statutory
+          accounting.
+        value: 232.0
+        pic:
+          set: lucide
+          name: chart-column-big
+        tags:
+        - owner-finance
+        - contractor-integrator
+        - work-configuration
+        - priority-p1
+        - risk-data
+        - scope-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+    - name: 05.02_Treasury and Payment Calendar
+      desc: Control payment requests, limits, priorities and forecast liquidity gaps.
+      value: 0.0
+      pic:
+        set: lucide
+        name: landmark
+      tags:
+      - owner-finance
+      - contractor-integrator
+      - work-configuration
+      - priority-p1
+      - risk-high
+      - scope-wave-1
+      style:
+        fill: '#CCFBF1'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#0F766E'
+      children:
+      - name: Configure payment requests, limits and approval workflows
+        desc: Establish one process for initiating, validating, approving and executing payments.
+        value: 216.0
+        pic:
+          set: lucide
+          name: badge-dollar-sign
+        tags:
+        - owner-finance
+        - contractor-integrator
+        - work-configuration
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#0F766E'
+      - name: Integrate bank statements and payment statuses
+        desc: Enable receipt of bank statements, confirmations and execution statuses at the required frequency.
+        value: 160.0
+        pic:
+          set: lucide
+          name: building-2
+        tags:
+        - owner-finance
+        - owner-it
+        - contractor-integrator
+        - work-integration
+        - priority-p1
+        - risk-integration
+        - dependency-external
+        - scope-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#0F766E'
+    - name: 05.03_Wave 1 Financial Reporting
+      desc: The minimum management-finance reporting set ready for use after stabilisation.
+      value: 0.0
+      pic:
+        set: lucide
+        name: notebook-tabs
+      tags:
+      - owner-finance
+      - work-testing
+      - milestone-go-live
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#CCFBF1'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#0F766E'
+      children:
+      - name: Validate profit, cash-flow and receivables reports
+        desc: Perform control reconciliations on test and migrated data, and record acceptable variances.
+        value: 168.0
+        pic:
+          set: lucide
+          name: scan-line
+        tags:
+        - owner-finance
+        - work-testing
+        - milestone-uat
+        - priority-p1
+        - risk-data
+        - scope-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+      - name: Prepare the financial-pack release procedure
+        desc: Confirm ownership, calendar, control thresholds and the procedure for addressing exceptions.
+        value: 88.0
+        pic:
+          set: lucide
+          name: file-output
+        tags:
+        - owner-finance
+        - work-design
+        - milestone-go-live
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#CCFBF1'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#0F766E'
+  - name: '06_Commercial: Sales, Pricing and Customers'
+    desc: The workstream for customers, agreements, pricing, orders, shipments and returns.
+    value: 0.0
+    pic:
+      set: lucide
+      name: badge-russian-ruble
+    tags:
+    - owner-commercial
+    - contractor-integrator
+    - work-configuration
+    - priority-p1
+    - scope-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#FCE7F3'
+      contour: dotted
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#BE185D'
+    children:
+    - name: 06.01_Customers, Agreements and Commercial Terms
+      desc: Single customer records, contractual terms, credit limits and controlled change rules.
+      value: 0.0
+      pic:
+        set: lucide
+        name: contact-round
+      tags:
+      - owner-commercial
+      - work-configuration
+      - priority-p1
+      - risk-data
+      - scope-wave-1
+      style:
+        fill: '#FCE7F3'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#BE185D'
+      children:
+      - name: Configure customer records and contractual parameters
+        desc: Agree mandatory attributes, statuses, legal details, credit terms and blocking rules.
+        value: 200.0
+        pic:
+          set: lucide
+          name: contact
+        tags:
+        - owner-commercial
+        - owner-finance
+        - work-configuration
+        - priority-p1
+        - risk-data
+        - scope-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#BE185D'
+      - name: Define credit-control rules
+        desc: Define limits, blocks, exception-approval workflows and overdue-debt monitoring.
+        value: 136.0
+        pic:
+          set: lucide
+          name: shield-alert
+        tags:
+        - owner-commercial
+        - owner-finance
+        - work-design
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#BE185D'
+    - name: 06.02_Pricing and Trade Promotions
+      desc: Configure base prices, discounts, price lists and Wave 1 guardrails.
+      value: 0.0
+      pic:
+        set: lucide
+        name: tags
+      tags:
+      - owner-commercial
+      - work-configuration
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#FCE7F3'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#BE185D'
+      children:
+      - name: Configure price lists, discounts and exception rules
+        desc: Define and test core pricing mechanisms and authority to deviate from standard terms.
+        value: 184.0
+        pic:
+          set: lucide
+          name: badge-percent
+        tags:
+        - owner-commercial
+        - contractor-integrator
+        - work-configuration
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#BE185D'
+      - name: Validate migration of active commercial terms
+        desc: Reconcile critical prices, discounts, limits and contractual terms in the migration data set.
+        value: 120.0
+        pic:
+          set: lucide
+          name: file-search-2
+        tags:
+        - owner-commercial
+        - owner-it
+        - work-data
+        - milestone-uat
+        - priority-p1
+        - risk-data
+        - scope-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#BE185D'
+    - name: 06.03_Sales Order, Fulfilment and Returns
+      desc: Order-processing scenarios through to closure of the customer obligation.
+      value: 0.0
+      pic:
+        set: lucide
+        name: package-check
+      tags:
+      - owner-commercial
+      - owner-logistics
+      - work-testing
+      - milestone-go-live
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#FCE7F3'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#BE185D'
+      children:
+      - name: Configure core order-management and allocation scenarios
+        desc: Cover order entry, allocation, partial shipment, cancellation, substitution and available-to-promise
+          control.
+        value: 216.0
+        pic:
+          set: lucide
+          name: shopping-bag
+        tags:
+        - owner-commercial
+        - owner-logistics
+        - contractor-integrator
+        - work-configuration
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#BE185D'
+      - name: Validate returns, adjustments and credit notes
+        desc: Test key exceptions affecting inventory, settlements and financial outcome.
+        value: 144.0
+        pic:
+          set: lucide
+          name: undo-2
+        tags:
+        - owner-commercial
+        - owner-finance
+        - owner-logistics
+        - work-testing
+        - milestone-uat
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#FCE7F3'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#BE185D'
+  - name: 07_Procurement, Inventory, Warehouse and Logistics
+    desc: The workstream for demand, purchasing, receipt, inventory, warehouse operations and shipment.
+    value: 0.0
+    pic:
+      set: lucide
+      name: warehouse
+    tags:
+    - owner-logistics
+    - contractor-integrator
+    - work-configuration
+    - priority-p1
+    - scope-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#FFEDD5'
+      contour: dotted
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#C2410C'
+    children:
+    - name: 07.01_Procurement and Suppliers
+      desc: Scenarios for demand, supplier purchase orders, approvals, receipt and execution control.
+      value: 0.0
+      pic:
+        set: lucide
+        name: shopping-basket
+      tags:
+      - owner-logistics
+      - owner-finance
+      - work-configuration
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#FFEDD5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#C2410C'
+      children:
+      - name: Configure requisitions, purchase orders and procurement approvals
+        desc: Agree routing, limits, mandatory attributes and handling of urgent purchases.
+        value: 216.0
+        pic:
+          set: lucide
+          name: clipboard-list
+        tags:
+        - owner-logistics
+        - owner-finance
+        - contractor-integrator
+        - work-configuration
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#C2410C'
+      - name: Configure supplier records and delivery terms
+        desc: Prepare data and rules for lead times, prices, currencies, Incoterms and acceptable variances.
+        value: 136.0
+        pic:
+          set: lucide
+          name: factory
+        tags:
+        - owner-logistics
+        - owner-it
+        - work-data
+        - priority-p1
+        - risk-data
+        - scope-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#C2410C'
+    - name: 07.02_Inventory and Warehouse Operations
+      desc: The core flow for inventory accounting, receipt, put-away, transfers, stock counts and shipment.
+      value: 0.0
+      pic:
+        set: lucide
+        name: boxes
+      tags:
+      - owner-logistics
+      - contractor-integrator
+      - work-configuration
+      - priority-p1
+      - risk-high
+      - scope-wave-1
+      style:
+        fill: '#FFEDD5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#C2410C'
+      children:
+      - name: Configure warehouses, zones and inventory-movement rules
+        desc: Define warehouses, inventory statuses, transfers, allocation and discrepancy-handling procedures.
+        value: 248.0
+        pic:
+          set: lucide
+          name: map-pinned
+        tags:
+        - owner-logistics
+        - contractor-integrator
+        - work-configuration
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#C2410C'
+      - name: Validate stock counts and inventory adjustments
+        desc: Test cycle counts, variances, approval of adjustments and their impact on financial accounting.
+        value: 176.0
+        pic:
+          set: lucide
+          name: scan-barcode
+        tags:
+        - owner-logistics
+        - owner-finance
+        - work-testing
+        - milestone-uat
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#C2410C'
+    - name: 07.03_Interface with the Existing Warehouse System
+      desc: The minimum integration with current warehouse solutions until a separate WMS replacement programme
+        is launched.
+      value: 0.0
+      pic:
+        set: lucide
+        name: plug-zap
+      tags:
+      - owner-logistics
+      - owner-it
+      - contractor-integrator
+      - work-integration
+      - priority-p1
+      - risk-integration
+      - dependency-proprietary
+      - scope-wave-1
+      style:
+        fill: '#FFEDD5'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#C2410C'
+      children:
+      - name: Agree the protocol for inventory and shipment-status messages
+        desc: Define the message catalogue, frequency, acceptable latency and integration-recovery procedure.
+        value: 184.0
+        pic:
+          set: lucide
+          name: waypoints
+        tags:
+        - owner-logistics
+        - owner-it
+        - work-integration
+        - priority-p1
+        - risk-integration
+        - risk-vendor
+        - dependency-proprietary
+        - scope-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dashed
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#C2410C'
+      - name: Run the end-to-end order-to-warehouse-to-shipment test
+        desc: Validate interfaces and critical exceptions across the commercial workstream, Mavuno ERP and the warehouse
+          system.
+        value: 160.0
+        pic:
+          set: lucide
+          name: test-tube-diagonal
+        tags:
+        - owner-logistics
+        - owner-commercial
+        - owner-it
+        - work-testing
+        - milestone-uat
+        - priority-p1
+        - risk-integration
+        - scope-wave-1
+        style:
+          fill: '#FFEDD5'
+          contour: dashed
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#C2410C'
+  - name: 08_Platform, Integrations and Security
+    desc: 'The Mavuno ERP technical workstream: environments, integrations, access, audit logging, performance and
+      operational readiness.'
+    value: 0.0
+    pic:
+      set: lucide
+      name: server-cog
+    tags:
+    - owner-it
+    - contractor-integrator
+    - work-integration
+    - priority-p1
+    - scope-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#E0E7FF'
+      contour: solid
+      contour_width: bold
+    relation:
+      line: solid
+      line_width: regular
+      color: '#4338CA'
+    children:
+    - name: 08.01_Environments, Releases and Operational Readiness
+      desc: Prepare development, test and production environments with a predictable change-release process.
+      value: 0.0
+      pic:
+        set: lucide
+        name: cloud-cog
+      tags:
+      - owner-it
+      - contractor-integrator
+      - work-integration
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#E0E7FF'
+        contour: solid
+        contour_width: bold
+      relation:
+        line: solid
+        line_width: regular
+        color: '#4338CA'
+      children:
+      - name: Prepare development, test and production environments
+        desc: Deploy and validate isolated environments, access settings, backup and audit logging.
+        value: 232.0
+        pic:
+          set: lucide
+          name: hard-drive
+        tags:
+        - owner-it
+        - contractor-integrator
+        - work-integration
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: solid
+          contour_width: bold
+        relation:
+          line: solid
+          line_width: regular
+          color: '#4338CA'
+      - name: Define the release and rollback procedure
+        desc: Document entry criteria, approval roles, release window and recovery scenario.
+        value: 104.0
+        pic:
+          set: lucide
+          name: git-pull-request-arrow
+        tags:
+        - owner-it
+        - work-design
+        - milestone-go-live
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#4338CA'
+    - name: 08.02_Critical Wave 1 Integrations
+      desc: Core exchanges with banks, the warehouse system, external document exchange and commercial channels.
+      value: 0.0
+      pic:
+        set: lucide
+        name: cable
+      tags:
+      - owner-it
+      - contractor-integrator
+      - work-integration
+      - priority-p1
+      - risk-integration
+      - scope-wave-1
+      style:
+        fill: '#E0E7FF'
+        contour: solid
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#4338CA'
+      children:
+      - name: Build and validate the bank integration
+        desc: Receive bank statements and payment confirmations with controls for errors, duplicates and processing
+          status.
+        value: 192.0
+        pic:
+          set: lucide
+          name: landmark
+        tags:
+        - owner-it
+        - owner-finance
+        - contractor-integrator
+        - work-integration
+        - priority-p1
+        - risk-integration
+        - dependency-external
+        - scope-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#4338CA'
+      - name: Build integrations with warehouse and EDI systems
+        desc: Cover items, inventory, orders, shipments and statuses critical to Wave 1.
+        value: 280.0
+        pic:
+          set: lucide
+          name: radio-tower
+        tags:
+        - owner-it
+        - owner-logistics
+        - contractor-integrator
+        - work-integration
+        - priority-p1
+        - risk-integration
+        - dependency-proprietary
+        - scope-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: solid
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#4338CA'
+    - name: 08.03_Security, Access and Performance
+      desc: Validate access protection, audit logging, baseline performance and support readiness.
+      value: 0.0
+      pic:
+        set: lucide
+        name: shield
+      tags:
+      - owner-it
+      - work-testing
+      - priority-p1
+      - risk-high
+      - scope-wave-1
+      style:
+        fill: '#E0E7FF'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#4338CA'
+      children:
+      - name: Validate critical roles, audit logging and emergency access
+        desc: Confirm that permissions follow the role model and that key actions are auditable.
+        value: 144.0
+        pic:
+          set: lucide
+          name: shield-check
+        tags:
+        - owner-it
+        - owner-finance
+        - work-testing
+        - milestone-uat
+        - priority-p1
+        - risk-regulatory
+        - scope-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#4338CA'
+      - name: Perform load testing for critical transactions
+        desc: Validate response times for critical order, posting, integration and reporting operations.
+        value: 136.0
+        pic:
+          set: lucide
+          name: gauge
+        tags:
+        - owner-it
+        - contractor-integrator
+        - work-testing
+        - milestone-uat
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#E0E7FF'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#4338CA'
+  - name: 09_Testing, Go-Live and Stabilisation
+    desc: End-to-end readiness validation, user preparation, cutover, go-live and controlled Wave 1 stabilisation.
+    value: 0.0
+    pic:
+      set: lucide
+      name: rocket
+    tags:
+    - owner-pmo
+    - owner-it
+    - work-testing
+    - milestone-go-live
+    - priority-p1
+    - scope-wave-1
+    branch_orientation: vertical
+    style:
+      fill: '#D1FAE5'
+      contour: dotted
+      contour_width: bold
+    relation:
+      line: dashed
+      line_width: regular
+      color: '#047857'
+    children:
+    - name: 09.01_End-to-End Testing and UAT
+      desc: Validate real business scenarios in the integrated environment before the go-live decision.
+      value: 0.0
+      pic:
+        set: lucide
+        name: test-tubes
+      tags:
+      - owner-pmo
+      - owner-finance
+      - owner-commercial
+      - owner-logistics
+      - work-testing
+      - milestone-uat
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#D1FAE5'
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#047857'
+      children:
+      - name: Prepare UAT scenarios and acceptance criteria
+        desc: Build realistic end-to-end scenarios, test data, accountable owners and defect-acceptance thresholds.
+        value: 192.0
+        pic:
+          set: lucide
+          name: clipboard-check
+        tags:
+        - owner-pmo
+        - team-internal
+        - work-testing
+        - milestone-uat
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#047857'
+      - name: Execute UAT, resolve critical defects and make the readiness decision
+        desc: Confirm readiness of processes, data and integrations, or document the conditions for deferring go-live.
+        value: 360.0
+        pic:
+          set: lucide
+          name: bug-off
+        tags:
+        - owner-pmo
+        - owner-finance
+        - owner-commercial
+        - owner-logistics
+        - work-testing
+        - milestone-uat
+        - decision-steering-committee
+        - priority-p1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#047857'
+    - name: 09.02_User Training and Support Readiness
+      desc: Prepare key users, role-based guides, first-line support and the escalation route.
+      value: 0.0
+      pic:
+        set: lucide
+        name: graduation-cap
+      tags:
+      - owner-pmo
+      - owner-it
+      - work-training
+      - milestone-go-live
+      - priority-p1
+      - scope-wave-1
+      style:
+        fill: '#D1FAE5'
+        contour: dotted
+        contour_width: regular
+      relation:
+        line: solid
+        line_width: regular
+        color: '#047857'
+      children:
+      - name: Prepare role-based guides and training scenarios
+        desc: Create concise materials based on real processes and the most important user exceptions.
+        value: 176.0
+        pic:
+          set: lucide
+          name: book-open-text
+        tags:
+        - owner-pmo
+        - team-internal
+        - work-training
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#047857'
+      - name: Train key users and first-line support
+        desc: Confirm that users can execute transactions and escalate issues correctly.
+        value: 280.0
+        pic:
+          set: lucide
+          name: presentation
+        tags:
+        - owner-pmo
+        - owner-it
+        - team-internal
+        - work-training
+        - milestone-go-live
+        - priority-p1
+        - scope-wave-1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: regular
+        relation:
+          line: solid
+          line_width: regular
+          color: '#047857'
+    - name: 09.03_Cutover, Go-Live and Hypercare
+      desc: Controlled transition to production, daily KPI monitoring and closure of critical incidents.
+      value: 0.0
+      pic:
+        set: lucide
+        name: rocket
+      tags:
+      - owner-pmo
+      - owner-it
+      - work-cutover
+      - milestone-go-live
+      - priority-p1
+      - risk-high
+      - scope-wave-1
+      style:
+        fill: '#D1FAE5'
+        contour: dotted
+        contour_width: bold
+      relation:
+        line: dashed
+        line_width: regular
+        color: '#047857'
+      children:
+      - name: Prepare the cutover plan and go/no-go checklist
+        desc: Consolidate the final migration sequence, outages, checks, owners and rollback conditions.
+        value: 160.0
+        pic:
+          set: lucide
+          name: list-checks
+        tags:
+        - owner-pmo
+        - owner-it
+        - work-cutover
+        - milestone-go-live
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#047857'
+      - name: Go live with Wave 1 and run hypercare
+        desc: Monitor the stability of critical processes, incidents, reconciliations and daily decisions.
+        value: 480.0
+        pic:
+          set: lucide
+          name: activity
+        tags:
+        - owner-pmo
+        - owner-it
+        - owner-finance
+        - work-cutover
+        - milestone-go-live
+        - priority-p1
+        - risk-high
+        - scope-wave-1
+        style:
+          fill: '#D1FAE5'
+          contour: dotted
+          contour_width: bold
+        relation:
+          line: dashed
+          line_width: regular
+          color: '#047857'
+  - name: 10_Deferred and Excluded Scope
+    desc: Work with confirmed value that is excluded from the Wave 1 baseline because of risk, dependency, data
+      readiness or priority.
+    value: 0.0
+    pic:
+      set: lucide
+      name: archive-restore
+    tags:
+    - scope-deferred
+    - scope-excluded
+    - post-go-live
+    - decision-steering-committee
+    branch_orientation: vertical
+    style:
+      fill: '#F3F4F6'
+      contour: dashed
+      contour_width: bold
+    relation:
+      line: dotted
+      line_width: regular
+      color: '#6B7280'
+    hidden: true
+    children:
+    - name: 10.01_Full Warehouse-System Replacement
+      desc: High potential value, but the operational-outage risk and parallel warehouse-model change prevent inclusion
+        in Wave 1.
+      value: 0.0
+      pic:
+        set: lucide
+        name: warehouse
+      tags:
+      - owner-logistics
+      - owner-it
+      - work-configuration
+      - scope-deferred
+      - post-go-live
+      - risk-high
+      - dependency-proprietary
+      - decision-steering-committee
+      style:
+        fill: '#F3F4F6'
+        contour: dashed
+        contour_width: bold
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+      hidden: true
+      children:
+      - name: Design and replace the current WMS
+        desc: A separate programme requiring warehouse-process redesign, equipment changes, training and parallel
+          go-live.
+        value: 2800.0
+        pic:
+          set: lucide
+          name: replace
+        tags:
+        - owner-logistics
+        - owner-it
+        - work-configuration
+        - scope-deferred
+        - post-go-live
+        - risk-high
+        - dependency-proprietary
+        - decision-steering-committee
+        style:
+          fill: '#F3F4F6'
+          contour: dashed
+          contour_width: bold
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#6B7280'
+        hidden: true
+    - name: 10.02_Advanced Demand and Inventory Planning
+      desc: Deferred until data, processes and baseline planning metrics have stabilised after go-live.
+      value: 0.0
+      pic:
+        set: lucide
+        name: chart-line
+      tags:
+      - owner-commercial
+      - owner-logistics
+      - work-design
+      - scope-deferred
+      - post-go-live
+      - risk-data
+      - priority-p2
+      style:
+        fill: '#F3F4F6'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+      hidden: true
+      children:
+      - name: Implement demand forecasting and inventory optimisation
+        desc: High business value, but it requires stable master data, sales history and an aligned S&OP process.
+        value: 1680.0
+        pic:
+          set: lucide
+          name: brain-circuit
+        tags:
+        - owner-commercial
+        - owner-logistics
+        - work-design
+        - scope-deferred
+        - post-go-live
+        - risk-data
+        - priority-p2
+        style:
+          fill: '#F3F4F6'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#6B7280'
+        hidden: true
+    - name: 10.03_Full Historical Archive and Enterprise Analytics
+      desc: Not critical to operational go-live; requires a separate approach to historical-data quality, storage
+        and access.
+      value: 0.0
+      pic:
+        set: lucide
+        name: archive
+      tags:
+      - owner-it
+      - owner-finance
+      - work-data
+      - scope-deferred
+      - post-go-live
+      - risk-data
+      - priority-p2
+      style:
+        fill: '#F3F4F6'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+      hidden: true
+      children:
+      - name: Migrate the full historical transaction archive
+        desc: Wave 1 migrates active balances and open transactions; deep history remains available in the source
+          systems.
+        value: 1120.0
+        pic:
+          set: lucide
+          name: database-backup
+        tags:
+        - owner-it
+        - owner-finance
+        - work-data
+        - scope-deferred
+        - post-go-live
+        - risk-data
+        - priority-p2
+        style:
+          fill: '#F3F4F6'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#6B7280'
+        hidden: true
+      - name: Create the enterprise data platform and advanced BI reporting
+        desc: A separate architecture workstream requiring a dependable data layer and agreed KPI ownership.
+        value: 2240.0
+        pic:
+          set: lucide
+          name: chart-no-axes-combined
+        tags:
+        - owner-it
+        - owner-finance
+        - work-data
+        - scope-deferred
+        - post-go-live
+        - risk-data
+        - priority-p2
+        style:
+          fill: '#F3F4F6'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#6B7280'
+        hidden: true
+    - name: 10.04_Relaunch the External B2C Platform and Mobile Channel
+      desc: Commercially attractive but not critical to ERP Core stability; requires independent product discovery
+        and integration architecture.
+      value: 0.0
+      pic:
+        set: lucide
+        name: smartphone
+      tags:
+      - owner-commercial
+      - owner-it
+      - work-integration
+      - scope-excluded
+      - post-go-live
+      - risk-integration
+      - priority-p2
+      style:
+        fill: '#F3F4F6'
+        contour: dashed
+        contour_width: regular
+      relation:
+        line: dotted
+        line_width: regular
+        color: '#6B7280'
+      hidden: true
+      children:
+      - name: Build the new B2C channel and omnichannel scenarios
+        desc: Part of the later commercial transformation, after core data, pricing and order processes have stabilised.
+        value: 1960.0
+        pic:
+          set: lucide
+          name: store
+        tags:
+        - owner-commercial
+        - owner-it
+        - work-integration
+        - scope-excluded
+        - post-go-live
+        - risk-integration
+        - priority-p2
+        style:
+          fill: '#F3F4F6'
+          contour: dashed
+          contour_width: regular
+        relation:
+          line: dotted
+          line_width: regular
+          color: '#6B7280'
+        hidden: true
